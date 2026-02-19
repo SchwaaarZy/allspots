@@ -1,0 +1,55 @@
+name: allspots
+description: AllSpots starter (Google Maps + Riverpod)
+publish_to: 'none'
+version: 0.1.0+1
+
+environment:
+  sdk: '>=3.3.0 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  firebase_core: ^3.15.1
+  firebase_auth: ^5.7.0
+  cloud_firestore: ^5.0.0
+  image_picker: ^1.1.2
+  google_sign_in: ^7.2.0
+  flutter_google_maps_webservices: ^1.1.1
+  google_fonts: ^8.0.1
+  http: ^1.6.0
+
+  # Maps + GPS
+  google_maps_flutter: ^2.6.1
+  geolocator: ^13.0.2
+
+  # State / routing
+  flutter_riverpod: ^2.5.1
+  go_router: ^14.2.7
+
+  # Ads
+  google_mobile_ads: ^7.0.0
+
+  # Utilitaires
+  uuid: ^4.4.0
+  collection: ^1.18.0
+  url_launcher: ^6.2.6
+  cached_network_image: ^3.3.1
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^4.0.0
+  flutter_launcher_icons: ^0.13.1
+
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/images/
+
+flutter_launcher_icons:
+  android: true
+  ios: true
+  image_path: assets/images/icon_allspots.png
+  min_sdk_android: 21
+  remove_alpha_ios: true
