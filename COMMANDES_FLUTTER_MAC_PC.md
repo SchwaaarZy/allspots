@@ -161,3 +161,59 @@ flutter run
 - Sous Windows, privilégie PowerShell pour un meilleur confort.
 - Si une commande n'est pas reconnue, vérifie que Flutter est bien dans le `PATH`.
 - Sur Android, vérifie aussi `adb devices` si aucun téléphone n'apparaît.
+
+---
+
+## 10) Synchronisation Mac ↔ PC (1 commande)
+
+Deux scripts sont fournis dans `scripts/` :
+
+- `scripts/sync.sh` (macOS/Linux)
+- `scripts/sync.ps1` (Windows PowerShell)
+
+Ils exécutent automatiquement :
+
+1. `git fetch origin`
+2. `git pull --rebase --autostash`
+3. `git add -A && git commit -m "..."` (uniquement s'il y a des changements)
+4. `git push`
+
+### macOS
+
+```bash
+chmod +x scripts/sync.sh
+./scripts/sync.sh
+./scripts/sync.sh "feat: mise à jour spots"
+```
+
+Alias conseillé (à ajouter dans `~/.zshrc`) :
+
+```bash
+alias syncall='cd /chemin/vers/allspots && ./scripts/sync.sh'
+```
+
+Puis recharger :
+
+```bash
+source ~/.zshrc
+syncall
+```
+
+### Windows (PowerShell)
+
+```powershell
+.\scripts\sync.ps1
+.\scripts\sync.ps1 -Message "feat: mise à jour spots"
+```
+
+Alias conseillé (PowerShell profile) :
+
+```powershell
+function syncall { Set-Location "C:\chemin\vers\allspots"; .\scripts\sync.ps1 }
+```
+
+### Bonnes pratiques pour éviter les conflits
+
+- Lance `syncall` avant de coder.
+- Lance `syncall` après chaque session de travail.
+- Évite de modifier les mêmes fichiers en parallèle sur Mac et PC sans synchroniser entre les deux.
