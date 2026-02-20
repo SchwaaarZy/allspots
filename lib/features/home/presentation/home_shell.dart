@@ -7,6 +7,7 @@ import 'package:flutter/foundation.dart'
   show TargetPlatform, defaultTargetPlatform, kIsWeb;
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
+import '../../../core/utils/responsive_utils.dart';
 import '../../map/presentation/map_page.dart';
 import '../../map/presentation/map_controller.dart';
 import '../../map/presentation/nearby_results_page.dart';
@@ -264,7 +265,7 @@ class _HomeShellState extends ConsumerState<HomeShell> {
                             Text(
                               mapState.isSatellite ? 'Carte' : 'Satellite',
                               style: TextStyle(
-                                fontSize: 11,
+                                fontSize: context.fontSize(11),
                                 color: _index == 0
                                     ? Theme.of(context).colorScheme.primary
                                     : Colors.grey,
@@ -313,7 +314,7 @@ class _HomeShellState extends ConsumerState<HomeShell> {
               const SizedBox(height: 2),
               Text(
                 label,
-                style: TextStyle(fontSize: 11, color: color),
+                style: TextStyle(fontSize: context.fontSize(11), color: color),
                 textAlign: TextAlign.center,
               ),
             ],

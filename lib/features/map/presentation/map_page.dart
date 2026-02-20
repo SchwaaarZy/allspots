@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:geolocator/geolocator.dart';
+import '../../../core/utils/responsive_utils.dart';
 import '../../auth/data/auth_providers.dart';
 import '../../../core/widgets/app_header.dart';
 import '../../../core/widgets/optimized_image.dart';
@@ -605,12 +606,12 @@ class _MapViewState extends ConsumerState<MapView> {
                               children: [
                                 if (poi.imageUrls.isNotEmpty) ...[
                                   SizedBox(
-                                    height: 150,
+                                    height: ResponsiveUtils.getImageHeight(dialogContext.screenWidth),
                                     child: ClipRRect(
                                       borderRadius: BorderRadius.circular(8),
                                       child: OptimizedNetworkImage(
                                         imageUrl: poi.imageUrls.first,
-                                        height: 150,
+                                        height: ResponsiveUtils.getImageHeight(dialogContext.screenWidth),
                                         fit: BoxFit.cover,
                                       ),
                                     ),

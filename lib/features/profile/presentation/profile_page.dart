@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:http/http.dart' as http;
+import '../../../core/utils/responsive_utils.dart';
 import '../../../core/widgets/glass_app_bar.dart';
 import '../../../core/widgets/optimized_image.dart';
 import '../../auth/data/auth_providers.dart';
@@ -1408,7 +1409,7 @@ class _FavoriteDetailPage extends StatelessWidget {
           // Photos
           if (imageUrls.isNotEmpty)
             SizedBox(
-              height: 250,
+              height: context.imageHeight,
               child: PageView(
                 children: [
                   for (final imageUrl in imageUrls)
@@ -1417,7 +1418,7 @@ class _FavoriteDetailPage extends StatelessWidget {
                           bottom: Radius.circular(8)),
                       child: OptimizedNetworkImage(
                         imageUrl: imageUrl,
-                        height: 250,
+                        height: context.imageHeight,
                         fit: BoxFit.cover,
                       ),
                     ),
