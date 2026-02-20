@@ -76,18 +76,64 @@ class _ProfilePageState extends ConsumerState<ProfilePage>
                     background: _buildProfileHeader(profile),
                   ),
                   bottom: PreferredSize(
-                    preferredSize: const Size.fromHeight(40),
+                    preferredSize: const Size.fromHeight(48),
                     child: _buildTabBar(),
                   ),
                 ),
               ],
-              body: TabBarView(
-                controller: _tabController,
+              body: Column(
                 children: [
-                  _MyPoiTab(userId: user.uid),
-                  _FavoritesTab(userId: user.uid),
-                  const _RoadTripTab(),
-                  _PremiumTab(profile: profile, user: user),
+                  // Barre d'action pour l'onglet Spots
+                  AnimatedBuilder(
+                    animation: _tabController,
+                    builder: (context, child) {
+                      if (_tabController.index == 0) {
+                        return Padding(
+                          padding: const EdgeInsets.all(12),
+                          child: Row(
+                            children: [
+                              Expanded(
+                                child: ElevatedButton.icon(
+                                  onPressed: () => context.push('/spots/new'),
+                                  icon: const Icon(Icons.add_location_alt),
+                                  label: const Text('Créer un spot'),
+                                ),
+                              ),
+                              const SizedBox(width: 8),
+                              Expanded(
+                                child: OutlinedButton.icon(
+                                  onPressed: () {
+                                    ScaffoldMessenger.of(context).showSnackBar(
+                                      const SnackBar(
+                                        content: Text(
+                                          'Sélectionnez un spot dans la liste puis Modifier.',
+                                        ),
+                                      ),
+                                    );
+                                  },
+                                  icon: const Icon(Icons.edit),
+                                  label: const Text('Modifier un spot'),
+                                ),
+                              ),
+                            ],
+                          ),
+                        );
+                      }
+                      return const SizedBox.shrink();
+                    },
+                  ),
+                  // TabBarView avec contenu scrollable
+                  Expanded(
+                    child: TabBarView(
+                      controller: _tabController,
+                      children: [
+                        _MyPoiTab(userId: user.uid),
+                        _FavoritesTab(userId: user.uid),
+                        const _RoadTripTab(),
+                        _PremiumTab(profile: profile, user: user),
+                      ],
+                    ),
+                  ),
                 ],
               ),
             ),
@@ -186,23 +232,25 @@ class _ProfilePageState extends ConsumerState<ProfilePage>
           builder: (context, favsSnapshot) {
             final favsCount = favsSnapshot.data?.docs.length ?? 0;
 
-            return Container(
-              width: double.infinity,
-              decoration: BoxDecoration(
-                gradient: LinearGradient(
-                  colors: [
-                    Colors.blue.shade600,
-                    Colors.blue.shade400,
-                  ],
-                  begin: Alignment.topLeft,
-                  end: Alignment.bottomRight,
+            return SafeArea(
+              bottom: false,
+              child: Container(
+                width: double.infinity,
+                decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                    colors: [
+                      Colors.blue.shade600,
+                      Colors.blue.shade400,
+                    ],
+                    begin: Alignment.topLeft,
+                    end: Alignment.bottomRight,
+                  ),
                 ),
-              ),
-              child: Stack(
-                children: [
-                  // Contenu principal
-                  Padding(
-                    padding: const EdgeInsets.fromLTRB(16, 50, 16, 16),
+                child: Stack(
+                  children: [
+                    // Contenu principal
+                    Padding(
+                      padding: const EdgeInsets.fromLTRB(16, 16, 16, 16),
                     child: Column(
                       children: [
                         // Photo et badges
@@ -493,6 +541,7 @@ class _ProfilePageState extends ConsumerState<ProfilePage>
                   ),
                 ],
               ),
+            ),
             );
           },
         );
@@ -567,6 +616,7 @@ class _ProfilePageState extends ConsumerState<ProfilePage>
 
   Widget _buildTabBar() {
     return Container(
+      height: 48,
       color: Colors.white,
       child: TabBar(
         controller: _tabController,
@@ -685,51 +735,21 @@ class _MyPoiTabState extends ConsumerState<_MyPoiTab> {
           .snapshots(),
       builder: (context, snapshot) {
         final allSpots = snapshot.data?.docs ?? [];
-        final actionBar = Padding(
-          padding: const EdgeInsets.all(12),
-          child: Row(
-            children: [
-              Expanded(
-                child: ElevatedButton.icon(
-                  onPressed: () => context.push('/spots/new'),
-                  icon: const Icon(Icons.add_location_alt),
-                  label: const Text('Créer un spot'),
-                ),
-              ),
-              const SizedBox(width: 8),
-              Expanded(
-                child: OutlinedButton.icon(
-                  onPressed: allSpots.isEmpty
-                      ? null
-                      : () {
-                          ScaffoldMessenger.of(context).showSnackBar(
-                            const SnackBar(
-                              content: Text(
-                                'Sélectionnez un spot dans la liste puis Modifier.',
-                              ),
-                            ),
-                          );
-                        },
-                  icon: const Icon(Icons.edit),
-                  label: const Text('Modifier un spot'),
-                ),
-              ),
-            ],
-          ),
-        );
 
         if (allSpots.isEmpty) {
-          return Padding(
-            padding: const EdgeInsets.all(16),
-            child: Column(
-              children: [
-                const SizedBox(height: 100),
-                const Text('📍 Vous n\'avez pas encore créé de spots.',
-                  textAlign: TextAlign.center,
-                ),
-                const SizedBox(height: 20),
-                actionBar,
-              ],
+          return Center(
+            child: Padding(
+              padding: const EdgeInsets.all(16),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  const Icon(Icons.location_on, size: 48, color: Colors.blue),
+                  const SizedBox(height: 12),
+                  const Text('📍 Vous n\'avez pas encore créé de spots.',
+                    textAlign: TextAlign.center,
+                  ),
+                ],
+              ),
             ),
           );
         }
@@ -741,41 +761,64 @@ class _MyPoiTabState extends ConsumerState<_MyPoiTab> {
 
         return Column(
           children: [
-            ListView.builder(
-              shrinkWrap: true,
-              physics: const NeverScrollableScrollPhysics(),
-              padding: const EdgeInsets.fromLTRB(12, 12, 12, 12),
-              itemCount: visibleSpots.length,
-              itemBuilder: (context, index) {
-                  final doc = visibleSpots[index];
-                  final data = doc.data() as Map<String, dynamic>;
-                  final spot = Poi(
-                    id: doc.id,
-                    name: data['name'] ?? '',
-                    category: poiCategoryFromString(data['categoryGroup'] ?? ''),
-                    subCategory: data['categoryItem'],
-                    lat: data['lat'] ?? 0,
-                    lng: data['lng'] ?? 0,
-                    shortDescription: data['description'] ?? '',
-                    imageUrls: [],
-                    source: 'firestore',
-                    updatedAt: (data['updatedAt'] as Timestamp?)?.toDate() ??
-                        DateTime.now(),
-                  );
-
-                  return _PoiTile(
-                    poi: spot,
-                    onEdit: () =>
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          const SnackBar(content: Text('Modification à implémenter')),
+            Padding(
+              padding: const EdgeInsets.all(12),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        'Spots: ${allSpots.length}',
+                        style: const TextStyle(fontWeight: FontWeight.w700),
+                      ),
+                      if (totalPages > 1)
+                        Text(
+                          'Page ${_currentPage + 1} / $totalPages',
+                          style: const TextStyle(fontWeight: FontWeight.w600, fontSize: 12),
                         ),
-                    onDelete: () => _deleteSpot(context, doc.id),
-                    showActions: true,
-                  );
-                },
+                    ],
+                  ),
+                ],
               ),
-              if (totalPages > 1)
-                Container(
+            ),
+            const Divider(height: 1),
+            Expanded(
+              child: ListView.builder(
+                padding: const EdgeInsets.fromLTRB(12, 12, 12, 12),
+                itemCount: visibleSpots.length,
+                itemBuilder: (context, index) {
+                    final doc = visibleSpots[index];
+                    final data = doc.data() as Map<String, dynamic>;
+                    final spot = Poi(
+                      id: doc.id,
+                      name: data['name'] ?? '',
+                      category: poiCategoryFromString(data['categoryGroup'] ?? ''),
+                      subCategory: data['categoryItem'],
+                      lat: data['lat'] ?? 0,
+                      lng: data['lng'] ?? 0,
+                      shortDescription: data['description'] ?? '',
+                      imageUrls: [],
+                      source: 'firestore',
+                      updatedAt: (data['updatedAt'] as Timestamp?)?.toDate() ??
+                          DateTime.now(),
+                    );
+
+                    return _PoiTile(
+                      poi: spot,
+                      onEdit: () =>
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            const SnackBar(content: Text('Modification à implémenter')),
+                          ),
+                      onDelete: () => _deleteSpot(context, doc.id),
+                      showActions: true,
+                    );
+                  },
+              ),
+            ),
+            if (totalPages > 1)
+              Container(
                 padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 12),
                 decoration: BoxDecoration(
                   color: Theme.of(context).scaffoldBackgroundColor,
@@ -797,7 +840,7 @@ class _MyPoiTabState extends ConsumerState<_MyPoiTab> {
                           : null,
                     ),
                     Text(
-                      'Page ${_currentPage + 1} / $totalPages',
+                      '${_currentPage + 1} / $totalPages',
                       style: const TextStyle(fontWeight: FontWeight.bold),
                     ),
                     IconButton(
@@ -809,9 +852,8 @@ class _MyPoiTabState extends ConsumerState<_MyPoiTab> {
                   ],
                 ),
               ),
-              actionBar,
-            ],
-          );
+          ],
+        );
       },
     );
   }
@@ -876,10 +918,17 @@ class _FavoritesTabState extends ConsumerState<_FavoritesTab> {
 
         final allSpots = snapshot.data!.docs;
         if (allSpots.isEmpty) {
-          return const Center(
+          return Center(
             child: Padding(
-              padding: EdgeInsets.all(16),
-              child: Text('❤️ Aucun favori pour le moment'),
+              padding: const EdgeInsets.all(16),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  const Icon(Icons.favorite, size: 48, color: Colors.red),
+                  const SizedBox(height: 12),
+                  const Text('❤️ Aucun favori pour le moment', textAlign: TextAlign.center),
+                ],
+              ),
             ),
           );
         }
@@ -891,18 +940,41 @@ class _FavoritesTabState extends ConsumerState<_FavoritesTab> {
 
         return Column(
           children: [
-            ListView(
-              shrinkWrap: true,
-              physics: const NeverScrollableScrollPhysics(),
+            Padding(
               padding: const EdgeInsets.all(12),
-              children: [
-                for (final doc in visibleSpots)
-                  _FavoriteTile(
-                    spotId: doc.id,
-                    spotData: doc.data() as Map<String, dynamic>,
-                    userId: widget.userId,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        'Favoris: ${allSpots.length}',
+                        style: const TextStyle(fontWeight: FontWeight.w700),
+                      ),
+                      if (totalPages > 1)
+                        Text(
+                          'Page ${_currentPage + 1} / $totalPages',
+                          style: const TextStyle(fontWeight: FontWeight.w600, fontSize: 12),
+                        ),
+                    ],
                   ),
-              ],
+                ],
+              ),
+            ),
+            const Divider(height: 1),
+            Expanded(
+              child: ListView(
+                padding: const EdgeInsets.all(12),
+                children: [
+                  for (final doc in visibleSpots)
+                    _FavoriteTile(
+                      spotId: doc.id,
+                      spotData: doc.data() as Map<String, dynamic>,
+                      userId: widget.userId,
+                    ),
+                ],
+              ),
             ),
             if (totalPages > 1)
               Container(
@@ -927,7 +999,7 @@ class _FavoritesTabState extends ConsumerState<_FavoritesTab> {
                           : null,
                     ),
                     Text(
-                      'Page ${_currentPage + 1} / $totalPages',
+                      '${_currentPage + 1} / $totalPages',
                       style: const TextStyle(fontWeight: FontWeight.bold),
                     ),
                     IconButton(
@@ -939,8 +1011,8 @@ class _FavoritesTabState extends ConsumerState<_FavoritesTab> {
                   ],
                 ),
               ),
-            ],
-          );
+          ],
+        );
       },
     );
   }
