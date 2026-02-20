@@ -37,7 +37,7 @@ service cloud.firestore {
       allow read: if request.auth.uid == userId;
       allow write: if request.auth.uid == userId;
     }
-    
+
     // Spots publics - read all, write own
     match /spots/{spotId} {
       allow read: if resource.data.isPublic == true;
@@ -49,4 +49,3 @@ service cloud.firestore {
 ```
 
 Puis cliquez sur "Publier".
-

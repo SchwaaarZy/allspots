@@ -14,16 +14,18 @@ Le système filtre automatiquement les résultats selon les **préférences de l
 ## 📍 Comment ça marche
 
 ### 1. Préférences utilisateur
+
 Chaque utilisateur configure ses intérêts dans son profil:
+
 - 🏛️ Patrimoine et Histoire
 - 🌳 Nature
 - 🎨 Culture
 - 🍽️ Expérience gustative
-- ⛰️ Activités plein air
+- ⛰️ Activités de plein air
 
 ### 2. Flux de recherche
 
-```
+```text
 Utilisateur configure ses préférences
          ↓
 Recherche initiée (Carte ou Recherche)
@@ -40,43 +42,50 @@ Affichage: spots communautaires + Google Places
 ### 3. Filtrage par catégories
 
 #### ✅ Les spots Firestore
+
 - Quand l'utilisateur crée un spot, il choisit une catégorie
 - La recherche filtre sur `categoryGroup` en Firestore
 - Exemple: "Culture" → affiche musées, galeries, lieux culturels
 
 #### ✅ Les lieux Google Places
+
 - Google retourne les types de lieux: `restaurant`, `museum`, `park`, etc.
 - Notre système mappe intelligemment ces types aux catégories AllSpots
-- Exemple: 
+- Exemple:
   - `museum` → 🏛️ Culture
   - `restaurant`, `bar`, `cafe` → 🍽️ Expérience gustative
   - `park`, `camping` → 🌳 Nature
   - `church`, `castle` → 🏛️ Patrimoine et Histoire
-  - `gym`, `amusement_park` → ⛰️ Activités plein air
+  - `gym`, `amusement_park` → ⛰️ Activités de plein air
 
 ---
 
 ## 🔍 Mapping Google Places → AllSpots
 
 ### Culture (🎨)
+
 - `museum`, `art_gallery`, `tourist_attraction`
 - `historical_museums`, `history_museums`
 
 ### Nature (🌳)
+
 - `park`, `campground`, `natural_feature`
 - `scenic_viewpoint`, `zoo`
 
 ### Patrimoine & Histoire (🏛️)
+
 - `church`, `place_of_worship`
 - `hindu_temple`, `mosque`, `synagogue`
 - `cemetery`, `castle`
 
 ### Expérience Gustative (🍽️)
+
 - `restaurant`, `bar`, `cafe`, `bakery`
 - `brewery`, `wine_bar`, `meal_delivery`
 - `liquor_store`, `food`
 
 ### Activités (⛰️)
+
 - `amusement_park`, `gym`, `bowling_alley`
 - `movie_theater`, `night_club`, `sports_complex`
 - `stadium`, `swimming_pool`, `hiking_area`
@@ -86,23 +95,29 @@ Affichage: spots communautaires + Google Places
 ## 💡 Fonctionnalités
 
 ### ✅ Auto-filtrage par préférences
+
 Quand un utilisateur configure ses intérêts dans son profil, la carte se met à jour automatiquement pour afficher uniquement les spots pertinents.
 
-### ✅ Spots créés par utilisateurs
+### ✅ Spots créés par les utilisateurs
+
 Les utilisateurs peuvent créer des spots géolocalisés pour:
+
 - Partager des découvertes
 - Enrichir la base de données
 - Ajouter des lieux non listés sur Google Places
 
 ### ✅ Recherche avancée
+
 Page de recherche avec:
+
 - Rayon de recherche ajustable
 - Filtre "Ouvert maintenant"
 - Sélection de catégories
 - Affichage du nombre de résultats
 
 ### ✅ Intégration double source
-- Les spots communautaires apparemment sous le label "🏘️ Spots communautaires"
+
+- Les spots communautaires apparaissent sous le label "🏘️ Spots communautaires"
 - Les lieux Google Places sous "🗺️ Google Places"
 - Tri automatique par distance
 
@@ -120,7 +135,7 @@ Page de recherche avec:
 
 ### Flux de données
 
-```
+```text
 MapController.init()
   ├─ _determinePosition() → Localisation utilisateur
   └─ refreshNearby() → Récupère les POIs
@@ -166,5 +181,6 @@ flutter run -d <device> --dart-define=PLACES_API_KEY=<your_key>
 ```
 
 Assurez-vous que la clé API a les APIs habilitées:
+
 - Google Maps API
 - Places API
