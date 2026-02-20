@@ -206,6 +206,27 @@ syncall
 .\scripts\sync.ps1 -Message "feat: mise à jour spots"
 ```
 
+### Auto-sync toutes les 30 minutes (Windows)
+
+Script fourni : `scripts/install_auto_sync_windows.ps1`
+
+```powershell
+Set-ExecutionPolicy -Scope CurrentUser RemoteSigned
+.\scripts\install_auto_sync_windows.ps1
+```
+
+Vérifier la tâche :
+
+```powershell
+Get-ScheduledTask -TaskName AllspotsAutoSync
+```
+
+Supprimer la tâche (si besoin) :
+
+```powershell
+Unregister-ScheduledTask -TaskName AllspotsAutoSync -Confirm:$false
+```
+
 Alias conseillé (PowerShell profile) :
 
 ```powershell
