@@ -10,6 +10,7 @@ import '../features/map/presentation/map_page.dart';
 import '../features/map/presentation/nearby_results_page.dart';
 import '../features/spots/presentation/create_spot_page.dart';
 import '../features/search/presentation/search_page.dart';
+import '../features/profile/presentation/public_profile_page.dart';
 
 final appRouterProvider = Provider<GoRouter>((ref) {
   ref.watch(authStateProvider);
@@ -53,6 +54,13 @@ final appRouterProvider = Provider<GoRouter>((ref) {
       GoRoute(
         path: '/search',
         builder: (context, state) => const SearchPage(),
+      ),
+      GoRoute(
+        path: '/users/:uid',
+        builder: (context, state) {
+          final uid = state.pathParameters['uid'] ?? '';
+          return PublicProfilePage(userId: uid);
+        },
       ),
       GoRoute(
         path: '/nearby-results',

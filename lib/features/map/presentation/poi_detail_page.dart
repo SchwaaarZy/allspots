@@ -5,6 +5,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:go_router/go_router.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -86,7 +87,8 @@ class _PoiDetailPageState extends ConsumerState<PoiDetailPage> {
       await repo.addRating(
         poiId: widget.poi.id,
         rating: _myRating,
-        comment: _commentController.text.isEmpty ? null : _commentController.text,
+        comment:
+            _commentController.text.isEmpty ? null : _commentController.text,
         photoBase64: _selectedPhotoBase64,
       );
 
@@ -168,7 +170,8 @@ class _PoiDetailPageState extends ConsumerState<PoiDetailPage> {
     if (user == null) {
       if (!mounted) return;
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Connectez-vous pour creer un road trip.')),
+        const SnackBar(
+            content: Text('Connectez-vous pour creer un road trip.')),
       );
       return;
     }
@@ -214,9 +217,10 @@ class _PoiDetailPageState extends ConsumerState<PoiDetailPage> {
     }
   }
 
-  void _toggleFavorite(BuildContext context, WidgetRef ref, bool isFavorite) async {
+  void _toggleFavorite(
+      BuildContext context, WidgetRef ref, bool isFavorite) async {
     if (_isTogglingFavorite) return;
-    
+
     final user = ref.read(authStateProvider).value;
     if (user == null) return;
 
@@ -230,8 +234,8 @@ class _PoiDetailPageState extends ConsumerState<PoiDetailPage> {
             .collection('profiles')
             .doc(user.uid)
             .update({
-              'favoritePoiIds': FieldValue.arrayRemove([widget.poi.id]),
-            });
+          'favoritePoiIds': FieldValue.arrayRemove([widget.poi.id]),
+        });
         await FirebaseFirestore.instance
             .collection('profiles')
             .doc(user.uid)
@@ -243,26 +247,26 @@ class _PoiDetailPageState extends ConsumerState<PoiDetailPage> {
             .collection('profiles')
             .doc(user.uid)
             .update({
-              'favoritePoiIds': FieldValue.arrayUnion([widget.poi.id]),
-            });
+          'favoritePoiIds': FieldValue.arrayUnion([widget.poi.id]),
+        });
         await FirebaseFirestore.instance
             .collection('profiles')
             .doc(user.uid)
             .collection('favoritePois')
             .doc(widget.poi.id)
             .set({
-              'name': widget.poi.name,
-              'imageUrls': widget.poi.imageUrls,
-              'googleRating': widget.poi.googleRating,
-              'googleRatingCount': widget.poi.googleRatingCount,
-              'description': widget.poi.shortDescription,
-              'lat': widget.poi.lat,
-              'lng': widget.poi.lng,
-              'category': widget.poi.category.name,
-              'subCategory': widget.poi.subCategory,
-              'source': widget.poi.source,
-              'updatedAt': Timestamp.now(),
-            });
+          'name': widget.poi.name,
+          'imageUrls': widget.poi.imageUrls,
+          'googleRating': widget.poi.googleRating,
+          'googleRatingCount': widget.poi.googleRatingCount,
+          'description': widget.poi.shortDescription,
+          'lat': widget.poi.lat,
+          'lng': widget.poi.lng,
+          'category': widget.poi.category.name,
+          'subCategory': widget.poi.subCategory,
+          'source': widget.poi.source,
+          'updatedAt': Timestamp.now(),
+        });
       }
     } catch (e) {
       debugPrint('Erreur: $e');
@@ -279,10 +283,10 @@ class _PoiDetailPageState extends ConsumerState<PoiDetailPage> {
   Widget build(BuildContext context) {
     final distance = _calculateDistance();
     final ratingsAsync = ref.watch(ratingsForPoiProvider(widget.poi.id));
-    final avgRatingsAsync =
-        ref.watch(averageRatingsProvider(widget.poi.id));
+    final avgRatingsAsync = ref.watch(averageRatingsProvider(widget.poi.id));
     final profile = ref.watch(profileStreamProvider);
-    final isFavorite = profile.value?.favoritePoiIds.contains(widget.poi.id) ?? false;
+    final isFavorite =
+        profile.value?.favoritePoiIds.contains(widget.poi.id) ?? false;
     final googleRating = widget.poi.googleRating ?? 0;
     final hasGoogleReviews = widget.poi.source == 'places';
 
@@ -782,11 +786,18 @@ class _RatingTile extends StatelessWidget {
                         style: TextStyle(fontSize: 12, color: Colors.grey),
                       )
                     else
-                      Text(
-                        'Par un utilisateur',
-                        style: TextStyle(
-                          fontSize: 12,
-                          color: Colors.grey[600],
+                      InkWell(
+                        onTap: () {
+                          if (rating.userId.isEmpty) return;
+                          context.push('/users/${rating.userId}');
+                        },
+                        child: Text(
+                          'Voir le profil public',
+                          style: TextStyle(
+                            fontSize: 12,
+                            color: Colors.blue.shade700,
+                            fontWeight: FontWeight.w600,
+                          ),
                         ),
                       ),
                   ],

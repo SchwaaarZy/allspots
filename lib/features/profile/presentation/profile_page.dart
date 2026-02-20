@@ -12,6 +12,7 @@ import '../../auth/data/auth_providers.dart';
 import '../../auth/presentation/profile_setup_page.dart';
 import '../../map/domain/poi.dart';
 import '../../map/domain/poi_category.dart';
+import 'community_spots_management_page.dart';
 import '../data/road_trip_service.dart';
 
 class ProfilePage extends ConsumerStatefulWidget {
@@ -26,8 +27,13 @@ class _ProfilePageState extends ConsumerState<ProfilePage>
   late TabController _tabController;
 
   double _profileHeaderHeight(BuildContext context) {
-    final height = MediaQuery.sizeOf(context).height * 0.42;
-    return height.clamp(320.0, 420.0);
+    final size = MediaQuery.sizeOf(context);
+    final isCompact = size.width < 390 || size.height < 760;
+    final ratio = isCompact ? 0.47 : 0.42;
+    final minHeight = isCompact ? 330.0 : 300.0;
+    final maxHeight = isCompact ? 430.0 : 390.0;
+    final height = size.height * ratio;
+    return height.clamp(minHeight, maxHeight);
   }
 
   @override
@@ -87,39 +93,112 @@ class _ProfilePageState extends ConsumerState<ProfilePage>
                   AnimatedBuilder(
                     animation: _tabController,
                     builder: (context, child) {
-                      if (_tabController.index == 0) {
-                        return Padding(
-                          padding: const EdgeInsets.all(12),
-                          child: Row(
-                            children: [
-                              Expanded(
-                                child: ElevatedButton.icon(
-                                  onPressed: () => context.push('/spots/new'),
-                                  icon: const Icon(Icons.add_location_alt),
-                                  label: const Text('Créer un spot'),
-                                ),
-                              ),
-                              const SizedBox(width: 8),
-                              Expanded(
-                                child: OutlinedButton.icon(
-                                  onPressed: () {
-                                    ScaffoldMessenger.of(context).showSnackBar(
-                                      const SnackBar(
-                                        content: Text(
-                                          'Sélectionnez un spot dans la liste puis Modifier.',
-                                        ),
-                                      ),
-                                    );
-                                  },
-                                  icon: const Icon(Icons.edit),
-                                  label: const Text('Modifier un spot'),
-                                ),
-                              ),
-                            ],
-                          ),
-                        );
+                      final tabIndex = _tabController.index;
+                      final isSpotsTab = tabIndex == 0;
+                      final isRoadTripTab = tabIndex == 2;
+
+                      if (!isSpotsTab && !isRoadTripTab) {
+                        return const SizedBox.shrink();
                       }
-                      return const SizedBox.shrink();
+
+                      return LayoutBuilder(
+                        builder: (context, constraints) {
+                          final isCompactHeight = constraints.maxHeight < 360;
+
+                          void showEditHint() {
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              const SnackBar(
+                                content: Text(
+                                  'Sélectionnez un spot dans la liste puis Modifier.',
+                                ),
+                              ),
+                            );
+                          }
+
+                          final createButton = ElevatedButton.icon(
+                            onPressed: () => context
+                                .push(isSpotsTab ? '/spots/new' : '/nearby-results'),
+                            style: ElevatedButton.styleFrom(
+                              visualDensity: VisualDensity.compact,
+                              padding: const EdgeInsets.symmetric(
+                                vertical: 10,
+                                horizontal: 8,
+                              ),
+                            ),
+                            icon: Icon(
+                              isSpotsTab ? Icons.add_location_alt : Icons.route,
+                            ),
+                            label: Text(
+                              isSpotsTab
+                                  ? (isCompactHeight ? 'Créer' : 'Créer un spot')
+                                  : (isCompactHeight
+                                      ? 'Créer'
+                                      : 'Créer un Road Trip'),
+                            ),
+                          );
+
+                          final editButton = OutlinedButton.icon(
+                            onPressed: showEditHint,
+                            style: OutlinedButton.styleFrom(
+                              visualDensity: VisualDensity.compact,
+                              padding: const EdgeInsets.symmetric(
+                                vertical: 10,
+                                horizontal: 8,
+                              ),
+                            ),
+                            icon: const Icon(Icons.edit),
+                            label: const Text('Modifier un spot'),
+                          );
+
+                          return Padding(
+                            padding: const EdgeInsets.fromLTRB(12, 8, 12, 8),
+                            child: Center(
+                              child: ConstrainedBox(
+                                constraints:
+                                    const BoxConstraints(maxWidth: 560),
+                                child: isSpotsTab && isCompactHeight
+                                    ? Row(
+                                        children: [
+                                          Expanded(child: createButton),
+                                          const SizedBox(width: 8),
+                                          PopupMenuButton<String>(
+                                            tooltip: 'Actions',
+                                            onSelected: (value) {
+                                              if (value == 'edit') {
+                                                showEditHint();
+                                              }
+                                            },
+                                            itemBuilder: (context) => const [
+                                              PopupMenuItem<String>(
+                                                value: 'edit',
+                                                child: Text('Modifier un spot'),
+                                              ),
+                                            ],
+                                            child: const Padding(
+                                              padding: EdgeInsets.all(8),
+                                              child: Icon(Icons.more_horiz),
+                                            ),
+                                          ),
+                                        ],
+                                      )
+                                    : isSpotsTab
+                                        ? Row(
+                                            children: [
+                                              Expanded(child: createButton),
+                                              const SizedBox(width: 8),
+                                              Expanded(child: editButton),
+                                            ],
+                                          )
+                                        : Row(
+                                        children: [
+                                          Expanded(child: createButton),
+                                        ],
+                                      ),
+                              ),
+                            ),
+                          );
+                        },
+                      );
                     },
                   ),
                   // TabBarView avec contenu scrollable
@@ -154,7 +233,8 @@ class _ProfilePageState extends ConsumerState<ProfilePage>
             children: [
               const Icon(Icons.error_outline, size: 48, color: Colors.red),
               const SizedBox(height: 12),
-              const Text('Erreur', style: TextStyle(fontWeight: FontWeight.bold)),
+              const Text('Erreur',
+                  style: TextStyle(fontWeight: FontWeight.bold)),
               const SizedBox(height: 12),
               OutlinedButton(
                 onPressed: () => FirebaseAuth.instance.signOut(),
@@ -231,6 +311,9 @@ class _ProfilePageState extends ConsumerState<ProfilePage>
               .snapshots(),
           builder: (context, favsSnapshot) {
             final favsCount = favsSnapshot.data?.docs.length ?? 0;
+            final grade = profile.gradeProgress;
+            final screenWidth = MediaQuery.sizeOf(context).width;
+            final isCompact = screenWidth < 390;
 
             return SafeArea(
               bottom: false,
@@ -250,298 +333,413 @@ class _ProfilePageState extends ConsumerState<ProfilePage>
                   children: [
                     // Contenu principal
                     Padding(
-                      padding: const EdgeInsets.fromLTRB(16, 16, 16, 16),
-                    child: Column(
-                      children: [
-                        // Photo et badges
-                        Row(
-                          children: [
-                            // Photo de profil
-                            Container(
-                              decoration: BoxDecoration(
-                                shape: BoxShape.circle,
-                                border: Border.all(
-                                  color: Colors.white,
-                                  width: 3,
+                      padding: EdgeInsets.fromLTRB(
+                        isCompact ? 10 : 14,
+                        isCompact ? 10 : 14,
+                        isCompact ? 10 : 14,
+                        isCompact ? 40 : 48,
+                      ),
+                      child: Column(
+                        children: [
+                          // Photo et badges
+                          Row(
+                            children: [
+                              // Photo de profil
+                              Container(
+                                decoration: BoxDecoration(
+                                  shape: BoxShape.circle,
+                                  border: Border.all(
+                                    color: Colors.white,
+                                    width: 3,
+                                  ),
+                                  boxShadow: [
+                                    BoxShadow(
+                                      color:
+                                          Colors.black.withValues(alpha: 0.2),
+                                      blurRadius: 10,
+                                      offset: const Offset(0, 4),
+                                    ),
+                                  ],
                                 ),
-                                boxShadow: [
-                                  BoxShadow(
-                                    color: Colors.black.withValues(alpha: 0.2),
-                                    blurRadius: 10,
-                                    offset: const Offset(0, 4),
-                                  ),
-                                ],
+                                child: CircleAvatar(
+                                  radius: isCompact ? 30 : 36,
+                                  backgroundImage: photoUrl.isEmpty
+                                      ? null
+                                      : NetworkImage(photoUrl),
+                                  child: photoUrl.isEmpty
+                                      ? Icon(
+                                          Icons.person,
+                                          size: isCompact ? 30 : 36,
+                                        )
+                                      : null,
+                                ),
                               ),
-                              child: CircleAvatar(
-                                radius: 42,
-                                backgroundImage: photoUrl.isEmpty
-                                    ? null
-                                    : NetworkImage(photoUrl),
-                                child: photoUrl.isEmpty
-                                    ? const Icon(Icons.person, size: 42)
-                                    : null,
-                              ),
-                            ),
-                            const SizedBox(width: 16),
-                            // Nom et localisation
-                            Expanded(
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  // Nom avec badge premium
-                                  Row(
-                                    children: [
-                                      Flexible(
-                                        child: Text(
-                                          profile.displayName,
-                                          style: const TextStyle(
-                                            color: Colors.white,
-                                            fontSize: 20,
-                                            fontWeight: FontWeight.bold,
-                                          ),
-                                          maxLines: 1,
-                                          overflow: TextOverflow.ellipsis,
-                                        ),
-                                      ),
-                                      if (profile.hasPremiumPass) ...[
-                                        const SizedBox(width: 6),
-                                        Container(
-                                          padding: const EdgeInsets.symmetric(
-                                            horizontal: 6,
-                                            vertical: 2,
-                                          ),
-                                          decoration: BoxDecoration(
-                                            color: Colors.amber,
-                                            borderRadius:
-                                                BorderRadius.circular(8),
-                                          ),
-                                          child: const Row(
-                                            mainAxisSize: MainAxisSize.min,
-                                            children: [
-                                              Icon(
-                                                Icons.workspace_premium,
-                                                size: 12,
-                                                color: Colors.white,
-                                              ),
-                                              SizedBox(width: 2),
-                                              Text(
-                                                'PRO',
-                                                style: TextStyle(
-                                                  color: Colors.white,
-                                                  fontSize: 10,
-                                                  fontWeight: FontWeight.bold,
-                                                ),
-                                              ),
-                                            ],
-                                          ),
-                                        ),
-                                      ],
-                                    ],
-                                  ),
-                                  const SizedBox(height: 4),
-                                  // Localisation
-                                  if (profile.location.isNotEmpty)
+                              SizedBox(width: isCompact ? 10 : 12),
+                              // Nom et localisation
+                              Expanded(
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    // Nom avec badge premium
                                     Row(
-                                      mainAxisSize: MainAxisSize.min,
                                       children: [
-                                        const Icon(
-                                          Icons.location_on,
-                                          size: 14,
-                                          color: Colors.white70,
-                                        ),
-                                        const SizedBox(width: 4),
                                         Flexible(
                                           child: Text(
-                                            profile.location,
+                                            profile.displayName,
                                             style: const TextStyle(
-                                              color: Colors.white70,
-                                              fontSize: 13,
+                                              color: Colors.white,
+                                              fontSize: 16,
+                                              fontWeight: FontWeight.bold,
                                             ),
                                             maxLines: 1,
                                             overflow: TextOverflow.ellipsis,
                                           ),
                                         ),
+                                        if (profile.hasPremiumPass) ...[
+                                          const SizedBox(width: 6),
+                                          Container(
+                                            padding: const EdgeInsets.symmetric(
+                                              horizontal: 6,
+                                              vertical: 2,
+                                            ),
+                                            decoration: BoxDecoration(
+                                              color: Colors.amber,
+                                              borderRadius:
+                                                  BorderRadius.circular(8),
+                                            ),
+                                            child: const Row(
+                                              mainAxisSize: MainAxisSize.min,
+                                              children: [
+                                                Icon(
+                                                  Icons.workspace_premium,
+                                                  size: 12,
+                                                  color: Colors.white,
+                                                ),
+                                                SizedBox(width: 2),
+                                                Text(
+                                                  'PRO',
+                                                  style: TextStyle(
+                                                    color: Colors.white,
+                                                    fontSize: 10,
+                                                    fontWeight: FontWeight.bold,
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                        ],
                                       ],
                                     ),
-                                ],
-                              ),
-                            ),
-                          ],
-                        ),
-                        const SizedBox(height: 20),
-                        // Statistiques
-                        Container(
-                          padding: const EdgeInsets.all(16),
-                          decoration: BoxDecoration(
-                            color: Colors.white.withValues(alpha: 0.15),
-                            borderRadius: BorderRadius.circular(12),
-                            border: Border.all(
-                              color: Colors.white.withValues(alpha: 0.3),
-                            ),
-                          ),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceAround,
-                            children: [
-                              // Spots créés
-                              _buildStatItem(
-                                icon: Icons.location_on,
-                                label: 'Spots',
-                                value: spotsCount.toString(),
-                              ),
-                              // Séparateur
-                              Container(
-                                width: 1,
-                                height: 30,
-                                color: Colors.white.withValues(alpha: 0.3),
-                              ),
-                              // Favoris
-                              _buildStatItem(
-                                icon: Icons.favorite,
-                                label: 'Favoris',
-                                value: favsCount.toString(),
-                              ),
-                              // Séparateur
-                              Container(
-                                width: 1,
-                                height: 30,
-                                color: Colors.white.withValues(alpha: 0.3),
-                              ),
-                              // Catégories
-                              _buildStatItem(
-                                icon: Icons.category,
-                                label: 'Intérêts',
-                                value: profile.categories.length.toString(),
+                                    const SizedBox(height: 4),
+                                    // Localisation
+                                    if (profile.location.isNotEmpty)
+                                      Row(
+                                        mainAxisSize: MainAxisSize.min,
+                                        children: [
+                                          const Icon(
+                                            Icons.location_on,
+                                            size: 14,
+                                            color: Colors.white70,
+                                          ),
+                                          const SizedBox(width: 4),
+                                          Flexible(
+                                            child: Text(
+                                              profile.location,
+                                              style: const TextStyle(
+                                                color: Colors.white70,
+                                                fontSize: 13,
+                                              ),
+                                              maxLines: 1,
+                                              overflow: TextOverflow.ellipsis,
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    if (profile.categories.isNotEmpty ||
+                                        spotsCount > 0 ||
+                                        favsCount >= 5) ...[
+                                      const SizedBox(height: 8),
+                                      Wrap(
+                                        spacing: isCompact ? 4 : 6,
+                                        runSpacing: isCompact ? 4 : 6,
+                                        children: [
+                                          if (profile.categories.isNotEmpty)
+                                            _buildBadge(
+                                              icon: Icons.explore,
+                                              label: 'Explorateur',
+                                              color: Colors.green,
+                                              compact: true,
+                                            ),
+                                          if (spotsCount > 0)
+                                            _buildBadge(
+                                              icon: Icons.add_location,
+                                              label: 'Contributeur',
+                                              color: Colors.orange,
+                                              compact: true,
+                                            ),
+                                          if (favsCount >= 5)
+                                            _buildBadge(
+                                              icon: Icons.star,
+                                              label: 'Collectionneur',
+                                              color: Colors.purple,
+                                              compact: true,
+                                            ),
+                                        ],
+                                      ),
+                                    ],
+                                  ],
+                                ),
                               ),
                             ],
                           ),
-                        ),
-                        const SizedBox(height: 16),
-                        // Badges
-                        Wrap(
-                          spacing: 8,
-                          runSpacing: 8,
-                          alignment: WrapAlignment.center,
-                          children: [
-                            if (profile.categories.isNotEmpty)
-                              _buildBadge(
-                                icon: Icons.explore,
-                                label: 'Explorateur',
-                                color: Colors.green,
+                          SizedBox(height: isCompact ? 8 : 12),
+                          // Statistiques
+                          Container(
+                            padding: EdgeInsets.all(isCompact ? 8 : 10),
+                            decoration: BoxDecoration(
+                              color: Colors.white.withValues(alpha: 0.15),
+                              borderRadius: BorderRadius.circular(12),
+                              border: Border.all(
+                                color: Colors.white.withValues(alpha: 0.3),
                               ),
-                            if (spotsCount > 0)
-                              _buildBadge(
-                                icon: Icons.add_location,
-                                label: 'Contributeur',
-                                color: Colors.orange,
-                              ),
-                            if (favsCount >= 5)
-                              _buildBadge(
-                                icon: Icons.star,
-                                label: 'Collectionneur',
-                                color: Colors.purple,
-                              ),
-                          ],
-                        ),
-                      ],
-                    ),
-                  ),
-                  // Bouton paramètres
-                  Positioned(
-                    top: 8,
-                    right: 8,
-                    child: IconButton(
-                      icon: Container(
-                        padding: const EdgeInsets.all(8),
-                        decoration: BoxDecoration(
-                          color: Colors.black.withValues(alpha: 0.2),
-                          shape: BoxShape.circle,
-                        ),
-                        child: const Icon(
-                          Icons.settings,
-                          color: Colors.white,
-                          size: 20,
-                        ),
-                      ),
-                      onPressed: () {
-                        showDialog(
-                          context: context,
-                          builder: (dialogContext) => AlertDialog(
-                            title: const Text(
-                              'Paramètres',
-                              textAlign: TextAlign.center,
                             ),
-                            content: Column(
-                              mainAxisSize: MainAxisSize.min,
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceAround,
                               children: [
-                                const Text(
-                                  'Que voulez-vous faire?',
-                                  textAlign: TextAlign.center,
+                                // Spots créés
+                                _buildStatItem(
+                                  icon: Icons.location_on,
+                                  label: 'Spots',
+                                  value: spotsCount.toString(),
+                                  compact: isCompact,
                                 ),
-                                const SizedBox(height: 12),
-                                SizedBox(
-                                  width: double.infinity,
-                                  child: ElevatedButton.icon(
-                                    onPressed: () {
-                                      Navigator.pop(dialogContext);
-                                      Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                          builder: (context) =>
-                                              const ProfileSetupPage(),
-                                        ),
-                                      );
-                                    },
-                                    icon: const Icon(Icons.edit),
-                                    label: const Text('Modifier profil'),
-                                  ),
+                                // Séparateur
+                                Container(
+                                  width: 1,
+                                  height: 30,
+                                  color: Colors.white.withValues(alpha: 0.3),
                                 ),
-                                const SizedBox(height: 8),
-                                SizedBox(
-                                  width: double.infinity,
-                                  child: ElevatedButton.icon(
-                                    onPressed: () {
-                                      Navigator.pop(dialogContext);
-                                      _showDeleteAccountDialog(context);
-                                    },
-                                    icon: const Icon(Icons.delete),
-                                    label: const Text('Supprimer compte'),
-                                    style: ElevatedButton.styleFrom(
-                                      backgroundColor: Colors.red,
-                                    ),
-                                  ),
+                                // Favoris
+                                _buildStatItem(
+                                  icon: Icons.favorite,
+                                  label: 'Favoris',
+                                  value: favsCount.toString(),
+                                  compact: isCompact,
                                 ),
-                                const SizedBox(height: 8),
-                                SizedBox(
-                                  width: double.infinity,
-                                  child: ElevatedButton.icon(
-                                    onPressed: () async {
-                                      final ctx = context;
-                                      Navigator.pop(dialogContext);
-                                      await FirebaseAuth.instance.signOut();
-                                      if (ctx.mounted) ctx.go('/auth');
-                                    },
-                                    icon: const Icon(Icons.logout),
-                                    label: const Text('Se déconnecter'),
-                                    style: ElevatedButton.styleFrom(
-                                      backgroundColor: Colors.orange,
-                                    ),
-                                  ),
+                                // Séparateur
+                                Container(
+                                  width: 1,
+                                  height: 30,
+                                  color: Colors.white.withValues(alpha: 0.3),
                                 ),
-                                const SizedBox(height: 8),
-                                TextButton(
-                                  onPressed: () => Navigator.pop(dialogContext),
-                                  child: const Text('Annuler'),
+                                // XP
+                                _buildStatItem(
+                                  icon: Icons.auto_awesome,
+                                  label: 'XP',
+                                  value: profile.xp.toString(),
+                                  compact: isCompact,
                                 ),
                               ],
                             ),
                           ),
-                        );
-                      },
+                          SizedBox(height: isCompact ? 6 : 8),
+                          Container(
+                            padding: EdgeInsets.all(isCompact ? 8 : 10),
+                            decoration: BoxDecoration(
+                              color: Colors.white.withValues(alpha: 0.12),
+                              borderRadius: BorderRadius.circular(12),
+                              border: Border.all(
+                                color: Colors.white.withValues(alpha: 0.25),
+                              ),
+                            ),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Row(
+                                  children: [
+                                    const Icon(
+                                      Icons.workspace_premium,
+                                      color: Colors.white,
+                                      size: 18,
+                                    ),
+                                    const SizedBox(width: 8),
+                                    Expanded(
+                                      child: Text(
+                                        '${grade.grade} • Niveau ${grade.level}',
+                                        style: const TextStyle(
+                                          color: Colors.white,
+                                          fontWeight: FontWeight.w700,
+                                        ),
+                                      ),
+                                    ),
+                                    Text(
+                                      '${profile.totalVisits} visites',
+                                      style: const TextStyle(
+                                        color: Colors.white70,
+                                        fontSize: 12,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                SizedBox(height: isCompact ? 4 : 6),
+                                ClipRRect(
+                                  borderRadius: BorderRadius.circular(999),
+                                  child: LinearProgressIndicator(
+                                    value: grade.progress,
+                                    minHeight: 7,
+                                    backgroundColor:
+                                        Colors.white.withValues(alpha: 0.25),
+                                    valueColor:
+                                        const AlwaysStoppedAnimation<Color>(
+                                      Colors.amber,
+                                    ),
+                                  ),
+                                ),
+                                const SizedBox(height: 4),
+                                Text(
+                                  '${grade.currentLevelXp}/${grade.requiredXpForNextLevel} XP vers le niveau suivant',
+                                  style: TextStyle(
+                                    color: Colors.white70,
+                                    fontSize: isCompact ? 10 : 12,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                          SizedBox(height: isCompact ? 6 : 10),
+                        ],
+                      ),
                     ),
-                  ),
-                ],
+                    // Bouton paramètres
+                    Positioned(
+                      top: 8,
+                      right: 8,
+                      child: IconButton(
+                        icon: Container(
+                          padding: const EdgeInsets.all(8),
+                          decoration: BoxDecoration(
+                            color: Colors.black.withValues(alpha: 0.2),
+                            shape: BoxShape.circle,
+                          ),
+                          child: const Icon(
+                            Icons.settings,
+                            color: Colors.white,
+                            size: 20,
+                          ),
+                        ),
+                        onPressed: () {
+                          showDialog(
+                            context: context,
+                            builder: (dialogContext) => AlertDialog(
+                              title: const Text(
+                                'Paramètres',
+                                textAlign: TextAlign.center,
+                              ),
+                              content: Column(
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  const Text(
+                                    'Que voulez-vous faire?',
+                                    textAlign: TextAlign.center,
+                                  ),
+                                  const SizedBox(height: 12),
+                                  SizedBox(
+                                    width: double.infinity,
+                                    child: ElevatedButton.icon(
+                                      onPressed: () {
+                                        Navigator.pop(dialogContext);
+                                        context.push('/users/$uid');
+                                      },
+                                      icon: const Icon(Icons.public),
+                                      label: const Text('Voir profil public'),
+                                    ),
+                                  ),
+                                  const SizedBox(height: 8),
+                                  SizedBox(
+                                    width: double.infinity,
+                                    child: ElevatedButton.icon(
+                                      onPressed: () {
+                                        Navigator.pop(dialogContext);
+                                        Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                            builder: (context) =>
+                                                const ProfileSetupPage(),
+                                          ),
+                                        );
+                                      },
+                                      icon: const Icon(Icons.edit),
+                                      label: const Text('Modifier profil'),
+                                    ),
+                                  ),
+                                  if (profile.isAdmin) ...[
+                                    const SizedBox(height: 8),
+                                    SizedBox(
+                                      width: double.infinity,
+                                      child: ElevatedButton.icon(
+                                        onPressed: () {
+                                          Navigator.pop(dialogContext);
+                                          Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                              builder: (_) =>
+                                                  const CommunitySpotsManagementPage(),
+                                            ),
+                                          );
+                                        },
+                                        icon: const Icon(Icons.admin_panel_settings),
+                                        label: const Text('Admin'),
+                                      ),
+                                    ),
+                                  ],
+                                  const SizedBox(height: 8),
+                                  SizedBox(
+                                    width: double.infinity,
+                                    child: ElevatedButton.icon(
+                                      onPressed: () {
+                                        Navigator.pop(dialogContext);
+                                        _showDeleteAccountDialog(context);
+                                      },
+                                      icon: const Icon(Icons.delete),
+                                      label: const Text('Supprimer compte'),
+                                      style: ElevatedButton.styleFrom(
+                                        backgroundColor: Colors.red,
+                                      ),
+                                    ),
+                                  ),
+                                  const SizedBox(height: 8),
+                                  SizedBox(
+                                    width: double.infinity,
+                                    child: ElevatedButton.icon(
+                                      onPressed: () async {
+                                        final ctx = context;
+                                        Navigator.pop(dialogContext);
+                                        await FirebaseAuth.instance.signOut();
+                                        if (ctx.mounted) ctx.go('/auth');
+                                      },
+                                      icon: const Icon(Icons.logout),
+                                      label: const Text('Se déconnecter'),
+                                      style: ElevatedButton.styleFrom(
+                                        backgroundColor: Colors.orange,
+                                      ),
+                                    ),
+                                  ),
+                                  const SizedBox(height: 8),
+                                  TextButton(
+                                    onPressed: () =>
+                                        Navigator.pop(dialogContext),
+                                    child: const Text('Annuler'),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          );
+                        },
+                      ),
+                    ),
+                  ],
+                ),
               ),
-            ),
             );
           },
         );
@@ -553,25 +751,26 @@ class _ProfilePageState extends ConsumerState<ProfilePage>
     required IconData icon,
     required String label,
     required String value,
+    bool compact = false,
   }) {
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
-        Icon(icon, color: Colors.white, size: 24),
-        const SizedBox(height: 4),
+        Icon(icon, color: Colors.white, size: compact ? 18 : 24),
+        SizedBox(height: compact ? 2 : 4),
         Text(
           value,
-          style: const TextStyle(
+          style: TextStyle(
             color: Colors.white,
-            fontSize: 18,
+            fontSize: compact ? 14 : 18,
             fontWeight: FontWeight.bold,
           ),
         ),
         Text(
           label,
-          style: const TextStyle(
+          style: TextStyle(
             color: Colors.white70,
-            fontSize: 11,
+            fontSize: compact ? 9 : 11,
           ),
         ),
       ],
@@ -582,9 +781,13 @@ class _ProfilePageState extends ConsumerState<ProfilePage>
     required IconData icon,
     required String label,
     required Color color,
+    bool compact = false,
   }) {
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+      padding: EdgeInsets.symmetric(
+        horizontal: compact ? 8 : 12,
+        vertical: compact ? 4 : 6,
+      ),
       decoration: BoxDecoration(
         color: color,
         borderRadius: BorderRadius.circular(20),
@@ -599,13 +802,13 @@ class _ProfilePageState extends ConsumerState<ProfilePage>
       child: Row(
         mainAxisSize: MainAxisSize.min,
         children: [
-          Icon(icon, size: 14, color: Colors.white),
+          Icon(icon, size: compact ? 12 : 14, color: Colors.white),
           const SizedBox(width: 4),
           Text(
             label,
-            style: const TextStyle(
+            style: TextStyle(
               color: Colors.white,
-              fontSize: 11,
+              fontSize: compact ? 9 : 11,
               fontWeight: FontWeight.w600,
             ),
           ),
@@ -672,20 +875,20 @@ class _ProfilePageState extends ConsumerState<ProfilePage>
                       .collection('profiles')
                       .doc(user.uid)
                       .delete();
-                  
+
                   // Supprimer les spots créés
                   final spots = await FirebaseFirestore.instance
                       .collection('spots')
                       .where('createdBy', isEqualTo: user.uid)
                       .get();
-                  
+
                   for (var doc in spots.docs) {
                     await doc.reference.delete();
                   }
-                  
+
                   // Supprimer le compte Firebase
                   await user.delete();
-                  
+
                   if (ctx.mounted) {
                     Navigator.pop(dialogContext);
                     ctx.go('/auth');
@@ -745,7 +948,8 @@ class _MyPoiTabState extends ConsumerState<_MyPoiTab> {
                 children: [
                   const Icon(Icons.location_on, size: 48, color: Colors.blue),
                   const SizedBox(height: 12),
-                  const Text('📍 Vous n\'avez pas encore créé de spots.',
+                  const Text(
+                    '📍 Vous n\'avez pas encore créé de spots.',
                     textAlign: TextAlign.center,
                   ),
                 ],
@@ -758,43 +962,49 @@ class _MyPoiTabState extends ConsumerState<_MyPoiTab> {
         final startIndex = _currentPage * _itemsPerPage;
         final endIndex = (startIndex + _itemsPerPage).clamp(0, allSpots.length);
         final visibleSpots = allSpots.sublist(startIndex, endIndex);
+        final bottomInset = MediaQuery.paddingOf(context).bottom;
 
-        return Column(
-          children: [
-            Padding(
-              padding: const EdgeInsets.all(12),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        'Spots: ${allSpots.length}',
-                        style: const TextStyle(fontWeight: FontWeight.w700),
-                      ),
-                      if (totalPages > 1)
+        return SafeArea(
+          top: false,
+          minimum: EdgeInsets.only(bottom: bottomInset > 0 ? 4 : 8),
+          child: Column(
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(12),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
                         Text(
-                          'Page ${_currentPage + 1} / $totalPages',
-                          style: const TextStyle(fontWeight: FontWeight.w600, fontSize: 12),
+                          'Spots: ${allSpots.length}',
+                          style: const TextStyle(fontWeight: FontWeight.w700),
                         ),
-                    ],
-                  ),
-                ],
+                        if (totalPages > 1)
+                          Text(
+                            'Page ${_currentPage + 1} / $totalPages',
+                            style: const TextStyle(
+                                fontWeight: FontWeight.w600, fontSize: 12),
+                          ),
+                      ],
+                    ),
+                  ],
+                ),
               ),
-            ),
-            const Divider(height: 1),
-            Expanded(
-              child: ListView.builder(
-                padding: const EdgeInsets.fromLTRB(12, 12, 12, 12),
-                itemCount: visibleSpots.length,
-                itemBuilder: (context, index) {
+              const Divider(height: 1),
+              Expanded(
+                child: ListView.builder(
+                  padding: EdgeInsets.fromLTRB(12, 12, 12, 12 + bottomInset),
+                  itemCount: visibleSpots.length,
+                  itemBuilder: (context, index) {
                     final doc = visibleSpots[index];
                     final data = doc.data() as Map<String, dynamic>;
                     final spot = Poi(
                       id: doc.id,
                       name: data['name'] ?? '',
-                      category: poiCategoryFromString(data['categoryGroup'] ?? ''),
+                      category:
+                          poiCategoryFromString(data['categoryGroup'] ?? ''),
                       subCategory: data['categoryItem'],
                       lat: data['lat'] ?? 0,
                       lng: data['lng'] ?? 0,
@@ -807,52 +1017,54 @@ class _MyPoiTabState extends ConsumerState<_MyPoiTab> {
 
                     return _PoiTile(
                       poi: spot,
-                      onEdit: () =>
-                          ScaffoldMessenger.of(context).showSnackBar(
-                            const SnackBar(content: Text('Modification à implémenter')),
-                          ),
+                      onEdit: () => ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(
+                            content: Text('Modification à implémenter')),
+                      ),
                       onDelete: () => _deleteSpot(context, doc.id),
                       showActions: true,
                     );
                   },
-              ),
-            ),
-            if (totalPages > 1)
-              Container(
-                padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 12),
-                decoration: BoxDecoration(
-                  color: Theme.of(context).scaffoldBackgroundColor,
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.black.withValues(alpha: 0.05),
-                      blurRadius: 4,
-                      offset: const Offset(0, -2),
-                    ),
-                  ],
-                ),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    IconButton(
-                      icon: const Icon(Icons.arrow_back),
-                      onPressed: _currentPage > 0
-                          ? () => setState(() => _currentPage--)
-                          : null,
-                    ),
-                    Text(
-                      '${_currentPage + 1} / $totalPages',
-                      style: const TextStyle(fontWeight: FontWeight.bold),
-                    ),
-                    IconButton(
-                      icon: const Icon(Icons.arrow_forward),
-                      onPressed: _currentPage < totalPages - 1
-                          ? () => setState(() => _currentPage++)
-                          : null,
-                    ),
-                  ],
                 ),
               ),
-          ],
+              if (totalPages > 1)
+                Container(
+                  padding:
+                      const EdgeInsets.symmetric(vertical: 8, horizontal: 12),
+                  decoration: BoxDecoration(
+                    color: Theme.of(context).scaffoldBackgroundColor,
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.black.withValues(alpha: 0.05),
+                        blurRadius: 4,
+                        offset: const Offset(0, -2),
+                      ),
+                    ],
+                  ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      IconButton(
+                        icon: const Icon(Icons.arrow_back),
+                        onPressed: _currentPage > 0
+                            ? () => setState(() => _currentPage--)
+                            : null,
+                      ),
+                      Text(
+                        '${_currentPage + 1} / $totalPages',
+                        style: const TextStyle(fontWeight: FontWeight.bold),
+                      ),
+                      IconButton(
+                        icon: const Icon(Icons.arrow_forward),
+                        onPressed: _currentPage < totalPages - 1
+                            ? () => setState(() => _currentPage++)
+                            : null,
+                      ),
+                    ],
+                  ),
+                ),
+            ],
+          ),
         );
       },
     );
@@ -926,7 +1138,8 @@ class _FavoritesTabState extends ConsumerState<_FavoritesTab> {
                 children: [
                   const Icon(Icons.favorite, size: 48, color: Colors.red),
                   const SizedBox(height: 12),
-                  const Text('❤️ Aucun favori pour le moment', textAlign: TextAlign.center),
+                  const Text('❤️ Aucun favori pour le moment',
+                      textAlign: TextAlign.center),
                 ],
               ),
             ),
@@ -955,7 +1168,8 @@ class _FavoritesTabState extends ConsumerState<_FavoritesTab> {
                       if (totalPages > 1)
                         Text(
                           'Page ${_currentPage + 1} / $totalPages',
-                          style: const TextStyle(fontWeight: FontWeight.w600, fontSize: 12),
+                          style: const TextStyle(
+                              fontWeight: FontWeight.w600, fontSize: 12),
                         ),
                     ],
                   ),
@@ -978,7 +1192,8 @@ class _FavoritesTabState extends ConsumerState<_FavoritesTab> {
             ),
             if (totalPages > 1)
               Container(
-                padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 12),
+                padding:
+                    const EdgeInsets.symmetric(vertical: 8, horizontal: 12),
                 decoration: BoxDecoration(
                   color: Theme.of(context).scaffoldBackgroundColor,
                   boxShadow: [
@@ -1035,8 +1250,8 @@ class _FavoriteTile extends ConsumerWidget {
           .collection('profiles')
           .doc(userId)
           .update({
-            'favoritePoiIds': FieldValue.arrayRemove([spotId]),
-          });
+        'favoritePoiIds': FieldValue.arrayRemove([spotId]),
+      });
       await FirebaseFirestore.instance
           .collection('profiles')
           .doc(userId)
@@ -1052,12 +1267,12 @@ class _FavoriteTile extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final categoryRaw = spotData['category'] as String?;
     final category = categoryRaw != null
-      ? poiCategoryFromString(categoryRaw)
-      : PoiCategory.culture;
+        ? poiCategoryFromString(categoryRaw)
+        : PoiCategory.culture;
     final subCategoryLabel =
-      formatPoiSubCategory(spotData['subCategory'] as String?);
+        formatPoiSubCategory(spotData['subCategory'] as String?);
     final categoryLabel =
-      subCategoryLabel.isNotEmpty ? subCategoryLabel : category.label;
+        subCategoryLabel.isNotEmpty ? subCategoryLabel : category.label;
     return InkWell(
       onTap: () => Navigator.push(
         context,
@@ -1074,12 +1289,14 @@ class _FavoriteTile extends ConsumerWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             // Photo d'aperçu
-            if (spotData['imageUrls'] != null && (spotData['imageUrls'] as List?)?.isNotEmpty == true)
+            if (spotData['imageUrls'] != null &&
+                (spotData['imageUrls'] as List?)?.isNotEmpty == true)
               SizedBox(
                 height: 150,
                 width: double.infinity,
                 child: ClipRRect(
-                  borderRadius: const BorderRadius.vertical(top: Radius.circular(4)),
+                  borderRadius:
+                      const BorderRadius.vertical(top: Radius.circular(4)),
                   child: OptimizedNetworkImage(
                     imageUrl: (spotData['imageUrls'] as List).first,
                     height: 150,
@@ -1102,7 +1319,8 @@ class _FavoriteTile extends ConsumerWidget {
                           children: [
                             Text(
                               spotData['name'] ?? 'Spot',
-                              style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 14),
+                              style: const TextStyle(
+                                  fontWeight: FontWeight.bold, fontSize: 14),
                               maxLines: 2,
                               overflow: TextOverflow.ellipsis,
                             ),
@@ -1124,13 +1342,21 @@ class _FavoriteTile extends ConsumerWidget {
                                 ),
                               ],
                             ),
-                            if (spotData['googleRating'] != null) ...[const SizedBox(height: 4), Row(
-                              children: [
-                                const Icon(Icons.star, color: Colors.amber, size: 16),
-                                const SizedBox(width: 4),
-                                Text('${(spotData['googleRating'] as num).toStringAsFixed(1)}/5', style: const TextStyle(fontSize: 12, fontWeight: FontWeight.w600)),
-                              ],
-                            )],
+                            if (spotData['googleRating'] != null) ...[
+                              const SizedBox(height: 4),
+                              Row(
+                                children: [
+                                  const Icon(Icons.star,
+                                      color: Colors.amber, size: 16),
+                                  const SizedBox(width: 4),
+                                  Text(
+                                      '${(spotData['googleRating'] as num).toStringAsFixed(1)}/5',
+                                      style: const TextStyle(
+                                          fontSize: 12,
+                                          fontWeight: FontWeight.w600)),
+                                ],
+                              )
+                            ],
                           ],
                         ),
                       ),
@@ -1170,12 +1396,13 @@ class _FavoriteDetailPage extends StatelessWidget {
         ? poiCategoryFromString(categoryRaw)
         : PoiCategory.culture;
     final subCategoryLabel =
-      formatPoiSubCategory(spotData['subCategory'] as String?);
+        formatPoiSubCategory(spotData['subCategory'] as String?);
     final categoryLabel =
-      subCategoryLabel.isNotEmpty ? subCategoryLabel : category.label;
-    
+        subCategoryLabel.isNotEmpty ? subCategoryLabel : category.label;
+
     return Scaffold(
-      appBar: GlassAppBar(title: spotData['name'] ?? 'Détail', showBackButton: true),
+      appBar: GlassAppBar(
+          title: spotData['name'] ?? 'Détail', showBackButton: true),
       body: ListView(
         children: [
           // Photos
@@ -1186,7 +1413,8 @@ class _FavoriteDetailPage extends StatelessWidget {
                 children: [
                   for (final imageUrl in imageUrls)
                     ClipRRect(
-                      borderRadius: const BorderRadius.vertical(bottom: Radius.circular(8)),
+                      borderRadius: const BorderRadius.vertical(
+                          bottom: Radius.circular(8)),
                       child: OptimizedNetworkImage(
                         imageUrl: imageUrl,
                         height: 250,
@@ -1203,7 +1431,8 @@ class _FavoriteDetailPage extends StatelessWidget {
               children: [
                 Text(
                   spotData['name'] ?? 'Spot',
-                  style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                  style: const TextStyle(
+                      fontSize: 20, fontWeight: FontWeight.bold),
                 ),
                 const SizedBox(height: 6),
                 Row(
@@ -1212,27 +1441,33 @@ class _FavoriteDetailPage extends StatelessWidget {
                     const SizedBox(width: 6),
                     Text(
                       categoryLabel,
-                      style: TextStyle(fontSize: 12, color: Colors.grey.shade600),
+                      style:
+                          TextStyle(fontSize: 12, color: Colors.grey.shade600),
                     ),
                   ],
                 ),
                 const SizedBox(height: 8),
                 // Note Google
-                if (googleRating != null) ...[Row(
-                  children: [
-                    const Icon(Icons.star, color: Colors.amber, size: 20),
-                    const SizedBox(width: 6),
-                    Text(
-                      '$googleRating/5',
-                      style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-                    ),
-                    const SizedBox(width: 8),
-                    Text(
-                      '(${spotData['googleRatingCount'] ?? 0} avis)',
-                      style: TextStyle(fontSize: 12, color: Colors.grey.shade600),
-                    ),
-                  ],
-                ), const SizedBox(height: 12)],
+                if (googleRating != null) ...[
+                  Row(
+                    children: [
+                      const Icon(Icons.star, color: Colors.amber, size: 20),
+                      const SizedBox(width: 6),
+                      Text(
+                        '$googleRating/5',
+                        style: const TextStyle(
+                            fontSize: 16, fontWeight: FontWeight.bold),
+                      ),
+                      const SizedBox(width: 8),
+                      Text(
+                        '(${spotData['googleRatingCount'] ?? 0} avis)',
+                        style: TextStyle(
+                            fontSize: 12, color: Colors.grey.shade600),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 12)
+                ],
                 Text(
                   spotData['description'] ?? 'Pas de description',
                   style: const TextStyle(fontSize: 14),
@@ -1248,11 +1483,20 @@ class _FavoriteDetailPage extends StatelessWidget {
                   spacing: 8,
                   children: [
                     if (spotData['isFree'] == true)
-                      const Chip(label: Text('Gratuit', style: TextStyle(color: Colors.white)), backgroundColor: Colors.green),
+                      const Chip(
+                          label: Text('Gratuit',
+                              style: TextStyle(color: Colors.white)),
+                          backgroundColor: Colors.green),
                     if (spotData['pmrAccessible'] == true)
-                      const Chip(label: Text('Accessible', style: TextStyle(color: Colors.white)), backgroundColor: Colors.blue),
+                      const Chip(
+                          label: Text('Accessible',
+                              style: TextStyle(color: Colors.white)),
+                          backgroundColor: Colors.blue),
                     if (spotData['kidsFriendly'] == true)
-                      const Chip(label: Text('Famille', style: TextStyle(color: Colors.white)), backgroundColor: Colors.orange),
+                      const Chip(
+                          label: Text('Famille',
+                              style: TextStyle(color: Colors.white)),
+                          backgroundColor: Colors.orange),
                   ],
                 ),
               ],
@@ -1295,9 +1539,7 @@ class _RoadTripTabState extends ConsumerState<_RoadTripTab> {
       _routeError = null;
     });
 
-    final coords = items
-        .map((item) => '${item.lng},${item.lat}')
-        .join(';');
+    final coords = items.map((item) => '${item.lng},${item.lat}').join(';');
     final url = Uri.parse(
       'https://router.project-osrm.org/route/v1/driving/$coords'
       '?overview=false',
@@ -1362,7 +1604,8 @@ class _RoadTripTabState extends ConsumerState<_RoadTripTab> {
   Widget build(BuildContext context) {
     final user = FirebaseAuth.instance.currentUser;
     if (user == null) {
-      return const Center(child: Text('Connectez-vous pour creer un road trip'));
+      return const Center(
+          child: Text('Connectez-vous pour creer un road trip'));
     }
 
     final profile = ref.watch(profileStreamProvider).value;
@@ -1382,130 +1625,134 @@ class _RoadTripTabState extends ConsumerState<_RoadTripTab> {
         _scheduleRouteUpdate(items);
 
         if (items.isEmpty) {
-          return Center(
-            child: Padding(
-              padding: const EdgeInsets.all(16),
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  const Icon(Icons.route, size: 48, color: Colors.blue),
-                  const SizedBox(height: 12),
-                  Text(
-                    'Creez votre road trip avec jusqu\'a $maxItems spots.',
-                    textAlign: TextAlign.center,
-                  ),
-                  const SizedBox(height: 12),
-                  ElevatedButton.icon(
-                    onPressed: () => context.push('/nearby-results'),
-                    icon: const Icon(Icons.route),
-                    label: const Text('Creer un Road Trip'),
-                  ),
-                ],
+          final bottomInset = MediaQuery.paddingOf(context).bottom;
+          return SafeArea(
+            top: false,
+            minimum: EdgeInsets.only(bottom: bottomInset > 0 ? 4 : 8),
+            child: Center(
+              child: Padding(
+                padding: const EdgeInsets.all(16),
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    const Icon(Icons.route, size: 48, color: Colors.blue),
+                    const SizedBox(height: 12),
+                    Text(
+                      'Creez votre road trip avec jusqu\'a $maxItems spots.',
+                      textAlign: TextAlign.center,
+                    ),
+                  ],
+                ),
               ),
             ),
           );
         }
 
-        return Column(
-          children: [
-            Padding(
-              padding: const EdgeInsets.all(12),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        'Spots: ${items.length}/$maxItems',
-                        style: const TextStyle(fontWeight: FontWeight.w700),
-                      ),
-                      TextButton(
-                        onPressed: () => RoadTripService.clear(user.uid),
-                        child: const Text('Vider'),
-                      ),
-                    ],
-                  ),
-                  if (_loadingRoute)
-                    const LinearProgressIndicator(minHeight: 2)
-                  else if (_routeError != null)
-                    Text(
-                      _routeError!,
-                      style: const TextStyle(color: Colors.red),
-                    )
-                  else
+        final bottomInset = MediaQuery.paddingOf(context).bottom;
+
+        return SafeArea(
+          top: false,
+          minimum: EdgeInsets.only(bottom: bottomInset > 0 ? 4 : 8),
+          child: Column(
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(12),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
                     Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        const Icon(Icons.directions, size: 16),
-                        const SizedBox(width: 6),
                         Text(
-                          'Distance: ${_formatDistance(_distanceMeters)}',
-                          style: const TextStyle(fontSize: 12),
+                          'Spots: ${items.length}/$maxItems',
+                          style: const TextStyle(fontWeight: FontWeight.w700),
                         ),
-                        const SizedBox(width: 12),
-                        Text(
-                          'Duree: ${_formatDuration(_durationSeconds)}',
-                          style: const TextStyle(fontSize: 12),
+                        TextButton(
+                          onPressed: () => RoadTripService.clear(user.uid),
+                          child: const Text('Vider'),
                         ),
                       ],
                     ),
-                ],
-              ),
-            ),
-            const Divider(height: 1),
-            Expanded(
-              child: ReorderableListView.builder(
-                itemCount: items.length,
-                onReorder: (oldIndex, newIndex) {
-                  if (newIndex > oldIndex) newIndex--;
-                  final updated = [...items];
-                  final moved = updated.removeAt(oldIndex);
-                  updated.insert(newIndex, moved);
-                  RoadTripService.saveItems(user.uid, updated);
-                  _scheduleRouteUpdate(updated);
-                },
-                itemBuilder: (context, index) {
-                  final item = items[index];
-                  final category = poiCategoryFromString(item.category);
-                  final subLabel =
-                      formatPoiSubCategory(item.subCategory);
-                  return ListTile(
-                    key: ValueKey('${item.source}_${item.id}'),
-                    leading: Icon(category.icon, color: category.color),
-                    title: Text(
-                      item.name,
-                      style: const TextStyle(fontWeight: FontWeight.w600),
-                    ),
-                    subtitle: Text(
-                      subLabel.isNotEmpty ? subLabel : category.label,
-                    ),
-                    trailing: Row(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        IconButton(
-                          icon: const Icon(Icons.delete_outline),
-                          onPressed: () => RoadTripService.removeAt(
-                            user.uid,
-                            index,
+                    if (_loadingRoute)
+                      const LinearProgressIndicator(minHeight: 2)
+                    else if (_routeError != null)
+                      Text(
+                        _routeError!,
+                        style: const TextStyle(color: Colors.red),
+                      )
+                    else
+                      Row(
+                        children: [
+                          const Icon(Icons.directions, size: 16),
+                          const SizedBox(width: 6),
+                          Text(
+                            'Distance: ${_formatDistance(_distanceMeters)}',
+                            style: const TextStyle(fontSize: 12),
                           ),
-                        ),
-                        ReorderableDragStartListener(
-                          index: index,
-                          child: const Icon(Icons.drag_handle),
-                        ),
-                      ],
-                    ),
-                  );
-                },
+                          const SizedBox(width: 12),
+                          Text(
+                            'Duree: ${_formatDuration(_durationSeconds)}',
+                            style: const TextStyle(fontSize: 12),
+                          ),
+                        ],
+                      ),
+                  ],
+                ),
               ),
-            ),
-          ],
+              const Divider(height: 1),
+              Expanded(
+                child: ReorderableListView.builder(
+                  padding: EdgeInsets.only(bottom: 12 + bottomInset),
+                  itemCount: items.length,
+                  onReorder: (oldIndex, newIndex) {
+                    if (newIndex > oldIndex) newIndex--;
+                    final updated = [...items];
+                    final moved = updated.removeAt(oldIndex);
+                    updated.insert(newIndex, moved);
+                    RoadTripService.saveItems(user.uid, updated);
+                    _scheduleRouteUpdate(updated);
+                  },
+                  itemBuilder: (context, index) {
+                    final item = items[index];
+                    final category = poiCategoryFromString(item.category);
+                    final subLabel = formatPoiSubCategory(item.subCategory);
+                    return ListTile(
+                      key: ValueKey('${item.source}_${item.id}'),
+                      leading: Icon(category.icon, color: category.color),
+                      title: Text(
+                        item.name,
+                        style: const TextStyle(fontWeight: FontWeight.w600),
+                      ),
+                      subtitle: Text(
+                        subLabel.isNotEmpty ? subLabel : category.label,
+                      ),
+                      trailing: Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          IconButton(
+                            icon: const Icon(Icons.delete_outline),
+                            onPressed: () => RoadTripService.removeAt(
+                              user.uid,
+                              index,
+                            ),
+                          ),
+                          ReorderableDragStartListener(
+                            index: index,
+                            child: const Icon(Icons.drag_handle),
+                          ),
+                        ],
+                      ),
+                    );
+                  },
+                ),
+              ),
+            ],
+          ),
         );
       },
     );
   }
 }
-
 
 class _PremiumTab extends ConsumerWidget {
   final UserProfile profile;
@@ -1580,14 +1827,17 @@ class _PremiumTab extends ConsumerWidget {
                   ),
                   SizedBox(height: 16),
                   ListTile(
-                    leading: Icon(Icons.check_circle, color: Colors.green, size: 32),
+                    leading:
+                        Icon(Icons.check_circle, color: Colors.green, size: 32),
                     title: Text('Sans publicité'),
                     subtitle: Text('Profitez d\'une expérience fluide'),
                   ),
                   ListTile(
-                    leading: Icon(Icons.check_circle, color: Colors.green, size: 32),
+                    leading:
+                        Icon(Icons.check_circle, color: Colors.green, size: 32),
                     title: Text('Recherches illimitées'),
-                    subtitle: Text('Accès complet à toutes les fonctionnalités'),
+                    subtitle:
+                        Text('Accès complet à toutes les fonctionnalités'),
                   ),
                 ],
               ),
@@ -1626,7 +1876,8 @@ class _PremiumTab extends ConsumerWidget {
                 padding: const EdgeInsets.all(16),
                 child: Row(
                   children: [
-                    Icon(Icons.verified, color: Colors.amber.shade700, size: 28),
+                    Icon(Icons.verified,
+                        color: Colors.amber.shade700, size: 28),
                     const SizedBox(width: 12),
                     Expanded(
                       child: Column(
@@ -1700,7 +1951,8 @@ class _PremiumTab extends ConsumerWidget {
       context: context,
       builder: (dialogContext) => AlertDialog(
         title: const Text('🎉 Sans pub'),
-        content: const Text('Accès illimité aux recherches et sans publicité pour seulement 2.99€.'),
+        content: const Text(
+            'Accès illimité aux recherches et sans publicité pour seulement 2.99€.'),
         actions: [
           TextButton(
             onPressed: () => Navigator.pop(dialogContext),
@@ -1726,7 +1978,7 @@ class _PremiumTab extends ConsumerWidget {
                 'premiumPrice': 2.99,
                 'premiumDuration': 30,
               }, SetOptions(merge: true));
-              
+
               if (!context.mounted) return;
               ScaffoldMessenger.of(context).showSnackBar(
                 const SnackBar(
@@ -1821,4 +2073,3 @@ class _PoiTile extends StatelessWidget {
     );
   }
 }
-

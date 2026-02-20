@@ -157,11 +157,11 @@ class _ProfileSetupPageState extends State<ProfileSetupPage> {
         return;
       }
 
-        final docRef =
+      final docRef =
           FirebaseFirestore.instance.collection('profiles').doc(user.uid);
       final existing = await docRef.get();
 
-        final photoUrl = await _uploadProfilePhoto(user.uid);
+      final photoUrl = await _uploadProfilePhoto(user.uid);
 
       final position = _position;
       final locationLabel = position == null
@@ -182,6 +182,9 @@ class _ProfileSetupPageState extends State<ProfileSetupPage> {
 
       if (!existing.exists) {
         data['createdAt'] = FieldValue.serverTimestamp();
+        data['xp'] = 0;
+        data['totalVisits'] = 0;
+        data['uniqueVisitedSpots'] = 0;
       }
 
       await docRef.set(data, SetOptions(merge: true));
@@ -208,11 +211,12 @@ class _ProfileSetupPageState extends State<ProfileSetupPage> {
         : '${_position!.latitude.toStringAsFixed(5)}, '
             '${_position!.longitude.toStringAsFixed(5)}';
     final imageProvider = _pickedImageBytes != null
-      ? MemoryImage(_pickedImageBytes!)
-      : (photoUrl.isEmpty ? null : NetworkImage(photoUrl));
+        ? MemoryImage(_pickedImageBytes!)
+        : (photoUrl.isEmpty ? null : NetworkImage(photoUrl));
 
     return Scaffold(
-      appBar: const GlassAppBar(title: 'Creer votre profil', showBackButton: true),
+      appBar:
+          const GlassAppBar(title: 'Creer votre profil', showBackButton: true),
       body: Center(
         child: SingleChildScrollView(
           padding: const EdgeInsets.all(16),

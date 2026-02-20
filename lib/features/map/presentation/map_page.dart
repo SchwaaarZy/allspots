@@ -8,6 +8,7 @@ import '../../auth/data/auth_providers.dart';
 import '../../../core/widgets/app_header.dart';
 import '../../../core/widgets/optimized_image.dart';
 import '../../profile/data/road_trip_service.dart';
+import '../../profile/data/xp_service.dart';
 import '../domain/poi.dart';
 import '../domain/poi_category.dart';
 import 'map_controller.dart';
@@ -39,6 +40,15 @@ class _MapViewState extends ConsumerState<MapView> {
   bool _initialized = false;
   bool _centeredOnFirstLocation = false; // Track si déjà centré
   bool _lastIsSatellite = false;
+  bool _isAutoXpRunning = false;
+  Position? _lastAutoXpPosition;
+  DateTime? _lastAutoXpRunAt;
+  final Map<String, DateTime> _lastAutoAttemptBySpot = {};
+
+  static const double _autoXpRadiusMeters = 10;
+  static const double _autoXpMinMovementMeters = 20;
+  static const Duration _autoXpMinInterval = Duration(seconds: 15);
+  static const Duration _autoXpAttemptCooldown = Duration(minutes: 10);
 
   double _markerHueForCategory(PoiCategory category) {
     switch (category) {
@@ -84,7 +94,7 @@ class _MapViewState extends ConsumerState<MapView> {
 
   Future<void> _ensureCenteredOnLocation() async {
     if (_centeredOnFirstLocation || _mapController == null) return;
-    
+
     final state = ref.read(mapControllerProvider);
     final pos = state.userPosition;
     if (pos != null) {
@@ -103,18 +113,19 @@ class _MapViewState extends ConsumerState<MapView> {
 
     final isSatellite = ref.read(mapControllerProvider).isSatellite;
     if (!isSatellite) return;
-    
+
     // Basculer l'état des bâtiments
     ref.read(mapControllerProvider.notifier).toggleBuildings();
-    
+
     // Obtenir la position actuelle de la caméra
     final currentPosition = await _mapController!.getLatLng(
       const ScreenCoordinate(x: 0, y: 0),
     );
-    
+
     // Si on active la 3D, incliner la caméra à 45°, sinon remettre à plat (0°)
-    final newTilt = ref.read(mapControllerProvider).buildingsEnabled ? 45.0 : 0.0;
-    
+    final newTilt =
+        ref.read(mapControllerProvider).buildingsEnabled ? 45.0 : 0.0;
+
     // Animer la caméra avec le nouveau tilt
     await _mapController!.animateCamera(
       CameraUpdate.newCameraPosition(
@@ -151,7 +162,8 @@ class _MapViewState extends ConsumerState<MapView> {
     if (user == null) {
       if (!mounted) return;
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Connectez-vous pour creer un road trip.')),
+        const SnackBar(
+            content: Text('Connectez-vous pour creer un road trip.')),
       );
       return;
     }
@@ -185,6 +197,81 @@ class _MapViewState extends ConsumerState<MapView> {
     }
   }
 
+  Future<void> _maybeAutoClaimXp(MapState state) async {
+    if (_isAutoXpRunning) return;
+
+    final user = FirebaseAuth.instance.currentUser;
+    final userPos = state.userPosition;
+    if (user == null || userPos == null || state.nearbyPois.isEmpty) {
+      return;
+    }
+
+    final now = DateTime.now();
+    final lastRunAt = _lastAutoXpRunAt;
+    final lastPos = _lastAutoXpPosition;
+
+    if (lastRunAt != null && now.difference(lastRunAt) < _autoXpMinInterval) {
+      if (lastPos != null) {
+        final moved = Geolocator.distanceBetween(
+          lastPos.latitude,
+          lastPos.longitude,
+          userPos.latitude,
+          userPos.longitude,
+        );
+        if (moved < _autoXpMinMovementMeters) {
+          return;
+        }
+      } else {
+        return;
+      }
+    }
+
+    final closePois = state.nearbyPois.where((poi) {
+      final distance = Geolocator.distanceBetween(
+        userPos.latitude,
+        userPos.longitude,
+        poi.lat,
+        poi.lng,
+      );
+      return distance <= _autoXpRadiusMeters;
+    }).toList();
+
+    if (closePois.isEmpty) {
+      _lastAutoXpRunAt = now;
+      _lastAutoXpPosition = userPos;
+      return;
+    }
+
+    _isAutoXpRunning = true;
+
+    try {
+      for (final poi in closePois) {
+        final lastAttempt = _lastAutoAttemptBySpot[poi.id];
+        if (lastAttempt != null &&
+            now.difference(lastAttempt) < _autoXpAttemptCooldown) {
+          continue;
+        }
+
+        _lastAutoAttemptBySpot[poi.id] = now;
+        final result = await XpService.registerVisit(uid: user.uid, poi: poi);
+
+        if (!mounted) return;
+        if (result.awarded) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              content: Text('✅ +10 XP auto : ${poi.name}'),
+              duration: const Duration(seconds: 2),
+            ),
+          );
+        }
+      }
+    } finally {
+      _lastAutoXpRunAt = now;
+      _lastAutoXpPosition = userPos;
+      _isAutoXpRunning = false;
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     // Apply category preferences from profile when it changes
@@ -200,6 +287,8 @@ class _MapViewState extends ConsumerState<MapView> {
 
     final state = ref.watch(mapControllerProvider);
 
+    Future.microtask(() => _maybeAutoClaimXp(state));
+
     if (_lastIsSatellite != state.isSatellite) {
       _lastIsSatellite = state.isSatellite;
       if (!state.isSatellite) {
@@ -211,7 +300,9 @@ class _MapViewState extends ConsumerState<MapView> {
     }
 
     // Centrer automatiquement au premier chargement de la position
-    if (!_centeredOnFirstLocation && _mapController != null && state.userPosition != null) {
+    if (!_centeredOnFirstLocation &&
+        _mapController != null &&
+        state.userPosition != null) {
       Future.microtask(_ensureCenteredOnLocation);
     }
 
@@ -334,8 +425,9 @@ class _MapViewState extends ConsumerState<MapView> {
                               ? Icons.view_in_ar
                               : Icons.view_in_ar_outlined,
                           size: 22,
-                          color:
-                              state.buildingsEnabled ? Colors.blue : Colors.grey,
+                          color: state.buildingsEnabled
+                              ? Colors.blue
+                              : Colors.grey,
                         ),
                         const SizedBox(width: 6),
                         Text(
@@ -588,7 +680,12 @@ class _MapViewState extends ConsumerState<MapView> {
                             child: ElevatedButton(
                               onPressed: () {
                                 Navigator.pop(dialogContext);
-                                _showPoiDetails(context, poi, ref.read(mapControllerProvider).userPosition);
+                                _showPoiDetails(
+                                    context,
+                                    poi,
+                                    ref
+                                        .read(mapControllerProvider)
+                                        .userPosition);
                               },
                               child: const Text('Voir détails'),
                             ),

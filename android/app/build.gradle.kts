@@ -27,6 +27,9 @@ android {
     kotlinOptions {
         jvmTarget = JavaVersion.VERSION_17.toString()
     }
+    
+    // Ajoute la bibliothèque Apache HTTP pour corriger ClassNotFoundException
+    useLibrary("org.apache.http.legacy")
 
     defaultConfig {
         // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
@@ -74,4 +77,9 @@ android {
 
 flutter {
     source = "../.."
+}
+
+dependencies {
+    // Force Apache HttpCore pour Maps Dynamite
+    implementation("org.apache.httpcomponents:httpcore:4.4.16")
 }
