@@ -4,6 +4,9 @@ param(
 
 $ErrorActionPreference = 'Stop'
 
+$repoRoot = Resolve-Path (Join-Path $PSScriptRoot "..")
+Set-Location $repoRoot
+
 try {
   git rev-parse --is-inside-work-tree *> $null
 } catch {

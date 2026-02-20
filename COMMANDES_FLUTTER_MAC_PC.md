@@ -217,3 +217,49 @@ function syncall { Set-Location "C:\chemin\vers\allspots"; .\scripts\sync.ps1 }
 - Lance `syncall` avant de coder.
 - Lance `syncall` après chaque session de travail.
 - Évite de modifier les mêmes fichiers en parallèle sur Mac et PC sans synchroniser entre les deux.
+
+### Auto-sync toutes les 30 minutes (PC + Mac)
+
+#### Windows (déjà configuré)
+
+Tâche planifiée créée : `AllSpots-AutoSync-30min`
+
+Vérifier :
+
+```powershell
+schtasks /Query /TN "AllSpots-AutoSync-30min" /V /FO LIST
+```
+
+Lancer manuellement :
+
+```powershell
+schtasks /Run /TN "AllSpots-AutoSync-30min"
+```
+
+Désactiver :
+
+```powershell
+schtasks /Delete /TN "AllSpots-AutoSync-30min" /F
+```
+
+#### macOS (à lancer une seule fois sur le Mac)
+
+Depuis la racine du projet :
+
+```bash
+chmod +x scripts/install_auto_sync_mac.sh scripts/sync.sh
+./scripts/install_auto_sync_mac.sh
+```
+
+Vérifier :
+
+```bash
+launchctl print gui/$(id -u)/com.allspots.autosync
+```
+
+Désactiver :
+
+```bash
+launchctl bootout gui/$(id -u)/com.allspots.autosync
+rm ~/Library/LaunchAgents/com.allspots.autosync.plist
+```
