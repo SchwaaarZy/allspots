@@ -17,6 +17,9 @@ class GlassAppBar extends StatelessWidget implements PreferredSizeWidget {
 
   final List<Widget>? actions;
 
+  final Widget? bottomWidget;
+  final EdgeInsetsGeometry bottomWidgetPadding;
+
   /// Hauteur de la barre (utile pour agrandir un logo)
   final double height;
   
@@ -31,6 +34,8 @@ class GlassAppBar extends StatelessWidget implements PreferredSizeWidget {
     this.showBackButton = false,
     this.onBackPressed,
     this.actions,
+    this.bottomWidget,
+    this.bottomWidgetPadding = const EdgeInsets.only(bottom: 6),
     this.leadingWidget,
     this.height = defaultHeight,
     this.backgroundImage,
@@ -78,32 +83,49 @@ class GlassAppBar extends StatelessWidget implements PreferredSizeWidget {
       flexibleSpace: ClipRect(
         child: BackdropFilter(
           filter: ImageFilter.blur(sigmaX: 18, sigmaY: 18),
-          child: Container(
-            decoration: BoxDecoration(
-              image: DecorationImage(
-                image: AssetImage(resolvedBackgroundImage),
-                fit: BoxFit.cover,
-                alignment: Alignment.center,
-                colorFilter: ColorFilter.mode(
-                  Colors.white.withValues(alpha: 0.35),
-                  BlendMode.srcOver,
+          child: Stack(
+            children: [
+              Container(
+                decoration: BoxDecoration(
+                  image: DecorationImage(
+                    image: AssetImage(resolvedBackgroundImage),
+                    fit: BoxFit.cover,
+                    alignment: Alignment.center,
+                    colorFilter: ColorFilter.mode(
+                      Colors.white.withValues(alpha: 0.35),
+                      BlendMode.srcOver,
+                    ),
+                  ),
+                  gradient: LinearGradient(
+                    colors: [
+                      topBlue.withValues(alpha: 0.85),
+                      bottomBlue.withValues(alpha: 0.75),
+                    ],
+                    begin: Alignment.topLeft,
+                    end: Alignment.bottomRight,
+                  ),
+                  border: Border(
+                    bottom: BorderSide(
+                      color: Colors.white.withValues(alpha: 0.35),
+                      width: 1,
+                    ),
+                  ),
                 ),
               ),
-              gradient: LinearGradient(
-                colors: [
-                  topBlue.withValues(alpha: 0.85),
-                  bottomBlue.withValues(alpha: 0.75),
-                ],
-                begin: Alignment.topLeft,
-                end: Alignment.bottomRight,
-              ),
-              border: Border(
-                bottom: BorderSide(
-                  color: Colors.white.withValues(alpha: 0.35),
-                  width: 1,
+              if (bottomWidget != null)
+                Positioned(
+                  left: 0,
+                  right: 0,
+                  bottom: 0,
+                  child: Padding(
+                    padding: bottomWidgetPadding,
+                    child: Align(
+                      alignment: Alignment.bottomCenter,
+                      child: bottomWidget,
+                    ),
+                  ),
                 ),
-              ),
-            ),
+            ],
           ),
         ),
       ),

@@ -24,6 +24,7 @@ class MapPage extends StatelessWidget {
     return const Scaffold(
       appBar: AppHeader(
         backgroundImage: 'assets/images/bg_header_allspots.png',
+        bottomWidget: _MapUsersCountBadge(),
       ),
       body: MapView(),
     );
@@ -365,124 +366,124 @@ class _MapViewState extends ConsumerState<MapView> {
         ),
         Positioned(
           right: 12,
-          bottom: 12 + (2 * 48),
-          child: Container(
-            decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.circular(12),
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.black.withValues(alpha: 0.2),
-                  blurRadius: 8,
-                  offset: const Offset(0, 3),
+          bottom: 12,
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Material(
+                color: Colors.white,
+                elevation: 3,
+                borderRadius: BorderRadius.circular(12),
+                clipBehavior: Clip.antiAlias,
+                child: IconButton(
+                  onPressed: () => _showLegend(context),
+                  tooltip: 'Légende',
+                  splashRadius: 22,
+                  constraints: const BoxConstraints.tightFor(
+                    width: 44,
+                    height: 44,
+                  ),
+                  padding: EdgeInsets.zero,
+                  icon: const Icon(
+                    Icons.info_outline,
+                    size: 22,
+                    color: Colors.blue,
+                  ),
+                ),
+              ),
+              const SizedBox(height: 8),
+              Container(
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(12),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.black.withValues(alpha: 0.2),
+                      blurRadius: 8,
+                      offset: const Offset(0, 3),
+                    ),
+                  ],
+                ),
+                child: Material(
+                  color: Colors.transparent,
+                  child: IconButton(
+                    onPressed: () async {
+                      final pos = ref.read(mapControllerProvider).userPosition;
+                      if (pos == null) return;
+                      await _mapController?.animateCamera(
+                        CameraUpdate.newLatLngZoom(
+                          LatLng(pos.latitude, pos.longitude),
+                          15,
+                        ),
+                      );
+                    },
+                    tooltip: 'Me centrer',
+                    splashRadius: 22,
+                    constraints: const BoxConstraints.tightFor(
+                      width: 44,
+                      height: 44,
+                    ),
+                    padding: EdgeInsets.zero,
+                    icon: const Icon(
+                      Icons.my_location,
+                      size: 22,
+                      color: Colors.blue,
+                    ),
+                  ),
+                ),
+              ),
+              if (state.isSatellite) ...[
+                const SizedBox(height: 8),
+                Container(
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(12),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.black.withValues(alpha: 0.2),
+                        blurRadius: 8,
+                        offset: const Offset(0, 3),
+                      ),
+                    ],
+                  ),
+                  child: Material(
+                    color: Colors.transparent,
+                    child: InkWell(
+                      onTap: _toggle3DView,
+                      borderRadius: BorderRadius.circular(12),
+                      child: Padding(
+                        padding: const EdgeInsets.all(10),
+                        child: Row(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            Icon(
+                              state.buildingsEnabled
+                                  ? Icons.view_in_ar
+                                  : Icons.view_in_ar_outlined,
+                              size: 22,
+                              color: state.buildingsEnabled
+                                  ? Colors.blue
+                                  : Colors.grey,
+                            ),
+                            const SizedBox(width: 6),
+                            Text(
+                              '3D',
+                              style: TextStyle(
+                                fontWeight: FontWeight.w700,
+                                fontSize: 12,
+                                color: state.buildingsEnabled
+                                    ? Colors.blue
+                                    : Colors.grey,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
                 ),
               ],
-            ),
-            child: Material(
-              color: Colors.transparent,
-              child: IconButton(
-                onPressed: () async {
-                  final pos = ref.read(mapControllerProvider).userPosition;
-                  if (pos == null) return;
-                  await _mapController?.animateCamera(
-                    CameraUpdate.newLatLngZoom(
-                      LatLng(pos.latitude, pos.longitude),
-                      15,
-                    ),
-                  );
-                },
-                tooltip: 'Me centrer',
-                splashRadius: 22,
-                constraints: const BoxConstraints.tightFor(
-                  width: 44,
-                  height: 44,
-                ),
-                padding: EdgeInsets.zero,
-                icon: const Icon(
-                  Icons.my_location,
-                  size: 22,
-                  color: Colors.blue,
-                ),
-              ),
-            ),
-          ),
-        ),
-        if (state.isSatellite)
-          Positioned(
-            right: 12,
-            bottom: 12,
-            child: Container(
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(12),
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.black.withValues(alpha: 0.2),
-                    blurRadius: 8,
-                    offset: const Offset(0, 3),
-                  ),
-                ],
-              ),
-              child: Material(
-                color: Colors.transparent,
-                child: InkWell(
-                  onTap: _toggle3DView,
-                  borderRadius: BorderRadius.circular(12),
-                  child: Padding(
-                    padding: const EdgeInsets.all(10),
-                    child: Row(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        Icon(
-                          state.buildingsEnabled
-                              ? Icons.view_in_ar
-                              : Icons.view_in_ar_outlined,
-                          size: 22,
-                          color: state.buildingsEnabled
-                              ? Colors.blue
-                              : Colors.grey,
-                        ),
-                        const SizedBox(width: 6),
-                        Text(
-                          '3D',
-                          style: TextStyle(
-                            fontWeight: FontWeight.w700,
-                            fontSize: 12,
-                            color: state.buildingsEnabled
-                                ? Colors.blue
-                                : Colors.grey,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-              ),
-            ),
-          ),
-        Positioned(
-          right: 12,
-          bottom: 12 + (3 * 48),
-          child: Material(
-            color: Colors.white,
-            elevation: 3,
-            borderRadius: BorderRadius.circular(12),
-            clipBehavior: Clip.antiAlias,
-            child: IconButton(
-              onPressed: () => _showLegend(context),
-              tooltip: 'Légende',
-              splashRadius: 22,
-              constraints: const BoxConstraints.tightFor(
-                width: 44,
-                height: 44,
-              ),
-              padding: EdgeInsets.zero,
-              icon: const Icon(
-                Icons.info_outline,
-                size: 22,
-                color: Colors.blue,
-              ),
-            ),
+            ],
           ),
         ),
       ],
@@ -737,22 +738,32 @@ class _MapUsersCountBadge extends StatelessWidget {
   const _MapUsersCountBadge();
 
   String _formatCompactCount(int count) {
+    if (count >= 1000000000) {
+      return _formatCompactValue(count / 1000000000, 'B');
+    }
     if (count >= 1000000) {
-      final value = (count / 1000000).toStringAsFixed(count >= 10000000 ? 0 : 1);
-      return '${value.replaceAll('.', ',')}M';
+      return _formatCompactValue(count / 1000000, 'M');
     }
     if (count >= 1000) {
-      final value = (count / 1000).toStringAsFixed(count >= 10000 ? 0 : 1);
-      return '${value.replaceAll('.', ',')}k';
+      return _formatCompactValue(count / 1000, 'K');
     }
     return '$count';
+  }
+
+  String _formatCompactValue(double value, String suffix) {
+    final decimals = value >= 10 ? 0 : 1;
+    final text = value.toStringAsFixed(decimals).replaceAll('.', ',');
+    return '$text$suffix';
   }
 
   @override
   Widget build(BuildContext context) {
     final scheme = Theme.of(context).colorScheme;
     return StreamBuilder<QuerySnapshot<Map<String, dynamic>>>(
-      stream: FirebaseFirestore.instance.collection('profiles').snapshots(),
+      stream: FirebaseFirestore.instance
+          .collection('profiles')
+          .where('isOnline', isEqualTo: true)
+          .snapshots(),
       builder: (context, snapshot) {
         final totalUsers = snapshot.data?.size ?? 0;
         final text = _formatCompactCount(totalUsers);

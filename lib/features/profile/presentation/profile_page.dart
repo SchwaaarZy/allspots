@@ -220,35 +220,6 @@ class _ProfilePageState extends ConsumerState<ProfilePage>
                     ],
                   ),
                 ),
-                SafeArea(
-                  bottom: false,
-                  child: Padding(
-                    padding: const EdgeInsets.only(left: 8, top: 6),
-                    child: Align(
-                      alignment: Alignment.topLeft,
-                      child: Material(
-                        color: Colors.white.withValues(alpha: 0.2),
-                        borderRadius: BorderRadius.circular(12),
-                        child: IconButton(
-                          onPressed: () {
-                            Navigator.of(context).push(
-                              MaterialPageRoute(
-                                builder: (_) => const InfoCenterPage(),
-                              ),
-                            );
-                          },
-                          tooltip: 'Infos',
-                          splashRadius: 20,
-                          constraints: const BoxConstraints.tightFor(
-                            width: 40,
-                            height: 40,
-                          ),
-                          icon: const Icon(Icons.info_outline, color: Colors.white),
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
               ],
             ),
           ),
@@ -645,70 +616,78 @@ class _ProfilePageState extends ConsumerState<ProfilePage>
                         ],
                       ),
                     ),
-                    // Bouton paramètres
+                    // Boutons infos + paramètres
                     Positioned(
                       top: 8,
                       right: 8,
-                      child: IconButton(
-                        icon: Container(
-                          padding: const EdgeInsets.all(8),
-                          decoration: BoxDecoration(
-                            color: Colors.black.withValues(alpha: 0.2),
-                            shape: BoxShape.circle,
-                          ),
-                          child: const Icon(
-                            Icons.settings,
-                            color: Colors.white,
-                            size: 20,
-                          ),
-                        ),
-                        onPressed: () {
-                          showDialog(
-                            context: context,
-                            builder: (dialogContext) => AlertDialog(
-                              title: const Text(
-                                'Paramètres',
-                                textAlign: TextAlign.center,
+                      child: Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          IconButton(
+                            icon: Container(
+                              padding: const EdgeInsets.all(8),
+                              decoration: BoxDecoration(
+                                color: Colors.black.withValues(alpha: 0.2),
+                                shape: BoxShape.circle,
                               ),
-                              content: Column(
-                                mainAxisSize: MainAxisSize.min,
-                                children: [
-                                  const Text(
-                                    'Que voulez-vous faire?',
+                              child: const Icon(
+                                Icons.info_outline,
+                                color: Colors.white,
+                                size: 20,
+                              ),
+                            ),
+                            onPressed: () {
+                              Navigator.of(context).push(
+                                MaterialPageRoute(
+                                  builder: (_) => const InfoCenterPage(),
+                                ),
+                              );
+                            },
+                          ),
+                          const SizedBox(width: 6),
+                          IconButton(
+                            icon: Container(
+                              padding: const EdgeInsets.all(8),
+                              decoration: BoxDecoration(
+                                color: Colors.black.withValues(alpha: 0.2),
+                                shape: BoxShape.circle,
+                              ),
+                              child: const Icon(
+                                Icons.settings,
+                                color: Colors.white,
+                                size: 20,
+                              ),
+                            ),
+                            onPressed: () {
+                              showDialog(
+                                context: context,
+                                builder: (dialogContext) => AlertDialog(
+                                  title: const Text(
+                                    'Paramètres',
                                     textAlign: TextAlign.center,
                                   ),
-                                  const SizedBox(height: 12),
-                                  SizedBox(
-                                    width: double.infinity,
-                                    child: ElevatedButton.icon(
-                                      onPressed: () {
-                                        Navigator.pop(dialogContext);
-                                        context.push('/users/$uid');
-                                      },
-                                      icon: const Icon(Icons.public),
-                                      label: const Text('Voir profil public'),
-                                    ),
-                                  ),
-                                  const SizedBox(height: 8),
-                                  Row(
+                                  content: Column(
+                                    mainAxisSize: MainAxisSize.min,
                                     children: [
-                                      Expanded(
+                                      const Text(
+                                        'Que voulez-vous faire?',
+                                        textAlign: TextAlign.center,
+                                      ),
+                                      const SizedBox(height: 12),
+                                      SizedBox(
+                                        width: double.infinity,
                                         child: ElevatedButton.icon(
                                           onPressed: () {
                                             Navigator.pop(dialogContext);
-                                            Navigator.of(context).push(
-                                              MaterialPageRoute(
-                                                builder: (_) =>
-                                                    const InfoCenterPage(),
-                                              ),
-                                            );
+                                            context.push('/users/$uid');
                                           },
-                                          icon: const Icon(Icons.info_outline),
-                                          label: const Text('Infos'),
+                                          icon: const Icon(Icons.public),
+                                          label: const Text('Voir profil public'),
                                         ),
                                       ),
-                                      const SizedBox(width: 8),
-                                      Expanded(
+                                      const SizedBox(height: 8),
+                                      SizedBox(
+                                        width: double.infinity,
                                         child: ElevatedButton.icon(
                                           onPressed: () {
                                             Navigator.pop(dialogContext);
@@ -724,71 +703,71 @@ class _ProfilePageState extends ConsumerState<ProfilePage>
                                           label: const Text('Modifier profil'),
                                         ),
                                       ),
+                                      if (profile.isAdmin) ...[
+                                        const SizedBox(height: 8),
+                                        SizedBox(
+                                          width: double.infinity,
+                                          child: ElevatedButton.icon(
+                                            onPressed: () {
+                                              Navigator.pop(dialogContext);
+                                              Navigator.push(
+                                                context,
+                                                MaterialPageRoute(
+                                                  builder: (_) =>
+                                                      const CommunitySpotsManagementPage(),
+                                                ),
+                                              );
+                                            },
+                                            icon: const Icon(Icons.admin_panel_settings),
+                                            label: const Text('Admin'),
+                                          ),
+                                        ),
+                                      ],
+                                      const SizedBox(height: 8),
+                                      SizedBox(
+                                        width: double.infinity,
+                                        child: ElevatedButton.icon(
+                                          onPressed: () {
+                                            Navigator.pop(dialogContext);
+                                            _showDeleteAccountDialog(context);
+                                          },
+                                          icon: const Icon(Icons.delete),
+                                          label: const Text('Supprimer compte'),
+                                          style: ElevatedButton.styleFrom(
+                                            backgroundColor: Colors.red,
+                                          ),
+                                        ),
+                                      ),
+                                      const SizedBox(height: 8),
+                                      SizedBox(
+                                        width: double.infinity,
+                                        child: ElevatedButton.icon(
+                                          onPressed: () async {
+                                            final ctx = context;
+                                            Navigator.pop(dialogContext);
+                                            await FirebaseAuth.instance.signOut();
+                                            if (ctx.mounted) ctx.go('/auth');
+                                          },
+                                          icon: const Icon(Icons.logout),
+                                          label: const Text('Se déconnecter'),
+                                          style: ElevatedButton.styleFrom(
+                                            backgroundColor: Colors.orange,
+                                          ),
+                                        ),
+                                      ),
+                                      const SizedBox(height: 8),
+                                      TextButton(
+                                        onPressed: () =>
+                                            Navigator.pop(dialogContext),
+                                        child: const Text('Annuler'),
+                                      ),
                                     ],
                                   ),
-                                  if (profile.isAdmin) ...[
-                                    const SizedBox(height: 8),
-                                    SizedBox(
-                                      width: double.infinity,
-                                      child: ElevatedButton.icon(
-                                        onPressed: () {
-                                          Navigator.pop(dialogContext);
-                                          Navigator.push(
-                                            context,
-                                            MaterialPageRoute(
-                                              builder: (_) =>
-                                                  const CommunitySpotsManagementPage(),
-                                            ),
-                                          );
-                                        },
-                                        icon: const Icon(Icons.admin_panel_settings),
-                                        label: const Text('Admin'),
-                                      ),
-                                    ),
-                                  ],
-                                  const SizedBox(height: 8),
-                                  SizedBox(
-                                    width: double.infinity,
-                                    child: ElevatedButton.icon(
-                                      onPressed: () {
-                                        Navigator.pop(dialogContext);
-                                        _showDeleteAccountDialog(context);
-                                      },
-                                      icon: const Icon(Icons.delete),
-                                      label: const Text('Supprimer compte'),
-                                      style: ElevatedButton.styleFrom(
-                                        backgroundColor: Colors.red,
-                                      ),
-                                    ),
-                                  ),
-                                  const SizedBox(height: 8),
-                                  SizedBox(
-                                    width: double.infinity,
-                                    child: ElevatedButton.icon(
-                                      onPressed: () async {
-                                        final ctx = context;
-                                        Navigator.pop(dialogContext);
-                                        await FirebaseAuth.instance.signOut();
-                                        if (ctx.mounted) ctx.go('/auth');
-                                      },
-                                      icon: const Icon(Icons.logout),
-                                      label: const Text('Se déconnecter'),
-                                      style: ElevatedButton.styleFrom(
-                                        backgroundColor: Colors.orange,
-                                      ),
-                                    ),
-                                  ),
-                                  const SizedBox(height: 8),
-                                  TextButton(
-                                    onPressed: () =>
-                                        Navigator.pop(dialogContext),
-                                    child: const Text('Annuler'),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          );
-                        },
+                                ),
+                              );
+                            },
+                          ),
+                        ],
                       ),
                     ),
                   ],

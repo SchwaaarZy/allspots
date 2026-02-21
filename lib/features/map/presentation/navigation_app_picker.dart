@@ -72,7 +72,7 @@ Future<void> showNavigationAppPicker({
               const Padding(
                 padding: EdgeInsets.fromLTRB(16, 4, 16, 16),
                 child: Text(
-                  'Aucune application externe détectée. AllSpots Navigation reste disponible.',
+                  "Aucune application externe détectée. All'SPOTS Navigation reste disponible.",
                   textAlign: TextAlign.center,
                   style: TextStyle(color: Colors.black54),
                 ),
@@ -92,7 +92,7 @@ Future<List<NavigationAppOption>> _buildOptions({
 }) async {
   final options = <NavigationAppOption>[
     NavigationAppOption(
-      title: 'AllSpots Navigation',
+      title: "All'SPOTS Navigation",
       icon: Icons.navigation,
       isAllSpots: true,
       launch: () async {

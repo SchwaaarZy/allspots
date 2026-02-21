@@ -11,6 +11,8 @@ class AppHeader extends StatelessWidget implements PreferredSizeWidget {
   final String? backgroundImage;
   final String? title;
   final Widget? titleWidget;
+  final Widget? bottomWidget;
+  final EdgeInsetsGeometry bottomWidgetPadding;
 
   const AppHeader({
     super.key,
@@ -22,6 +24,8 @@ class AppHeader extends StatelessWidget implements PreferredSizeWidget {
     this.backgroundImage,
     this.title,
     this.titleWidget,
+    this.bottomWidget,
+    this.bottomWidgetPadding = const EdgeInsets.only(bottom: 6),
   });
 
   @override
@@ -49,6 +53,8 @@ class AppHeader extends StatelessWidget implements PreferredSizeWidget {
       backgroundImage: backgroundImage,
       title: title,
       titleWidget: resolvedTitleWidget,
+      bottomWidget: bottomWidget,
+      bottomWidgetPadding: bottomWidgetPadding,
     );
   }
 }
