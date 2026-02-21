@@ -11,6 +11,7 @@ import '../../../core/widgets/glass_app_bar.dart';
 import '../../../core/widgets/optimized_image.dart';
 import '../../auth/data/auth_providers.dart';
 import '../../auth/presentation/profile_setup_page.dart';
+import '../../info/info_center_page.dart';
 import '../../map/domain/poi.dart';
 import '../../map/domain/poi_category.dart';
 import 'community_spots_management_page.dart';
@@ -72,24 +73,26 @@ class _ProfilePageState extends ConsumerState<ProfilePage>
         return DefaultTabController(
           length: 4,
           child: Scaffold(
-            body: NestedScrollView(
-              headerSliverBuilder: (context, innerBoxIsScrolled) => [
-                SliverAppBar(
-                  expandedHeight: _profileHeaderHeight(context),
-                  floating: false,
-                  pinned: true,
-                  toolbarHeight: 0,
-                  flexibleSpace: FlexibleSpaceBar(
-                    background: _buildProfileHeader(profile),
-                  ),
-                  bottom: PreferredSize(
-                    preferredSize: const Size.fromHeight(48),
-                    child: _buildTabBar(),
-                  ),
-                ),
-              ],
-              body: Column(
-                children: [
+            body: Stack(
+              children: [
+                NestedScrollView(
+                  headerSliverBuilder: (context, innerBoxIsScrolled) => [
+                    SliverAppBar(
+                      expandedHeight: _profileHeaderHeight(context),
+                      floating: false,
+                      pinned: true,
+                      toolbarHeight: 0,
+                      flexibleSpace: FlexibleSpaceBar(
+                        background: _buildProfileHeader(profile),
+                      ),
+                      bottom: PreferredSize(
+                        preferredSize: const Size.fromHeight(48),
+                        child: _buildTabBar(),
+                      ),
+                    ),
+                  ],
+                  body: Column(
+                    children: [
                   // Barre d'action pour l'onglet Spots
                   AnimatedBuilder(
                     animation: _tabController,
@@ -214,8 +217,39 @@ class _ProfilePageState extends ConsumerState<ProfilePage>
                       ],
                     ),
                   ),
-                ],
-              ),
+                    ],
+                  ),
+                ),
+                SafeArea(
+                  bottom: false,
+                  child: Padding(
+                    padding: const EdgeInsets.only(left: 8, top: 6),
+                    child: Align(
+                      alignment: Alignment.topLeft,
+                      child: Material(
+                        color: Colors.white.withValues(alpha: 0.2),
+                        borderRadius: BorderRadius.circular(12),
+                        child: IconButton(
+                          onPressed: () {
+                            Navigator.of(context).push(
+                              MaterialPageRoute(
+                                builder: (_) => const InfoCenterPage(),
+                              ),
+                            );
+                          },
+                          tooltip: 'Infos',
+                          splashRadius: 20,
+                          constraints: const BoxConstraints.tightFor(
+                            width: 40,
+                            height: 40,
+                          ),
+                          icon: const Icon(Icons.info_outline, color: Colors.white),
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+              ],
             ),
           ),
         );
@@ -656,22 +690,41 @@ class _ProfilePageState extends ConsumerState<ProfilePage>
                                     ),
                                   ),
                                   const SizedBox(height: 8),
-                                  SizedBox(
-                                    width: double.infinity,
-                                    child: ElevatedButton.icon(
-                                      onPressed: () {
-                                        Navigator.pop(dialogContext);
-                                        Navigator.push(
-                                          context,
-                                          MaterialPageRoute(
-                                            builder: (context) =>
-                                                const ProfileSetupPage(),
-                                          ),
-                                        );
-                                      },
-                                      icon: const Icon(Icons.edit),
-                                      label: const Text('Modifier profil'),
-                                    ),
+                                  Row(
+                                    children: [
+                                      Expanded(
+                                        child: ElevatedButton.icon(
+                                          onPressed: () {
+                                            Navigator.pop(dialogContext);
+                                            Navigator.of(context).push(
+                                              MaterialPageRoute(
+                                                builder: (_) =>
+                                                    const InfoCenterPage(),
+                                              ),
+                                            );
+                                          },
+                                          icon: const Icon(Icons.info_outline),
+                                          label: const Text('Infos'),
+                                        ),
+                                      ),
+                                      const SizedBox(width: 8),
+                                      Expanded(
+                                        child: ElevatedButton.icon(
+                                          onPressed: () {
+                                            Navigator.pop(dialogContext);
+                                            Navigator.push(
+                                              context,
+                                              MaterialPageRoute(
+                                                builder: (context) =>
+                                                    const ProfileSetupPage(),
+                                              ),
+                                            );
+                                          },
+                                          icon: const Icon(Icons.edit),
+                                          label: const Text('Modifier profil'),
+                                        ),
+                                      ),
+                                    ],
                                   ),
                                   if (profile.isAdmin) ...[
                                     const SizedBox(height: 8),
@@ -792,24 +845,21 @@ class _ProfilePageState extends ConsumerState<ProfilePage>
       decoration: BoxDecoration(
         color: color,
         borderRadius: BorderRadius.circular(20),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withValues(alpha: 0.2),
-            blurRadius: 4,
-            offset: const Offset(0, 2),
-          ),
-        ],
       ),
       child: Row(
         mainAxisSize: MainAxisSize.min,
         children: [
-          Icon(icon, size: compact ? 12 : 14, color: Colors.white),
-          const SizedBox(width: 4),
+          Icon(
+            icon,
+            size: compact ? 12 : 14,
+            color: Colors.white,
+          ),
+          SizedBox(width: compact ? 4 : 6),
           Text(
             label,
             style: TextStyle(
               color: Colors.white,
-              fontSize: compact ? 9 : 11,
+              fontSize: compact ? 10 : 11,
               fontWeight: FontWeight.w600,
             ),
           ),
@@ -820,7 +870,6 @@ class _ProfilePageState extends ConsumerState<ProfilePage>
 
   Widget _buildTabBar() {
     return Container(
-      height: 48,
       color: Colors.white,
       child: TabBar(
         controller: _tabController,

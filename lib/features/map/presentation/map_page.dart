@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:geolocator/geolocator.dart';
@@ -333,11 +334,19 @@ class _MapViewState extends ConsumerState<MapView> {
             _showPoiPopup(context, p, LatLng(p.lat, p.lng));
           },
         ),
-      )
+      ),
     };
 
     return Stack(
       children: [
+        Positioned(
+          top: 10,
+          left: 0,
+          right: 0,
+          child: Center(
+            child: const _MapUsersCountBadge(),
+          ),
+        ),
         GoogleMap(
           initialCameraPosition: initialCamera,
           mapType: state.isSatellite ? MapType.satellite : MapType.normal,
@@ -371,8 +380,8 @@ class _MapViewState extends ConsumerState<MapView> {
             ),
             child: Material(
               color: Colors.transparent,
-              child: InkWell(
-                onTap: () async {
+              child: IconButton(
+                onPressed: () async {
                   final pos = ref.read(mapControllerProvider).userPosition;
                   if (pos == null) return;
                   await _mapController?.animateCamera(
@@ -382,14 +391,17 @@ class _MapViewState extends ConsumerState<MapView> {
                     ),
                   );
                 },
-                borderRadius: BorderRadius.circular(12),
-                child: const Padding(
-                  padding: EdgeInsets.all(10),
-                  child: Icon(
-                    Icons.my_location,
-                    size: 22,
-                    color: Colors.blue,
-                  ),
+                tooltip: 'Me centrer',
+                splashRadius: 22,
+                constraints: const BoxConstraints.tightFor(
+                  width: 44,
+                  height: 44,
+                ),
+                padding: EdgeInsets.zero,
+                icon: const Icon(
+                  Icons.my_location,
+                  size: 22,
+                  color: Colors.blue,
                 ),
               ),
             ),
@@ -451,31 +463,24 @@ class _MapViewState extends ConsumerState<MapView> {
         Positioned(
           right: 12,
           bottom: 12 + (3 * 48),
-          child: Container(
-            decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.circular(12),
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.black.withValues(alpha: 0.2),
-                  blurRadius: 8,
-                  offset: const Offset(0, 3),
-                ),
-              ],
-            ),
-            child: Material(
-              color: Colors.transparent,
-              child: InkWell(
-                onTap: () => _showLegend(context),
-                borderRadius: BorderRadius.circular(12),
-                child: const Padding(
-                  padding: EdgeInsets.all(10),
-                  child: Icon(
-                    Icons.info_outline,
-                    size: 22,
-                    color: Colors.blue,
-                  ),
-                ),
+          child: Material(
+            color: Colors.white,
+            elevation: 3,
+            borderRadius: BorderRadius.circular(12),
+            clipBehavior: Clip.antiAlias,
+            child: IconButton(
+              onPressed: () => _showLegend(context),
+              tooltip: 'Légende',
+              splashRadius: 22,
+              constraints: const BoxConstraints.tightFor(
+                width: 44,
+                height: 44,
+              ),
+              padding: EdgeInsets.zero,
+              icon: const Icon(
+                Icons.info_outline,
+                size: 22,
+                color: Colors.blue,
               ),
             ),
           ),
@@ -724,6 +729,70 @@ class _MapViewState extends ConsumerState<MapView> {
           userLocation: userPos,
         ),
       ),
+    );
+  }
+}
+
+class _MapUsersCountBadge extends StatelessWidget {
+  const _MapUsersCountBadge();
+
+  String _formatCompactCount(int count) {
+    if (count >= 1000000) {
+      final value = (count / 1000000).toStringAsFixed(count >= 10000000 ? 0 : 1);
+      return '${value.replaceAll('.', ',')}M';
+    }
+    if (count >= 1000) {
+      final value = (count / 1000).toStringAsFixed(count >= 10000 ? 0 : 1);
+      return '${value.replaceAll('.', ',')}k';
+    }
+    return '$count';
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final scheme = Theme.of(context).colorScheme;
+    return StreamBuilder<QuerySnapshot<Map<String, dynamic>>>(
+      stream: FirebaseFirestore.instance.collection('profiles').snapshots(),
+      builder: (context, snapshot) {
+        final totalUsers = snapshot.data?.size ?? 0;
+        final text = _formatCompactCount(totalUsers);
+
+        return Container(
+          height: 34,
+          padding: const EdgeInsets.symmetric(horizontal: 10),
+          decoration: BoxDecoration(
+            color: scheme.primary,
+            borderRadius: BorderRadius.circular(18),
+            boxShadow: [
+              BoxShadow(
+                color: Colors.black.withValues(alpha: 0.2),
+                blurRadius: 8,
+                offset: const Offset(0, 3),
+              ),
+            ],
+            border: Border.all(color: Colors.white.withValues(alpha: 0.35)),
+          ),
+          child: Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Icon(
+                Icons.people_alt_outlined,
+                size: 17,
+                color: scheme.onPrimary,
+              ),
+              const SizedBox(width: 6),
+              Text(
+                text,
+                style: TextStyle(
+                  color: scheme.onPrimary,
+                  fontSize: 12,
+                  fontWeight: FontWeight.w800,
+                ),
+              ),
+            ],
+          ),
+        );
+      },
     );
   }
 }

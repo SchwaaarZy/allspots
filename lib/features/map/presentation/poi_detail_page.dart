@@ -6,7 +6,6 @@ import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:go_router/go_router.dart';
-import 'package:url_launcher/url_launcher.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'dart:math' as math;
@@ -17,6 +16,7 @@ import '../domain/poi_category.dart';
 import '../data/rating_provider.dart';
 import '../../auth/data/auth_providers.dart';
 import '../../profile/data/road_trip_service.dart';
+import 'navigation_app_picker.dart';
 import 'navigation_page.dart';
 
 class PoiDetailPage extends ConsumerStatefulWidget {
@@ -146,22 +146,30 @@ class _PoiDetailPageState extends ConsumerState<PoiDetailPage> {
     }
   }
 
-  void _openMapsNavigation() async {
+  Future<void> _openMapsNavigation() async {
     if (widget.userLocation == null) return;
     final start = LatLng(
       widget.userLocation!.latitude,
       widget.userLocation!.longitude,
     );
     final dest = LatLng(widget.poi.lat, widget.poi.lng);
-    Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (_) => NavigationPage(
-          start: start,
-          destination: dest,
-          destinationName: widget.poi.name,
-        ),
-      ),
+    await showNavigationAppPicker(
+      context: context,
+      destination: dest,
+      destinationName: widget.poi.name,
+      onAllSpotsNavigation: () async {
+        if (!mounted) return;
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (_) => NavigationPage(
+              start: start,
+              destination: dest,
+              destinationName: widget.poi.name,
+            ),
+          ),
+        );
+      },
     );
   }
 
@@ -204,16 +212,6 @@ class _PoiDetailPageState extends ConsumerState<PoiDetailPage> {
           ),
         );
         break;
-    }
-  }
-
-  void _openGoogleReviews() async {
-    final placeId = widget.poi.id;
-    final googleReviewsUrl =
-        'https://www.google.com/maps/search/?api=1&query_place_id=$placeId';
-    if (await canLaunchUrl(Uri.parse(googleReviewsUrl))) {
-      await launchUrl(Uri.parse(googleReviewsUrl),
-          mode: LaunchMode.externalApplication);
     }
   }
 
@@ -289,10 +287,20 @@ class _PoiDetailPageState extends ConsumerState<PoiDetailPage> {
         profile.value?.favoritePoiIds.contains(widget.poi.id) ?? false;
     final googleRating = widget.poi.googleRating ?? 0;
     final hasGoogleReviews = widget.poi.source == 'places';
+    final subCategoryLabel = formatPoiSubCategory(widget.poi.subCategory);
+    final headerTitle =
+      subCategoryLabel.isNotEmpty ? subCategoryLabel : widget.poi.category.label;
 
     return Scaffold(
       appBar: GlassAppBar(
-        title: widget.poi.name,
+        titleWidget: FittedBox(
+          fit: BoxFit.scaleDown,
+          child: Text(
+            headerTitle.toUpperCase(),
+            maxLines: 1,
+            softWrap: false,
+          ),
+        ),
         showBackButton: true,
         actions: [
           IconButton(
@@ -468,7 +476,7 @@ class _PoiDetailPageState extends ConsumerState<PoiDetailPage> {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       const Text(
-                        'Avis Google',
+                        'Note Google',
                         style: TextStyle(
                           fontSize: 18,
                           fontWeight: FontWeight.bold,
@@ -487,15 +495,6 @@ class _PoiDetailPageState extends ConsumerState<PoiDetailPage> {
                           'Aucun avis Google pour le moment',
                           style: TextStyle(color: Colors.grey),
                         ),
-                      const SizedBox(height: 12),
-                      SizedBox(
-                        width: double.infinity,
-                        child: OutlinedButton.icon(
-                          onPressed: _openGoogleReviews,
-                          icon: const Icon(Icons.open_in_new),
-                          label: const Text('Voir les avis Google'),
-                        ),
-                      ),
                     ],
                   ),
                 ),
@@ -518,7 +517,7 @@ class _PoiDetailPageState extends ConsumerState<PoiDetailPage> {
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         const Text(
-                          'Note AllSpots',
+                          'Avis AllSPOTS',
                           style: TextStyle(
                             fontSize: 18,
                             fontWeight: FontWeight.bold,
@@ -534,7 +533,7 @@ class _PoiDetailPageState extends ConsumerState<PoiDetailPage> {
                           ),
                         ] else
                           const Text(
-                            'Aucune note AllSpots pour le moment',
+                            'Aucun avis AllSPOTS pour le moment',
                             style: TextStyle(color: Colors.grey),
                           ),
                       ],

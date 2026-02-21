@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:http/http.dart' as http;
 import '../../../core/widgets/glass_app_bar.dart';
-import 'package:url_launcher/url_launcher.dart';
+import 'navigation_app_picker.dart';
 
 class NavigationPage extends StatefulWidget {
   final LatLng start;
@@ -129,24 +129,19 @@ class _NavigationPageState extends State<NavigationPage> {
   }
 
   Future<void> _launchNavigation() async {
-    final destLat = widget.destination.latitude;
-    final destLng = widget.destination.longitude;
-    
-    // Construire l'URL Waze
-    final wazeUrl = Uri.parse(
-      'https://waze.com/ul?ll=$destLat,$destLng&navigate=yes',
+    await showNavigationAppPicker(
+      context: context,
+      destination: widget.destination,
+      destinationName: widget.destinationName,
+      onAllSpotsNavigation: () async {
+        if (!mounted) return;
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+            content: Text('Vous utilisez déjà AllSpots Navigation.'),
+          ),
+        );
+      },
     );
-
-    if (await canLaunchUrl(wazeUrl)) {
-      await launchUrl(wazeUrl, mode: LaunchMode.externalApplication);
-    } else {
-      if (!mounted) return;
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
-          content: Text('Impossible d\'ouvrir Waze. Vérifiez qu\'il est installé.'),
-        ),
-      );
-    }
   }
 
   @override

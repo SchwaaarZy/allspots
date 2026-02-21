@@ -51,7 +51,16 @@ class GlassAppBar extends StatelessWidget implements PreferredSizeWidget {
       toolbarHeight: height,
       title: titleWidget != null
           ? DefaultTextStyle.merge(style: titleStyle, child: titleWidget!)
-          : (title != null ? Text(title!.toUpperCase()) : null),
+          : (title != null
+              ? FittedBox(
+                  fit: BoxFit.scaleDown,
+                  child: Text(
+                    title!.toUpperCase(),
+                    maxLines: 1,
+                    softWrap: false,
+                  ),
+                )
+              : null),
       centerTitle: centerTitle,
       backgroundColor: Colors.transparent,
       foregroundColor: Colors.white,
