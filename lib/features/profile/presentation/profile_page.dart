@@ -950,7 +950,7 @@ class _MyPoiTabState extends ConsumerState<_MyPoiTab> {
                   const Icon(Icons.location_on, size: 48, color: Colors.blue),
                   const SizedBox(height: 12),
                   const Text(
-                    '📍 Vous n\'avez pas encore créé de spots.',
+                    'Vous n\'avez pas encore créé de spots.',
                     textAlign: TextAlign.center,
                   ),
                 ],
@@ -1139,7 +1139,7 @@ class _FavoritesTabState extends ConsumerState<_FavoritesTab> {
                 children: [
                   const Icon(Icons.favorite, size: 48, color: Colors.red),
                   const SizedBox(height: 12),
-                  const Text('❤️ Aucun favori pour le moment',
+                  const Text('Aucun favori pour le moment',
                       textAlign: TextAlign.center),
                 ],
               ),
