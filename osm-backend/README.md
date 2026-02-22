@@ -11,7 +11,7 @@ Simple Node.js backend for OSM POIs.
 
 Start Command:
 
-```
+```bash
 node server.js
 ```
 

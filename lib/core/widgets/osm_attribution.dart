@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 /// Widget d'attribution OSM (obligatoire par licence ODbL).
 /// À placer en bas de la carte ou écran.
 class OsmAttribution extends StatelessWidget {
-  const OsmAttribution({Key? key}) : super(key: key);
+  const OsmAttribution({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -12,7 +12,7 @@ class OsmAttribution extends StatelessWidget {
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
         decoration: BoxDecoration(
-          color: Colors.white.withOpacity(0.9),
+          color: Colors.white.withValues(alpha: 0.9),
           borderRadius: BorderRadius.circular(4),
           border: Border.all(color: Colors.grey.shade300, width: 0.5),
         ),
