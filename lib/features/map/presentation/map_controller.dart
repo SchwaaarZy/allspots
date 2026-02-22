@@ -88,6 +88,14 @@ class MapController extends StateNotifier<MapState> {
   MapController(this._repo) : super(MapState.initial());
 
   final PoiRepository _repo;
+  Future<void>? _refreshInFlight;
+  DateTime? _lastRefreshAt;
+  double? _lastRefreshLat;
+  double? _lastRefreshLng;
+  double? _lastRefreshRadius;
+  Set<PoiCategory>? _lastRefreshCategories;
+  bool? _lastRefreshOpenNow;
+  static const Duration _refreshCacheTtl = Duration(seconds: 25);
 
   Future<void> init() async {
     state = state.copyWith(isLoading: true, error: null);
@@ -103,26 +111,43 @@ class MapController extends StateNotifier<MapState> {
   }
 
   Future<void> refreshNearby() async {
+    if (_refreshInFlight != null) {
+      return _refreshInFlight!;
+    }
+
+    final now = DateTime.now();
     final pos = state.userPosition;
     if (pos == null) {
       state = state.copyWith(error: 'Position non disponible');
       return;
     }
 
-    state = state.copyWith(isLoading: true, error: null);
-    
-    try {
-      final pois = await _repo.getNearbyPois(
-        userLat: pos.latitude,
-        userLng: pos.longitude,
-        radiusMeters: state.radiusMeters,
-        filters: state.filters,
-      );
-
-      state = state.copyWith(nearbyPois: pois, isLoading: false);
-    } catch (e) {
-      state = state.copyWith(error: e.toString(), isLoading: false);
+    if (_isRefreshCacheValid(now, pos)) {
+      return;
     }
+
+    final refreshFuture = () async {
+      state = state.copyWith(isLoading: true, error: null);
+
+      try {
+        final pois = await _repo.getNearbyPois(
+          userLat: pos.latitude,
+          userLng: pos.longitude,
+          radiusMeters: state.radiusMeters,
+          filters: state.filters,
+        );
+
+        state = state.copyWith(nearbyPois: pois, isLoading: false);
+        _rememberRefresh(now, pos);
+      } catch (e) {
+        state = state.copyWith(error: e.toString(), isLoading: false);
+      } finally {
+        _refreshInFlight = null;
+      }
+    }();
+
+    _refreshInFlight = refreshFuture;
+    return refreshFuture;
   }
 
   Future<void> setRadiusMeters(double value) async {
@@ -178,11 +203,59 @@ class MapController extends StateNotifier<MapState> {
       throw Exception('Permission localisation refusée définitivement.');
     }
 
-    return Geolocator.getCurrentPosition(
-      locationSettings: const LocationSettings(
-        accuracy: LocationAccuracy.high,
-      ),
+    final lastKnown = await Geolocator.getLastKnownPosition();
+    if (lastKnown != null) {
+      return lastKnown;
+    }
+
+    return Geolocator
+        .getCurrentPosition(
+          locationSettings: const LocationSettings(
+            accuracy: LocationAccuracy.medium,
+          ),
+        )
+        .timeout(
+          const Duration(seconds: 8),
+          onTimeout: () => throw Exception('Timeout de localisation'),
+        );
+  }
+
+  bool _isRefreshCacheValid(DateTime now, Position pos) {
+    final lastAt = _lastRefreshAt;
+    if (lastAt == null) return false;
+    if (now.difference(lastAt) > _refreshCacheTtl) return false;
+
+    if (_lastRefreshRadius != state.radiusMeters ||
+        _lastRefreshOpenNow != state.filters.openNow) {
+      return false;
+    }
+
+    final categories = _lastRefreshCategories;
+    if (categories == null || !const SetEquality<PoiCategory>().equals(categories, state.filters.categories)) {
+      return false;
+    }
+
+    final lat = _lastRefreshLat;
+    final lng = _lastRefreshLng;
+    if (lat == null || lng == null) return false;
+
+    final movedMeters = Geolocator.distanceBetween(
+      lat,
+      lng,
+      pos.latitude,
+      pos.longitude,
     );
+
+    return movedMeters < 80;
+  }
+
+  void _rememberRefresh(DateTime now, Position pos) {
+    _lastRefreshAt = now;
+    _lastRefreshLat = pos.latitude;
+    _lastRefreshLng = pos.longitude;
+    _lastRefreshRadius = state.radiusMeters;
+    _lastRefreshCategories = Set<PoiCategory>.from(state.filters.categories);
+    _lastRefreshOpenNow = state.filters.openNow;
   }
 
   Set<PoiCategory> _categoriesFromPreferences(List<String> preferences) {
@@ -192,13 +265,16 @@ class MapController extends StateNotifier<MapState> {
       return PoiCategory.values.toSet();
     }
 
-    // L'utilisateur a des préférences: les utiliser strictement
-    final preferenceSet = preferences.toSet();
+    final preferenceSet = preferences.map(_normalize).toSet();
     final categories = <PoiCategory>{};
 
     for (final group in poiCategoryGroups) {
       // Vérifier si au moins un élément du groupe est dans les préférences
-      final hasMatch = group.items.any(preferenceSet.contains);
+      final hasTitleMatch = preferenceSet.contains(_normalize(group.title));
+      final hasItemMatch = group.items
+          .map(_normalize)
+          .any(preferenceSet.contains);
+      final hasMatch = hasTitleMatch || hasItemMatch;
       if (!hasMatch) continue;
 
       // Mapper le groupe à sa catégorie
@@ -221,7 +297,32 @@ class MapController extends StateNotifier<MapState> {
       }
     }
 
-    // Retourner les catégories trouvées (même si vide)
+    // Fallback sécurité: ne jamais filtrer à vide
+    if (categories.isEmpty) {
+      return PoiCategory.values.toSet();
+    }
+
     return categories;
+  }
+
+  String _normalize(String value) {
+    return value
+        .trim()
+        .toLowerCase()
+        .replaceAll('é', 'e')
+        .replaceAll('è', 'e')
+        .replaceAll('ê', 'e')
+        .replaceAll('ë', 'e')
+        .replaceAll('à', 'a')
+        .replaceAll('â', 'a')
+        .replaceAll('ä', 'a')
+        .replaceAll('î', 'i')
+        .replaceAll('ï', 'i')
+        .replaceAll('ô', 'o')
+        .replaceAll('ö', 'o')
+        .replaceAll('ù', 'u')
+        .replaceAll('û', 'u')
+        .replaceAll('ü', 'u')
+        .replaceAll('ç', 'c');
   }
 }

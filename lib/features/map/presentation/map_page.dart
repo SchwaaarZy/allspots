@@ -21,12 +21,19 @@ class MapPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    return Scaffold(
       appBar: AppHeader(
+        height: 96,
         backgroundImage: 'assets/images/bg_header_allspots.png',
-        bottomWidget: _MapUsersCountBadge(),
+        titleWidget: SizedBox(
+          height: 44,
+          child: Image.asset(
+            'assets/images/allspots_simple_logo.png',
+            fit: BoxFit.contain,
+          ),
+        ),
       ),
-      body: MapView(),
+      body: const MapView(),
     );
   }
 }
@@ -340,18 +347,10 @@ class _MapViewState extends ConsumerState<MapView> {
 
     return Stack(
       children: [
-        Positioned(
-          top: 10,
-          left: 0,
-          right: 0,
-          child: Center(
-            child: const _MapUsersCountBadge(),
-          ),
-        ),
         GoogleMap(
           initialCameraPosition: initialCamera,
           mapType: state.isSatellite ? MapType.satellite : MapType.normal,
-          myLocationEnabled: true,
+          myLocationEnabled: state.userPosition != null,
           myLocationButtonEnabled: false,
           markers: markers,
           trafficEnabled: false,
@@ -370,6 +369,8 @@ class _MapViewState extends ConsumerState<MapView> {
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
+              const _MapUsersCountBadge(),
+              const SizedBox(height: 8),
               Material(
                 color: Colors.white,
                 elevation: 3,
@@ -612,12 +613,14 @@ class _MapViewState extends ConsumerState<MapView> {
                               children: [
                                 if (poi.imageUrls.isNotEmpty) ...[
                                   SizedBox(
-                                    height: ResponsiveUtils.getImageHeight(dialogContext.screenWidth),
+                                    height: ResponsiveUtils.getImageHeight(
+                                        dialogContext.screenWidth),
                                     child: ClipRRect(
                                       borderRadius: BorderRadius.circular(8),
                                       child: OptimizedNetworkImage(
                                         imageUrl: poi.imageUrls.first,
-                                        height: ResponsiveUtils.getImageHeight(dialogContext.screenWidth),
+                                        height: ResponsiveUtils.getImageHeight(
+                                            dialogContext.screenWidth),
                                         fit: BoxFit.cover,
                                       ),
                                     ),
@@ -765,43 +768,62 @@ class _MapUsersCountBadge extends StatelessWidget {
           .where('isOnline', isEqualTo: true)
           .snapshots(),
       builder: (context, snapshot) {
-        final totalUsers = snapshot.data?.size ?? 0;
-        final text = _formatCompactCount(totalUsers);
+        final currentUid = FirebaseAuth.instance.currentUser?.uid;
+        final totalUsers = snapshot.hasData ? snapshot.data!.docs.length : 0;
+        final displayedUsers =
+            currentUid != null && totalUsers == 0 ? 1 : totalUsers;
+        final text = _formatCompactCount(displayedUsers);
 
-        return Container(
-          height: 34,
-          padding: const EdgeInsets.symmetric(horizontal: 10),
-          decoration: BoxDecoration(
-            color: scheme.primary,
-            borderRadius: BorderRadius.circular(18),
-            boxShadow: [
-              BoxShadow(
-                color: Colors.black.withValues(alpha: 0.2),
-                blurRadius: 8,
-                offset: const Offset(0, 3),
+        return Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Container(
+              width: 24,
+              height: 24,
+              decoration: BoxDecoration(
+                color: scheme.primary,
+                shape: BoxShape.circle,
+                border: Border.all(color: Colors.white.withValues(alpha: 0.4)),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black.withValues(alpha: 0.18),
+                    blurRadius: 5,
+                    offset: const Offset(0, 2),
+                  ),
+                ],
               ),
-            ],
-            border: Border.all(color: Colors.white.withValues(alpha: 0.35)),
-          ),
-          child: Row(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Icon(
-                Icons.people_alt_outlined,
-                size: 17,
+              child: Icon(
+                Icons.person,
+                size: 14,
                 color: scheme.onPrimary,
               ),
-              const SizedBox(width: 6),
-              Text(
+            ),
+            const SizedBox(width: 6),
+            Container(
+              padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(10),
+                border:
+                    Border.all(color: scheme.primary.withValues(alpha: 0.35)),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black.withValues(alpha: 0.15),
+                    blurRadius: 4,
+                    offset: const Offset(0, 1),
+                  ),
+                ],
+              ),
+              child: Text(
                 text,
                 style: TextStyle(
-                  color: scheme.onPrimary,
+                  color: scheme.primary,
                   fontSize: 12,
                   fontWeight: FontWeight.w800,
                 ),
               ),
-            ],
-          ),
+            ),
+          ],
         );
       },
     );

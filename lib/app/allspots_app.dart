@@ -18,6 +18,18 @@ class AllSpotsApp extends ConsumerWidget {
         debugShowCheckedModeBanner: false,
         routerConfig: router,
         theme: AppTheme.light(),
+        builder: (context, child) {
+          final mediaQuery = MediaQuery.of(context);
+          final clampedTextScaler = mediaQuery.textScaler.clamp(
+            minScaleFactor: 0.9,
+            maxScaleFactor: 1.2,
+          );
+
+          return MediaQuery(
+            data: mediaQuery.copyWith(textScaler: clampedTextScaler),
+            child: child ?? const SizedBox.shrink(),
+          );
+        },
       ),
     );
   }

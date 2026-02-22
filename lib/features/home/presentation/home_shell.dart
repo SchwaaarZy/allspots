@@ -4,7 +4,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart'
-  show TargetPlatform, defaultTargetPlatform, kIsWeb;
+    show TargetPlatform, defaultTargetPlatform, kIsWeb;
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import '../../../core/utils/responsive_utils.dart';
@@ -97,7 +97,8 @@ class _HomeShellState extends ConsumerState<HomeShell> {
 
   Future<bool> _shouldShowAds(String uid) async {
     try {
-      final doc = await FirebaseFirestore.instance.collection('users').doc(uid).get();
+      final doc =
+          await FirebaseFirestore.instance.collection('users').doc(uid).get();
       final data = doc.data();
       if (data == null) return true;
 
@@ -165,6 +166,11 @@ class _HomeShellState extends ConsumerState<HomeShell> {
   @override
   Widget build(BuildContext context) {
     _syncAdSchedule();
+    final screenWidth = context.screenWidth;
+    final compactNav = screenWidth < 375;
+    final navIconSize = compactNav ? 20.0 : 24.0;
+    final navFontSize = compactNav ? context.fontSize(9.5) : context.fontSize(11);
+    final selectedColor = Theme.of(context).colorScheme.primary;
 
     final tabs = [
       const MapView(),
@@ -179,20 +185,21 @@ class _HomeShellState extends ConsumerState<HomeShell> {
       'assets/images/monprofil.png',
       'assets/images/autourdemoi.png',
     ];
-    final mapState = ref.watch(mapControllerProvider);
-
+    final isSatellite =
+        ref.watch(mapControllerProvider.select((s) => s.isSatellite));
     return Scaffold(
       appBar: GlassAppBar(
-              titleWidget: Image.asset(
-                _index == 0
-                    ? 'assets/images/allspots_simple_logo.png'
-                    : titleLogos[_index],
-                height: _index == 0 ? 55 : 22,
-                fit: BoxFit.contain,
-              ),
-              centerTitle: true,
-            )
-          as PreferredSizeWidget,
+        titleWidget: Image.asset(
+          _index == 0
+              ? 'assets/images/allspots_simple_logo.png'
+              : titleLogos[_index],
+          height: _index == 0
+              ? (compactNav ? 44 : 55)
+              : (compactNav ? 18 : 22),
+          fit: BoxFit.contain,
+        ),
+        centerTitle: true,
+      ) as PreferredSizeWidget,
       body: IndexedStack(
         index: _index,
         children: tabs,
@@ -202,7 +209,10 @@ class _HomeShellState extends ConsumerState<HomeShell> {
         children: [
           const AdBanner(),
           Container(
-            padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 4),
+            padding: EdgeInsets.symmetric(
+              vertical: compactNav ? 8 : 10,
+              horizontal: compactNav ? 2 : 4,
+            ),
             decoration: BoxDecoration(
               color: Theme.of(context).colorScheme.surface,
               boxShadow: [
@@ -223,6 +233,8 @@ class _HomeShellState extends ConsumerState<HomeShell> {
                     icon: Icons.public,
                     label: 'Accueil',
                     selected: _index == 0,
+                    iconSize: navIconSize,
+                    fontSize: navFontSize,
                     onTap: () {
                       setState(() => _index = 0);
                     },
@@ -231,12 +243,16 @@ class _HomeShellState extends ConsumerState<HomeShell> {
                     icon: Icons.search,
                     label: 'Recherche',
                     selected: _index == 1,
+                    iconSize: navIconSize,
+                    fontSize: navFontSize,
                     onTap: () => setState(() => _index = 1),
                   ),
                   _buildNavItem(
                     icon: Icons.near_me,
                     label: 'Autour de moi',
                     selected: _index == 3,
+                    iconSize: navIconSize,
+                    fontSize: navFontSize,
                     onTap: () {
                       setState(() => _index = 3);
                     },
@@ -245,7 +261,9 @@ class _HomeShellState extends ConsumerState<HomeShell> {
                     child: InkWell(
                       onTap: () {
                         setState(() => _index = 0);
-                        ref.read(mapControllerProvider.notifier).toggleMapType();
+                        ref
+                            .read(mapControllerProvider.notifier)
+                            .toggleMapType();
                       },
                       child: Padding(
                         padding: const EdgeInsets.symmetric(vertical: 8),
@@ -253,23 +271,21 @@ class _HomeShellState extends ConsumerState<HomeShell> {
                           mainAxisSize: MainAxisSize.min,
                           children: [
                             Icon(
-                              mapState.isSatellite
+                              isSatellite
                                   ? Icons.map_outlined
                                   : Icons.satellite_alt,
-                              color: _index == 0
-                                  ? Theme.of(context).colorScheme.primary
-                                  : Colors.grey,
-                              size: 24,
+                              color: _index == 0 ? selectedColor : Colors.grey,
+                              size: navIconSize,
                             ),
                             const SizedBox(height: 2),
                             Text(
-                              mapState.isSatellite ? 'Carte' : 'Satellite',
+                              isSatellite ? 'Carte' : 'Satellite',
                               style: TextStyle(
-                                fontSize: context.fontSize(11),
-                                color: _index == 0
-                                    ? Theme.of(context).colorScheme.primary
-                                    : Colors.grey,
+                                fontSize: navFontSize,
+                                color: _index == 0 ? selectedColor : Colors.grey,
                               ),
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis,
                               textAlign: TextAlign.center,
                             ),
                           ],
@@ -281,6 +297,8 @@ class _HomeShellState extends ConsumerState<HomeShell> {
                     icon: Icons.person_outline,
                     label: 'Profil',
                     selected: _index == 2,
+                    iconSize: navIconSize,
+                    fontSize: navFontSize,
                     onTap: () => setState(() => _index = 2),
                   ),
                 ],
@@ -296,12 +314,13 @@ class _HomeShellState extends ConsumerState<HomeShell> {
     required IconData icon,
     required String label,
     required bool selected,
+    required double iconSize,
+    required double fontSize,
     required VoidCallback onTap,
   }) {
-    final color = selected
-      ? Theme.of(context).colorScheme.primary
-      : Colors.grey;
-    
+    final color =
+        selected ? Theme.of(context).colorScheme.primary : Colors.grey;
+
     return Expanded(
       child: InkWell(
         onTap: onTap,
@@ -310,11 +329,13 @@ class _HomeShellState extends ConsumerState<HomeShell> {
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              Icon(icon, color: color, size: 24),
+              Icon(icon, color: color, size: iconSize),
               const SizedBox(height: 2),
               Text(
                 label,
-                style: TextStyle(fontSize: context.fontSize(11), color: color),
+                style: TextStyle(fontSize: fontSize, color: color),
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
                 textAlign: TextAlign.center,
               ),
             ],
@@ -323,5 +344,4 @@ class _HomeShellState extends ConsumerState<HomeShell> {
       ),
     );
   }
-
 }
