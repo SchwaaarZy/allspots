@@ -3,7 +3,7 @@ import 'dart:typed_data';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:geolocator/geolocator.dart';
-import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:latlong2/latlong.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:go_router/go_router.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -17,7 +17,6 @@ import '../data/rating_provider.dart';
 import '../../auth/data/auth_providers.dart';
 import '../../profile/data/road_trip_service.dart';
 import 'navigation_app_picker.dart';
-import 'navigation_page.dart';
 
 class PoiDetailPage extends ConsumerStatefulWidget {
   final Poi poi;
@@ -148,10 +147,9 @@ class _PoiDetailPageState extends ConsumerState<PoiDetailPage> {
 
   Future<void> _openMapsNavigation() async {
     if (widget.userLocation == null) return;
-    final start = LatLng(
-      widget.userLocation!.latitude,
-      widget.userLocation!.longitude,
-    );
+    
+    // Utiliser directement l'app picker de navigation
+    // sans passer par NavigationPage (OSM migration)
     final dest = LatLng(widget.poi.lat, widget.poi.lng);
     await showNavigationAppPicker(
       context: context,
@@ -159,14 +157,13 @@ class _PoiDetailPageState extends ConsumerState<PoiDetailPage> {
       destinationName: widget.poi.name,
       onAllSpotsNavigation: () async {
         if (!mounted) return;
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (_) => NavigationPage(
-              start: start,
-              destination: dest,
-              destinationName: widget.poi.name,
+        // Navigation simplicité: afficher un snackbar au lieu d'une page complète
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(
+              'Navigation vers ${widget.poi.name}\nLat: ${dest.latitude.toStringAsFixed(4)}\nLng: ${dest.longitude.toStringAsFixed(4)}',
             ),
+            duration: const Duration(seconds: 3),
           ),
         );
       },

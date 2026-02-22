@@ -1,5 +1,5 @@
 name: allspots
-description: AllSpots starter (Google Maps + Riverpod)
+description: AllSpots (OpenStreetMap + Flutter)
 publish_to: 'none'
 version: 0.1.0+1
 
@@ -19,8 +19,9 @@ dependencies:
   google_fonts: ^8.0.1
   http: ^1.6.0
 
-  # Maps + GPS
-  google_maps_flutter: ^2.2.0
+  # Maps + GPS (OSM - gratuit!)
+  flutter_map: ^7.0.0
+  latlong2: ^0.9.1
   geolocator: ^14.0.2
 
   # State / routing

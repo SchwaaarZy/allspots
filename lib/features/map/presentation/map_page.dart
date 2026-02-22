@@ -3,7 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:flutter_map/flutter_map.dart' as flutter_map;
+import 'package:latlong2/latlong.dart';
 import 'package:geolocator/geolocator.dart';
 import '../../../core/utils/responsive_utils.dart';
 import '../../auth/data/auth_providers.dart';
@@ -47,10 +48,9 @@ class MapView extends ConsumerStatefulWidget {
 }
 
 class _MapViewState extends ConsumerState<MapView> {
-  GoogleMapController? _mapController;
+  late flutter_map.MapController _flutterMapController;
   bool _initialized = false;
-  bool _centeredOnFirstLocation = false; // Track si déjà centré
-  bool _lastIsSatellite = false;
+  bool _centeredOnFirstLocation = false;
   bool _isAutoXpRunning = false;
   Position? _lastAutoXpPosition;
   DateTime? _lastAutoXpRunAt;
@@ -61,22 +61,25 @@ class _MapViewState extends ConsumerState<MapView> {
   static const Duration _autoXpMinInterval = Duration(seconds: 15);
   static const Duration _autoXpAttemptCooldown = Duration(minutes: 10);
 
-  double _markerHueForCategory(PoiCategory category) {
-    switch (category) {
-      case PoiCategory.culture:
-        return BitmapDescriptor.hueAzure;
-      case PoiCategory.nature:
-        return BitmapDescriptor.hueGreen;
-      case PoiCategory.experienceGustative:
-        return BitmapDescriptor.hueOrange;
-      case PoiCategory.histoire:
-        return BitmapDescriptor.hueViolet;
-      case PoiCategory.activites:
-        return BitmapDescriptor.hueRed;
-    }
+  @override
+  void initState() {
+    super.initState();
+    _flutterMapController = flutter_map.MapController();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (!_initialized) {
+        _initialized = true;
+        ref.read(mapControllerProvider.notifier).init();
+      }
+    });
   }
 
-  Color _legendColorForCategory(PoiCategory category) {
+  @override
+  void dispose() {
+    _flutterMapController.dispose();
+    super.dispose();
+  }
+
+  Color _getColorForCategory(PoiCategory category) {
     switch (category) {
       case PoiCategory.culture:
         return Colors.blue;
@@ -91,81 +94,22 @@ class _MapViewState extends ConsumerState<MapView> {
     }
   }
 
-  @override
-  void initState() {
-    super.initState();
-    // Initialize map controller only once
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      if (!_initialized) {
-        _initialized = true;
-        ref.read(mapControllerProvider.notifier).init();
-      }
-    });
+  Color _legendColorForCategory(PoiCategory category) {
+    return _getColorForCategory(category);
   }
 
   Future<void> _ensureCenteredOnLocation() async {
-    if (_centeredOnFirstLocation || _mapController == null) return;
+    if (_centeredOnFirstLocation) return;
 
     final state = ref.read(mapControllerProvider);
     final pos = state.userPosition;
     if (pos != null) {
       _centeredOnFirstLocation = true;
-      await _mapController!.animateCamera(
-        CameraUpdate.newLatLngZoom(
-          LatLng(pos.latitude, pos.longitude),
-          15,
-        ),
+      _flutterMapController.move(
+        LatLng(pos.latitude, pos.longitude),
+        15,
       );
     }
-  }
-
-  Future<void> _toggle3DView() async {
-    if (_mapController == null) return;
-
-    final isSatellite = ref.read(mapControllerProvider).isSatellite;
-    if (!isSatellite) return;
-
-    // Basculer l'état des bâtiments
-    ref.read(mapControllerProvider.notifier).toggleBuildings();
-
-    // Obtenir la position actuelle de la caméra
-    final currentPosition = await _mapController!.getLatLng(
-      const ScreenCoordinate(x: 0, y: 0),
-    );
-
-    // Si on active la 3D, incliner la caméra à 45°, sinon remettre à plat (0°)
-    final newTilt =
-        ref.read(mapControllerProvider).buildingsEnabled ? 45.0 : 0.0;
-
-    // Animer la caméra avec le nouveau tilt
-    await _mapController!.animateCamera(
-      CameraUpdate.newCameraPosition(
-        CameraPosition(
-          target: currentPosition,
-          zoom: await _mapController!.getZoomLevel(),
-          tilt: newTilt,
-          bearing: 0,
-        ),
-      ),
-    );
-  }
-
-  Future<void> _resetTiltTo2D() async {
-    if (_mapController == null) return;
-    final currentPosition = await _mapController!.getLatLng(
-      const ScreenCoordinate(x: 0, y: 0),
-    );
-    final zoom = await _mapController!.getZoomLevel();
-    await _mapController!.animateCamera(
-      CameraUpdate.newCameraPosition(
-        CameraPosition(
-          target: currentPosition,
-          zoom: zoom,
-          tilt: 0.0,
-          bearing: 0,
-        ),
-      ),
-    );
   }
 
   Future<void> _addToRoadTrip(Poi poi) async {
@@ -300,69 +244,77 @@ class _MapViewState extends ConsumerState<MapView> {
 
     Future.microtask(() => _maybeAutoClaimXp(state));
 
-    if (_lastIsSatellite != state.isSatellite) {
-      _lastIsSatellite = state.isSatellite;
-      if (!state.isSatellite) {
-        if (state.buildingsEnabled) {
-          ref.read(mapControllerProvider.notifier).toggleBuildings();
-        }
-        Future.microtask(_resetTiltTo2D);
-      }
-    }
-
     // Centrer automatiquement au premier chargement de la position
-    if (!_centeredOnFirstLocation &&
-        _mapController != null &&
-        state.userPosition != null) {
+    if (!_centeredOnFirstLocation && state.userPosition != null) {
       Future.microtask(_ensureCenteredOnLocation);
     }
 
     final userPos = state.userPosition;
-    final initialCamera = CameraPosition(
-      target: LatLng(
-        userPos?.latitude ?? 48.8566, // fallback Paris
-        userPos?.longitude ?? 2.3522,
-      ),
-      zoom: 15, // Zoom plus proche pour voir ~1km
-    );
-
-    final markers = <Marker>{
-      ...state.nearbyPois.map(
-        (p) => Marker(
-          markerId: MarkerId(p.id),
-          position: LatLng(p.lat, p.lng),
-          infoWindow: InfoWindow(
-            title: p.name,
-            snippet: p.shortDescription,
-          ),
-          icon: BitmapDescriptor.defaultMarkerWithHue(
-            _markerHueForCategory(p.category),
-          ),
-          alpha: 1.0,
-          onTap: () {
-            _showPoiPopup(context, p, LatLng(p.lat, p.lng));
-          },
-        ),
-      ),
-    };
 
     return Stack(
       children: [
-        GoogleMap(
-          initialCameraPosition: initialCamera,
-          mapType: state.isSatellite ? MapType.satellite : MapType.normal,
-          myLocationEnabled: state.userPosition != null,
-          myLocationButtonEnabled: false,
-          markers: markers,
-          trafficEnabled: false,
-          buildingsEnabled: state.isSatellite && state.buildingsEnabled,
-          indoorViewEnabled: true,
-          zoomControlsEnabled: false,
-          mapToolbarEnabled: false,
-          onMapCreated: (c) {
-            _mapController = c;
-            _ensureCenteredOnLocation();
-          },
+        flutter_map.FlutterMap(
+          mapController: _flutterMapController,
+          options: flutter_map.MapOptions(
+            initialCenter: LatLng(
+              userPos?.latitude ?? 48.8566,
+              userPos?.longitude ?? 2.3522,
+            ),
+            initialZoom: 15,
+            minZoom: 1,
+            maxZoom: 18,
+          ),
+          children: [
+            flutter_map.TileLayer(
+              urlTemplate: 'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
+              userAgentPackageName: 'com.allspots',
+              subdomains: const ['a', 'b', 'c'],
+            ),
+            flutter_map.MarkerLayer(
+              markers: state.nearbyPois.map((p) {
+                return flutter_map.Marker(
+                  point: LatLng(p.lat, p.lng),
+                  width: 40,
+                  height: 40,
+                  child: GestureDetector(
+                    onTap: () {
+                      _showPoiPopup(context, p, LatLng(p.lat, p.lng));
+                    },
+                    child: Icon(
+                      Icons.location_on,
+                      color: _getColorForCategory(p.category),
+                      size: 40,
+                    ),
+                  ),
+                );
+              }).toList(),
+            ),
+            if (userPos != null)
+              flutter_map.MarkerLayer(
+                markers: [
+                  flutter_map.Marker(
+                    point: LatLng(userPos.latitude, userPos.longitude),
+                    width: 30,
+                    height: 30,
+                    child: Container(
+                      decoration: BoxDecoration(
+                        color: Colors.blue.withValues(alpha: 0.3),
+                        shape: BoxShape.circle,
+                        border: Border.all(
+                          color: Colors.blue,
+                          width: 2,
+                        ),
+                      ),
+                      child: const Icon(
+                        Icons.my_location,
+                        color: Colors.blue,
+                        size: 16,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+          ],
         ),
         // Attribution OSM (bas gauche)
         Positioned(
@@ -370,8 +322,6 @@ class _MapViewState extends ConsumerState<MapView> {
           bottom: 12,
           child: const OsmAttribution(),
         ),
-        // Contrôles secondaires (haut droit)
-              const SizedBox(height: 8),
         // Contrôles secondaires (haut droit)
         Positioned(
           right: 12,
@@ -421,11 +371,9 @@ class _MapViewState extends ConsumerState<MapView> {
                     onPressed: () async {
                       final pos = ref.read(mapControllerProvider).userPosition;
                       if (pos == null) return;
-                      await _mapController?.animateCamera(
-                        CameraUpdate.newLatLngZoom(
-                          LatLng(pos.latitude, pos.longitude),
-                          15,
-                        ),
+                      _flutterMapController.move(
+                        LatLng(pos.latitude, pos.longitude),
+                        15,
                       );
                     },
                     tooltip: 'Me centrer',
@@ -443,57 +391,6 @@ class _MapViewState extends ConsumerState<MapView> {
                   ),
                 ),
               ),
-              if (state.isSatellite) ...[
-                const SizedBox(height: 8),
-                Container(
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(12),
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.black.withValues(alpha: 0.2),
-                        blurRadius: 8,
-                        offset: const Offset(0, 3),
-                      ),
-                    ],
-                  ),
-                  child: Material(
-                    color: Colors.transparent,
-                    child: InkWell(
-                      onTap: _toggle3DView,
-                      borderRadius: BorderRadius.circular(12),
-                      child: Padding(
-                        padding: const EdgeInsets.all(10),
-                        child: Row(
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            Icon(
-                              state.buildingsEnabled
-                                  ? Icons.view_in_ar
-                                  : Icons.view_in_ar_outlined,
-                              size: 22,
-                              color: state.buildingsEnabled
-                                  ? Colors.blue
-                                  : Colors.grey,
-                            ),
-                            const SizedBox(width: 6),
-                            Text(
-                              '3D',
-                              style: TextStyle(
-                                fontWeight: FontWeight.w700,
-                                fontSize: 12,
-                                color: state.buildingsEnabled
-                                    ? Colors.blue
-                                    : Colors.grey,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-              ],
             ],
           ),
         ),
