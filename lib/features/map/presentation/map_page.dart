@@ -10,7 +10,6 @@ import '../../../core/utils/responsive_utils.dart';
 import '../../auth/data/auth_providers.dart';
 import '../../../core/widgets/app_header.dart';
 import '../../../core/widgets/optimized_image.dart';
-import '../../../core/widgets/osm_attribution.dart';
 import '../../profile/data/road_trip_service.dart';
 import '../../profile/data/xp_service.dart';
 import '../domain/poi.dart';
@@ -316,12 +315,6 @@ class _MapViewState extends ConsumerState<MapView> {
                 ],
               ),
           ],
-        ),
-        // Attribution OSM (bas gauche)
-        Positioned(
-          left: 12,
-          bottom: 12,
-          child: const OsmAttribution(),
         ),
         // Contrôles secondaires (haut droit)
         Positioned(
