@@ -69,6 +69,14 @@ class XpService {
     required String uid,
     required Poi poi,
   }) async {
+    // ❌ Refuser l'XP si l'utilisateur visite son propre spot
+    if (poi.createdBy != null && poi.createdBy == uid) {
+      return const VisitXpResult(
+        awarded: false,
+        message: 'Impossible de gagner XP sur vos propres spots',
+      );
+    }
+
     final profileRef = _firestore.collection('profiles').doc(uid);
     final visitRef = profileRef.collection('visitedSpots').doc(poi.id);
 

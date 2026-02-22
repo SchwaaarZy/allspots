@@ -80,6 +80,7 @@ class FirestorePoiRepository implements PoiRepository {
             source: 'firestore',
             updatedAt: (data['updatedAt'] as Timestamp?)?.toDate() ??
                 DateTime.now(),
+            createdBy: data['createdBy'] as String?,
           ),
         );
       }

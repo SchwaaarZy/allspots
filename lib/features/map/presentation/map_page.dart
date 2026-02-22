@@ -251,6 +251,13 @@ class _MapViewState extends ConsumerState<MapView> {
 
     final userPos = state.userPosition;
 
+    // Debug: afficher le statut du chargement
+    debugPrint(
+      '[MapView] nearbyPois=${state.nearbyPois.length}, '
+      'isLoading=${state.isLoading}, error=${state.error}, '
+      'userPos=${userPos != null ? "OK" : "NULL"}',
+    );
+
     return Stack(
       children: [
         flutter_map.FlutterMap(
@@ -274,16 +281,19 @@ class _MapViewState extends ConsumerState<MapView> {
               markers: state.nearbyPois.map((p) {
                 return flutter_map.Marker(
                   point: LatLng(p.lat, p.lng),
-                  width: 40,
-                  height: 40,
+                  width: 80,
+                  height: 80,
+                  alignment: Alignment.center,
                   child: GestureDetector(
                     onTap: () {
                       _showPoiPopup(context, p, LatLng(p.lat, p.lng));
                     },
-                    child: Icon(
-                      Icons.location_on,
-                      color: _getColorForCategory(p.category),
-                      size: 40,
+                    child: Center(
+                      child: Icon(
+                        Icons.location_on,
+                        color: _getColorForCategory(p.category),
+                        size: 50,
+                      ),
                     ),
                   ),
                 );
@@ -294,21 +304,12 @@ class _MapViewState extends ConsumerState<MapView> {
                 markers: [
                   flutter_map.Marker(
                     point: LatLng(userPos.latitude, userPos.longitude),
-                    width: 30,
-                    height: 30,
+                    width: 12,
+                    height: 12,
                     child: Container(
-                      decoration: BoxDecoration(
-                        color: Colors.blue.withValues(alpha: 0.3),
-                        shape: BoxShape.circle,
-                        border: Border.all(
-                          color: Colors.blue,
-                          width: 2,
-                        ),
-                      ),
-                      child: const Icon(
-                        Icons.my_location,
+                      decoration: const BoxDecoration(
                         color: Colors.blue,
-                        size: 16,
+                        shape: BoxShape.circle,
                       ),
                     ),
                   ),

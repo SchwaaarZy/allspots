@@ -9,7 +9,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import '../../../core/utils/responsive_utils.dart';
 import '../../map/presentation/map_page.dart';
-import '../../map/presentation/map_controller.dart';
 import '../../map/presentation/nearby_results_page.dart';
 import '../../search/presentation/search_page.dart';
 import '../../profile/presentation/profile_page.dart';
@@ -170,7 +169,6 @@ class _HomeShellState extends ConsumerState<HomeShell> {
     final compactNav = screenWidth < 375;
     final navIconSize = compactNav ? 20.0 : 24.0;
     final navFontSize = compactNav ? context.fontSize(9.5) : context.fontSize(11);
-    final selectedColor = Theme.of(context).colorScheme.primary;
 
     final tabs = [
       const MapView(),
@@ -185,8 +183,6 @@ class _HomeShellState extends ConsumerState<HomeShell> {
       'assets/images/monprofil.png',
       'assets/images/autourdemoi.png',
     ];
-    final isSatellite =
-        ref.watch(mapControllerProvider.select((s) => s.isSatellite));
     return Scaffold(
       appBar: GlassAppBar(
         titleWidget: Image.asset(
@@ -257,42 +253,8 @@ class _HomeShellState extends ConsumerState<HomeShell> {
                       setState(() => _index = 3);
                     },
                   ),
-                  Expanded(
-                    child: InkWell(
-                      onTap: () {
-                        setState(() => _index = 0);
-                        ref
-                            .read(mapControllerProvider.notifier)
-                            .toggleMapType();
-                      },
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 8),
-                        child: Column(
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            Icon(
-                              isSatellite
-                                  ? Icons.map_outlined
-                                  : Icons.satellite_alt,
-                              color: _index == 0 ? selectedColor : Colors.grey,
-                              size: navIconSize,
-                            ),
-                            const SizedBox(height: 2),
-                            Text(
-                              isSatellite ? 'Carte' : 'Satellite',
-                              style: TextStyle(
-                                fontSize: navFontSize,
-                                color: _index == 0 ? selectedColor : Colors.grey,
-                              ),
-                              maxLines: 1,
-                              overflow: TextOverflow.ellipsis,
-                              textAlign: TextAlign.center,
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ),
+                  // Satelite button disabled - using map only
+                  const SizedBox(width: 8),
                   _buildNavItem(
                     icon: Icons.person_outline,
                     label: 'Profil',

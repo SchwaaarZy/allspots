@@ -1267,14 +1267,8 @@ PODS:
   - geolocator_apple (1.2.0):
     - Flutter
     - FlutterMacOS
-  - Google-Maps-iOS-Utils (5.0.0):
-    - GoogleMaps (~> 8.0)
   - Google-Mobile-Ads-SDK (12.14.0):
     - GoogleUserMessagingPlatform (>= 1.1)
-  - google_maps_flutter_ios (0.0.1):
-    - Flutter
-    - Google-Maps-iOS-Utils (< 7.0, >= 5.0)
-    - GoogleMaps (< 11.0, >= 8.4)
   - google_mobile_ads (7.0.0):
     - Flutter
     - Google-Mobile-Ads-SDK (~> 12.14.0)
@@ -1284,11 +1278,6 @@ PODS:
     - FlutterMacOS
     - GoogleSignIn (~> 9.0)
     - GTMSessionFetcher (>= 3.4.0)
-  - GoogleMaps (8.4.0):
-    - GoogleMaps/Maps (= 8.4.0)
-  - GoogleMaps/Base (8.4.0)
-  - GoogleMaps/Maps (8.4.0):
-    - GoogleMaps/Base
   - GoogleSignIn (9.1.0):
     - AppAuth (~> 2.0)
     - AppCheckCore (~> 11.0)
@@ -1446,7 +1435,6 @@ DEPENDENCIES:
   - firebase_core (from `.symlinks/plugins/firebase_core/ios`)
   - Flutter (from `Flutter`)
   - geolocator_apple (from `.symlinks/plugins/geolocator_apple/darwin`)
-  - google_maps_flutter_ios (from `.symlinks/plugins/google_maps_flutter_ios/ios`)
   - google_mobile_ads (from `.symlinks/plugins/google_mobile_ads/ios`)
   - google_sign_in_ios (from `.symlinks/plugins/google_sign_in_ios/darwin`)
   - image_picker_ios (from `.symlinks/plugins/image_picker_ios/ios`)
@@ -1471,9 +1459,7 @@ SPEC REPOS:
     - FirebaseFirestore
     - FirebaseFirestoreInternal
     - FirebaseSharedSwift
-    - Google-Maps-iOS-Utils
     - Google-Mobile-Ads-SDK
-    - GoogleMaps
     - GoogleSignIn
     - GoogleUserMessagingPlatform
     - GoogleUtilities
@@ -1497,8 +1483,6 @@ EXTERNAL SOURCES:
     :path: Flutter
   geolocator_apple:
     :path: ".symlinks/plugins/geolocator_apple/darwin"
-  google_maps_flutter_ios:
-    :path: ".symlinks/plugins/google_maps_flutter_ios/ios"
   google_mobile_ads:
     :path: ".symlinks/plugins/google_mobile_ads/ios"
   google_sign_in_ios:
@@ -1534,12 +1518,9 @@ SPEC CHECKSUMS:
   FirebaseSharedSwift: f57ed48f4542b2d7eb4738f4f23ba443f78b3780
   Flutter: cabc95a1d2626b1b06e7179b784ebcf0c0cde467
   geolocator_apple: ab36aa0e8b7d7a2d7639b3b4e48308394e8cef5e
-  Google-Maps-iOS-Utils: 66d6de12be1ce6d3742a54661e7a79cb317a9321
   Google-Mobile-Ads-SDK: 4534fd2dfcd3f705c5485a6633c5188d03d4eed2
-  google_maps_flutter_ios: 0cf046caf50b00d95071f79e8031fcd5ef902beb
   google_mobile_ads: df3008bafbe1f2ad6862f87334e560d2f047f902
   google_sign_in_ios: 000870aa06da9b28d1d0bf7ef70ff0213059dd28
-  GoogleMaps: 8939898920281c649150e0af74aa291c60f2e77d
   GoogleSignIn: fcee2257188d5eda57a5e2b6a715550ffff9206d
   GoogleUserMessagingPlatform: befe603da6501006420c206222acd449bba45a9c
   GoogleUtilities: 00c88b9a86066ef77f0da2fab05f65d7768ed8e1

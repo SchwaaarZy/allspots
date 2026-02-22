@@ -21,6 +21,8 @@ class Poi {
 
   final String source; // "mock", "osm", "curated", "user"
   final DateTime updatedAt;
+  
+  final String? createdBy; // UID de l'utilisateur qui a créé le spot (null pour Google Places/OSM)
 
   const Poi({
     required this.id,
@@ -40,5 +42,6 @@ class Poi {
     this.kidsFriendly,
     this.googleRating,
     this.googleRatingCount,
+    this.createdBy,
   });
 }
