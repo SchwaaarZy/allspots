@@ -2,9 +2,12 @@ import 'package:collection/collection.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:geolocator/geolocator.dart';
+import '../../../core/config/app_config.dart';
 import '../../../core/constants/poi_categories.dart';
+import '../data/empty_poi_repository.dart';
 import '../data/firestore_poi_repository.dart';
 import '../data/mixed_poi_repository.dart';
+import '../data/osm_api_poi_repository.dart';
 import '../data/places_poi_repository.dart';
 import '../data/poi_repository.dart';
 import '../domain/poi.dart';
@@ -69,12 +72,19 @@ class MapState {
 final poiRepositoryProvider = Provider<PoiRepository>((ref) {
   // Clé API Google Places (fournie ou depuis env)
   const envKey = String.fromEnvironment('PLACES_API_KEY');
-  const fallbackKey = 'AIzaSyD1ky3i7gYB9SKRgNuhYeMVE2l9COaZIUI';
+  const fallbackKey = 'AIzaSyBbHU0nLg_T6v9tDsdh9_0cc3ksc1TC-dU';
   final placesKey = envKey.isNotEmpty ? envKey : fallbackKey;
-  
+  final placesRepo = AppConfig.enableGooglePlaces
+      ? PlacesPoiRepository(placesKey)
+      : EmptyPoiRepository();
+  final osmRepo = AppConfig.enableOsmApi
+      ? OsmApiPoiRepository(AppConfig.osmApiBaseUrl)
+      : EmptyPoiRepository();
+
   return MixedPoiRepository(
     firestoreRepo: FirestorePoiRepository(FirebaseFirestore.instance),
-    placesRepo: PlacesPoiRepository(placesKey),
+    placesRepo: placesRepo,
+    extraRepos: [osmRepo],
   );
 });
 
@@ -88,14 +98,6 @@ class MapController extends StateNotifier<MapState> {
   MapController(this._repo) : super(MapState.initial());
 
   final PoiRepository _repo;
-  Future<void>? _refreshInFlight;
-  DateTime? _lastRefreshAt;
-  double? _lastRefreshLat;
-  double? _lastRefreshLng;
-  double? _lastRefreshRadius;
-  Set<PoiCategory>? _lastRefreshCategories;
-  bool? _lastRefreshOpenNow;
-  static const Duration _refreshCacheTtl = Duration(seconds: 25);
 
   Future<void> init() async {
     state = state.copyWith(isLoading: true, error: null);
@@ -111,43 +113,26 @@ class MapController extends StateNotifier<MapState> {
   }
 
   Future<void> refreshNearby() async {
-    if (_refreshInFlight != null) {
-      return _refreshInFlight!;
-    }
-
-    final now = DateTime.now();
     final pos = state.userPosition;
     if (pos == null) {
       state = state.copyWith(error: 'Position non disponible');
       return;
     }
 
-    if (_isRefreshCacheValid(now, pos)) {
-      return;
+    state = state.copyWith(isLoading: true, error: null);
+    
+    try {
+      final pois = await _repo.getNearbyPois(
+        userLat: pos.latitude,
+        userLng: pos.longitude,
+        radiusMeters: state.radiusMeters,
+        filters: state.filters,
+      );
+
+      state = state.copyWith(nearbyPois: pois, isLoading: false);
+    } catch (e) {
+      state = state.copyWith(error: e.toString(), isLoading: false);
     }
-
-    final refreshFuture = () async {
-      state = state.copyWith(isLoading: true, error: null);
-
-      try {
-        final pois = await _repo.getNearbyPois(
-          userLat: pos.latitude,
-          userLng: pos.longitude,
-          radiusMeters: state.radiusMeters,
-          filters: state.filters,
-        );
-
-        state = state.copyWith(nearbyPois: pois, isLoading: false);
-        _rememberRefresh(now, pos);
-      } catch (e) {
-        state = state.copyWith(error: e.toString(), isLoading: false);
-      } finally {
-        _refreshInFlight = null;
-      }
-    }();
-
-    _refreshInFlight = refreshFuture;
-    return refreshFuture;
   }
 
   Future<void> setRadiusMeters(double value) async {
@@ -203,59 +188,11 @@ class MapController extends StateNotifier<MapState> {
       throw Exception('Permission localisation refusée définitivement.');
     }
 
-    final lastKnown = await Geolocator.getLastKnownPosition();
-    if (lastKnown != null) {
-      return lastKnown;
-    }
-
-    return Geolocator
-        .getCurrentPosition(
-          locationSettings: const LocationSettings(
-            accuracy: LocationAccuracy.medium,
-          ),
-        )
-        .timeout(
-          const Duration(seconds: 8),
-          onTimeout: () => throw Exception('Timeout de localisation'),
-        );
-  }
-
-  bool _isRefreshCacheValid(DateTime now, Position pos) {
-    final lastAt = _lastRefreshAt;
-    if (lastAt == null) return false;
-    if (now.difference(lastAt) > _refreshCacheTtl) return false;
-
-    if (_lastRefreshRadius != state.radiusMeters ||
-        _lastRefreshOpenNow != state.filters.openNow) {
-      return false;
-    }
-
-    final categories = _lastRefreshCategories;
-    if (categories == null || !const SetEquality<PoiCategory>().equals(categories, state.filters.categories)) {
-      return false;
-    }
-
-    final lat = _lastRefreshLat;
-    final lng = _lastRefreshLng;
-    if (lat == null || lng == null) return false;
-
-    final movedMeters = Geolocator.distanceBetween(
-      lat,
-      lng,
-      pos.latitude,
-      pos.longitude,
+    return Geolocator.getCurrentPosition(
+      locationSettings: const LocationSettings(
+        accuracy: LocationAccuracy.high,
+      ),
     );
-
-    return movedMeters < 80;
-  }
-
-  void _rememberRefresh(DateTime now, Position pos) {
-    _lastRefreshAt = now;
-    _lastRefreshLat = pos.latitude;
-    _lastRefreshLng = pos.longitude;
-    _lastRefreshRadius = state.radiusMeters;
-    _lastRefreshCategories = Set<PoiCategory>.from(state.filters.categories);
-    _lastRefreshOpenNow = state.filters.openNow;
   }
 
   Set<PoiCategory> _categoriesFromPreferences(List<String> preferences) {
@@ -265,16 +202,13 @@ class MapController extends StateNotifier<MapState> {
       return PoiCategory.values.toSet();
     }
 
-    final preferenceSet = preferences.map(_normalize).toSet();
+    // L'utilisateur a des préférences: les utiliser strictement
+    final preferenceSet = preferences.toSet();
     final categories = <PoiCategory>{};
 
     for (final group in poiCategoryGroups) {
       // Vérifier si au moins un élément du groupe est dans les préférences
-      final hasTitleMatch = preferenceSet.contains(_normalize(group.title));
-      final hasItemMatch = group.items
-          .map(_normalize)
-          .any(preferenceSet.contains);
-      final hasMatch = hasTitleMatch || hasItemMatch;
+      final hasMatch = group.items.any(preferenceSet.contains);
       if (!hasMatch) continue;
 
       // Mapper le groupe à sa catégorie
@@ -297,32 +231,7 @@ class MapController extends StateNotifier<MapState> {
       }
     }
 
-    // Fallback sécurité: ne jamais filtrer à vide
-    if (categories.isEmpty) {
-      return PoiCategory.values.toSet();
-    }
-
+    // Retourner les catégories trouvées (même si vide)
     return categories;
-  }
-
-  String _normalize(String value) {
-    return value
-        .trim()
-        .toLowerCase()
-        .replaceAll('é', 'e')
-        .replaceAll('è', 'e')
-        .replaceAll('ê', 'e')
-        .replaceAll('ë', 'e')
-        .replaceAll('à', 'a')
-        .replaceAll('â', 'a')
-        .replaceAll('ä', 'a')
-        .replaceAll('î', 'i')
-        .replaceAll('ï', 'i')
-        .replaceAll('ô', 'o')
-        .replaceAll('ö', 'o')
-        .replaceAll('ù', 'u')
-        .replaceAll('û', 'u')
-        .replaceAll('ü', 'u')
-        .replaceAll('ç', 'c');
   }
 }

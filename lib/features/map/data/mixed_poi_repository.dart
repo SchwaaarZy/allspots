@@ -18,10 +18,12 @@ class MixedPoiRepository implements PoiRepository {
   MixedPoiRepository({
     required this.firestoreRepo,
     required this.placesRepo,
+    this.extraRepos = const [],
   });
 
   final PoiRepository firestoreRepo;
   final PoiRepository placesRepo;
+  final List<PoiRepository> extraRepos;
 
   @override
   Future<List<Poi>> getNearbyPois({
@@ -30,20 +32,24 @@ class MixedPoiRepository implements PoiRepository {
     required double radiusMeters,
     required PoiFilters filters,
   }) async {
-    final results = await Future.wait([
-      firestoreRepo.getNearbyPois(
-        userLat: userLat,
-        userLng: userLng,
-        radiusMeters: radiusMeters,
-        filters: filters,
-      ),
-      placesRepo.getNearbyPois(
-        userLat: userLat,
-        userLng: userLng,
-        radiusMeters: radiusMeters,
-        filters: filters,
-      ),
-    ]);
+    final sources = <PoiRepository>[
+      firestoreRepo,
+      placesRepo,
+      ...extraRepos,
+    ];
+
+    final results = await Future.wait(
+      sources
+          .map(
+            (repo) => repo.getNearbyPois(
+              userLat: userLat,
+              userLng: userLng,
+              radiusMeters: radiusMeters,
+              filters: filters,
+            ),
+          )
+          .toList(),
+    );
 
     final merged = <String, Poi>{};
     for (final list in results) {

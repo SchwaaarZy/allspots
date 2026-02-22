@@ -1,4 +1,5 @@
 import 'package:flutter_google_maps_webservices/places.dart';
+import 'package:flutter/foundation.dart';
 import '../../../core/utils/geo_utils.dart';
 import '../domain/poi.dart';
 import '../domain/poi_category.dart';
@@ -14,11 +15,9 @@ import 'poi_repository.dart';
 /// Les données Google Places enrichissent les spots créés par les utilisateurs,
 /// offrant une couverture complète des lieux autour de l'utilisateur.
 class PlacesPoiRepository implements PoiRepository {
-  PlacesPoiRepository(this._apiKey)
-      : _placesClient = GoogleMapsPlaces(apiKey: _apiKey);
+  PlacesPoiRepository(this._apiKey);
 
   final String _apiKey;
-  final GoogleMapsPlaces _placesClient;
 
   @override
   Future<List<Poi>> getNearbyPois({
@@ -32,90 +31,98 @@ class PlacesPoiRepository implements PoiRepository {
     }
 
     try {
+      final places = GoogleMapsPlaces(apiKey: _apiKey);
       final results = <Poi>[];
-      final seenIds = <String>{};
-      final typesToSearch = _typesForCategories(filters.categories);
+      
+      // Types de lieux à rechercher pour chaque catégorie
+      final typesToSearch = [
+        // Culture: Musées, galeries, sites touristiques
+        'museum', 'art_gallery', 'tourist_attraction', 'library', 'zoo',
+        // Nature: Parcs, points de vue, sites naturels
+        'park', 'natural_feature', 'scenic_viewpoint', 'campground',
+        // Histoire: Églises, châteaux, monuments historiques
+        'church', 'place_of_worship', 'hindu_temple', 'mosque', 'synagogue', 'castle',
+        // Alimentation: Restaurants, cafés, marchés, magasins de sport (Decathlon)
+        'restaurant', 'cafe', 'market', 'sporting_goods_store',
+        // Activités: Sports, loisirs, aventure
+        'amusement_park', 'gym', 'sports_complex', 'stadium', 'hiking_area',
+      ];
+      
+      // Rechercher par type pour avoir plus de résultats
+      for (final type in typesToSearch) {
+        try {
+          final response = await places.searchNearbyWithRadius(
+            Location(lat: userLat, lng: userLng),
+            radiusMeters.toInt().clamp(1, 50000),
+            type: type,
+          );
 
-      final requests = typesToSearch
-          .map(
-            (type) async {
-              try {
-                return await _placesClient
-                    .searchNearbyWithRadius(
-                      Location(lat: userLat, lng: userLng),
-                      radiusMeters.toInt().clamp(1, 50000),
-                      type: type,
-                    )
-                    .timeout(const Duration(seconds: 4));
-              } catch (_) {
-                return null;
-              }
-            },
-          )
-          .toList();
-
-      final responses = await Future.wait(requests);
-
-      for (final response in responses) {
-        if (response == null || response.isDenied || response.errorMessage != null) {
-          continue;
-        }
-
-        for (final place in response.results) {
-          final geometry = place.geometry?.location;
-          if (geometry == null) continue;
-
-          if (filters.openNow) {
-            final isOpen = place.openingHours?.openNow;
-            if (isOpen != true) continue;
-          }
-
-          final category = _mapPlaceTypes(place.types);
-          if (category == null || !filters.categories.contains(category)) {
+          if (response.isDenied || response.errorMessage != null) {
+            debugPrint('[PlacesPoiRepository] denied status=${response.status} error=${response.errorMessage}');
             continue;
           }
 
-          final distance = GeoUtils.distanceMeters(
-            lat1: userLat,
-            lon1: userLng,
-            lat2: geometry.lat,
-            lon2: geometry.lng,
-          );
-          if (distance > radiusMeters) continue;
+          for (final place in response.results) {
+            final geometry = place.geometry?.location;
+            if (geometry == null) continue;
 
-          if (!seenIds.add(place.placeId)) continue;
-
-          final photoUrls = <String>[];
-          if (place.photos.isNotEmpty) {
-            for (final photo in place.photos) {
-              final photoUrl = 'https://maps.googleapis.com/maps/api/place/photo'
-                  '?maxwidth=400'
-                  '&photoreference=${photo.photoReference}'
-                  '&key=$_apiKey';
-              photoUrls.add(photoUrl);
+            // Vérifier si le lieu ouvre maintenant (si désiré)
+            if (filters.openNow) {
+              final isOpen = place.openingHours?.openNow;
+              if (isOpen != true) continue;
             }
-          }
 
-          results.add(
-            Poi(
-              id: place.placeId,
-              name: place.name,
-              category: category,
-              subCategory: place.types.isNotEmpty ? place.types.first : null,
-              lat: geometry.lat,
-              lng: geometry.lng,
-              shortDescription: place.vicinity ?? '',
-              imageUrls: photoUrls,
-              websiteUrl: null,
-              isFree: null,
-              pmrAccessible: null,
-              kidsFriendly: null,
-              googleRating: place.rating?.toDouble(),
-              googleRatingCount: null,
-              source: 'places',
-              updatedAt: DateTime.now(),
-            ),
-          );
+            final category = _mapPlaceTypes(place.types);
+            if (category == null) continue; // Rejeter les types non-whitelistés
+            if (!filters.categories.contains(category)) continue;
+
+            final distance = GeoUtils.distanceMeters(
+              lat1: userLat,
+              lon1: userLng,
+              lat2: geometry.lat,
+              lon2: geometry.lng,
+            );
+            if (distance > radiusMeters) continue;
+
+            // Éviter les doublons
+            if (results.any((p) => p.id == place.placeId)) continue;
+
+            // Extraire les URLs des photos de Google Places
+            final photoUrls = <String>[];
+            if (place.photos.isNotEmpty) {
+              for (final photo in place.photos) {
+                final photoUrl = 'https://maps.googleapis.com/maps/api/place/photo'
+                    '?maxwidth=400'
+                    '&photoreference=${photo.photoReference}'
+                    '&key=$_apiKey';
+                photoUrls.add(photoUrl);
+              }
+            }
+
+            results.add(
+              Poi(
+                id: place.placeId,
+                name: place.name,
+                category: category,
+                subCategory: place.types.isNotEmpty ? place.types.first : null,
+                lat: geometry.lat,
+                lng: geometry.lng,
+                shortDescription: place.vicinity ?? '',
+                imageUrls: photoUrls,
+                websiteUrl: null,
+                isFree: null,
+                pmrAccessible: null,
+                kidsFriendly: null,
+                googleRating: place.rating?.toDouble(),
+                googleRatingCount: null,
+                source: 'places',
+                updatedAt: DateTime.now(),
+              ),
+            );
+          }
+        } catch (e) {
+          // Continuer avec le type suivant en cas d'erreur
+          continue;
         }
       }
 
@@ -135,57 +142,12 @@ class PlacesPoiRepository implements PoiRepository {
         return da.compareTo(db);
       });
 
+      debugPrint('[PlacesPoiRepository] matched=${results.length}');
       return results;
     } catch (e) {
+      debugPrint('[PlacesPoiRepository] error=$e');
       return const [];
     }
-  }
-
-  Set<String> _typesForCategories(Set<PoiCategory> categories) {
-    final types = <String>{};
-
-    if (categories.contains(PoiCategory.culture)) {
-      types.addAll({'museum', 'art_gallery', 'tourist_attraction', 'library'});
-    }
-    if (categories.contains(PoiCategory.nature)) {
-      types.addAll({'park', 'natural_feature', 'scenic_viewpoint', 'zoo'});
-    }
-    if (categories.contains(PoiCategory.histoire)) {
-      types.addAll({'church', 'place_of_worship', 'hindu_temple', 'mosque', 'synagogue', 'castle'});
-    }
-    if (categories.contains(PoiCategory.experienceGustative)) {
-      types.addAll({'restaurant', 'cafe', 'market'});
-    }
-    if (categories.contains(PoiCategory.activites)) {
-      types.addAll({'hiking_area', 'amusement_park', 'sports_complex'});
-    }
-
-    if (types.isEmpty) {
-      types.addAll({
-        'museum',
-        'art_gallery',
-        'tourist_attraction',
-        'library',
-        'park',
-        'natural_feature',
-        'scenic_viewpoint',
-        'zoo',
-        'church',
-        'place_of_worship',
-        'hindu_temple',
-        'mosque',
-        'synagogue',
-        'castle',
-        'restaurant',
-        'cafe',
-        'market',
-        'hiking_area',
-        'amusement_park',
-        'sports_complex',
-      });
-    }
-
-    return types;
   }
 
   /// Mappe les types Google Places aux catégories AllSpots

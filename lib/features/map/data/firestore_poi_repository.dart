@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/foundation.dart';
 import '../../../core/utils/geo_utils.dart';
 import '../domain/poi.dart';
 import '../domain/poi_category.dart';
@@ -101,6 +102,7 @@ class FirestorePoiRepository implements PoiRepository {
 
       return results;
     } catch (e) {
+      debugPrint('[FirestorePoiRepository] error=$e');
       return const [];
     }
   }
