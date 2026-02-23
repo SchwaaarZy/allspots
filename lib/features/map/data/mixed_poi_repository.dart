@@ -21,12 +21,15 @@ class MixedPoiRepository implements PoiRepository {
     required this.placesRepo,
     this.extraRepos = const [],
     PoiCache? cache,
-  }) : _cache = cache ?? PoiCache();
+    PersistentPoiCache? persistentCache,
+  })  : _cache = cache ?? PoiCache(),
+        _persistentCache = persistentCache ?? PersistentPoiCache();
 
   final PoiRepository firestoreRepo;
   final PoiRepository placesRepo;
   final List<PoiRepository> extraRepos;
   final PoiCache _cache;
+  final PersistentPoiCache _persistentCache;
 
   @override
   Future<List<Poi>> getNearbyPois({
@@ -48,6 +51,76 @@ class MixedPoiRepository implements PoiRepository {
       return cached;
     }
 
+    final cacheKey = PoiCache.buildKey(
+      userLat: userLat,
+      userLng: userLng,
+      radiusMeters: radiusMeters,
+      categoryIds: categoryIds,
+    );
+
+    final persistentCached = await _persistentCache.get(cacheKey: cacheKey);
+    if (persistentCached != null && persistentCached.isNotEmpty) {
+      _cache.put(
+        userLat: userLat,
+        userLng: userLng,
+        radiusMeters: radiusMeters,
+        categoryIds: categoryIds,
+        pois: persistentCached,
+      );
+
+      _refreshAndCache(
+        userLat: userLat,
+        userLng: userLng,
+        radiusMeters: radiusMeters,
+        filters: filters,
+        categoryIds: categoryIds,
+        cacheKey: cacheKey,
+      );
+      return persistentCached;
+    }
+
+    final result = await _fetchFromSources(
+      userLat: userLat,
+      userLng: userLng,
+      radiusMeters: radiusMeters,
+      filters: filters,
+      categoryIds: categoryIds,
+      cacheKey: cacheKey,
+    );
+
+    return result;
+  }
+
+  Future<void> _refreshAndCache({
+    required double userLat,
+    required double userLng,
+    required double radiusMeters,
+    required PoiFilters filters,
+    required Set<String> categoryIds,
+    required String cacheKey,
+  }) async {
+    try {
+      await _fetchFromSources(
+        userLat: userLat,
+        userLng: userLng,
+        radiusMeters: radiusMeters,
+        filters: filters,
+        categoryIds: categoryIds,
+        cacheKey: cacheKey,
+      );
+    } catch (_) {
+      // Ignore refresh errors
+    }
+  }
+
+  Future<List<Poi>> _fetchFromSources({
+    required double userLat,
+    required double userLng,
+    required double radiusMeters,
+    required PoiFilters filters,
+    required Set<String> categoryIds,
+    required String cacheKey,
+  }) async {
     // Priorité: Firestore d'abord (données locales = plus rapide)
     final firestorePois = await firestoreRepo.getNearbyPois(
       userLat: userLat,
@@ -90,6 +163,13 @@ class MixedPoiRepository implements PoiRepository {
       categoryIds: categoryIds,
       pois: result,
     );
+
+    if (result.isNotEmpty) {
+      await _persistentCache.put(
+        cacheKey: cacheKey,
+        pois: result,
+      );
+    }
 
     return result;
   }

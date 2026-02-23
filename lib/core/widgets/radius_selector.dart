@@ -4,12 +4,14 @@ class RadiusSelector extends StatefulWidget {
   final double currentRadius;
   final ValueChanged<double> onRadiusChanged;
   final List<double> radiusOptions;
+  final bool compact;
 
   const RadiusSelector({
     super.key,
     required this.currentRadius,
     required this.onRadiusChanged,
     this.radiusOptions = const [5000, 10000, 15000, 20000],
+    this.compact = false,
   });
 
   @override
@@ -31,8 +33,20 @@ class _RadiusSelectorState extends State<RadiusSelector> {
 
   @override
   Widget build(BuildContext context) {
+    final padding = widget.compact ? 8.0 : 12.0;
+    final titleSize = widget.compact ? 12.0 : 13.0;
+    final badgeFontSize = widget.compact ? 11.0 : 12.0;
+    final badgePadding = widget.compact
+        ? const EdgeInsets.symmetric(horizontal: 8, vertical: 3)
+        : const EdgeInsets.symmetric(horizontal: 10, vertical: 4);
+    final barHeight = widget.compact ? 28.0 : 36.0;
+    final valueFontSize = widget.compact ? 10.0 : 11.0;
+    final unitFontSize = widget.compact ? 8.0 : 9.0;
+    final bottomSpacing = widget.compact ? 2.0 : 3.0;
+    final rowSpacing = widget.compact ? 6.0 : 10.0;
+
     return Container(
-      padding: const EdgeInsets.all(16),
+      padding: EdgeInsets.all(padding),
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(12),
@@ -50,15 +64,15 @@ class _RadiusSelectorState extends State<RadiusSelector> {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              const Text(
+              Text(
                 'Rayon de recherche',
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
-                  fontSize: 14,
+                  fontSize: titleSize,
                 ),
               ),
               Container(
-                padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+                padding: badgePadding,
                 decoration: BoxDecoration(
                   color: Colors.blue.shade50,
                   borderRadius: BorderRadius.circular(8),
@@ -68,13 +82,13 @@ class _RadiusSelectorState extends State<RadiusSelector> {
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
                     color: Colors.blue.shade700,
-                    fontSize: 13,
+                    fontSize: badgeFontSize,
                   ),
                 ),
               ),
             ],
           ),
-          const SizedBox(height: 12),
+          SizedBox(height: rowSpacing),
           // Jauge avec boutons
           Row(
             children: widget.radiusOptions.map((radius) {
@@ -90,7 +104,7 @@ class _RadiusSelectorState extends State<RadiusSelector> {
                     child: Column(
                       children: [
                         Container(
-                          height: 40,
+                          height: barHeight,
                           decoration: BoxDecoration(
                             color: isSelected ? Colors.blue : Colors.grey.shade200,
                             borderRadius: BorderRadius.circular(8),
@@ -105,16 +119,16 @@ class _RadiusSelectorState extends State<RadiusSelector> {
                               style: TextStyle(
                                 fontWeight: FontWeight.bold,
                                 color: isSelected ? Colors.white : Colors.grey.shade600,
-                                fontSize: 12,
+                                fontSize: valueFontSize,
                               ),
                             ),
                           ),
                         ),
-                        const SizedBox(height: 4),
+                        SizedBox(height: bottomSpacing),
                         Text(
                           'km',
                           style: TextStyle(
-                            fontSize: 10,
+                            fontSize: unitFontSize,
                             color: Colors.grey.shade600,
                           ),
                         ),

@@ -290,7 +290,7 @@ class _NearbyResultsPageState extends ConsumerState<NearbyResultsPage> {
                               ),
                             Expanded(
                               child: Text(
-                                poi.name,
+                                poi.displayName,
                                 style: const TextStyle(
                                   fontWeight: FontWeight.bold,
                                   fontSize: 14,
@@ -305,7 +305,10 @@ class _NearbyResultsPageState extends ConsumerState<NearbyResultsPage> {
                         Row(
                           children: [
                             Icon(
-                              poi.category.icon,
+                              iconForSubCategory(
+                                poi.subCategory,
+                                poi.category,
+                              ),
                               size: 14,
                               color: poi.category.color,
                             ),

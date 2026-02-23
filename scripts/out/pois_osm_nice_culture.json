@@ -1,0 +1,5890 @@
+[
+  {
+    "id": "osm_470419176",
+    "name": "Théâtre de Verdure",
+    "lat": 43.658189,
+    "lng": 7.1189911,
+    "location": {
+      "_latitude": 43.658189,
+      "_longitude": 7.1189911
+    },
+    "description": "Point d'intérêt: Théâtre de Verdure",
+    "category": "culture",
+    "categoryGroup": "Culture",
+    "categoryItem": "theatre",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 470419176,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": true,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871704,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:04.716277"
+  },
+  {
+    "id": "osm_471972916",
+    "name": "Espace à Vendre",
+    "lat": 43.7063695,
+    "lng": 7.2680607,
+    "location": {
+      "_latitude": 43.7063695,
+      "_longitude": 7.2680607
+    },
+    "description": "Point d'intérêt: Espace à Vendre",
+    "category": "culture",
+    "categoryGroup": "Culture",
+    "categoryItem": "gallery",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": "https://www.espace-avendre.com/",
+    "website": "https://www.espace-avendre.com/",
+    "source": "openstreetmap",
+    "osmId": 471972916,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871704,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:04.716306"
+  },
+  {
+    "id": "osm_471974945",
+    "name": "Maïoun dei Granouïe",
+    "lat": 43.6576713,
+    "lng": 7.1232027,
+    "location": {
+      "_latitude": 43.6576713,
+      "_longitude": 7.1232027
+    },
+    "description": "Point d'intérêt: Maïoun dei Granouïe",
+    "category": "culture",
+    "categoryGroup": "Culture",
+    "categoryItem": "museum",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 471974945,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871704,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:04.716316"
+  },
+  {
+    "id": "osm_488715007",
+    "name": "Trimages",
+    "lat": 43.7036459,
+    "lng": 7.2634736,
+    "location": {
+      "_latitude": 43.7036459,
+      "_longitude": 7.2634736
+    },
+    "description": "Point d'intérêt: Trimages",
+    "category": "culture",
+    "categoryGroup": "Culture",
+    "categoryItem": "theatre",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 488715007,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871704,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:04.716326"
+  },
+  {
+    "id": "osm_578023554",
+    "name": "Palais Lascaris",
+    "lat": 43.6976417,
+    "lng": 7.2772555,
+    "location": {
+      "_latitude": 43.6976417,
+      "_longitude": 7.2772555
+    },
+    "description": "Point d'intérêt: Palais Lascaris",
+    "category": "culture",
+    "categoryGroup": "Culture",
+    "categoryItem": "museum",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [
+      "https://www.wikidata.org/wiki/Q3360882"
+    ],
+    "images": [
+      "https://www.wikidata.org/wiki/Q3360882"
+    ],
+    "websiteUrl": "https://www.nice.fr/fr/culture/musees-et-galeries/agenda-du-palais-lascaris",
+    "website": "https://www.nice.fr/fr/culture/musees-et-galeries/agenda-du-palais-lascaris",
+    "source": "openstreetmap",
+    "osmId": 578023554,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871704,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:04.716346"
+  },
+  {
+    "id": "osm_666991029",
+    "name": "Théâtre Lino Ventura",
+    "lat": 43.7389908,
+    "lng": 7.3081724,
+    "location": {
+      "_latitude": 43.7389908,
+      "_longitude": 7.3081724
+    },
+    "description": "Point d'intérêt: Théâtre Lino Ventura",
+    "category": "culture",
+    "categoryGroup": "Culture",
+    "categoryItem": "theatre",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": "https://www.nicemusiclive.fr/salle/theatre-lino-ventura",
+    "website": "https://www.nicemusiclive.fr/salle/theatre-lino-ventura",
+    "source": "openstreetmap",
+    "osmId": 666991029,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871704,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:04.716356"
+  },
+  {
+    "id": "osm_780442563",
+    "name": "Cinéma de Beaulieu",
+    "lat": 43.7040785,
+    "lng": 7.3309565,
+    "location": {
+      "_latitude": 43.7040785,
+      "_longitude": 7.3309565
+    },
+    "description": "Point d'intérêt: Cinéma de Beaulieu",
+    "category": "culture",
+    "categoryGroup": "Culture",
+    "categoryItem": "cinema",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 780442563,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871704,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:04.716365"
+  },
+  {
+    "id": "osm_864652139",
+    "name": "Fondation Maeght",
+    "lat": 43.7008677,
+    "lng": 7.1149037,
+    "location": {
+      "_latitude": 43.7008677,
+      "_longitude": 7.1149037
+    },
+    "description": "Point d'intérêt: Fondation Maeght",
+    "category": "culture",
+    "categoryGroup": "Culture",
+    "categoryItem": "museum",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [
+      "https://www.wikidata.org/wiki/Q1435689"
+    ],
+    "images": [
+      "https://www.wikidata.org/wiki/Q1435689"
+    ],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 864652139,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871704,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:04.716377"
+  },
+  {
+    "id": "osm_1211221624",
+    "name": "Cinema Espace Centre",
+    "lat": 43.6621278,
+    "lng": 7.1486351,
+    "location": {
+      "_latitude": 43.6621278,
+      "_longitude": 7.1486351
+    },
+    "description": "Point d'intérêt: Cinema Espace Centre",
+    "category": "culture",
+    "categoryGroup": "Culture",
+    "categoryItem": "cinema",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 1211221624,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871704,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:04.716386"
+  },
+  {
+    "id": "osm_1211400103",
+    "name": "Pathé Lingostière",
+    "lat": 43.7265577,
+    "lng": 7.1895153,
+    "location": {
+      "_latitude": 43.7265577,
+      "_longitude": 7.1895153
+    },
+    "description": "Point d'intérêt: Pathé Lingostière",
+    "category": "culture",
+    "categoryGroup": "Culture",
+    "categoryItem": "cinema",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [
+      "https://www.wikidata.org/wiki/Q97311309"
+    ],
+    "images": [
+      "https://www.wikidata.org/wiki/Q97311309"
+    ],
+    "websiteUrl": "https://www.pathe.fr/cinemas/cinema-pathe-lingostiere",
+    "website": "https://www.pathe.fr/cinemas/cinema-pathe-lingostiere",
+    "source": "openstreetmap",
+    "osmId": 1211400103,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871704,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:04.716398"
+  },
+  {
+    "id": "osm_1268201093",
+    "name": "Château-Musée d'Histoire naturelle",
+    "lat": 43.783588,
+    "lng": 7.2764749,
+    "location": {
+      "_latitude": 43.783588,
+      "_longitude": 7.2764749
+    },
+    "description": "Point d'intérêt: Château-Musée d'Histoire naturelle",
+    "category": "culture",
+    "categoryGroup": "Culture",
+    "categoryItem": "museum",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 1268201093,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871704,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:04.716407"
+  },
+  {
+    "id": "osm_1297270381",
+    "name": "Musée Volti",
+    "lat": 43.7017095,
+    "lng": 7.310623,
+    "location": {
+      "_latitude": 43.7017095,
+      "_longitude": 7.310623
+    },
+    "description": "Point d'intérêt: Musée Volti",
+    "category": "culture",
+    "categoryGroup": "Culture",
+    "categoryItem": "museum",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": "https://villefranche-sur-mer.fr/volti/",
+    "website": "https://villefranche-sur-mer.fr/volti/",
+    "source": "openstreetmap",
+    "osmId": 1297270381,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871704,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:04.716423"
+  },
+  {
+    "id": "osm_1398474011",
+    "name": "Museum d'Histoire Naturelle",
+    "lat": 43.7017759,
+    "lng": 7.2795802,
+    "location": {
+      "_latitude": 43.7017759,
+      "_longitude": 7.2795802
+    },
+    "description": "Billet permettant l'accès au groupe de musée Sciences comprenant : Musée d'archéologie (sites de Cimiez et de Terra Amata) et Muséum d'Histoire Naturelle. Validité 48h.",
+    "category": "culture",
+    "categoryGroup": "Culture",
+    "categoryItem": "museum",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [
+      "https://www.wikidata.org/wiki/Q3330894"
+    ],
+    "images": [
+      "https://www.wikidata.org/wiki/Q3330894"
+    ],
+    "websiteUrl": "http://www.mhnnice.org",
+    "website": "http://www.mhnnice.org",
+    "source": "openstreetmap",
+    "osmId": 1398474011,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871704,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:04.716435"
+  },
+  {
+    "id": "osm_1398641509",
+    "name": "Fontaine Coexist",
+    "lat": 43.6866373,
+    "lng": 7.3396209,
+    "location": {
+      "_latitude": 43.6866373,
+      "_longitude": 7.3396209
+    },
+    "description": "Point d'intérêt: Fontaine Coexist",
+    "category": "culture",
+    "categoryGroup": "Culture",
+    "categoryItem": "artwork",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 1398641509,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871704,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:04.716444"
+  },
+  {
+    "id": "osm_1434932709",
+    "name": "Galerie Herireu",
+    "lat": 43.6956722,
+    "lng": 7.1228874,
+    "location": {
+      "_latitude": 43.6956722,
+      "_longitude": 7.1228874
+    },
+    "description": "Point d'intérêt: Galerie Herireu",
+    "category": "culture",
+    "categoryGroup": "Culture",
+    "categoryItem": "gallery",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 1434932709,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871704,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:04.716452"
+  },
+  {
+    "id": "osm_1437871731",
+    "name": "Butt",
+    "lat": 43.6865674,
+    "lng": 7.3396157,
+    "location": {
+      "_latitude": 43.6865674,
+      "_longitude": 7.3396157
+    },
+    "description": "Point d'intérêt: Butt",
+    "category": "culture",
+    "categoryGroup": "Culture",
+    "categoryItem": "artwork",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 1437871731,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871704,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:04.716462"
+  },
+  {
+    "id": "osm_1631291404",
+    "name": "Monument à Garibaldi",
+    "lat": 43.7007707,
+    "lng": 7.2800791,
+    "location": {
+      "_latitude": 43.7007707,
+      "_longitude": 7.2800791
+    },
+    "description": "Point d'intérêt: Monument à Garibaldi",
+    "category": "culture",
+    "categoryGroup": "Culture",
+    "categoryItem": "artwork",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [
+      "https://www.wikidata.org/wiki/Q3323412"
+    ],
+    "images": [
+      "https://www.wikidata.org/wiki/Q3323412"
+    ],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 1631291404,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871704,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:04.716474"
+  },
+  {
+    "id": "osm_1674913029",
+    "name": "Rialto",
+    "lat": 43.6960141,
+    "lng": 7.2586738,
+    "location": {
+      "_latitude": 43.6960141,
+      "_longitude": 7.2586738
+    },
+    "description": "Point d'intérêt: Rialto",
+    "category": "culture",
+    "categoryGroup": "Culture",
+    "categoryItem": "cinema",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [
+      "https://www.wikidata.org/wiki/Q42295157"
+    ],
+    "images": [
+      "https://www.wikidata.org/wiki/Q42295157"
+    ],
+    "websiteUrl": "https://www.cinemarialto.fr/",
+    "website": "https://www.cinemarialto.fr/",
+    "source": "openstreetmap",
+    "osmId": 1674913029,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871704,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:04.716486"
+  },
+  {
+    "id": "osm_1867139339",
+    "name": "Pathé Masséna",
+    "lat": 43.7018515,
+    "lng": 7.267005,
+    "location": {
+      "_latitude": 43.7018515,
+      "_longitude": 7.267005
+    },
+    "description": "Point d'intérêt: Pathé Masséna",
+    "category": "culture",
+    "categoryGroup": "Culture",
+    "categoryItem": "cinema",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [
+      "https://www.wikidata.org/wiki/Q42295155"
+    ],
+    "images": [
+      "https://www.wikidata.org/wiki/Q42295155"
+    ],
+    "websiteUrl": "https://www.pathe.fr/cinemas/cinema-pathe-massena",
+    "website": "https://www.pathe.fr/cinemas/cinema-pathe-massena",
+    "source": "openstreetmap",
+    "osmId": 1867139339,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871704,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:04.716502"
+  },
+  {
+    "id": "osm_1872477879",
+    "name": "Cinéma Variétés",
+    "lat": 43.6997926,
+    "lng": 7.2663782,
+    "location": {
+      "_latitude": 43.6997926,
+      "_longitude": 7.2663782
+    },
+    "description": "Point d'intérêt: Cinéma Variétés",
+    "category": "culture",
+    "categoryGroup": "Culture",
+    "categoryItem": "cinema",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [
+      "https://www.wikidata.org/wiki/Q42295144"
+    ],
+    "images": [
+      "https://www.wikidata.org/wiki/Q42295144"
+    ],
+    "websiteUrl": "https://www.cinemavarietes.fr/",
+    "website": "https://www.cinemavarietes.fr/",
+    "source": "openstreetmap",
+    "osmId": 1872477879,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871704,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:04.716514"
+  },
+  {
+    "id": "osm_2073399840",
+    "name": "Théâtre L'eau vive",
+    "lat": 43.7034781,
+    "lng": 7.2765537,
+    "location": {
+      "_latitude": 43.7034781,
+      "_longitude": 7.2765537
+    },
+    "description": "Point d'intérêt: Théâtre L'eau vive",
+    "category": "culture",
+    "categoryGroup": "Culture",
+    "categoryItem": "theatre",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 2073399840,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871704,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:04.716522"
+  },
+  {
+    "id": "osm_2090829881",
+    "name": "POI sans nom",
+    "lat": 43.6879237,
+    "lng": 7.334953,
+    "location": {
+      "_latitude": 43.6879237,
+      "_longitude": 7.334953
+    },
+    "description": "Cinéma municipal, pas de nom",
+    "category": "culture",
+    "categoryGroup": "Culture",
+    "categoryItem": "cinema",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": "https://www.saint-jean-cap-ferrat.fr/category/cinema/",
+    "website": "https://www.saint-jean-cap-ferrat.fr/category/cinema/",
+    "source": "openstreetmap",
+    "osmId": 2090829881,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871704,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:04.716531"
+  },
+  {
+    "id": "osm_2105279265",
+    "name": "Neuf lignes obliques",
+    "lat": 43.6950645,
+    "lng": 7.2711096,
+    "location": {
+      "_latitude": 43.6950645,
+      "_longitude": 7.2711096
+    },
+    "description": "Point d'intérêt: Neuf lignes obliques",
+    "category": "culture",
+    "categoryGroup": "Culture",
+    "categoryItem": "artwork",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [
+      "https://www.wikidata.org/wiki/Q3338617"
+    ],
+    "images": [
+      "https://www.wikidata.org/wiki/Q3338617"
+    ],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 2105279265,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": true,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871704,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:04.716542"
+  },
+  {
+    "id": "osm_2264574277",
+    "name": "Musée Goetz-Boumeester",
+    "lat": 43.7016417,
+    "lng": 7.3106329,
+    "location": {
+      "_latitude": 43.7016417,
+      "_longitude": 7.3106329
+    },
+    "description": "Point d'intérêt: Musée Goetz-Boumeester",
+    "category": "culture",
+    "categoryGroup": "Culture",
+    "categoryItem": "museum",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": "https://villefranche-sur-mer.fr/goetz-boumeester/",
+    "website": "https://villefranche-sur-mer.fr/goetz-boumeester/",
+    "source": "openstreetmap",
+    "osmId": 2264574277,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871704,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:04.716555"
+  },
+  {
+    "id": "osm_2264574278",
+    "name": "Salle Souvenir du 24e BCA",
+    "lat": 43.701601,
+    "lng": 7.3106059,
+    "location": {
+      "_latitude": 43.701601,
+      "_longitude": 7.3106059
+    },
+    "description": "Point d'intérêt: Salle Souvenir du 24e BCA",
+    "category": "culture",
+    "categoryGroup": "Culture",
+    "categoryItem": "museum",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": "https://villefranche-sur-mer.fr/24-eme-bca/",
+    "website": "https://villefranche-sur-mer.fr/24-eme-bca/",
+    "source": "openstreetmap",
+    "osmId": 2264574278,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871704,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:04.716564"
+  },
+  {
+    "id": "osm_2264574279",
+    "name": "Collection Roux",
+    "lat": 43.7011297,
+    "lng": 7.3109172,
+    "location": {
+      "_latitude": 43.7011297,
+      "_longitude": 7.3109172
+    },
+    "description": "Point d'intérêt: Collection Roux",
+    "category": "culture",
+    "categoryGroup": "Culture",
+    "categoryItem": "museum",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": "https://villefranche-sur-mer.fr/",
+    "website": "https://villefranche-sur-mer.fr/",
+    "source": "openstreetmap",
+    "osmId": 2264574279,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871704,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:04.716572"
+  },
+  {
+    "id": "osm_2268261447",
+    "name": "Théâtre de Verdure",
+    "lat": 43.7008535,
+    "lng": 7.310731,
+    "location": {
+      "_latitude": 43.7008535,
+      "_longitude": 7.310731
+    },
+    "description": "Point d'intérêt: Théâtre de Verdure",
+    "category": "culture",
+    "categoryGroup": "Culture",
+    "categoryItem": "theatre",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 2268261447,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871704,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:04.716584"
+  },
+  {
+    "id": "osm_2279265380",
+    "name": "Musée de la Marine",
+    "lat": 43.7023621,
+    "lng": 7.3122689,
+    "location": {
+      "_latitude": 43.7023621,
+      "_longitude": 7.3122689
+    },
+    "description": "Point d'intérêt: Musée de la Marine",
+    "category": "culture",
+    "categoryGroup": "Culture",
+    "categoryItem": "museum",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 2279265380,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871704,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:04.716595"
+  },
+  {
+    "id": "osm_2511339324",
+    "name": "Arc de 115°5",
+    "lat": 43.6964383,
+    "lng": 7.2688612,
+    "location": {
+      "_latitude": 43.6964383,
+      "_longitude": 7.2688612
+    },
+    "description": "Point d'intérêt: Arc de 115°5",
+    "category": "culture",
+    "categoryGroup": "Culture",
+    "categoryItem": "artwork",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 2511339324,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": true,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871704,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:04.716604"
+  },
+  {
+    "id": "osm_2512591290",
+    "name": "Statue de Masséna",
+    "lat": 43.6979483,
+    "lng": 7.2736075,
+    "location": {
+      "_latitude": 43.6979483,
+      "_longitude": 7.2736075
+    },
+    "description": "Point d'intérêt: Statue de Masséna",
+    "category": "culture",
+    "categoryGroup": "Culture",
+    "categoryItem": "artwork",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [
+      "https://www.wikidata.org/wiki/Q3497588"
+    ],
+    "images": [
+      "https://www.wikidata.org/wiki/Q3497588"
+    ],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 2512591290,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871704,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:04.716615"
+  },
+  {
+    "id": "osm_2564558589",
+    "name": "Le Voyageur",
+    "lat": 43.6646161,
+    "lng": 7.2034749,
+    "location": {
+      "_latitude": 43.6646161,
+      "_longitude": 7.2034749
+    },
+    "description": "Point d'intérêt: Le Voyageur",
+    "category": "culture",
+    "categoryGroup": "Culture",
+    "categoryItem": "artwork",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 2564558589,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871704,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:04.716624"
+  },
+  {
+    "id": "osm_3198603502",
+    "name": "Théâtre du Cours",
+    "lat": 43.6957652,
+    "lng": 7.2764642,
+    "location": {
+      "_latitude": 43.6957652,
+      "_longitude": 7.2764642
+    },
+    "description": "Point d'intérêt: Théâtre du Cours",
+    "category": "culture",
+    "categoryGroup": "Culture",
+    "categoryItem": "theatre",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 3198603502,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871704,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:04.716632"
+  },
+  {
+    "id": "osm_3445661513",
+    "name": "Monument du Bicentenaire de la Révolution Française",
+    "lat": 43.7411172,
+    "lng": 7.3110954,
+    "location": {
+      "_latitude": 43.7411172,
+      "_longitude": 7.3110954
+    },
+    "description": "Point d'intérêt: Monument du Bicentenaire de la Révolution Française",
+    "category": "culture",
+    "categoryGroup": "Culture",
+    "categoryItem": "artwork",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 3445661513,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871704,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:04.716641"
+  },
+  {
+    "id": "osm_4018136143",
+    "name": "Général Estienne",
+    "lat": 43.7202308,
+    "lng": 7.2782259,
+    "location": {
+      "_latitude": 43.7202308,
+      "_longitude": 7.2782259
+    },
+    "description": "Point d'intérêt: Général Estienne",
+    "category": "culture",
+    "categoryGroup": "Culture",
+    "categoryItem": "artwork",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 4018136143,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871704,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:04.716650"
+  },
+  {
+    "id": "osm_4276766717",
+    "name": "Casino",
+    "lat": 43.7232381,
+    "lng": 7.1107223,
+    "location": {
+      "_latitude": 43.7232381,
+      "_longitude": 7.1107223
+    },
+    "description": "Point d'intérêt: Casino",
+    "category": "culture",
+    "categoryGroup": "Culture",
+    "categoryItem": "cinema",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": "https://www.cineode.fr/cinema-casino",
+    "website": "https://www.cineode.fr/cinema-casino",
+    "source": "openstreetmap",
+    "osmId": 4276766717,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871704,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:04.716658"
+  },
+  {
+    "id": "osm_4571418157",
+    "name": "David",
+    "lat": 43.6993856,
+    "lng": 7.2769417,
+    "location": {
+      "_latitude": 43.6993856,
+      "_longitude": 7.2769417
+    },
+    "description": "Point d'intérêt: David",
+    "category": "culture",
+    "categoryGroup": "Culture",
+    "categoryItem": "artwork",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 4571418157,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871704,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:04.716670"
+  },
+  {
+    "id": "osm_4574006073",
+    "name": "La chaise de SAB",
+    "lat": 43.694816,
+    "lng": 7.2688916,
+    "location": {
+      "_latitude": 43.694816,
+      "_longitude": 7.2688916
+    },
+    "description": "Point d'intérêt: La chaise de SAB",
+    "category": "culture",
+    "categoryGroup": "Culture",
+    "categoryItem": "artwork",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 4574006073,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871704,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:04.716679"
+  },
+  {
+    "id": "osm_4575738823",
+    "name": "Statue de la Liberté",
+    "lat": 43.6950374,
+    "lng": 7.2724898,
+    "location": {
+      "_latitude": 43.6950374,
+      "_longitude": 7.2724898
+    },
+    "description": "Point d'intérêt: Statue de la Liberté",
+    "category": "culture",
+    "categoryGroup": "Culture",
+    "categoryItem": "artwork",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 4575738823,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": true,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871704,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:04.716687"
+  },
+  {
+    "id": "osm_4665294724",
+    "name": "L'Envol",
+    "lat": 43.6967235,
+    "lng": 7.1215181,
+    "location": {
+      "_latitude": 43.6967235,
+      "_longitude": 7.1215181
+    },
+    "description": "Point d'intérêt: L'Envol",
+    "category": "culture",
+    "categoryGroup": "Culture",
+    "categoryItem": "artwork",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 4665294724,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871704,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:04.716695"
+  },
+  {
+    "id": "osm_4679865387",
+    "name": "Théâtre Francis Gag",
+    "lat": 43.6979452,
+    "lng": 7.2780191,
+    "location": {
+      "_latitude": 43.6979452,
+      "_longitude": 7.2780191
+    },
+    "description": "Point d'intérêt: Théâtre Francis Gag",
+    "category": "culture",
+    "categoryGroup": "Culture",
+    "categoryItem": "theatre",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": "https://theatre-francis-gag.org/",
+    "website": "https://theatre-francis-gag.org/",
+    "source": "openstreetmap",
+    "osmId": 4679865387,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871704,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:04.716704"
+  },
+  {
+    "id": "osm_4688828348",
+    "name": "Musée National du Sport",
+    "lat": 43.7062629,
+    "lng": 7.1923789,
+    "location": {
+      "_latitude": 43.7062629,
+      "_longitude": 7.1923789
+    },
+    "description": "Présentation des sports et de leur patrimoine respectif",
+    "category": "culture",
+    "categoryGroup": "Culture",
+    "categoryItem": "museum",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [
+      "https://www.wikidata.org/wiki/Q3330734"
+    ],
+    "images": [
+      "https://www.wikidata.org/wiki/Q3330734"
+    ],
+    "websiteUrl": "https://www.museedusport.fr/",
+    "website": "https://www.museedusport.fr/",
+    "source": "openstreetmap",
+    "osmId": 4688828348,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": true,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871704,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:04.716715"
+  },
+  {
+    "id": "osm_4688883802",
+    "name": "Musée de la photographie Charles Nègre",
+    "lat": 43.6959151,
+    "lng": 7.2745989,
+    "location": {
+      "_latitude": 43.6959151,
+      "_longitude": 7.2745989
+    },
+    "description": "Point d'intérêt: Musée de la photographie Charles Nègre",
+    "category": "culture",
+    "categoryGroup": "Culture",
+    "categoryItem": "museum",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [
+      "https://www.wikidata.org/wiki/Q106963760"
+    ],
+    "images": [
+      "https://www.wikidata.org/wiki/Q106963760"
+    ],
+    "websiteUrl": "https://museephotographie.nice.fr/",
+    "website": "https://museephotographie.nice.fr/",
+    "source": "openstreetmap",
+    "osmId": 4688883802,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": true,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871704,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:04.716727"
+  },
+  {
+    "id": "osm_4689017366",
+    "name": "Musée Franciscain",
+    "lat": 43.7201242,
+    "lng": 7.2789108,
+    "location": {
+      "_latitude": 43.7201242,
+      "_longitude": 7.2789108
+    },
+    "description": "Le musée évoque notamment la vie franciscaine à Nice du XIIIe à nos jours. Nombreux documents et œuvres d’art.",
+    "category": "culture",
+    "categoryGroup": "Culture",
+    "categoryItem": "museum",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [
+      "https://www.wikidata.org/wiki/Q3320265"
+    ],
+    "images": [
+      "https://www.wikidata.org/wiki/Q3320265"
+    ],
+    "websiteUrl": "https://www.nicerendezvous.com/musee-franciscain.html",
+    "website": "https://www.nicerendezvous.com/musee-franciscain.html",
+    "source": "openstreetmap",
+    "osmId": 4689017366,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": true,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871704,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:04.716737"
+  },
+  {
+    "id": "osm_4717123561",
+    "name": "Galerie Dominicains",
+    "lat": 43.6958396,
+    "lng": 7.2720635,
+    "location": {
+      "_latitude": 43.6958396,
+      "_longitude": 7.2720635
+    },
+    "description": "Point d'intérêt: Galerie Dominicains",
+    "category": "culture",
+    "categoryGroup": "Culture",
+    "categoryItem": "gallery",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 4717123561,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": true,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871704,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:04.716745"
+  },
+  {
+    "id": "osm_4718627995",
+    "name": "Monstre du Loch Ness",
+    "lat": 43.7007911,
+    "lng": 7.2780383,
+    "location": {
+      "_latitude": 43.7007911,
+      "_longitude": 7.2780383
+    },
+    "description": "Point d'intérêt: Monstre du Loch Ness",
+    "category": "culture",
+    "categoryGroup": "Culture",
+    "categoryItem": "artwork",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 4718627995,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871704,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:04.716754"
+  },
+  {
+    "id": "osm_4724182804",
+    "name": "ville la rève",
+    "lat": 43.7273448,
+    "lng": 7.1106725,
+    "location": {
+      "_latitude": 43.7273448,
+      "_longitude": 7.1106725
+    },
+    "description": "Point d'intérêt: ville la rève",
+    "category": "culture",
+    "categoryGroup": "Culture",
+    "categoryItem": "artwork",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 4724182804,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871704,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:04.716762"
+  },
+  {
+    "id": "osm_4761587816",
+    "name": "Bonsai",
+    "lat": 43.7233897,
+    "lng": 7.2845079,
+    "location": {
+      "_latitude": 43.7233897,
+      "_longitude": 7.2845079
+    },
+    "description": "Point d'intérêt: Bonsai",
+    "category": "culture",
+    "categoryGroup": "Culture",
+    "categoryItem": "artwork",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 4761587816,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871704,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:04.716773"
+  },
+  {
+    "id": "osm_4905456186",
+    "name": "POI sans nom",
+    "lat": 43.7025532,
+    "lng": 7.2757892,
+    "location": {
+      "_latitude": 43.7025532,
+      "_longitude": 7.2757892
+    },
+    "description": "Point d'intérêt: POI sans nom",
+    "category": "culture",
+    "categoryGroup": "Culture",
+    "categoryItem": "artwork",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 4905456186,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871704,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:04.716785"
+  },
+  {
+    "id": "osm_4993385861",
+    "name": "Apollon",
+    "lat": 43.6964961,
+    "lng": 7.2706103,
+    "location": {
+      "_latitude": 43.6964961,
+      "_longitude": 7.2706103
+    },
+    "description": "Point d'intérêt: Apollon",
+    "category": "culture",
+    "categoryGroup": "Culture",
+    "categoryItem": "artwork",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 4993385861,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871704,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:04.716794"
+  },
+  {
+    "id": "osm_5079142515",
+    "name": "POI sans nom",
+    "lat": 43.7798972,
+    "lng": 7.1950772,
+    "location": {
+      "_latitude": 43.7798972,
+      "_longitude": 7.1950772
+    },
+    "description": "Point d'intérêt: POI sans nom",
+    "category": "culture",
+    "categoryGroup": "Culture",
+    "categoryItem": "artwork",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 5079142515,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871704,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:04.716802"
+  },
+  {
+    "id": "osm_5436112400",
+    "name": "salle-don-jacques-fighiera",
+    "lat": 43.7530571,
+    "lng": 7.3816632,
+    "location": {
+      "_latitude": 43.7530571,
+      "_longitude": 7.3816632
+    },
+    "description": "Point d'intérêt: salle-don-jacques-fighiera",
+    "category": "culture",
+    "categoryGroup": "Culture",
+    "categoryItem": "museum",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 5436112400,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": true,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871704,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:04.716810"
+  },
+  {
+    "id": "osm_5457002083",
+    "name": "Pathé Gare du Sud",
+    "lat": 43.7093476,
+    "lng": 7.2606155,
+    "location": {
+      "_latitude": 43.7093476,
+      "_longitude": 7.2606155
+    },
+    "description": "Point d'intérêt: Pathé Gare du Sud",
+    "category": "culture",
+    "categoryGroup": "Culture",
+    "categoryItem": "cinema",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [
+      "https://www.wikidata.org/wiki/Q97312756"
+    ],
+    "images": [
+      "https://www.wikidata.org/wiki/Q97312756"
+    ],
+    "websiteUrl": "https://www.pathe.fr/cinemas/cinema-pathe-gare-du-sud",
+    "website": "https://www.pathe.fr/cinemas/cinema-pathe-gare-du-sud",
+    "source": "openstreetmap",
+    "osmId": 5457002083,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": true,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871704,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:04.716822"
+  },
+  {
+    "id": "osm_5471181374",
+    "name": "CGR Cagnes Sur Mer - Polygone Riviera",
+    "lat": 43.6636383,
+    "lng": 7.1279969,
+    "location": {
+      "_latitude": 43.6636383,
+      "_longitude": 7.1279969
+    },
+    "description": "Point d'intérêt: CGR Cagnes Sur Mer - Polygone Riviera",
+    "category": "culture",
+    "categoryGroup": "Culture",
+    "categoryItem": "cinema",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": "https://www.cgrcinemas.fr/cagnes-sur-mer/",
+    "website": "https://www.cgrcinemas.fr/cagnes-sur-mer/",
+    "source": "openstreetmap",
+    "osmId": 5471181374,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": true,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871704,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:04.716830"
+  },
+  {
+    "id": "osm_5504072087",
+    "name": "POI sans nom",
+    "lat": 43.7006753,
+    "lng": 7.2922584,
+    "location": {
+      "_latitude": 43.7006753,
+      "_longitude": 7.2922584
+    },
+    "description": "Point d'intérêt: POI sans nom",
+    "category": "culture",
+    "categoryGroup": "Culture",
+    "categoryItem": "artwork",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 5504072087,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871704,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:04.716839"
+  },
+  {
+    "id": "osm_5786839653",
+    "name": "La Grande Statue de la Vierge à l'Enfant",
+    "lat": 43.6858484,
+    "lng": 7.3466321,
+    "location": {
+      "_latitude": 43.6858484,
+      "_longitude": 7.3466321
+    },
+    "description": "Point d'intérêt: La Grande Statue de la Vierge à l'Enfant",
+    "category": "culture",
+    "categoryGroup": "Culture",
+    "categoryItem": "artwork",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 5786839653,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871704,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:04.716847"
+  },
+  {
+    "id": "osm_5863070161",
+    "name": "Théâtre des Oiseaux",
+    "lat": 43.6969693,
+    "lng": 7.2747892,
+    "location": {
+      "_latitude": 43.6969693,
+      "_longitude": 7.2747892
+    },
+    "description": "Point d'intérêt: Théâtre des Oiseaux",
+    "category": "culture",
+    "categoryGroup": "Culture",
+    "categoryItem": "theatre",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 5863070161,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871704,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:04.716856"
+  },
+  {
+    "id": "osm_5864422586",
+    "name": "Forum Jorge François",
+    "lat": 43.6960487,
+    "lng": 7.257329,
+    "location": {
+      "_latitude": 43.6960487,
+      "_longitude": 7.257329
+    },
+    "description": "Point d'intérêt: Forum Jorge François",
+    "category": "culture",
+    "categoryGroup": "Culture",
+    "categoryItem": "theatre",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": "https://www.forumjorgefrancois.fr/",
+    "website": "https://www.forumjorgefrancois.fr/",
+    "source": "openstreetmap",
+    "osmId": 5864422586,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871704,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:04.716865"
+  },
+  {
+    "id": "osm_6222421055",
+    "name": "POI sans nom",
+    "lat": 43.769702,
+    "lng": 7.3698884,
+    "location": {
+      "_latitude": 43.769702,
+      "_longitude": 7.3698884
+    },
+    "description": "Point d'intérêt: POI sans nom",
+    "category": "culture",
+    "categoryGroup": "Culture",
+    "categoryItem": "artwork",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 6222421055,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871704,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:04.716873"
+  },
+  {
+    "id": "osm_6465349082",
+    "name": "Wrapping Candy",
+    "lat": 43.6695363,
+    "lng": 7.2014248,
+    "location": {
+      "_latitude": 43.6695363,
+      "_longitude": 7.2014248
+    },
+    "description": "Point d'intérêt: Wrapping Candy",
+    "category": "culture",
+    "categoryGroup": "Culture",
+    "categoryItem": "artwork",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 6465349082,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871704,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:04.716882"
+  },
+  {
+    "id": "osm_6583670981",
+    "name": "Centre Culturel Franco-Allemand Nice",
+    "lat": 43.6953358,
+    "lng": 7.2745357,
+    "location": {
+      "_latitude": 43.6953358,
+      "_longitude": 7.2745357
+    },
+    "description": "Point d'intérêt: Centre Culturel Franco-Allemand Nice",
+    "category": "culture",
+    "categoryGroup": "Culture",
+    "categoryItem": "artwork",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": "https://www.ccfa-nice.fr/",
+    "website": "https://www.ccfa-nice.fr/",
+    "source": "openstreetmap",
+    "osmId": 6583670981,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871704,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:04.716895"
+  },
+  {
+    "id": "osm_6600843085",
+    "name": "Théâtre de la Cité",
+    "lat": 43.7018458,
+    "lng": 7.2638345,
+    "location": {
+      "_latitude": 43.7018458,
+      "_longitude": 7.2638345
+    },
+    "description": "Point d'intérêt: Théâtre de la Cité",
+    "category": "culture",
+    "categoryGroup": "Culture",
+    "categoryItem": "theatre",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": "https://theatredelacite.fr/",
+    "website": "https://theatredelacite.fr/",
+    "source": "openstreetmap",
+    "osmId": 6600843085,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871704,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:04.716906"
+  },
+  {
+    "id": "osm_6819880389",
+    "name": "SAbaidee",
+    "lat": 43.7067809,
+    "lng": 7.2651462,
+    "location": {
+      "_latitude": 43.7067809,
+      "_longitude": 7.2651462
+    },
+    "description": "Point d'intérêt: SAbaidee",
+    "category": "culture",
+    "categoryGroup": "Culture",
+    "categoryItem": "artwork",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 6819880389,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871704,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:04.716915"
+  },
+  {
+    "id": "osm_6819896185",
+    "name": "Vitraux",
+    "lat": 43.7250554,
+    "lng": 7.2485861,
+    "location": {
+      "_latitude": 43.7250554,
+      "_longitude": 7.2485861
+    },
+    "description": "Point d'intérêt: Vitraux",
+    "category": "culture",
+    "categoryGroup": "Culture",
+    "categoryItem": "artwork",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 6819896185,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871704,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:04.716925"
+  },
+  {
+    "id": "osm_6819896186",
+    "name": "Pessi Aman",
+    "lat": 43.7073638,
+    "lng": 7.2700215,
+    "location": {
+      "_latitude": 43.7073638,
+      "_longitude": 7.2700215
+    },
+    "description": "Point d'intérêt: Pessi Aman",
+    "category": "culture",
+    "categoryGroup": "Culture",
+    "categoryItem": "artwork",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 6819896186,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871704,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:04.716933"
+  },
+  {
+    "id": "osm_7147701392",
+    "name": "Un dimanche à Nice",
+    "lat": 43.6936227,
+    "lng": 7.2823965,
+    "location": {
+      "_latitude": 43.6936227,
+      "_longitude": 7.2823965
+    },
+    "description": "Point d'intérêt: Un dimanche à Nice",
+    "category": "culture",
+    "categoryGroup": "Culture",
+    "categoryItem": "artwork",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [
+      "https://www.wikidata.org/wiki/Q119557563"
+    ],
+    "images": [
+      "https://www.wikidata.org/wiki/Q119557563"
+    ],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 7147701392,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871704,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:04.716945"
+  },
+  {
+    "id": "osm_7147701393",
+    "name": "#ILoveNice",
+    "lat": 43.6935988,
+    "lng": 7.2790109,
+    "location": {
+      "_latitude": 43.6935988,
+      "_longitude": 7.2790109
+    },
+    "description": "Point d'intérêt: #ILoveNice",
+    "category": "culture",
+    "categoryGroup": "Culture",
+    "categoryItem": "artwork",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [
+      "https://www.wikidata.org/wiki/Q124735977"
+    ],
+    "images": [
+      "https://www.wikidata.org/wiki/Q124735977"
+    ],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 7147701393,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871704,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:04.716957"
+  },
+  {
+    "id": "osm_7155175562",
+    "name": "Buste de Lionel Hampton",
+    "lat": 43.7203443,
+    "lng": 7.2762086,
+    "location": {
+      "_latitude": 43.7203443,
+      "_longitude": 7.2762086
+    },
+    "description": "Point d'intérêt: Buste de Lionel Hampton",
+    "category": "culture",
+    "categoryGroup": "Culture",
+    "categoryItem": "artwork",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 7155175562,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871704,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:04.716966"
+  },
+  {
+    "id": "osm_7155175563",
+    "name": "Buste de Louis Armstrong",
+    "lat": 43.7201272,
+    "lng": 7.2758532,
+    "location": {
+      "_latitude": 43.7201272,
+      "_longitude": 7.2758532
+    },
+    "description": "Point d'intérêt: Buste de Louis Armstrong",
+    "category": "culture",
+    "categoryGroup": "Culture",
+    "categoryItem": "artwork",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 7155175563,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871704,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:04.716974"
+  },
+  {
+    "id": "osm_7155175564",
+    "name": "Statue de Miles Davis",
+    "lat": 43.6944344,
+    "lng": 7.2583363,
+    "location": {
+      "_latitude": 43.6944344,
+      "_longitude": 7.2583363
+    },
+    "description": "Point d'intérêt: Statue de Miles Davis",
+    "category": "culture",
+    "categoryGroup": "Culture",
+    "categoryItem": "artwork",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 7155175564,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871704,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:04.716982"
+  },
+  {
+    "id": "osm_7155175565",
+    "name": "Monument à la reine Victoria",
+    "lat": 43.7188984,
+    "lng": 7.272468,
+    "location": {
+      "_latitude": 43.7188984,
+      "_longitude": 7.272468
+    },
+    "description": "Point d'intérêt: Monument à la reine Victoria",
+    "category": "culture",
+    "categoryGroup": "Culture",
+    "categoryItem": "artwork",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [
+      "https://www.wikidata.org/wiki/Q3323418"
+    ],
+    "images": [
+      "https://www.wikidata.org/wiki/Q3323418"
+    ],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 7155175565,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871704,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:04.716993"
+  },
+  {
+    "id": "osm_7182824709",
+    "name": "Nikaia",
+    "lat": 43.7031391,
+    "lng": 7.2792909,
+    "location": {
+      "_latitude": 43.7031391,
+      "_longitude": 7.2792909
+    },
+    "description": "Point d'intérêt: Nikaia",
+    "category": "culture",
+    "categoryGroup": "Culture",
+    "categoryItem": "artwork",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 7182824709,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871704,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:04.717001"
+  },
+  {
+    "id": "osm_7568185452",
+    "name": "Hommage aux Français d'Afrique du Nord",
+    "lat": 43.6926353,
+    "lng": 7.2520226,
+    "location": {
+      "_latitude": 43.6926353,
+      "_longitude": 7.2520226
+    },
+    "description": "Point d'intérêt: Hommage aux Français d'Afrique du Nord",
+    "category": "culture",
+    "categoryGroup": "Culture",
+    "categoryItem": "artwork",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 7568185452,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871704,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:04.717014"
+  },
+  {
+    "id": "osm_7695084605",
+    "name": "POI sans nom",
+    "lat": 43.6755686,
+    "lng": 7.3266896,
+    "location": {
+      "_latitude": 43.6755686,
+      "_longitude": 7.3266896
+    },
+    "description": "Point d'intérêt: POI sans nom",
+    "category": "culture",
+    "categoryGroup": "Culture",
+    "categoryItem": "artwork",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 7695084605,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871704,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:04.717022"
+  },
+  {
+    "id": "osm_7706781947",
+    "name": "Salle Jean Vigo",
+    "lat": 43.692711,
+    "lng": 7.245706,
+    "location": {
+      "_latitude": 43.692711,
+      "_longitude": 7.245706
+    },
+    "description": "Point d'intérêt: Salle Jean Vigo",
+    "category": "culture",
+    "categoryGroup": "Culture",
+    "categoryItem": "cinema",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [
+      "https://www.wikidata.org/wiki/Q97266446"
+    ],
+    "images": [
+      "https://www.wikidata.org/wiki/Q97266446"
+    ],
+    "websiteUrl": "https://www.espacemagnan.com/PBCPPlayer.asp?ID=1908031",
+    "website": "https://www.espacemagnan.com/PBCPPlayer.asp?ID=1908031",
+    "source": "openstreetmap",
+    "osmId": 7706781947,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871704,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:04.717033"
+  },
+  {
+    "id": "osm_7725641351",
+    "name": "POI sans nom",
+    "lat": 43.7019296,
+    "lng": 7.275306,
+    "location": {
+      "_latitude": 43.7019296,
+      "_longitude": 7.275306
+    },
+    "description": "Point d'intérêt: POI sans nom",
+    "category": "culture",
+    "categoryGroup": "Culture",
+    "categoryItem": "artwork",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 7725641351,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871704,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:04.717042"
+  },
+  {
+    "id": "osm_7780777265",
+    "name": "POI sans nom",
+    "lat": 43.7060763,
+    "lng": 7.3356715,
+    "location": {
+      "_latitude": 43.7060763,
+      "_longitude": 7.3356715
+    },
+    "description": "Point d'intérêt: POI sans nom",
+    "category": "culture",
+    "categoryGroup": "Culture",
+    "categoryItem": "artwork",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 7780777265,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871704,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:04.717050"
+  },
+  {
+    "id": "osm_7805118232",
+    "name": "POI sans nom",
+    "lat": 43.7167367,
+    "lng": 7.2665811,
+    "location": {
+      "_latitude": 43.7167367,
+      "_longitude": 7.2665811
+    },
+    "description": "Point d'intérêt: POI sans nom",
+    "category": "culture",
+    "categoryGroup": "Culture",
+    "categoryItem": "artwork",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 7805118232,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871704,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:04.717061"
+  },
+  {
+    "id": "osm_8252966294",
+    "name": "Totor",
+    "lat": 43.7251794,
+    "lng": 7.275015,
+    "location": {
+      "_latitude": 43.7251794,
+      "_longitude": 7.275015
+    },
+    "description": "Point d'intérêt: Totor",
+    "category": "culture",
+    "categoryGroup": "Culture",
+    "categoryItem": "artwork",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 8252966294,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871704,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:04.717139"
+  },
+  {
+    "id": "osm_8253021632",
+    "name": "Statue de Jacques Chirac",
+    "lat": 43.6953923,
+    "lng": 7.2748825,
+    "location": {
+      "_latitude": 43.6953923,
+      "_longitude": 7.2748825
+    },
+    "description": "Point d'intérêt: Statue de Jacques Chirac",
+    "category": "culture",
+    "categoryGroup": "Culture",
+    "categoryItem": "artwork",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 8253021632,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": true,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871704,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:04.717149"
+  },
+  {
+    "id": "osm_8699444177",
+    "name": "POI sans nom",
+    "lat": 43.6832778,
+    "lng": 7.1238783,
+    "location": {
+      "_latitude": 43.6832778,
+      "_longitude": 7.1238783
+    },
+    "description": "Point d'intérêt: POI sans nom",
+    "category": "culture",
+    "categoryGroup": "Culture",
+    "categoryItem": "artwork",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 8699444177,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871704,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:04.717158"
+  },
+  {
+    "id": "osm_8699444206",
+    "name": "POI sans nom",
+    "lat": 43.6828351,
+    "lng": 7.1236885,
+    "location": {
+      "_latitude": 43.6828351,
+      "_longitude": 7.1236885
+    },
+    "description": "Point d'intérêt: POI sans nom",
+    "category": "culture",
+    "categoryGroup": "Culture",
+    "categoryItem": "artwork",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 8699444206,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871704,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:04.717166"
+  },
+  {
+    "id": "osm_8893001113",
+    "name": "Totor",
+    "lat": 43.6888657,
+    "lng": 7.2424685,
+    "location": {
+      "_latitude": 43.6888657,
+      "_longitude": 7.2424685
+    },
+    "description": "Point d'intérêt: Totor",
+    "category": "culture",
+    "categoryGroup": "Culture",
+    "categoryItem": "artwork",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 8893001113,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871704,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:04.717174"
+  },
+  {
+    "id": "osm_8893001114",
+    "name": "Totor",
+    "lat": 43.6895305,
+    "lng": 7.2437401,
+    "location": {
+      "_latitude": 43.6895305,
+      "_longitude": 7.2437401
+    },
+    "description": "Point d'intérêt: Totor",
+    "category": "culture",
+    "categoryGroup": "Culture",
+    "categoryItem": "artwork",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 8893001114,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871704,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:04.717182"
+  },
+  {
+    "id": "osm_9062441383",
+    "name": "Nikaïa",
+    "lat": 43.6973691,
+    "lng": 7.2725844,
+    "location": {
+      "_latitude": 43.6973691,
+      "_longitude": 7.2725844
+    },
+    "description": "Point d'intérêt: Nikaïa",
+    "category": "culture",
+    "categoryGroup": "Culture",
+    "categoryItem": "artwork",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 9062441383,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871704,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:04.717197"
+  },
+  {
+    "id": "osm_9288145283",
+    "name": "POI sans nom",
+    "lat": 43.721775,
+    "lng": 7.275052,
+    "location": {
+      "_latitude": 43.721775,
+      "_longitude": 7.275052
+    },
+    "description": "Point d'intérêt: POI sans nom",
+    "category": "culture",
+    "categoryGroup": "Culture",
+    "categoryItem": "artwork",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 9288145283,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871704,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:04.717205"
+  },
+  {
+    "id": "osm_9516586416",
+    "name": "POI sans nom",
+    "lat": 43.7588628,
+    "lng": 7.1766222,
+    "location": {
+      "_latitude": 43.7588628,
+      "_longitude": 7.1766222
+    },
+    "description": "Point d'intérêt: POI sans nom",
+    "category": "culture",
+    "categoryGroup": "Culture",
+    "categoryItem": "artwork",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 9516586416,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871704,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:04.717213"
+  },
+  {
+    "id": "osm_9516637117",
+    "name": "POI sans nom",
+    "lat": 43.7490833,
+    "lng": 7.1297619,
+    "location": {
+      "_latitude": 43.7490833,
+      "_longitude": 7.1297619
+    },
+    "description": "Point d'intérêt: POI sans nom",
+    "category": "culture",
+    "categoryGroup": "Culture",
+    "categoryItem": "artwork",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 9516637117,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871704,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:04.717221"
+  },
+  {
+    "id": "osm_9580217128",
+    "name": "POI sans nom",
+    "lat": 43.7922811,
+    "lng": 7.1862119,
+    "location": {
+      "_latitude": 43.7922811,
+      "_longitude": 7.1862119
+    },
+    "description": "Point d'intérêt: POI sans nom",
+    "category": "culture",
+    "categoryGroup": "Culture",
+    "categoryItem": "theatre",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 9580217128,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871704,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:04.717230"
+  },
+  {
+    "id": "osm_9820012289",
+    "name": "Stockfish",
+    "lat": 43.7106044,
+    "lng": 7.2854335,
+    "location": {
+      "_latitude": 43.7106044,
+      "_longitude": 7.2854335
+    },
+    "description": "Point d'intérêt: Stockfish",
+    "category": "culture",
+    "categoryGroup": "Culture",
+    "categoryItem": "theatre",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": "https://etudiants.nice.fr/stockfish",
+    "website": "https://etudiants.nice.fr/stockfish",
+    "source": "openstreetmap",
+    "osmId": 9820012289,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871704,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:04.717238"
+  },
+  {
+    "id": "osm_9907745062",
+    "name": "Musée Escoffier de l'Art Culinaire",
+    "lat": 43.6581114,
+    "lng": 7.1231411,
+    "location": {
+      "_latitude": 43.6581114,
+      "_longitude": 7.1231411
+    },
+    "description": "Point d'intérêt: Musée Escoffier de l'Art Culinaire",
+    "category": "culture",
+    "categoryGroup": "Culture",
+    "categoryItem": "museum",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [
+      "https://www.wikidata.org/wiki/Q110929543"
+    ],
+    "images": [
+      "https://www.wikidata.org/wiki/Q110929543"
+    ],
+    "websiteUrl": "https://www.musee-escoffier.com/",
+    "website": "https://www.musee-escoffier.com/",
+    "source": "openstreetmap",
+    "osmId": 9907745062,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": true,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871704,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:04.717250"
+  },
+  {
+    "id": "osm_9979554727",
+    "name": "Masséna",
+    "lat": 43.6955108,
+    "lng": 7.2593028,
+    "location": {
+      "_latitude": 43.6955108,
+      "_longitude": 7.2593028
+    },
+    "description": "Point d'intérêt: Masséna",
+    "category": "culture",
+    "categoryGroup": "Culture",
+    "categoryItem": "artwork",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 9979554727,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871704,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:04.717258"
+  },
+  {
+    "id": "osm_9980451923",
+    "name": "POI sans nom",
+    "lat": 43.6940319,
+    "lng": 7.2806526,
+    "location": {
+      "_latitude": 43.6940319,
+      "_longitude": 7.2806526
+    },
+    "description": "Point d'intérêt: POI sans nom",
+    "category": "culture",
+    "categoryGroup": "Culture",
+    "categoryItem": "artwork",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 9980451923,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": true,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871704,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:04.717266"
+  },
+  {
+    "id": "osm_10025012003",
+    "name": "La Panthère",
+    "lat": 43.7836872,
+    "lng": 7.2765241,
+    "location": {
+      "_latitude": 43.7836872,
+      "_longitude": 7.2765241
+    },
+    "description": "Point d'intérêt: La Panthère",
+    "category": "culture",
+    "categoryGroup": "Culture",
+    "categoryItem": "artwork",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 10025012003,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871704,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:04.717275"
+  },
+  {
+    "id": "osm_10106819239",
+    "name": "Musée Terra Amata",
+    "lat": 43.6977993,
+    "lng": 7.2892892,
+    "location": {
+      "_latitude": 43.6977993,
+      "_longitude": 7.2892892
+    },
+    "description": "Le musée de Terra Amata conserve, à l’emplacement même du site, les vestiges laissés par des Homo erectus niçois, il y a 400 000 ans. Rénovation en 2016",
+    "category": "culture",
+    "categoryGroup": "Culture",
+    "categoryItem": "museum",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [
+      "https://www.wikidata.org/wiki/Q3330096"
+    ],
+    "images": [
+      "https://www.wikidata.org/wiki/Q3330096"
+    ],
+    "websiteUrl": "https://www.musee-terra-amata.org/",
+    "website": "https://www.musee-terra-amata.org/",
+    "source": "openstreetmap",
+    "osmId": 10106819239,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871704,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:04.717286"
+  },
+  {
+    "id": "osm_10107950495",
+    "name": "Hippocampe",
+    "lat": 43.7025956,
+    "lng": 7.3083056,
+    "location": {
+      "_latitude": 43.7025956,
+      "_longitude": 7.3083056
+    },
+    "description": "Point d'intérêt: Hippocampe",
+    "category": "culture",
+    "categoryGroup": "Culture",
+    "categoryItem": "artwork",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 10107950495,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871704,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:04.717295"
+  },
+  {
+    "id": "osm_10156448673",
+    "name": "Saleya Gallery",
+    "lat": 43.6959136,
+    "lng": 7.2734822,
+    "location": {
+      "_latitude": 43.6959136,
+      "_longitude": 7.2734822
+    },
+    "description": "Point d'intérêt: Saleya Gallery",
+    "category": "culture",
+    "categoryGroup": "Culture",
+    "categoryItem": "gallery",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 10156448673,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871704,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:04.717307"
+  },
+  {
+    "id": "osm_10156448674",
+    "name": "L'Oulivié",
+    "lat": 43.6968212,
+    "lng": 7.2739187,
+    "location": {
+      "_latitude": 43.6968212,
+      "_longitude": 7.2739187
+    },
+    "description": "Point d'intérêt: L'Oulivié",
+    "category": "culture",
+    "categoryGroup": "Culture",
+    "categoryItem": "artwork",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [
+      "https://commons.wikimedia.org/wiki/Special:FilePath/Olive_tree_sculpture.jpg"
+    ],
+    "images": [
+      "https://commons.wikimedia.org/wiki/Special:FilePath/Olive_tree_sculpture.jpg"
+    ],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 10156448674,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871704,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:04.717323"
+  },
+  {
+    "id": "osm_10166521461",
+    "name": "Cat Lady Pensive",
+    "lat": 43.749877,
+    "lng": 7.1441881,
+    "location": {
+      "_latitude": 43.749877,
+      "_longitude": 7.1441881
+    },
+    "description": "Point d'intérêt: Cat Lady Pensive",
+    "category": "culture",
+    "categoryGroup": "Culture",
+    "categoryItem": "artwork",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 10166521461,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871704,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:04.717331"
+  },
+  {
+    "id": "osm_10203688601",
+    "name": "POI sans nom",
+    "lat": 43.6604155,
+    "lng": 7.130001,
+    "location": {
+      "_latitude": 43.6604155,
+      "_longitude": 7.130001
+    },
+    "description": "Point d'intérêt: POI sans nom",
+    "category": "culture",
+    "categoryGroup": "Culture",
+    "categoryItem": "artwork",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 10203688601,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871704,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:04.717340"
+  },
+  {
+    "id": "osm_10222900303",
+    "name": "Cinéma Jean-Paul Belmondo",
+    "lat": 43.7010818,
+    "lng": 7.2811514,
+    "location": {
+      "_latitude": 43.7010818,
+      "_longitude": 7.2811514
+    },
+    "description": "Cinéma départemental d'art et essai",
+    "category": "culture",
+    "categoryGroup": "Culture",
+    "categoryItem": "cinema",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": "https://cinemabelmondo.departement06.fr/",
+    "website": "https://cinemabelmondo.departement06.fr/",
+    "source": "openstreetmap",
+    "osmId": 10222900303,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871704,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:04.717348"
+  },
+  {
+    "id": "osm_10289733464",
+    "name": "L'ange de la baie",
+    "lat": 43.6946547,
+    "lng": 7.2632504,
+    "location": {
+      "_latitude": 43.6946547,
+      "_longitude": 7.2632504
+    },
+    "description": "Point d'intérêt: L'ange de la baie",
+    "category": "culture",
+    "categoryGroup": "Culture",
+    "categoryItem": "artwork",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 10289733464,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871704,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:04.717356"
+  },
+  {
+    "id": "osm_10674852455",
+    "name": "Amie",
+    "lat": 43.687588,
+    "lng": 7.2372524,
+    "location": {
+      "_latitude": 43.687588,
+      "_longitude": 7.2372524
+    },
+    "description": "Point d'intérêt: Amie",
+    "category": "culture",
+    "categoryGroup": "Culture",
+    "categoryItem": "artwork",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 10674852455,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871704,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:04.717365"
+  },
+  {
+    "id": "osm_10674852456",
+    "name": "La Fresque de Fabron",
+    "lat": 43.6876843,
+    "lng": 7.2371336,
+    "location": {
+      "_latitude": 43.6876843,
+      "_longitude": 7.2371336
+    },
+    "description": "Point d'intérêt: La Fresque de Fabron",
+    "category": "culture",
+    "categoryGroup": "Culture",
+    "categoryItem": "artwork",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 10674852456,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871704,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:04.717373"
+  },
+  {
+    "id": "osm_10674852457",
+    "name": "Gaia",
+    "lat": 43.687619,
+    "lng": 7.2369239,
+    "location": {
+      "_latitude": 43.687619,
+      "_longitude": 7.2369239
+    },
+    "description": "Point d'intérêt: Gaia",
+    "category": "culture",
+    "categoryGroup": "Culture",
+    "categoryItem": "artwork",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 10674852457,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871704,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:04.717384"
+  },
+  {
+    "id": "osm_10702617090",
+    "name": "Théâtre National de Nice",
+    "lat": 43.699085,
+    "lng": 7.2780447,
+    "location": {
+      "_latitude": 43.699085,
+      "_longitude": 7.2780447
+    },
+    "description": "Point d'intérêt: Théâtre National de Nice",
+    "category": "culture",
+    "categoryGroup": "Culture",
+    "categoryItem": "theatre",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": "https://www.tnn.fr/fr/",
+    "website": "https://www.tnn.fr/fr/",
+    "source": "openstreetmap",
+    "osmId": 10702617090,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": true,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871704,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:04.717393"
+  },
+  {
+    "id": "osm_10702617102",
+    "name": "Théâtre de l'Impasse",
+    "lat": 43.6992295,
+    "lng": 7.2785249,
+    "location": {
+      "_latitude": 43.6992295,
+      "_longitude": 7.2785249
+    },
+    "description": "Point d'intérêt: Théâtre de l'Impasse",
+    "category": "culture",
+    "categoryGroup": "Culture",
+    "categoryItem": "theatre",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 10702617102,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871704,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:04.717401"
+  },
+  {
+    "id": "osm_10970847617",
+    "name": "LOU CHE",
+    "lat": 43.6981894,
+    "lng": 7.2861982,
+    "location": {
+      "_latitude": 43.6981894,
+      "_longitude": 7.2861982
+    },
+    "description": "Point d'intérêt: LOU CHE",
+    "category": "culture",
+    "categoryGroup": "Culture",
+    "categoryItem": "artwork",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 10970847617,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871704,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:04.717409"
+  },
+  {
+    "id": "osm_11012284268",
+    "name": "POI sans nom",
+    "lat": 43.6935506,
+    "lng": 7.2562987,
+    "location": {
+      "_latitude": 43.6935506,
+      "_longitude": 7.2562987
+    },
+    "description": "Point d'intérêt: POI sans nom",
+    "category": "culture",
+    "categoryGroup": "Culture",
+    "categoryItem": "artwork",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 11012284268,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871704,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:04.717421"
+  },
+  {
+    "id": "osm_11013782580",
+    "name": "POI sans nom",
+    "lat": 43.6936112,
+    "lng": 7.2790068,
+    "location": {
+      "_latitude": 43.6936112,
+      "_longitude": 7.2790068
+    },
+    "description": "Gorilla",
+    "category": "culture",
+    "categoryGroup": "Culture",
+    "categoryItem": "artwork",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 11013782580,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871704,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:04.717429"
+  },
+  {
+    "id": "osm_11014542230",
+    "name": "POI sans nom",
+    "lat": 43.6959448,
+    "lng": 7.2715662,
+    "location": {
+      "_latitude": 43.6959448,
+      "_longitude": 7.2715662
+    },
+    "description": "Point d'intérêt: POI sans nom",
+    "category": "culture",
+    "categoryGroup": "Culture",
+    "categoryItem": "artwork",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 11014542230,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871704,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:04.717438"
+  },
+  {
+    "id": "osm_11014559056",
+    "name": "POI sans nom",
+    "lat": 43.69646,
+    "lng": 7.272932,
+    "location": {
+      "_latitude": 43.69646,
+      "_longitude": 7.272932
+    },
+    "description": "Point d'intérêt: POI sans nom",
+    "category": "culture",
+    "categoryGroup": "Culture",
+    "categoryItem": "artwork",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 11014559056,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871704,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:04.717447"
+  },
+  {
+    "id": "osm_11015505987",
+    "name": "POI sans nom",
+    "lat": 43.7034488,
+    "lng": 7.2659847,
+    "location": {
+      "_latitude": 43.7034488,
+      "_longitude": 7.2659847
+    },
+    "description": "Point d'intérêt: POI sans nom",
+    "category": "culture",
+    "categoryGroup": "Culture",
+    "categoryItem": "artwork",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [
+      "https://commons.wikimedia.org/wiki/Special:FilePath/Horse_sculpture_outside_Notre-Dame_de_Nice.jpg"
+    ],
+    "images": [
+      "https://commons.wikimedia.org/wiki/Special:FilePath/Horse_sculpture_outside_Notre-Dame_de_Nice.jpg"
+    ],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 11015505987,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871704,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:04.717459"
+  },
+  {
+    "id": "osm_11015533514",
+    "name": "POI sans nom",
+    "lat": 43.6977147,
+    "lng": 7.2697336,
+    "location": {
+      "_latitude": 43.6977147,
+      "_longitude": 7.2697336
+    },
+    "description": "Point d'intérêt: POI sans nom",
+    "category": "culture",
+    "categoryGroup": "Culture",
+    "categoryItem": "artwork",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [
+      "https://commons.wikimedia.org/wiki/Special:FilePath/Gorilla_sculpture_by_Richard_Orlinski.jpg"
+    ],
+    "images": [
+      "https://commons.wikimedia.org/wiki/Special:FilePath/Gorilla_sculpture_by_Richard_Orlinski.jpg"
+    ],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 11015533514,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871704,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:04.717470"
+  },
+  {
+    "id": "osm_11016989082",
+    "name": "POI sans nom",
+    "lat": 43.7032089,
+    "lng": 7.266128,
+    "location": {
+      "_latitude": 43.7032089,
+      "_longitude": 7.266128
+    },
+    "description": "Point d'intérêt: POI sans nom",
+    "category": "culture",
+    "categoryGroup": "Culture",
+    "categoryItem": "artwork",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 11016989082,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871704,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:04.717479"
+  },
+  {
+    "id": "osm_11016994725",
+    "name": "POI sans nom",
+    "lat": 43.6974539,
+    "lng": 7.2699107,
+    "location": {
+      "_latitude": 43.6974539,
+      "_longitude": 7.2699107
+    },
+    "description": "Point d'intérêt: POI sans nom",
+    "category": "culture",
+    "categoryGroup": "Culture",
+    "categoryItem": "artwork",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 11016994725,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871704,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:04.717487"
+  },
+  {
+    "id": "osm_11016994726",
+    "name": "POI sans nom",
+    "lat": 43.6978638,
+    "lng": 7.2696573,
+    "location": {
+      "_latitude": 43.6978638,
+      "_longitude": 7.2696573
+    },
+    "description": "Point d'intérêt: POI sans nom",
+    "category": "culture",
+    "categoryGroup": "Culture",
+    "categoryItem": "artwork",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 11016994726,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871704,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:04.717495"
+  },
+  {
+    "id": "osm_11016994727",
+    "name": "POI sans nom",
+    "lat": 43.6979588,
+    "lng": 7.2698611,
+    "location": {
+      "_latitude": 43.6979588,
+      "_longitude": 7.2698611
+    },
+    "description": "Point d'intérêt: POI sans nom",
+    "category": "culture",
+    "categoryGroup": "Culture",
+    "categoryItem": "artwork",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 11016994727,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871704,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:04.717507"
+  },
+  {
+    "id": "osm_11016994728",
+    "name": "POI sans nom",
+    "lat": 43.697569,
+    "lng": 7.2701427,
+    "location": {
+      "_latitude": 43.697569,
+      "_longitude": 7.2701427
+    },
+    "description": "Point d'intérêt: POI sans nom",
+    "category": "culture",
+    "categoryGroup": "Culture",
+    "categoryItem": "artwork",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 11016994728,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871704,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:04.717515"
+  },
+  {
+    "id": "osm_11017955721",
+    "name": "Galerie Michel Jarry",
+    "lat": 43.6976706,
+    "lng": 7.2776706,
+    "location": {
+      "_latitude": 43.6976706,
+      "_longitude": 7.2776706
+    },
+    "description": "Point d'intérêt: Galerie Michel Jarry",
+    "category": "culture",
+    "categoryGroup": "Culture",
+    "categoryItem": "gallery",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 11017955721,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871704,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:04.717523"
+  },
+  {
+    "id": "osm_11018048937",
+    "name": "Catherine Ségurane",
+    "lat": 43.6993655,
+    "lng": 7.2797242,
+    "location": {
+      "_latitude": 43.6993655,
+      "_longitude": 7.2797242
+    },
+    "description": "Point d'intérêt: Catherine Ségurane",
+    "category": "culture",
+    "categoryGroup": "Culture",
+    "categoryItem": "artwork",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 11018048937,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871704,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:04.717535"
+  },
+  {
+    "id": "osm_11019686800",
+    "name": "POI sans nom",
+    "lat": 43.6969763,
+    "lng": 7.2789373,
+    "location": {
+      "_latitude": 43.6969763,
+      "_longitude": 7.2789373
+    },
+    "description": "Point d'intérêt: POI sans nom",
+    "category": "culture",
+    "categoryGroup": "Culture",
+    "categoryItem": "artwork",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 11019686800,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871704,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:04.717544"
+  },
+  {
+    "id": "osm_11022170232",
+    "name": "Le Radici del nostro mondo",
+    "lat": 43.695359,
+    "lng": 7.2771234,
+    "location": {
+      "_latitude": 43.695359,
+      "_longitude": 7.2771234
+    },
+    "description": "Point d'intérêt: Le Radici del nostro mondo",
+    "category": "culture",
+    "categoryGroup": "Culture",
+    "categoryItem": "artwork",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 11022170232,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871704,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:04.717552"
+  },
+  {
+    "id": "osm_11022207044",
+    "name": "POI sans nom",
+    "lat": 43.6951893,
+    "lng": 7.2746203,
+    "location": {
+      "_latitude": 43.6951893,
+      "_longitude": 7.2746203
+    },
+    "description": "red gorilla",
+    "category": "culture",
+    "categoryGroup": "Culture",
+    "categoryItem": "artwork",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [
+      "https://commons.wikimedia.org/wiki/Special:FilePath/Red_Gorilla_sculpture_by_Richard_Orlinski.jpg"
+    ],
+    "images": [
+      "https://commons.wikimedia.org/wiki/Special:FilePath/Red_Gorilla_sculpture_by_Richard_Orlinski.jpg"
+    ],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 11022207044,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": true,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871704,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:04.717563"
+  },
+  {
+    "id": "osm_11022832228",
+    "name": "POI sans nom",
+    "lat": 43.6971474,
+    "lng": 7.2700665,
+    "location": {
+      "_latitude": 43.6971474,
+      "_longitude": 7.2700665
+    },
+    "description": "Point d'intérêt: POI sans nom",
+    "category": "culture",
+    "categoryGroup": "Culture",
+    "categoryItem": "artwork",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 11022832228,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871704,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:04.717572"
+  },
+  {
+    "id": "osm_11022982781",
+    "name": "Théâtre de la Traverse",
+    "lat": 43.7011618,
+    "lng": 7.2841307,
+    "location": {
+      "_latitude": 43.7011618,
+      "_longitude": 7.2841307
+    },
+    "description": "Point d'intérêt: Théâtre de la Traverse",
+    "category": "culture",
+    "categoryGroup": "Culture",
+    "categoryItem": "theatre",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": "https://theatredelatraverse.com/",
+    "website": "https://theatredelatraverse.com/",
+    "source": "openstreetmap",
+    "osmId": 11022982781,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871704,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:04.717580"
+  },
+  {
+    "id": "osm_11023013487",
+    "name": "POI sans nom",
+    "lat": 43.6652265,
+    "lng": 7.211078,
+    "location": {
+      "_latitude": 43.6652265,
+      "_longitude": 7.211078
+    },
+    "description": "red gorilla",
+    "category": "culture",
+    "categoryGroup": "Culture",
+    "categoryItem": "artwork",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 11023013487,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871704,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:04.717588"
+  },
+  {
+    "id": "osm_11023034576",
+    "name": "Air Shark",
+    "lat": 43.6653732,
+    "lng": 7.2133183,
+    "location": {
+      "_latitude": 43.6653732,
+      "_longitude": 7.2133183
+    },
+    "description": "Point d'intérêt: Air Shark",
+    "category": "culture",
+    "categoryGroup": "Culture",
+    "categoryItem": "artwork",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 11023034576,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871704,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:04.717596"
+  },
+  {
+    "id": "osm_11046151367",
+    "name": "Galerie Chave",
+    "lat": 43.7229733,
+    "lng": 7.1115,
+    "location": {
+      "_latitude": 43.7229733,
+      "_longitude": 7.1115
+    },
+    "description": "Point d'intérêt: Galerie Chave",
+    "category": "culture",
+    "categoryGroup": "Culture",
+    "categoryItem": "gallery",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 11046151367,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871704,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:04.717604"
+  },
+  {
+    "id": "osm_11135885150",
+    "name": "L'hippocampe rouge",
+    "lat": 43.6409988,
+    "lng": 7.1429581,
+    "location": {
+      "_latitude": 43.6409988,
+      "_longitude": 7.1429581
+    },
+    "description": "Point d'intérêt: L'hippocampe rouge",
+    "category": "culture",
+    "categoryGroup": "Culture",
+    "categoryItem": "artwork",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 11135885150,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871704,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:04.717612"
+  },
+  {
+    "id": "osm_11150839561",
+    "name": "Galerie Antic and Modern Great Masters",
+    "lat": 43.695539,
+    "lng": 7.1228914,
+    "location": {
+      "_latitude": 43.695539,
+      "_longitude": 7.1228914
+    },
+    "description": "Point d'intérêt: Galerie Antic and Modern Great Masters",
+    "category": "culture",
+    "categoryGroup": "Culture",
+    "categoryItem": "gallery",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 11150839561,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871704,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:04.717621"
+  },
+  {
+    "id": "osm_11150839563",
+    "name": "Galerie Du Vieux Saint Paul",
+    "lat": 43.6973069,
+    "lng": 7.1214825,
+    "location": {
+      "_latitude": 43.6973069,
+      "_longitude": 7.1214825
+    },
+    "description": "Point d'intérêt: Galerie Du Vieux Saint Paul",
+    "category": "culture",
+    "categoryGroup": "Culture",
+    "categoryItem": "gallery",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 11150839563,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871704,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:04.717633"
+  },
+  {
+    "id": "osm_11150839566",
+    "name": "Galerie Le Capricorne",
+    "lat": 43.6963434,
+    "lng": 7.1221298,
+    "location": {
+      "_latitude": 43.6963434,
+      "_longitude": 7.1221298
+    },
+    "description": "Point d'intérêt: Galerie Le Capricorne",
+    "category": "culture",
+    "categoryGroup": "Culture",
+    "categoryItem": "gallery",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 11150839566,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871704,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:04.717641"
+  },
+  {
+    "id": "osm_11150839568",
+    "name": "Galerie Lefakis 1979",
+    "lat": 43.6973887,
+    "lng": 7.1215022,
+    "location": {
+      "_latitude": 43.6973887,
+      "_longitude": 7.1215022
+    },
+    "description": "Point d'intérêt: Galerie Lefakis 1979",
+    "category": "culture",
+    "categoryGroup": "Culture",
+    "categoryItem": "gallery",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 11150839568,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871704,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:04.717649"
+  },
+  {
+    "id": "osm_11150839570",
+    "name": "POI sans nom",
+    "lat": 43.6971056,
+    "lng": 7.121607,
+    "location": {
+      "_latitude": 43.6971056,
+      "_longitude": 7.121607
+    },
+    "description": "Point d'intérêt: POI sans nom",
+    "category": "culture",
+    "categoryGroup": "Culture",
+    "categoryItem": "gallery",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 11150839570,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871704,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:04.717657"
+  },
+  {
+    "id": "osm_11150839572",
+    "name": "Galerie Otero",
+    "lat": 43.6953303,
+    "lng": 7.1232389,
+    "location": {
+      "_latitude": 43.6953303,
+      "_longitude": 7.1232389
+    },
+    "description": "Point d'intérêt: Galerie Otero",
+    "category": "culture",
+    "categoryGroup": "Culture",
+    "categoryItem": "gallery",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 11150839572,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871704,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:04.717665"
+  },
+  {
+    "id": "osm_11150839574",
+    "name": "Saint Paul Galerie",
+    "lat": 43.697178,
+    "lng": 7.1217062,
+    "location": {
+      "_latitude": 43.697178,
+      "_longitude": 7.1217062
+    },
+    "description": "Point d'intérêt: Saint Paul Galerie",
+    "category": "culture",
+    "categoryGroup": "Culture",
+    "categoryItem": "gallery",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 11150839574,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871704,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:04.717674"
+  },
+  {
+    "id": "osm_11150839575",
+    "name": "The Corner",
+    "lat": 43.6971672,
+    "lng": 7.1217946,
+    "location": {
+      "_latitude": 43.6971672,
+      "_longitude": 7.1217946
+    },
+    "description": "Point d'intérêt: The Corner",
+    "category": "culture",
+    "categoryGroup": "Culture",
+    "categoryItem": "gallery",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 11150839575,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871704,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:04.717682"
+  },
+  {
+    "id": "osm_11150839576",
+    "name": "Galerie Frederic Gollong",
+    "lat": 43.6960138,
+    "lng": 7.1225181,
+    "location": {
+      "_latitude": 43.6960138,
+      "_longitude": 7.1225181
+    },
+    "description": "Point d'intérêt: Galerie Frederic Gollong",
+    "category": "culture",
+    "categoryGroup": "Culture",
+    "categoryItem": "gallery",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 11150839576,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871704,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:04.717690"
+  },
+  {
+    "id": "osm_11150839578",
+    "name": "Galerie Le Capricorne",
+    "lat": 43.6973404,
+    "lng": 7.1216497,
+    "location": {
+      "_latitude": 43.6973404,
+      "_longitude": 7.1216497
+    },
+    "description": "Point d'intérêt: Galerie Le Capricorne",
+    "category": "culture",
+    "categoryGroup": "Culture",
+    "categoryItem": "gallery",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 11150839578,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871704,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:04.717698"
+  },
+  {
+    "id": "osm_11150839582",
+    "name": "Casa d'Amor Design",
+    "lat": 43.6964426,
+    "lng": 7.1220731,
+    "location": {
+      "_latitude": 43.6964426,
+      "_longitude": 7.1220731
+    },
+    "description": "Point d'intérêt: Casa d'Amor Design",
+    "category": "culture",
+    "categoryGroup": "Culture",
+    "categoryItem": "gallery",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 11150839582,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871704,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:04.717706"
+  },
+  {
+    "id": "osm_11150839583",
+    "name": "Gallery Got",
+    "lat": 43.6972734,
+    "lng": 7.1216473,
+    "location": {
+      "_latitude": 43.6972734,
+      "_longitude": 7.1216473
+    },
+    "description": "Point d'intérêt: Gallery Got",
+    "category": "culture",
+    "categoryGroup": "Culture",
+    "categoryItem": "gallery",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 11150839583,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871704,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:04.717714"
+  },
+  {
+    "id": "osm_11150839584",
+    "name": "La Petit Galerie",
+    "lat": 43.6958364,
+    "lng": 7.1224594,
+    "location": {
+      "_latitude": 43.6958364,
+      "_longitude": 7.1224594
+    },
+    "description": "Point d'intérêt: La Petit Galerie",
+    "category": "culture",
+    "categoryGroup": "Culture",
+    "categoryItem": "gallery",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 11150839584,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871704,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:04.717725"
+  },
+  {
+    "id": "osm_11150839585",
+    "name": "Atelier Kleinberg",
+    "lat": 43.6952646,
+    "lng": 7.1231609,
+    "location": {
+      "_latitude": 43.6952646,
+      "_longitude": 7.1231609
+    },
+    "description": "Point d'intérêt: Atelier Kleinberg",
+    "category": "culture",
+    "categoryGroup": "Culture",
+    "categoryItem": "gallery",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 11150839585,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871704,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:04.717736"
+  },
+  {
+    "id": "osm_11536479873",
+    "name": "Dolly Party",
+    "lat": 43.7007464,
+    "lng": 7.2830944,
+    "location": {
+      "_latitude": 43.7007464,
+      "_longitude": 7.2830944
+    },
+    "description": "Point d'intérêt: Dolly Party",
+    "category": "culture",
+    "categoryGroup": "Culture",
+    "categoryItem": "artwork",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 11536479873,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871704,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:04.717744"
+  },
+  {
+    "id": "osm_11687380258",
+    "name": "Galerie Margot Gerrits",
+    "lat": 43.7229969,
+    "lng": 7.1130481,
+    "location": {
+      "_latitude": 43.7229969,
+      "_longitude": 7.1130481
+    },
+    "description": "Peintre Aquarelliste sur la Côte d'Azur.",
+    "category": "culture",
+    "categoryGroup": "Culture",
+    "categoryItem": "gallery",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": "https://margot.gerrits.xyz/en/margot-s-gallery/",
+    "website": "https://margot.gerrits.xyz/en/margot-s-gallery/",
+    "source": "openstreetmap",
+    "osmId": 11687380258,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871704,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:04.717752"
+  },
+  {
+    "id": "osm_11821499621",
+    "name": "POI sans nom",
+    "lat": 43.6687879,
+    "lng": 7.1199883,
+    "location": {
+      "_latitude": 43.6687879,
+      "_longitude": 7.1199883
+    },
+    "description": "Point d'intérêt: POI sans nom",
+    "category": "culture",
+    "categoryGroup": "Culture",
+    "categoryItem": "artwork",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 11821499621,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871704,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:04.717761"
+  },
+  {
+    "id": "osm_11985053438",
+    "name": "POI sans nom",
+    "lat": 43.722614,
+    "lng": 7.1134847,
+    "location": {
+      "_latitude": 43.722614,
+      "_longitude": 7.1134847
+    },
+    "description": "Point d'intérêt: POI sans nom",
+    "category": "culture",
+    "categoryGroup": "Culture",
+    "categoryItem": "artwork",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 11985053438,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871704,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:04.717769"
+  },
+  {
+    "id": "osm_12071701970",
+    "name": "Galerie Sandrine Donadio",
+    "lat": 43.6969491,
+    "lng": 7.1220205,
+    "location": {
+      "_latitude": 43.6969491,
+      "_longitude": 7.1220205
+    },
+    "description": "Point d'intérêt: Galerie Sandrine Donadio",
+    "category": "culture",
+    "categoryGroup": "Culture",
+    "categoryItem": "gallery",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 12071701970,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871704,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:04.717777"
+  },
+  {
+    "id": "osm_12091918933",
+    "name": "Agapè",
+    "lat": 43.6956711,
+    "lng": 7.2798262,
+    "location": {
+      "_latitude": 43.6956711,
+      "_longitude": 7.2798262
+    },
+    "description": "Point d'intérêt: Agapè",
+    "category": "culture",
+    "categoryGroup": "Culture",
+    "categoryItem": "artwork",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 12091918933,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871704,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:04.717785"
+  },
+  {
+    "id": "osm_12096621255",
+    "name": "Musée de la résistance azuréene",
+    "lat": 43.668023,
+    "lng": 7.2133862,
+    "location": {
+      "_latitude": 43.668023,
+      "_longitude": 7.2133862
+    },
+    "description": "Point d'intérêt: Musée de la résistance azuréene",
+    "category": "culture",
+    "categoryGroup": "Culture",
+    "categoryItem": "museum",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 12096621255,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871704,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:04.717794"
+  },
+  {
+    "id": "osm_12161419355",
+    "name": "POI sans nom",
+    "lat": 43.6674303,
+    "lng": 7.1568146,
+    "location": {
+      "_latitude": 43.6674303,
+      "_longitude": 7.1568146
+    },
+    "description": "Point d'intérêt: POI sans nom",
+    "category": "culture",
+    "categoryGroup": "Culture",
+    "categoryItem": "artwork",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 12161419355,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871704,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:04.717802"
+  },
+  {
+    "id": "osm_12401782126",
+    "name": "Théâtre Bellecour",
+    "lat": 43.7064228,
+    "lng": 7.2624253,
+    "location": {
+      "_latitude": 43.7064228,
+      "_longitude": 7.2624253
+    },
+    "description": "Point d'intérêt: Théâtre Bellecour",
+    "category": "culture",
+    "categoryGroup": "Culture",
+    "categoryItem": "theatre",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": "https://www.theatre-bellecour.fr/",
+    "website": "https://www.theatre-bellecour.fr/",
+    "source": "openstreetmap",
+    "osmId": 12401782126,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871704,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:04.717810"
+  },
+  {
+    "id": "osm_12441755827",
+    "name": "Il n’y a plus d’obstacle",
+    "lat": 43.6438502,
+    "lng": 7.1444952,
+    "location": {
+      "_latitude": 43.6438502,
+      "_longitude": 7.1444952
+    },
+    "description": "Point d'intérêt: Il n’y a plus d’obstacle",
+    "category": "culture",
+    "categoryGroup": "Culture",
+    "categoryItem": "artwork",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": "https://sosno.com/toutes-les-oeuvres/il-n-y-a-plus-dobstacle/",
+    "website": "https://sosno.com/toutes-les-oeuvres/il-n-y-a-plus-dobstacle/",
+    "source": "openstreetmap",
+    "osmId": 12441755827,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871704,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:04.717819"
+  },
+  {
+    "id": "osm_12441755828",
+    "name": "Le Guetteur",
+    "lat": 43.6645208,
+    "lng": 7.1278714,
+    "location": {
+      "_latitude": 43.6645208,
+      "_longitude": 7.1278714
+    },
+    "description": "Point d'intérêt: Le Guetteur",
+    "category": "culture",
+    "categoryGroup": "Culture",
+    "categoryItem": "artwork",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": "https://sosno.com/toutes-les-oeuvres/le-guetteur/",
+    "website": "https://sosno.com/toutes-les-oeuvres/le-guetteur/",
+    "source": "openstreetmap",
+    "osmId": 12441755828,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871704,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:04.717832"
+  },
+  {
+    "id": "osm_12558608646",
+    "name": "POI sans nom",
+    "lat": 43.7280983,
+    "lng": 7.3610548,
+    "location": {
+      "_latitude": 43.7280983,
+      "_longitude": 7.3610548
+    },
+    "description": "Point d'intérêt: POI sans nom",
+    "category": "culture",
+    "categoryGroup": "Culture",
+    "categoryItem": "artwork",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 12558608646,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871704,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:04.717841"
+  },
+  {
+    "id": "osm_12685743133",
+    "name": "POI sans nom",
+    "lat": 43.6622186,
+    "lng": 7.1538994,
+    "location": {
+      "_latitude": 43.6622186,
+      "_longitude": 7.1538994
+    },
+    "description": "Point d'intérêt: POI sans nom",
+    "category": "culture",
+    "categoryGroup": "Culture",
+    "categoryItem": "artwork",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 12685743133,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871704,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:04.717852"
+  },
+  {
+    "id": "osm_12716348840",
+    "name": "I Love Nice",
+    "lat": 43.688102,
+    "lng": 7.2958126,
+    "location": {
+      "_latitude": 43.688102,
+      "_longitude": 7.2958126
+    },
+    "description": "Point d'intérêt: I Love Nice",
+    "category": "culture",
+    "categoryGroup": "Culture",
+    "categoryItem": "artwork",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 12716348840,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871704,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:04.717861"
+  },
+  {
+    "id": "osm_12716441241",
+    "name": "POI sans nom",
+    "lat": 43.7043074,
+    "lng": 7.3322171,
+    "location": {
+      "_latitude": 43.7043074,
+      "_longitude": 7.3322171
+    },
+    "description": "Point d'intérêt: POI sans nom",
+    "category": "culture",
+    "categoryGroup": "Culture",
+    "categoryItem": "artwork",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 12716441241,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871704,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:04.717869"
+  },
+  {
+    "id": "osm_12786754834",
+    "name": "Théâtre de l'Alphabet",
+    "lat": 43.7020705,
+    "lng": 7.2745317,
+    "location": {
+      "_latitude": 43.7020705,
+      "_longitude": 7.2745317
+    },
+    "description": "Point d'intérêt: Théâtre de l'Alphabet",
+    "category": "culture",
+    "categoryGroup": "Culture",
+    "categoryItem": "theatre",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": "https://www.theatrenice.fr/",
+    "website": "https://www.theatrenice.fr/",
+    "source": "openstreetmap",
+    "osmId": 12786754834,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871704,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:04.717878"
+  },
+  {
+    "id": "osm_12803824923",
+    "name": "Jeanne d'Arc",
+    "lat": 43.7130837,
+    "lng": 7.2630358,
+    "location": {
+      "_latitude": 43.7130837,
+      "_longitude": 7.2630358
+    },
+    "description": "Point d'intérêt: Jeanne d'Arc",
+    "category": "culture",
+    "categoryGroup": "Culture",
+    "categoryItem": "artwork",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 12803824923,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871704,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:04.717886"
+  },
+  {
+    "id": "osm_12896299892",
+    "name": "Agapè",
+    "lat": 43.6948619,
+    "lng": 7.2769566,
+    "location": {
+      "_latitude": 43.6948619,
+      "_longitude": 7.2769566
+    },
+    "description": "Point d'intérêt: Agapè",
+    "category": "culture",
+    "categoryGroup": "Culture",
+    "categoryItem": "artwork",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 12896299892,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871704,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:04.717894"
+  },
+  {
+    "id": "osm_12923381180",
+    "name": "Le 109",
+    "lat": 43.7173594,
+    "lng": 7.2841095,
+    "location": {
+      "_latitude": 43.7173594,
+      "_longitude": 7.2841095
+    },
+    "description": "Point d'intérêt: Le 109",
+    "category": "culture",
+    "categoryGroup": "Culture",
+    "categoryItem": "museum",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": "https://le109.nice.fr/",
+    "website": "https://le109.nice.fr/",
+    "source": "openstreetmap",
+    "osmId": 12923381180,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871704,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:04.717903"
+  },
+  {
+    "id": "osm_12942517760",
+    "name": "Landed Here To Sea You, With All Our Very Breasts",
+    "lat": 43.6975351,
+    "lng": 7.2724897,
+    "location": {
+      "_latitude": 43.6975351,
+      "_longitude": 7.2724897
+    },
+    "description": "Point d'intérêt: Landed Here To Sea You, With All Our Very Breasts",
+    "category": "culture",
+    "categoryGroup": "Culture",
+    "categoryItem": "artwork",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 12942517760,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871704,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:04.717911"
+  },
+  {
+    "id": "osm_12993850335",
+    "name": "Charles Aznavour",
+    "lat": 43.6960265,
+    "lng": 7.2664905,
+    "location": {
+      "_latitude": 43.6960265,
+      "_longitude": 7.2664905
+    },
+    "description": "Point d'intérêt: Charles Aznavour",
+    "category": "culture",
+    "categoryGroup": "Culture",
+    "categoryItem": "artwork",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 12993850335,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871704,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:04.717919"
+  },
+  {
+    "id": "osm_12995517364",
+    "name": "Fier d’estre Nissart",
+    "lat": 43.7071626,
+    "lng": 7.2682318,
+    "location": {
+      "_latitude": 43.7071626,
+      "_longitude": 7.2682318
+    },
+    "description": "Point d'intérêt: Fier d’estre Nissart",
+    "category": "culture",
+    "categoryGroup": "Culture",
+    "categoryItem": "artwork",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 12995517364,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871704,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:04.717931"
+  },
+  {
+    "id": "osm_13180411555",
+    "name": "Mala Gallery",
+    "lat": 43.6985626,
+    "lng": 7.2820179,
+    "location": {
+      "_latitude": 43.6985626,
+      "_longitude": 7.2820179
+    },
+    "description": "Point d'intérêt: Mala Gallery",
+    "category": "culture",
+    "categoryGroup": "Culture",
+    "categoryItem": "gallery",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 13180411555,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871704,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:04.717940"
+  },
+  {
+    "id": "osm_13180426680",
+    "name": "Philippe ES",
+    "lat": 43.6999024,
+    "lng": 7.2809977,
+    "location": {
+      "_latitude": 43.6999024,
+      "_longitude": 7.2809977
+    },
+    "description": "Point d'intérêt: Philippe ES",
+    "category": "culture",
+    "categoryGroup": "Culture",
+    "categoryItem": "gallery",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 13180426680,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871704,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:04.717948"
+  },
+  {
+    "id": "osm_13196501200",
+    "name": "La Galerie Bleue",
+    "lat": 43.7234983,
+    "lng": 7.112606,
+    "location": {
+      "_latitude": 43.7234983,
+      "_longitude": 7.112606
+    },
+    "description": "Point d'intérêt: La Galerie Bleue",
+    "category": "culture",
+    "categoryGroup": "Culture",
+    "categoryItem": "gallery",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 13196501200,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871704,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:04.717960"
+  },
+  {
+    "id": "osm_13200935339",
+    "name": "Bouff'scene",
+    "lat": 43.7060408,
+    "lng": 7.2828069,
+    "location": {
+      "_latitude": 43.7060408,
+      "_longitude": 7.2828069
+    },
+    "description": "Point d'intérêt: Bouff'scene",
+    "category": "culture",
+    "categoryGroup": "Culture",
+    "categoryItem": "theatre",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 13200935339,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871704,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:04.717968"
+  },
+  {
+    "id": "osm_13202705707",
+    "name": "Buste de François Grosso",
+    "lat": 43.6943494,
+    "lng": 7.2521316,
+    "location": {
+      "_latitude": 43.6943494,
+      "_longitude": 7.2521316
+    },
+    "description": "Point d'intérêt: Buste de François Grosso",
+    "category": "culture",
+    "categoryGroup": "Culture",
+    "categoryItem": "artwork",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 13202705707,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871704,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:04.717976"
+  },
+  {
+    "id": "osm_13236417488",
+    "name": "POI sans nom",
+    "lat": 43.6481136,
+    "lng": 7.1367583,
+    "location": {
+      "_latitude": 43.6481136,
+      "_longitude": 7.1367583
+    },
+    "description": "Point d'intérêt: POI sans nom",
+    "category": "culture",
+    "categoryGroup": "Culture",
+    "categoryItem": "artwork",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 13236417488,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871704,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:04.717985"
+  },
+  {
+    "id": "osm_13246377161",
+    "name": "Chat Moloch",
+    "lat": 43.702495,
+    "lng": 7.2789362,
+    "location": {
+      "_latitude": 43.702495,
+      "_longitude": 7.2789362
+    },
+    "description": "Point d'intérêt: Chat Moloch",
+    "category": "culture",
+    "categoryGroup": "Culture",
+    "categoryItem": "artwork",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 13246377161,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871704,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:04.717993"
+  },
+  {
+    "id": "osm_13246377162",
+    "name": "Minerve",
+    "lat": 43.7027104,
+    "lng": 7.2793285,
+    "location": {
+      "_latitude": 43.7027104,
+      "_longitude": 7.2793285
+    },
+    "description": "Point d'intérêt: Minerve",
+    "category": "culture",
+    "categoryGroup": "Culture",
+    "categoryItem": "artwork",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 13246377162,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871704,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:04.718001"
+  },
+  {
+    "id": "osm_13246377163",
+    "name": "Vestale",
+    "lat": 43.7026742,
+    "lng": 7.2794426,
+    "location": {
+      "_latitude": 43.7026742,
+      "_longitude": 7.2794426
+    },
+    "description": "Point d'intérêt: Vestale",
+    "category": "culture",
+    "categoryGroup": "Culture",
+    "categoryItem": "artwork",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 13246377163,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871704,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:04.718010"
+  },
+  {
+    "id": "osm_13246377164",
+    "name": "L'Homme de Pierre",
+    "lat": 43.7046251,
+    "lng": 7.2803565,
+    "location": {
+      "_latitude": 43.7046251,
+      "_longitude": 7.2803565
+    },
+    "description": "Point d'intérêt: L'Homme de Pierre",
+    "category": "culture",
+    "categoryGroup": "Culture",
+    "categoryItem": "artwork",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 13246377164,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871704,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:04.718018"
+  },
+  {
+    "id": "osm_13246377165",
+    "name": "Music Power",
+    "lat": 43.7031288,
+    "lng": 7.2798088,
+    "location": {
+      "_latitude": 43.7031288,
+      "_longitude": 7.2798088
+    },
+    "description": "Point d'intérêt: Music Power",
+    "category": "culture",
+    "categoryGroup": "Culture",
+    "categoryItem": "artwork",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 13246377165,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871704,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:04.718027"
+  },
+  {
+    "id": "osm_13246377166",
+    "name": "Lignes indéterminées",
+    "lat": 43.7024619,
+    "lng": 7.2795721,
+    "location": {
+      "_latitude": 43.7024619,
+      "_longitude": 7.2795721
+    },
+    "description": "Point d'intérêt: Lignes indéterminées",
+    "category": "culture",
+    "categoryGroup": "Culture",
+    "categoryItem": "artwork",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 13246377166,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871704,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:04.718035"
+  },
+  {
+    "id": "osm_13302168102",
+    "name": "Théâtre L'Impertinent",
+    "lat": 43.7012269,
+    "lng": 7.2749376,
+    "location": {
+      "_latitude": 43.7012269,
+      "_longitude": 7.2749376
+    },
+    "description": "Point d'intérêt: Théâtre L'Impertinent",
+    "category": "culture",
+    "categoryGroup": "Culture",
+    "categoryItem": "theatre",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": "https://www.theatrelimpertinent.com/",
+    "website": "https://www.theatrelimpertinent.com/",
+    "source": "openstreetmap",
+    "osmId": 13302168102,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871704,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:04.718044"
+  },
+  {
+    "id": "osm_13375673081",
+    "name": "Théâtre de la Libé",
+    "lat": 43.707344,
+    "lng": 7.2632729,
+    "location": {
+      "_latitude": 43.707344,
+      "_longitude": 7.2632729
+    },
+    "description": "Point d'intérêt: Théâtre de la Libé",
+    "category": "culture",
+    "categoryGroup": "Culture",
+    "categoryItem": "theatre",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": "https://www.theatredelalibe.fr",
+    "website": "https://www.theatredelalibe.fr",
+    "source": "openstreetmap",
+    "osmId": 13375673081,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871704,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:04.718052"
+  },
+  {
+    "id": "osm_13538556250",
+    "name": "Poseïdon",
+    "lat": 43.6805155,
+    "lng": 7.2301512,
+    "location": {
+      "_latitude": 43.6805155,
+      "_longitude": 7.2301512
+    },
+    "description": "Point d'intérêt: Poseïdon",
+    "category": "culture",
+    "categoryGroup": "Culture",
+    "categoryItem": "artwork",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 13538556250,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871704,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:04.718064"
+  },
+  {
+    "id": "osm_13538556269",
+    "name": "Hommage à Venus",
+    "lat": 43.6798385,
+    "lng": 7.229708,
+    "location": {
+      "_latitude": 43.6798385,
+      "_longitude": 7.229708
+    },
+    "description": "Point d'intérêt: Hommage à Venus",
+    "category": "culture",
+    "categoryGroup": "Culture",
+    "categoryItem": "artwork",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 13538556269,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871704,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:04.718072"
+  }
+]

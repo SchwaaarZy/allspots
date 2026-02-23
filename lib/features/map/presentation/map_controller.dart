@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'package:collection/collection.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -14,6 +15,7 @@ import '../data/poi_repository.dart';
 import '../domain/poi.dart';
 import '../domain/poi_category.dart';
 import '../domain/poi_filters.dart';
+import '../domain/map_style.dart';
 
 class MapState {
   final Position? userPosition;
@@ -27,6 +29,7 @@ class MapState {
   final double radiusMeters;
   final bool isSatellite;
   final bool buildingsEnabled;
+  final MapStyle mapStyle;
 
   const MapState({
     required this.userPosition,
@@ -38,6 +41,7 @@ class MapState {
     required this.radiusMeters,
     required this.isSatellite,
     required this.buildingsEnabled,
+    required this.mapStyle,
   });
 
   factory MapState.initial() => MapState(
@@ -50,6 +54,7 @@ class MapState {
       radiusMeters: 5000, // 5 km par défaut
         isSatellite: false,
         buildingsEnabled: true,
+        mapStyle: MapStyle.openStreetMapFrance,
       );
 
   MapState copyWith({
@@ -62,6 +67,7 @@ class MapState {
     double? radiusMeters,
     bool? isSatellite,
     bool? buildingsEnabled,
+    MapStyle? mapStyle,
   }) {
     return MapState(
       userPosition: userPosition ?? this.userPosition,
@@ -73,6 +79,7 @@ class MapState {
       radiusMeters: radiusMeters ?? this.radiusMeters,
       isSatellite: isSatellite ?? this.isSatellite,
       buildingsEnabled: buildingsEnabled ?? this.buildingsEnabled,
+      mapStyle: mapStyle ?? this.mapStyle,
     );
   }
 }
@@ -118,6 +125,10 @@ class MapController extends StateNotifier<MapState> {
   
   // Accumule TOUS les POIs jamais fetches (ne remplace pas, fusionne)
   final Map<String, Poi> _allPoisBySameSession = {};
+
+  DateTime? _lastPrefetchTime;
+  static const Duration _minPrefetchInterval = Duration(seconds: 30);
+  static const double _prefetchRadiusMeters = 20000;
 
   Future<void> init() async {
     state = state.copyWith(isLoading: true, error: null);
@@ -209,9 +220,34 @@ class MapController extends StateNotifier<MapState> {
         displayedPois: displayedPois,
         isLoading: false,
       );
+
+      _prefetchAroundMe(userLat: userLat, userLng: userLng);
     } catch (e) {
       state = state.copyWith(error: e.toString(), isLoading: false);
     }
+  }
+
+  void _prefetchAroundMe({
+    required double userLat,
+    required double userLng,
+  }) {
+    final now = DateTime.now();
+    if (_lastPrefetchTime != null &&
+        now.difference(_lastPrefetchTime!) < _minPrefetchInterval) {
+      return;
+    }
+    _lastPrefetchTime = now;
+
+    if (state.radiusMeters >= _prefetchRadiusMeters) return;
+
+    unawaited(
+      _repo.getNearbyPois(
+        userLat: userLat,
+        userLng: userLng,
+        radiusMeters: _prefetchRadiusMeters,
+        filters: state.filters,
+      ),
+    );
   }
 
   Future<void> setRadiusMeters(double value) async {
@@ -252,6 +288,10 @@ class MapController extends StateNotifier<MapState> {
 
   void toggleBuildings() {
     state = state.copyWith(buildingsEnabled: !state.buildingsEnabled);
+  }
+
+  void setMapStyle(MapStyle style) {
+    state = state.copyWith(mapStyle: style);
   }
 
   Future<Position> _determinePosition() async {

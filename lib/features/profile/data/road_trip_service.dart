@@ -49,7 +49,7 @@ class RoadTripItem {
     return RoadTripItem(
       id: poi.id,
       source: poi.source,
-      name: poi.name,
+      name: poi.displayName,
       lat: poi.lat,
       lng: poi.lng,
       category: poi.category.name,

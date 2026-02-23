@@ -7,7 +7,7 @@ class AppTheme {
     const primaryBlue = Color(0xFF3B82F6);
     const accentGreen = Color(0xFF10B981);
     const glassTopBlue = Color(0xFF38BDF8);
-    const appRadius = 16.0;
+    const appRadius = 24.0;
     final roundedShape = RoundedRectangleBorder(
       borderRadius: BorderRadius.circular(appRadius),
     );
@@ -52,6 +52,15 @@ class AppTheme {
       dialogTheme: DialogThemeData(shape: roundedShape),
       bottomSheetTheme: BottomSheetThemeData(shape: roundedShape),
       snackBarTheme: SnackBarThemeData(shape: roundedShape),
+      menuTheme: MenuThemeData(style: MenuStyle(shape: WidgetStateProperty.all(roundedShape))),
+      popupMenuTheme: PopupMenuThemeData(shape: roundedShape),
+      chipTheme: ChipThemeData(shape: roundedShape),
+      tooltipTheme: TooltipThemeData(
+        decoration: BoxDecoration(
+          color: Colors.black87,
+          borderRadius: BorderRadius.circular(appRadius),
+        ),
+      ),
       inputDecorationTheme: InputDecorationTheme(
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(appRadius),

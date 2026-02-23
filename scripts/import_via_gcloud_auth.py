@@ -78,7 +78,11 @@ def import_pois(json_path: Path) -> None:
 
 
 if __name__ == "__main__":
-    json_path = Path("scripts/out/pois_all_categories_20260223_093423.json")
+    # Utilise le fichier fourni en argument, sinon un fichier par défaut
+    if len(sys.argv) > 1:
+        json_path = Path(sys.argv[1])
+    else:
+        json_path = Path("scripts/out/pois_all_categories_20260223_093423.json")
     
     try:
         import_pois(json_path)

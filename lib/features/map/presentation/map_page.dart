@@ -8,6 +8,7 @@ import 'package:latlong2/latlong.dart';
 import 'package:geolocator/geolocator.dart';
 import '../../../core/utils/responsive_utils.dart';
 import '../../../core/widgets/radius_selector.dart';
+import '../../../core/widgets/map_style_selector.dart';
 import '../../auth/data/auth_providers.dart';
 import '../../../core/widgets/app_header.dart';
 import '../../../core/widgets/optimized_image.dart';
@@ -215,7 +216,7 @@ class _MapViewState extends ConsumerState<MapView> {
         if (result.awarded) {
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
-              content: Text('✅ +10 XP auto : ${poi.name}'),
+              content: Text('✅ +10 XP auto : ${poi.displayName}'),
               duration: const Duration(seconds: 2),
             ),
           );
@@ -312,9 +313,10 @@ class _MapViewState extends ConsumerState<MapView> {
               ),
               children: [
                 flutter_map.TileLayer(
-                  urlTemplate: 'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
+                  urlTemplate: ref.watch(mapControllerProvider).mapStyle.urlTemplate,
                   userAgentPackageName: 'com.allspots',
-                  subdomains: const ['a', 'b', 'c'],
+                  subdomains: ref.watch(mapControllerProvider).mapStyle.subdomains,
+                  maxZoom: ref.watch(mapControllerProvider).mapStyle.maxZoom.toDouble(),
                 ),
                 flutter_map.MarkerLayer(
                   markers: visiblePois.map((p) {
@@ -397,6 +399,28 @@ class _MapViewState extends ConsumerState<MapView> {
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   const _MapUsersCountBadge(),
+                  const SizedBox(height: 8),
+                  Material(
+                    color: Colors.white,
+                    elevation: 3,
+                    borderRadius: BorderRadius.circular(12),
+                    clipBehavior: Clip.antiAlias,
+                    child: IconButton(
+                      onPressed: () => _showMapStyleSelector(context),
+                      tooltip: 'Style de carte',
+                      splashRadius: 22,
+                      constraints: const BoxConstraints.tightFor(
+                        width: 44,
+                        height: 44,
+                      ),
+                      padding: EdgeInsets.zero,
+                      icon: const Icon(
+                        Icons.layers,
+                        size: 22,
+                        color: Colors.blue,
+                      ),
+                    ),
+                  ),
                   const SizedBox(height: 8),
                   Material(
                     color: Colors.white,
@@ -536,6 +560,27 @@ class _MapViewState extends ConsumerState<MapView> {
     );
   }
 
+  void _showMapStyleSelector(BuildContext context) {
+    final currentStyle = ref.read(mapControllerProvider).mapStyle;
+    
+    showModalBottomSheet(
+      context: context,
+      showDragHandle: true,
+      isScrollControlled: true,
+      builder: (sheetContext) {
+        return Padding(
+          padding: const EdgeInsets.only(bottom: 16),
+          child: MapStyleSelector(
+            currentStyle: currentStyle,
+            onStyleChanged: (style) {
+              ref.read(mapControllerProvider.notifier).setMapStyle(style);
+            },
+          ),
+        );
+      },
+    );
+  }
+
   void _showPoiPopup(BuildContext context, Poi poi, LatLng position) {
     final subCategoryLabel = formatPoiSubCategory(poi.subCategory);
     final rating = poi.googleRating;
@@ -593,7 +638,7 @@ class _MapViewState extends ConsumerState<MapView> {
                               children: [
                                 Expanded(
                                   child: Text(
-                                    poi.name,
+                                    poi.displayName,
                                     style: const TextStyle(
                                       fontSize: 16,
                                       fontWeight: FontWeight.bold,
@@ -648,7 +693,10 @@ class _MapViewState extends ConsumerState<MapView> {
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
                                     Icon(
-                                      poi.category.icon,
+                                      iconForSubCategory(
+                                        poi.subCategory,
+                                        poi.category,
+                                      ),
                                       size: 16,
                                       color: poi.category.color,
                                     ),

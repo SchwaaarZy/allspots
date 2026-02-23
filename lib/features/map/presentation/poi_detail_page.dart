@@ -154,14 +154,14 @@ class _PoiDetailPageState extends ConsumerState<PoiDetailPage> {
     await showNavigationAppPicker(
       context: context,
       destination: dest,
-      destinationName: widget.poi.name,
+      destinationName: widget.poi.displayName,
       onAllSpotsNavigation: () async {
         if (!mounted) return;
         // Navigation simplicité: afficher un snackbar au lieu d'une page complète
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             content: Text(
-              'Navigation vers ${widget.poi.name}\nLat: ${dest.latitude.toStringAsFixed(4)}\nLng: ${dest.longitude.toStringAsFixed(4)}',
+              'Navigation vers ${widget.poi.displayName}\nLat: ${dest.latitude.toStringAsFixed(4)}\nLng: ${dest.longitude.toStringAsFixed(4)}',
             ),
             duration: const Duration(seconds: 3),
           ),
@@ -250,7 +250,7 @@ class _PoiDetailPageState extends ConsumerState<PoiDetailPage> {
             .collection('favoritePois')
             .doc(widget.poi.id)
             .set({
-          'name': widget.poi.name,
+          'name': widget.poi.displayName,
           'imageUrls': widget.poi.imageUrls,
           'googleRating': widget.poi.googleRating,
           'googleRatingCount': widget.poi.googleRatingCount,
@@ -344,7 +344,10 @@ class _PoiDetailPageState extends ConsumerState<PoiDetailPage> {
                         mainAxisSize: MainAxisSize.min,
                         children: [
                           Icon(
-                            widget.poi.category.icon,
+                            iconForSubCategory(
+                              widget.poi.subCategory,
+                              widget.poi.category,
+                            ),
                             size: 14,
                             color: Colors.white,
                           ),
@@ -374,7 +377,7 @@ class _PoiDetailPageState extends ConsumerState<PoiDetailPage> {
                 ),
                 const SizedBox(height: 12),
                 Text(
-                  widget.poi.name,
+                  widget.poi.displayName,
                   style: const TextStyle(
                     fontSize: 22,
                     fontWeight: FontWeight.bold,

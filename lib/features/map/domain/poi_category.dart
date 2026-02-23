@@ -193,3 +193,56 @@ String formatPoiSubCategory(String? value) {
       .map((w) => w[0].toUpperCase() + w.substring(1))
       .join(' ');
 }
+
+IconData iconForSubCategory(String? value, PoiCategory fallbackCategory) {
+  if (value == null || value.trim().isEmpty) return fallbackCategory.icon;
+  final normalized = value.trim().toLowerCase();
+
+  const iconMap = {
+    // Attractions
+    'art_gallery': Icons.brush,
+    'park': Icons.park,
+    'tourist_attraction': Icons.attractions,
+    'attraction': Icons.attractions,
+    'museum': Icons.museum,
+    'gallery': Icons.image,
+    'monument': Icons.account_balance,
+    'memorial': Icons.flag,
+
+    // Restauration
+    'cafe': Icons.local_cafe,
+    'restaurant': Icons.restaurant,
+    'bar': Icons.local_bar,
+    'pub': Icons.local_bar,
+    'fast_food': Icons.fastfood,
+    'bistro': Icons.restaurant,
+    'bakery': Icons.local_dining,
+
+    // Nature
+    'natural_feature': Icons.landscape,
+    'scenic_viewpoint': Icons.remove_red_eye,
+    'viewpoint': Icons.remove_red_eye,
+    'hiking_area': Icons.hiking,
+    'forest': Icons.park,
+    'mountain': Icons.terrain,
+    'waterfall': Icons.water,
+    'water': Icons.water,
+    'lake': Icons.water,
+    'river': Icons.water,
+    'beach': Icons.beach_access,
+    'valley': Icons.landscape,
+
+    // Activites
+    'sports_complex': Icons.sports,
+    'stadium': Icons.sports_soccer,
+    'gym': Icons.fitness_center,
+    'sports': Icons.sports,
+    'tennis': Icons.sports_tennis,
+    'swimming_pool': Icons.pool,
+    'ski': Icons.sports,
+    'climbing': Icons.terrain,
+    'golf': Icons.golf_course,
+  };
+
+  return iconMap[normalized] ?? fallbackCategory.icon;
+}

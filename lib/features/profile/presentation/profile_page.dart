@@ -1115,27 +1115,27 @@ class _FavoritesTabState extends ConsumerState<_FavoritesTab> {
         }
 
         final allSpots = snapshot.data!.docs;
-        if (allSpots.isEmpty) {
-          final bottomInset = MediaQuery.paddingOf(context).bottom;
-          return SafeArea(
-            top: false,
-            minimum: EdgeInsets.only(bottom: bottomInset > 0 ? 4 : 8),
-            child: Center(
-              child: Padding(
-                padding: const EdgeInsets.all(16),
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    const Icon(Icons.favorite, size: 48, color: Colors.red),
-                    const SizedBox(height: 12),
-                    const Text('Aucun favori pour le moment',
-                        textAlign: TextAlign.center),
-                  ],
-                ),
-              ),
-            ),
-          );
-        }
+                if (allSpots.isEmpty) {
+                  final bottomInset = MediaQuery.paddingOf(context).bottom;
+                  return SafeArea(
+                    top: false,
+                    minimum: EdgeInsets.only(bottom: bottomInset > 0 ? 4 : 8),
+                    child: Center(
+                      child: Padding(
+                        padding: const EdgeInsets.all(16),
+                        child: Column(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            const Icon(Icons.favorite, size: 48, color: Colors.red),
+                            const SizedBox(height: 12),
+                            const Text('Aucun favori pour le moment',
+                                textAlign: TextAlign.center),
+                          ],
+                        ),
+                      ),
+                    ),
+                  );
+                }
 
         final totalPages = (allSpots.length / _itemsPerPage).ceil();
         final startIndex = _currentPage * _itemsPerPage;
@@ -1717,11 +1717,14 @@ class _RoadTripTabState extends ConsumerState<_RoadTripTab> {
                     final item = items[index];
                     final category = poiCategoryFromString(item.category);
                     final subLabel = formatPoiSubCategory(item.subCategory);
+                    final title = item.name.trim().isEmpty
+                        ? (subLabel.isNotEmpty ? subLabel : category.label)
+                        : item.name;
                     return ListTile(
                       key: ValueKey('${item.source}_${item.id}'),
                       leading: Icon(category.icon, color: category.color),
                       title: Text(
-                        item.name,
+                        title,
                         style: const TextStyle(fontWeight: FontWeight.w600),
                       ),
                       subtitle: Text(
@@ -1996,7 +1999,7 @@ class _PoiTile extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        poi.name,
+                        poi.displayName,
                         style: const TextStyle(
                           fontWeight: FontWeight.bold,
                           fontSize: 14,

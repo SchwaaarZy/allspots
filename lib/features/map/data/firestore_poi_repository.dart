@@ -22,8 +22,8 @@ class FirestorePoiRepository implements PoiRepository {
   static const int _pageSize = 300;
   // OPTIMISÉ: Réduit de 3000 à 500 par zone → fetch 10x moins de docs
   static const int _maxDocsPerZone = 500;
-  // OPTIMISÉ: Réduit de 2000 à 400 → requête plus rapide
-  static const int _maxPriorityLocalDocs = 400;
+  // OPTIMISÉ: Réduit de 2000 à 250 → requête plus rapide
+  static const int _maxPriorityLocalDocs = 250;
   static const double _priorityLocalRadiusMeters = 150000; // 150 km
 
   static const List<_GeoZone> _zones = [
@@ -74,11 +74,13 @@ class FirestorePoiRepository implements PoiRepository {
         }
       }
 
-      for (final zone in candidateZones) {
-        final zoneDocs = await _fetchZoneDocuments(zone);
-        for (final doc in zoneDocs) {
-          if (seenIds.add(doc.id)) {
-            docs.add(doc);
+      if (radiusMeters > 30000) {
+        for (final zone in candidateZones) {
+          final zoneDocs = await _fetchZoneDocuments(zone);
+          for (final doc in zoneDocs) {
+            if (seenIds.add(doc.id)) {
+              docs.add(doc);
+            }
           }
         }
       }

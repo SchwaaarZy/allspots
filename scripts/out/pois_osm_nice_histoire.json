@@ -1,0 +1,6810 @@
+[
+  {
+    "id": "osm_204105723",
+    "name": "Monument aux morts de Rauba-Capèu",
+    "lat": 43.6937162,
+    "lng": 7.281109,
+    "location": {
+      "_latitude": 43.6937162,
+      "_longitude": 7.281109
+    },
+    "description": "Point d'intérêt: Monument aux morts de Rauba-Capèu",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [
+      "https://www.wikidata.org/wiki/Q3323294"
+    ],
+    "images": [
+      "https://www.wikidata.org/wiki/Q3323294"
+    ],
+    "websiteUrl": "https://monumentsmorts.univ-lille3.fr/monument/4125/nice-autre/?elm=1",
+    "website": "https://monumentsmorts.univ-lille3.fr/monument/4125/nice-autre/?elm=1",
+    "source": "openstreetmap",
+    "osmId": 204105723,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": true,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871732,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:32.101027"
+  },
+  {
+    "id": "osm_324241372",
+    "name": "Cascade de Gairaut",
+    "lat": 43.7378451,
+    "lng": 7.2596808,
+    "location": {
+      "_latitude": 43.7378451,
+      "_longitude": 7.2596808
+    },
+    "description": "Cascade de Gairaut, ouvrage terminal du canal de la Vésubie",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "attraction",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [
+      "https://www.wikidata.org/wiki/Q2940840"
+    ],
+    "images": [
+      "https://www.wikidata.org/wiki/Q2940840"
+    ],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 324241372,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871732,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:32.101057"
+  },
+  {
+    "id": "osm_385682055",
+    "name": "Tombe de Henri Matisse",
+    "lat": 43.7207565,
+    "lng": 7.2792438,
+    "location": {
+      "_latitude": 43.7207565,
+      "_longitude": 7.2792438
+    },
+    "description": "Point d'intérêt: Tombe de Henri Matisse",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 385682055,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871732,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:32.101066"
+  },
+  {
+    "id": "osm_532099029",
+    "name": "POI sans nom",
+    "lat": 43.6687997,
+    "lng": 7.1448193,
+    "location": {
+      "_latitude": 43.6687997,
+      "_longitude": 7.1448193
+    },
+    "description": "Monuments aux morts",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [
+      "https://www.wikidata.org/wiki/Q136048962"
+    ],
+    "images": [
+      "https://www.wikidata.org/wiki/Q136048962"
+    ],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 532099029,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871732,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:32.101076"
+  },
+  {
+    "id": "osm_578013586",
+    "name": "Cascade",
+    "lat": 43.6959074,
+    "lng": 7.2795592,
+    "location": {
+      "_latitude": 43.6959074,
+      "_longitude": 7.2795592
+    },
+    "description": "Point d'intérêt: Cascade",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "attraction",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [
+      "https://www.wikidata.org/wiki/Q135491345"
+    ],
+    "images": [
+      "https://www.wikidata.org/wiki/Q135491345"
+    ],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 578013586,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": true,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871732,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:32.101087"
+  },
+  {
+    "id": "osm_937862316",
+    "name": "Menica Rondelly",
+    "lat": 43.6981681,
+    "lng": 7.2793307,
+    "location": {
+      "_latitude": 43.6981681,
+      "_longitude": 7.2793307
+    },
+    "description": "Point d'intérêt: Menica Rondelly",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [
+      "https://commons.wikimedia.org/wiki/Special:FilePath/Menica_Rondelly_monument.jpg"
+    ],
+    "images": [
+      "https://commons.wikimedia.org/wiki/Special:FilePath/Menica_Rondelly_monument.jpg"
+    ],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 937862316,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871732,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:32.101100"
+  },
+  {
+    "id": "osm_1211221417",
+    "name": "Maison commune",
+    "lat": 43.6667256,
+    "lng": 7.144993,
+    "location": {
+      "_latitude": 43.6667256,
+      "_longitude": 7.144993
+    },
+    "description": "Point d'intérêt: Maison commune",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "attraction",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 1211221417,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871732,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:32.101108"
+  },
+  {
+    "id": "osm_1277588346",
+    "name": "Monument aux victimes civiles des bombardements",
+    "lat": 43.6759065,
+    "lng": 7.1900923,
+    "location": {
+      "_latitude": 43.6759065,
+      "_longitude": 7.1900923
+    },
+    "description": "Point d'intérêt: Monument aux victimes civiles des bombardements",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 1277588346,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871732,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:32.101115"
+  },
+  {
+    "id": "osm_1436108996",
+    "name": "POI sans nom",
+    "lat": 43.6880805,
+    "lng": 7.334947,
+    "location": {
+      "_latitude": 43.6880805,
+      "_longitude": 7.334947
+    },
+    "description": "Point d'intérêt: POI sans nom",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [
+      "https://www.wikidata.org/wiki/Q136074757"
+    ],
+    "images": [
+      "https://www.wikidata.org/wiki/Q136074757"
+    ],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 1436108996,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871732,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:32.101124"
+  },
+  {
+    "id": "osm_1631291404",
+    "name": "Monument à Garibaldi",
+    "lat": 43.7007707,
+    "lng": 7.2800791,
+    "location": {
+      "_latitude": 43.7007707,
+      "_longitude": 7.2800791
+    },
+    "description": "Point d'intérêt: Monument à Garibaldi",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "artwork",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [
+      "https://www.wikidata.org/wiki/Q3323412"
+    ],
+    "images": [
+      "https://www.wikidata.org/wiki/Q3323412"
+    ],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 1631291404,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871732,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:32.101134"
+  },
+  {
+    "id": "osm_1712487435",
+    "name": "POI sans nom",
+    "lat": 43.7021517,
+    "lng": 7.3082574,
+    "location": {
+      "_latitude": 43.7021517,
+      "_longitude": 7.3082574
+    },
+    "description": "Point d'intérêt: POI sans nom",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [
+      "https://www.wikidata.org/wiki/Q136082192"
+    ],
+    "images": [
+      "https://www.wikidata.org/wiki/Q136082192"
+    ],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 1712487435,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871732,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:32.101143"
+  },
+  {
+    "id": "osm_2153425066",
+    "name": "POI sans nom",
+    "lat": 43.6784994,
+    "lng": 7.2294282,
+    "location": {
+      "_latitude": 43.6784994,
+      "_longitude": 7.2294282
+    },
+    "description": "Point d'intérêt: POI sans nom",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 2153425066,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871732,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:32.101156"
+  },
+  {
+    "id": "osm_2156973113",
+    "name": "Caucade",
+    "lat": 43.6774299,
+    "lng": 7.2170091,
+    "location": {
+      "_latitude": 43.6774299,
+      "_longitude": 7.2170091
+    },
+    "description": "Point d'intérêt: Caucade",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 2156973113,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871732,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:32.101163"
+  },
+  {
+    "id": "osm_2198100727",
+    "name": "Plaque commémorative Roger SIMON",
+    "lat": 43.6797383,
+    "lng": 7.2296005,
+    "location": {
+      "_latitude": 43.6797383,
+      "_longitude": 7.2296005
+    },
+    "description": "Point d'intérêt: Plaque commémorative Roger SIMON",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 2198100727,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871732,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:32.101171"
+  },
+  {
+    "id": "osm_2331729652",
+    "name": "croix",
+    "lat": 43.7168446,
+    "lng": 7.2942567,
+    "location": {
+      "_latitude": 43.7168446,
+      "_longitude": 7.2942567
+    },
+    "description": "Point d'intérêt: croix",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 2331729652,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871732,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:32.101177"
+  },
+  {
+    "id": "osm_2627598532",
+    "name": "Monument commémoratif des Résistants du 14e canton",
+    "lat": 43.6697063,
+    "lng": 7.2197119,
+    "location": {
+      "_latitude": 43.6697063,
+      "_longitude": 7.2197119
+    },
+    "description": "Point d'intérêt: Monument commémoratif des Résistants du 14e canton",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 2627598532,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871732,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:32.101185"
+  },
+  {
+    "id": "osm_2769480916",
+    "name": "POI sans nom",
+    "lat": 43.7333992,
+    "lng": 7.3892653,
+    "location": {
+      "_latitude": 43.7333992,
+      "_longitude": 7.3892653
+    },
+    "description": "Point d'intérêt: POI sans nom",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 2769480916,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871732,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:32.101192"
+  },
+  {
+    "id": "osm_3056335270",
+    "name": "Fontaine de Saint-Paul-de-Vence",
+    "lat": 43.6965502,
+    "lng": 7.122058,
+    "location": {
+      "_latitude": 43.6965502,
+      "_longitude": 7.122058
+    },
+    "description": "Point d'intérêt: Fontaine de Saint-Paul-de-Vence",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "fountain",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [
+      "https://www.wikidata.org/wiki/Q13516848"
+    ],
+    "images": [
+      "https://www.wikidata.org/wiki/Q13516848"
+    ],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 3056335270,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871732,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:32.101202"
+  },
+  {
+    "id": "osm_3445661513",
+    "name": "Monument du Bicentenaire de la Révolution Française",
+    "lat": 43.7411172,
+    "lng": 7.3110954,
+    "location": {
+      "_latitude": 43.7411172,
+      "_longitude": 7.3110954
+    },
+    "description": "Point d'intérêt: Monument du Bicentenaire de la Révolution Française",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "artwork",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 3445661513,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871732,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:32.101212"
+  },
+  {
+    "id": "osm_3748231695",
+    "name": "Léopold II",
+    "lat": 43.6882346,
+    "lng": 7.3238661,
+    "location": {
+      "_latitude": 43.6882346,
+      "_longitude": 7.3238661
+    },
+    "description": "Point d'intérêt: Léopold II",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 3748231695,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871732,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:32.101219"
+  },
+  {
+    "id": "osm_3755627399",
+    "name": "памятник Цесаревичу Николаю Александровичу",
+    "lat": 43.7040362,
+    "lng": 7.2540004,
+    "location": {
+      "_latitude": 43.7040362,
+      "_longitude": 7.2540004
+    },
+    "description": "Point d'intérêt: памятник Цесаревичу Николаю Александровичу",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 3755627399,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871732,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:32.101227"
+  },
+  {
+    "id": "osm_4018136142",
+    "name": "Jean-Paul II",
+    "lat": 43.7202128,
+    "lng": 7.2784445,
+    "location": {
+      "_latitude": 43.7202128,
+      "_longitude": 7.2784445
+    },
+    "description": "Point d'intérêt: Jean-Paul II",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 4018136142,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871732,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:32.101234"
+  },
+  {
+    "id": "osm_4316765832",
+    "name": "Lavoir",
+    "lat": 43.7235446,
+    "lng": 7.1087861,
+    "location": {
+      "_latitude": 43.7235446,
+      "_longitude": 7.1087861
+    },
+    "description": "Point d'intérêt: Lavoir",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "attraction",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 4316765832,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871732,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:32.101241"
+  },
+  {
+    "id": "osm_4688962409",
+    "name": "Stèle Du Souvenir",
+    "lat": 43.677929,
+    "lng": 7.229689,
+    "location": {
+      "_latitude": 43.677929,
+      "_longitude": 7.229689
+    },
+    "description": "Point d'intérêt: Stèle Du Souvenir",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 4688962409,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871732,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:32.101252"
+  },
+  {
+    "id": "osm_4834638232",
+    "name": "Colonne du pape Pie VII",
+    "lat": 43.6962974,
+    "lng": 7.2626539,
+    "location": {
+      "_latitude": 43.6962974,
+      "_longitude": 7.2626539
+    },
+    "description": "Point d'intérêt: Colonne du pape Pie VII",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [
+      "https://www.wikidata.org/wiki/Q2396560"
+    ],
+    "images": [
+      "https://www.wikidata.org/wiki/Q2396560"
+    ],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 4834638232,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871732,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:32.101261"
+  },
+  {
+    "id": "osm_4993385854",
+    "name": "Gustave V",
+    "lat": 43.6962653,
+    "lng": 7.2662746,
+    "location": {
+      "_latitude": 43.6962653,
+      "_longitude": 7.2662746
+    },
+    "description": "Point d'intérêt: Gustave V",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 4993385854,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871732,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:32.101269"
+  },
+  {
+    "id": "osm_5059051921",
+    "name": "Buste de Jean Médecin",
+    "lat": 43.6951439,
+    "lng": 7.2667895,
+    "location": {
+      "_latitude": 43.6951439,
+      "_longitude": 7.2667895
+    },
+    "description": "Point d'intérêt: Buste de Jean Médecin",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 5059051921,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871732,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:32.101276"
+  },
+  {
+    "id": "osm_5619294339",
+    "name": "POI sans nom",
+    "lat": 43.7880128,
+    "lng": 7.2759499,
+    "location": {
+      "_latitude": 43.7880128,
+      "_longitude": 7.2759499
+    },
+    "description": "Point d'intérêt: POI sans nom",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [
+      "https://www.wikidata.org/wiki/Q136080406"
+    ],
+    "images": [
+      "https://www.wikidata.org/wiki/Q136080406"
+    ],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 5619294339,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871732,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:32.101289"
+  },
+  {
+    "id": "osm_6355252485",
+    "name": "Mémorial des victimes de l'attentat du 14 juillet 2016",
+    "lat": 43.6946007,
+    "lng": 7.2591338,
+    "location": {
+      "_latitude": 43.6946007,
+      "_longitude": 7.2591338
+    },
+    "description": "Point d'intérêt: Mémorial des victimes de l'attentat du 14 juillet 2016",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [
+      "https://commons.wikimedia.org/wiki/Special:FilePath/Mémorial_en_hommage_aux_victimes_de_l'attentat_du_14_juillet_2016_à_Nice_(3).jpg",
+      "https://www.wikidata.org/wiki/Q111305241"
+    ],
+    "images": [
+      "https://commons.wikimedia.org/wiki/Special:FilePath/Mémorial_en_hommage_aux_victimes_de_l'attentat_du_14_juillet_2016_à_Nice_(3).jpg",
+      "https://www.wikidata.org/wiki/Q111305241"
+    ],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 6355252485,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871732,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:32.101304"
+  },
+  {
+    "id": "osm_6559098085",
+    "name": "Moulin à Huile d’olive Nicolas Alziari",
+    "lat": 43.710474,
+    "lng": 7.2278853,
+    "location": {
+      "_latitude": 43.710474,
+      "_longitude": 7.2278853
+    },
+    "description": "Point d'intérêt: Moulin à Huile d’olive Nicolas Alziari",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "attraction",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": "https://alziari.com.fr/",
+    "website": "https://alziari.com.fr/",
+    "source": "openstreetmap",
+    "osmId": 6559098085,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871732,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:32.101311"
+  },
+  {
+    "id": "osm_6819896085",
+    "name": "Enq",
+    "lat": 43.6835311,
+    "lng": 7.2041031,
+    "location": {
+      "_latitude": 43.6835311,
+      "_longitude": 7.2041031
+    },
+    "description": "Point d'intérêt: Enq",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "attraction",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 6819896085,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871732,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:32.101318"
+  },
+  {
+    "id": "osm_7147701394",
+    "name": "Monument comméoratif des Résistants du IVe canton",
+    "lat": 43.6982636,
+    "lng": 7.2570087,
+    "location": {
+      "_latitude": 43.6982636,
+      "_longitude": 7.2570087
+    },
+    "description": "Point d'intérêt: Monument comméoratif des Résistants du IVe canton",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 7147701394,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871732,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:32.101325"
+  },
+  {
+    "id": "osm_7147701395",
+    "name": "POI sans nom",
+    "lat": 43.6982468,
+    "lng": 7.2569546,
+    "location": {
+      "_latitude": 43.6982468,
+      "_longitude": 7.2569546
+    },
+    "description": "Point d'intérêt: POI sans nom",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 7147701395,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871732,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:32.101332"
+  },
+  {
+    "id": "osm_7147701396",
+    "name": "Stèle des Maréchaux",
+    "lat": 43.698223,
+    "lng": 7.2568984,
+    "location": {
+      "_latitude": 43.698223,
+      "_longitude": 7.2568984
+    },
+    "description": "Point d'intérêt: Stèle des Maréchaux",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 7147701396,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871732,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:32.101340"
+  },
+  {
+    "id": "osm_7147701397",
+    "name": "Monument à Paul Déroulède",
+    "lat": 43.6982567,
+    "lng": 7.2572463,
+    "location": {
+      "_latitude": 43.6982567,
+      "_longitude": 7.2572463
+    },
+    "description": "Point d'intérêt: Monument à Paul Déroulède",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 7147701397,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871732,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:32.101347"
+  },
+  {
+    "id": "osm_7160896296",
+    "name": "L'Homme du 18 Juin",
+    "lat": 43.7100318,
+    "lng": 7.261894,
+    "location": {
+      "_latitude": 43.7100318,
+      "_longitude": 7.261894
+    },
+    "description": "Point d'intérêt: L'Homme du 18 Juin",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 7160896296,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871732,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:32.101358"
+  },
+  {
+    "id": "osm_7711356406",
+    "name": "POI sans nom",
+    "lat": 43.6859837,
+    "lng": 7.346601,
+    "location": {
+      "_latitude": 43.6859837,
+      "_longitude": 7.346601
+    },
+    "description": "Point d'intérêt: POI sans nom",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 7711356406,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871732,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:32.101365"
+  },
+  {
+    "id": "osm_7794167479",
+    "name": "Tombe de Raoul Dufy",
+    "lat": 43.7196624,
+    "lng": 7.2793845,
+    "location": {
+      "_latitude": 43.7196624,
+      "_longitude": 7.2793845
+    },
+    "description": "Point d'intérêt: Tombe de Raoul Dufy",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 7794167479,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871732,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:32.101372"
+  },
+  {
+    "id": "osm_7821194980",
+    "name": "Monument commémoratif du maquis F.F.I. F.T.P",
+    "lat": 43.7101102,
+    "lng": 7.2557535,
+    "location": {
+      "_latitude": 43.7101102,
+      "_longitude": 7.2557535
+    },
+    "description": "Point d'intérêt: Monument commémoratif du maquis F.F.I. F.T.P",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 7821194980,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871732,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:32.101379"
+  },
+  {
+    "id": "osm_7833875546",
+    "name": "Monument Maurice Maeterlinck",
+    "lat": 43.6871267,
+    "lng": 7.29983,
+    "location": {
+      "_latitude": 43.6871267,
+      "_longitude": 7.29983
+    },
+    "description": "Point d'intérêt: Monument Maurice Maeterlinck",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 7833875546,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871732,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:32.101385"
+  },
+  {
+    "id": "osm_8206074919",
+    "name": "Cité des Aveugles de Guerre",
+    "lat": 43.7182395,
+    "lng": 7.2653771,
+    "location": {
+      "_latitude": 43.7182395,
+      "_longitude": 7.2653771
+    },
+    "description": "Point d'intérêt: Cité des Aveugles de Guerre",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 8206074919,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871732,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:32.101392"
+  },
+  {
+    "id": "osm_8429944828",
+    "name": "Monument aux morts du quartier Cimiez",
+    "lat": 43.7202528,
+    "lng": 7.278788,
+    "location": {
+      "_latitude": 43.7202528,
+      "_longitude": 7.278788
+    },
+    "description": "Point d'intérêt: Monument aux morts du quartier Cimiez",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [
+      "https://www.wikidata.org/wiki/Q136096807"
+    ],
+    "images": [
+      "https://www.wikidata.org/wiki/Q136096807"
+    ],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 8429944828,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871732,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:32.101401"
+  },
+  {
+    "id": "osm_9120007789",
+    "name": "POI sans nom",
+    "lat": 43.6588607,
+    "lng": 7.201842,
+    "location": {
+      "_latitude": 43.6588607,
+      "_longitude": 7.201842
+    },
+    "description": "Point d'intérêt: POI sans nom",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 9120007789,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871732,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:32.101408"
+  },
+  {
+    "id": "osm_9196439170",
+    "name": "Jean-Paul Baravalle",
+    "lat": 43.6495348,
+    "lng": 7.1321904,
+    "location": {
+      "_latitude": 43.6495348,
+      "_longitude": 7.1321904
+    },
+    "description": "Point d'intérêt: Jean-Paul Baravalle",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 9196439170,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871732,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:32.101415"
+  },
+  {
+    "id": "osm_9329738366",
+    "name": "Léopold II",
+    "lat": 43.6889219,
+    "lng": 7.3288397,
+    "location": {
+      "_latitude": 43.6889219,
+      "_longitude": 7.3288397
+    },
+    "description": "Point d'intérêt: Léopold II",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 9329738366,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871732,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:32.101422"
+  },
+  {
+    "id": "osm_9340800522",
+    "name": "Plaque commémorative du quartier Madonette-Terron",
+    "lat": 43.6937427,
+    "lng": 7.2257051,
+    "location": {
+      "_latitude": 43.6937427,
+      "_longitude": 7.2257051
+    },
+    "description": "Sous un oratoire marial",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 9340800522,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871732,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:32.101429"
+  },
+  {
+    "id": "osm_9370386818",
+    "name": "Marie Bashkirtseff",
+    "lat": 43.6930152,
+    "lng": 7.2520254,
+    "location": {
+      "_latitude": 43.6930152,
+      "_longitude": 7.2520254
+    },
+    "description": "Point d'intérêt: Marie Bashkirtseff",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 9370386818,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871732,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:32.101436"
+  },
+  {
+    "id": "osm_9372136949",
+    "name": "Theodor Wolff",
+    "lat": 43.6930942,
+    "lng": 7.2524714,
+    "location": {
+      "_latitude": 43.6930942,
+      "_longitude": 7.2524714
+    },
+    "description": "Point d'intérêt: Theodor Wolff",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 9372136949,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871732,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:32.101447"
+  },
+  {
+    "id": "osm_9373736752",
+    "name": "Monument aux morts de l'incendie de l'opéra (1881)",
+    "lat": 43.6984066,
+    "lng": 7.2803473,
+    "location": {
+      "_latitude": 43.6984066,
+      "_longitude": 7.2803473
+    },
+    "description": "Point d'intérêt: Monument aux morts de l'incendie de l'opéra (1881)",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 9373736752,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871732,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:32.101456"
+  },
+  {
+    "id": "osm_9373872448",
+    "name": "POI sans nom",
+    "lat": 43.6952658,
+    "lng": 7.2381193,
+    "location": {
+      "_latitude": 43.6952658,
+      "_longitude": 7.2381193
+    },
+    "description": "Point d'intérêt: POI sans nom",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 9373872448,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871732,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:32.101463"
+  },
+  {
+    "id": "osm_9630794147",
+    "name": "Heinrich Mann",
+    "lat": 43.6976078,
+    "lng": 7.2627664,
+    "location": {
+      "_latitude": 43.6976078,
+      "_longitude": 7.2627664
+    },
+    "description": "Point d'intérêt: Heinrich Mann",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [
+      "https://commons.wikimedia.org/wiki/Special:FilePath/Plaque_Ici_vécut_Heinrich_Mann_à_Nice_(mars_2022).JPG"
+    ],
+    "images": [
+      "https://commons.wikimedia.org/wiki/Special:FilePath/Plaque_Ici_vécut_Heinrich_Mann_à_Nice_(mars_2022).JPG"
+    ],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 9630794147,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871732,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:32.101475"
+  },
+  {
+    "id": "osm_9968307843",
+    "name": "POI sans nom",
+    "lat": 43.6582873,
+    "lng": 7.1213628,
+    "location": {
+      "_latitude": 43.6582873,
+      "_longitude": 7.1213628
+    },
+    "description": "Point d'intérêt: POI sans nom",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 9968307843,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871732,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:32.101482"
+  },
+  {
+    "id": "osm_9968307864",
+    "name": "POI sans nom",
+    "lat": 43.6594684,
+    "lng": 7.1204423,
+    "location": {
+      "_latitude": 43.6594684,
+      "_longitude": 7.1204423
+    },
+    "description": "Point d'intérêt: POI sans nom",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 9968307864,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871732,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:32.101489"
+  },
+  {
+    "id": "osm_10033962818",
+    "name": "Coco Beach",
+    "lat": 43.6880754,
+    "lng": 7.2941626,
+    "location": {
+      "_latitude": 43.6880754,
+      "_longitude": 7.2941626
+    },
+    "description": "Point d'intérêt: Coco Beach",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "attraction",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 10033962818,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871732,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:32.101496"
+  },
+  {
+    "id": "osm_10159032246",
+    "name": "Plaques commémoratives du 163e R.I.",
+    "lat": 43.696734,
+    "lng": 7.2737008,
+    "location": {
+      "_latitude": 43.696734,
+      "_longitude": 7.2737008
+    },
+    "description": "Point d'intérêt: Plaques commémoratives du 163e R.I.",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [
+      "https://commons.wikimedia.org/wiki/Special:FilePath/Plaques_at_Palas_Rusca_in_Nice.jpg"
+    ],
+    "images": [
+      "https://commons.wikimedia.org/wiki/Special:FilePath/Plaques_at_Palas_Rusca_in_Nice.jpg"
+    ],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 10159032246,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871732,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:32.101506"
+  },
+  {
+    "id": "osm_10166521485",
+    "name": "POI sans nom",
+    "lat": 43.748307,
+    "lng": 7.1435751,
+    "location": {
+      "_latitude": 43.748307,
+      "_longitude": 7.1435751
+    },
+    "description": "Point d'intérêt: POI sans nom",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [
+      "https://www.wikidata.org/wiki/Q136074976"
+    ],
+    "images": [
+      "https://www.wikidata.org/wiki/Q136074976"
+    ],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 10166521485,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871732,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:32.101515"
+  },
+  {
+    "id": "osm_10764397796",
+    "name": "Princesse Grace de Monaco",
+    "lat": 43.6941829,
+    "lng": 7.3062003,
+    "location": {
+      "_latitude": 43.6941829,
+      "_longitude": 7.3062003
+    },
+    "description": "Point d'intérêt: Princesse Grace de Monaco",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 10764397796,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871732,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:32.101522"
+  },
+  {
+    "id": "osm_10862066240",
+    "name": "POI sans nom",
+    "lat": 43.6586868,
+    "lng": 7.1242023,
+    "location": {
+      "_latitude": 43.6586868,
+      "_longitude": 7.1242023
+    },
+    "description": "Point d'intérêt: POI sans nom",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [
+      "https://www.wikidata.org/wiki/Q136082333"
+    ],
+    "images": [
+      "https://www.wikidata.org/wiki/Q136082333"
+    ],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 10862066240,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871732,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:32.101531"
+  },
+  {
+    "id": "osm_10974773637",
+    "name": "POI sans nom",
+    "lat": 43.7840741,
+    "lng": 7.2435924,
+    "location": {
+      "_latitude": 43.7840741,
+      "_longitude": 7.2435924
+    },
+    "description": "Point d'intérêt: POI sans nom",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [
+      "https://www.wikidata.org/wiki/Q136042014"
+    ],
+    "images": [
+      "https://www.wikidata.org/wiki/Q136042014"
+    ],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 10974773637,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871732,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:32.101540"
+  },
+  {
+    "id": "osm_10977245088",
+    "name": "POI sans nom",
+    "lat": 43.7070233,
+    "lng": 7.3298593,
+    "location": {
+      "_latitude": 43.7070233,
+      "_longitude": 7.3298593
+    },
+    "description": "Point d'intérêt: POI sans nom",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [
+      "https://www.wikidata.org/wiki/Q136044515"
+    ],
+    "images": [
+      "https://www.wikidata.org/wiki/Q136044515"
+    ],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 10977245088,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871732,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:32.101553"
+  },
+  {
+    "id": "osm_10979104928",
+    "name": "Plaque commémorative hôpital de guerre avril-mai 1945",
+    "lat": 43.704329,
+    "lng": 7.3319733,
+    "location": {
+      "_latitude": 43.704329,
+      "_longitude": 7.3319733
+    },
+    "description": "Point d'intérêt: Plaque commémorative hôpital de guerre avril-mai 1945",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 10979104928,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871732,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:32.101560"
+  },
+  {
+    "id": "osm_10989477412",
+    "name": "POI sans nom",
+    "lat": 43.6579165,
+    "lng": 7.167594,
+    "location": {
+      "_latitude": 43.6579165,
+      "_longitude": 7.167594
+    },
+    "description": "Point d'intérêt: POI sans nom",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [
+      "https://www.wikidata.org/wiki/Q136096989"
+    ],
+    "images": [
+      "https://www.wikidata.org/wiki/Q136096989"
+    ],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 10989477412,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871732,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:32.101569"
+  },
+  {
+    "id": "osm_10998249053",
+    "name": "POI sans nom",
+    "lat": 43.76281,
+    "lng": 7.3187081,
+    "location": {
+      "_latitude": 43.76281,
+      "_longitude": 7.3187081
+    },
+    "description": "Point d'intérêt: POI sans nom",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [
+      "https://www.wikidata.org/wiki/Q136049187"
+    ],
+    "images": [
+      "https://www.wikidata.org/wiki/Q136049187"
+    ],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 10998249053,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871732,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:32.101632"
+  },
+  {
+    "id": "osm_11001904142",
+    "name": "POI sans nom",
+    "lat": 43.7923941,
+    "lng": 7.184802,
+    "location": {
+      "_latitude": 43.7923941,
+      "_longitude": 7.184802
+    },
+    "description": "Point d'intérêt: POI sans nom",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [
+      "https://www.wikidata.org/wiki/Q136049306"
+    ],
+    "images": [
+      "https://www.wikidata.org/wiki/Q136049306"
+    ],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 11001904142,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871732,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:32.101642"
+  },
+  {
+    "id": "osm_11002274295",
+    "name": "POI sans nom",
+    "lat": 43.7903509,
+    "lng": 7.2308238,
+    "location": {
+      "_latitude": 43.7903509,
+      "_longitude": 7.2308238
+    },
+    "description": "Point d'intérêt: POI sans nom",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [
+      "https://www.wikidata.org/wiki/Q136049365"
+    ],
+    "images": [
+      "https://www.wikidata.org/wiki/Q136049365"
+    ],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 11002274295,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871732,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:32.101651"
+  },
+  {
+    "id": "osm_11007425037",
+    "name": "Napoleon Bonaparte",
+    "lat": 43.695661,
+    "lng": 7.2731376,
+    "location": {
+      "_latitude": 43.695661,
+      "_longitude": 7.2731376
+    },
+    "description": "Point d'intérêt: Napoleon Bonaparte",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 11007425037,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871732,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:32.101659"
+  },
+  {
+    "id": "osm_11010148801",
+    "name": "POI sans nom",
+    "lat": 43.6968747,
+    "lng": 7.2836579,
+    "location": {
+      "_latitude": 43.6968747,
+      "_longitude": 7.2836579
+    },
+    "description": "Point d'intérêt: POI sans nom",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 11010148801,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871732,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:32.101668"
+  },
+  {
+    "id": "osm_11010160576",
+    "name": "Giuseppe Garibaldi",
+    "lat": 43.6983447,
+    "lng": 7.2836876,
+    "location": {
+      "_latitude": 43.6983447,
+      "_longitude": 7.2836876
+    },
+    "description": "Point d'intérêt: Giuseppe Garibaldi",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 11010160576,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871732,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:32.101675"
+  },
+  {
+    "id": "osm_11010202312",
+    "name": "Friedrich Nietzsche",
+    "lat": 43.6975242,
+    "lng": 7.2827772,
+    "location": {
+      "_latitude": 43.6975242,
+      "_longitude": 7.2827772
+    },
+    "description": "Point d'intérêt: Friedrich Nietzsche",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [
+      "https://commons.wikimedia.org/wiki/Special:FilePath/Plaque_for_Friedrich_Nietzsche_in_Nice.jpg"
+    ],
+    "images": [
+      "https://commons.wikimedia.org/wiki/Special:FilePath/Plaque_for_Friedrich_Nietzsche_in_Nice.jpg"
+    ],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 11010202312,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871732,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:32.101685"
+  },
+  {
+    "id": "osm_11010234611",
+    "name": "POI sans nom",
+    "lat": 43.7588171,
+    "lng": 7.2187127,
+    "location": {
+      "_latitude": 43.7588171,
+      "_longitude": 7.2187127
+    },
+    "description": "Point d'intérêt: POI sans nom",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [
+      "https://www.wikidata.org/wiki/Q136051341"
+    ],
+    "images": [
+      "https://www.wikidata.org/wiki/Q136051341"
+    ],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 11010234611,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871732,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:32.101695"
+  },
+  {
+    "id": "osm_11010894011",
+    "name": "POI sans nom",
+    "lat": 43.695648,
+    "lng": 7.2732803,
+    "location": {
+      "_latitude": 43.695648,
+      "_longitude": 7.2732803
+    },
+    "description": "Point d'intérêt: POI sans nom",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 11010894011,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871732,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:32.101702"
+  },
+  {
+    "id": "osm_11010920285",
+    "name": "POI sans nom",
+    "lat": 43.695193,
+    "lng": 7.2701058,
+    "location": {
+      "_latitude": 43.695193,
+      "_longitude": 7.2701058
+    },
+    "description": "Point d'intérêt: POI sans nom",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 11010920285,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871732,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:32.101712"
+  },
+  {
+    "id": "osm_11010946535",
+    "name": "Thomas Jefferson",
+    "lat": 43.6953472,
+    "lng": 7.2735067,
+    "location": {
+      "_latitude": 43.6953472,
+      "_longitude": 7.2735067
+    },
+    "description": "Point d'intérêt: Thomas Jefferson",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 11010946535,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871732,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:32.101719"
+  },
+  {
+    "id": "osm_11010949628",
+    "name": "POI sans nom",
+    "lat": 43.6952352,
+    "lng": 7.2714158,
+    "location": {
+      "_latitude": 43.6952352,
+      "_longitude": 7.2714158
+    },
+    "description": "Painted to look like plaque, but would probably be better classified as mural.",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 11010949628,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871732,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:32.101726"
+  },
+  {
+    "id": "osm_11012264569",
+    "name": "Monument aux morts de la Pointe deContes",
+    "lat": 43.7830356,
+    "lng": 7.3392706,
+    "location": {
+      "_latitude": 43.7830356,
+      "_longitude": 7.3392706
+    },
+    "description": "Point d'intérêt: Monument aux morts de la Pointe deContes",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [
+      "https://www.wikidata.org/wiki/Q136096956"
+    ],
+    "images": [
+      "https://www.wikidata.org/wiki/Q136096956"
+    ],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 11012264569,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871732,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:32.101736"
+  },
+  {
+    "id": "osm_11012923896",
+    "name": "Monument aux morts",
+    "lat": 43.7554381,
+    "lng": 7.3200753,
+    "location": {
+      "_latitude": 43.7554381,
+      "_longitude": 7.3200753
+    },
+    "description": "Point d'intérêt: Monument aux morts",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [
+      "https://www.wikidata.org/wiki/Q136053154"
+    ],
+    "images": [
+      "https://www.wikidata.org/wiki/Q136053154"
+    ],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 11012923896,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871732,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:32.101745"
+  },
+  {
+    "id": "osm_11014057668",
+    "name": "POI sans nom",
+    "lat": 43.6984035,
+    "lng": 7.2799794,
+    "location": {
+      "_latitude": 43.6984035,
+      "_longitude": 7.2799794
+    },
+    "description": "Point d'intérêt: POI sans nom",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 11014057668,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871732,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:32.101754"
+  },
+  {
+    "id": "osm_11014086948",
+    "name": "Berlioz",
+    "lat": 43.6943639,
+    "lng": 7.2794535,
+    "location": {
+      "_latitude": 43.6943639,
+      "_longitude": 7.2794535
+    },
+    "description": "Point d'intérêt: Berlioz",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [
+      "https://commons.wikimedia.org/wiki/Special:FilePath/Plaque_for_Berlioz.jpg"
+    ],
+    "images": [
+      "https://commons.wikimedia.org/wiki/Special:FilePath/Plaque_for_Berlioz.jpg"
+    ],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 11014086948,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871732,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:32.101764"
+  },
+  {
+    "id": "osm_11014548235",
+    "name": "Monument aux morts 1870-1871",
+    "lat": 43.6958829,
+    "lng": 7.2715625,
+    "location": {
+      "_latitude": 43.6958829,
+      "_longitude": 7.2715625
+    },
+    "description": "Point d'intérêt: Monument aux morts 1870-1871",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [
+      "https://www.wikidata.org/wiki/Q136095732"
+    ],
+    "images": [
+      "https://www.wikidata.org/wiki/Q136095732"
+    ],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 11014548235,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871732,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:32.101774"
+  },
+  {
+    "id": "osm_11014922290",
+    "name": "plaque commémorative Francis GALLO",
+    "lat": 43.6977196,
+    "lng": 7.2753344,
+    "location": {
+      "_latitude": 43.6977196,
+      "_longitude": 7.2753344
+    },
+    "description": "Point d'intérêt: plaque commémorative Francis GALLO",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 11014922290,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871732,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:32.101781"
+  },
+  {
+    "id": "osm_11017526846",
+    "name": "Plaque paroissiale Sainte-Réparate",
+    "lat": 43.6972489,
+    "lng": 7.2760819,
+    "location": {
+      "_latitude": 43.6972489,
+      "_longitude": 7.2760819
+    },
+    "description": "Point d'intérêt: Plaque paroissiale Sainte-Réparate",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 11017526846,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871732,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:32.101788"
+  },
+  {
+    "id": "osm_11017534009",
+    "name": "POI sans nom",
+    "lat": 43.6973619,
+    "lng": 7.2746777,
+    "location": {
+      "_latitude": 43.6973619,
+      "_longitude": 7.2746777
+    },
+    "description": "Point d'intérêt: POI sans nom",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 11017534009,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871732,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:32.101795"
+  },
+  {
+    "id": "osm_11017535975",
+    "name": "Plaques commémoratives de l'église Saint-Jacques",
+    "lat": 43.6967123,
+    "lng": 7.2771606,
+    "location": {
+      "_latitude": 43.6967123,
+      "_longitude": 7.2771606
+    },
+    "description": "Point d'intérêt: Plaques commémoratives de l'église Saint-Jacques",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 11017535975,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871732,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:32.101802"
+  },
+  {
+    "id": "osm_11017598156",
+    "name": "POI sans nom",
+    "lat": 43.6977851,
+    "lng": 7.2773678,
+    "location": {
+      "_latitude": 43.6977851,
+      "_longitude": 7.2773678
+    },
+    "description": "Point d'intérêt: POI sans nom",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 11017598156,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871732,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:32.101815"
+  },
+  {
+    "id": "osm_11017837900",
+    "name": "POI sans nom",
+    "lat": 43.699606,
+    "lng": 7.2811836,
+    "location": {
+      "_latitude": 43.699606,
+      "_longitude": 7.2811836
+    },
+    "description": "Point d'intérêt: POI sans nom",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [
+      "https://commons.wikimedia.org/wiki/Special:FilePath/Plaque_for_Joseph_Giordan_in_Nice.jpg"
+    ],
+    "images": [
+      "https://commons.wikimedia.org/wiki/Special:FilePath/Plaque_for_Joseph_Giordan_in_Nice.jpg"
+    ],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 11017837900,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871732,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:32.101825"
+  },
+  {
+    "id": "osm_11017948609",
+    "name": "Plaque commémorative quartiers Saint-Augustin et Sainte-Clair",
+    "lat": 43.6994597,
+    "lng": 7.279589,
+    "location": {
+      "_latitude": 43.6994597,
+      "_longitude": 7.279589
+    },
+    "description": "Point d'intérêt: Plaque commémorative quartiers Saint-Augustin et Sainte-Clair",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 11017948609,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871732,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:32.101832"
+  },
+  {
+    "id": "osm_11017949255",
+    "name": "Plaque commémorative quartier Sainte-Claire",
+    "lat": 43.6981909,
+    "lng": 7.2792263,
+    "location": {
+      "_latitude": 43.6981909,
+      "_longitude": 7.2792263
+    },
+    "description": "Plaque utilisant comme support un ancien très haut déflecteur d'urine dans l'angle de la façade de la chapelle et de l'escalier contigu",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [
+      "https://commons.wikimedia.org/wiki/Special:FilePath/Munumentu_ai_caütti_da_prìmma_guèra_mundiàle_(Quartê_de_Santa_Ciàra,_Nìssa).jpg",
+      "https://www.wikidata.org/wiki/Q136097288"
+    ],
+    "images": [
+      "https://commons.wikimedia.org/wiki/Special:FilePath/Munumentu_ai_caütti_da_prìmma_guèra_mundiàle_(Quartê_de_Santa_Ciàra,_Nìssa).jpg",
+      "https://www.wikidata.org/wiki/Q136097288"
+    ],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 11017949255,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871732,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:32.101845"
+  },
+  {
+    "id": "osm_11018095261",
+    "name": "POI sans nom",
+    "lat": 43.6993019,
+    "lng": 7.2789906,
+    "location": {
+      "_latitude": 43.6993019,
+      "_longitude": 7.2789906
+    },
+    "description": "Point d'intérêt: POI sans nom",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [
+      "https://commons.wikimedia.org/wiki/Special:FilePath/Plaque_over_former_hospital_door_in_Nice.jpg"
+    ],
+    "images": [
+      "https://commons.wikimedia.org/wiki/Special:FilePath/Plaque_over_former_hospital_door_in_Nice.jpg"
+    ],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 11018095261,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871732,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:32.101855"
+  },
+  {
+    "id": "osm_11019827556",
+    "name": "Justes parmi les Nations",
+    "lat": 43.6967373,
+    "lng": 7.2805737,
+    "location": {
+      "_latitude": 43.6967373,
+      "_longitude": 7.2805737
+    },
+    "description": "Point d'intérêt: Justes parmi les Nations",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 11019827556,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871732,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:32.101862"
+  },
+  {
+    "id": "osm_11020481191",
+    "name": "Emil Jellinek",
+    "lat": 43.6976862,
+    "lng": 7.2805598,
+    "location": {
+      "_latitude": 43.6976862,
+      "_longitude": 7.2805598
+    },
+    "description": "Point d'intérêt: Emil Jellinek",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [
+      "https://commons.wikimedia.org/wiki/Special:FilePath/Plaque_for_Emile_Jellinek-Mercedes_at_Cimetière_du_Château.jpg"
+    ],
+    "images": [
+      "https://commons.wikimedia.org/wiki/Special:FilePath/Plaque_for_Emile_Jellinek-Mercedes_at_Cimetière_du_Château.jpg"
+    ],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 11020481191,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871732,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:32.101872"
+  },
+  {
+    "id": "osm_11033146685",
+    "name": "POI sans nom",
+    "lat": 43.7285903,
+    "lng": 7.3613778,
+    "location": {
+      "_latitude": 43.7285903,
+      "_longitude": 7.3613778
+    },
+    "description": "Point d'intérêt: POI sans nom",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [
+      "https://www.wikidata.org/wiki/Q136054104"
+    ],
+    "images": [
+      "https://www.wikidata.org/wiki/Q136054104"
+    ],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 11033146685,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871732,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:32.101882"
+  },
+  {
+    "id": "osm_11033266563",
+    "name": "POI sans nom",
+    "lat": 43.7493039,
+    "lng": 7.2779146,
+    "location": {
+      "_latitude": 43.7493039,
+      "_longitude": 7.2779146
+    },
+    "description": "Point d'intérêt: POI sans nom",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [
+      "https://www.wikidata.org/wiki/Q136054131"
+    ],
+    "images": [
+      "https://www.wikidata.org/wiki/Q136054131"
+    ],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 11033266563,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871732,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:32.101891"
+  },
+  {
+    "id": "osm_11034463403",
+    "name": "Monument commémoratif TORRIN et GRASSI",
+    "lat": 43.7604535,
+    "lng": 7.1763609,
+    "location": {
+      "_latitude": 43.7604535,
+      "_longitude": 7.1763609
+    },
+    "description": "Point d'intérêt: Monument commémoratif TORRIN et GRASSI",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 11034463403,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871732,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:32.101898"
+  },
+  {
+    "id": "osm_11034491926",
+    "name": "Plaque commémorative TORRIN et GRASSI",
+    "lat": 43.7604652,
+    "lng": 7.1763904,
+    "location": {
+      "_latitude": 43.7604652,
+      "_longitude": 7.1763904
+    },
+    "description": "Point d'intérêt: Plaque commémorative TORRIN et GRASSI",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [
+      "https://www.wikidata.org/wiki/Q136081619"
+    ],
+    "images": [
+      "https://www.wikidata.org/wiki/Q136081619"
+    ],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 11034491926,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871732,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:32.101907"
+  },
+  {
+    "id": "osm_11034579668",
+    "name": "POI sans nom",
+    "lat": 43.7604971,
+    "lng": 7.1776725,
+    "location": {
+      "_latitude": 43.7604971,
+      "_longitude": 7.1776725
+    },
+    "description": "Point d'intérêt: POI sans nom",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [
+      "https://www.wikidata.org/wiki/Q136055329"
+    ],
+    "images": [
+      "https://www.wikidata.org/wiki/Q136055329"
+    ],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 11034579668,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871732,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:32.101916"
+  },
+  {
+    "id": "osm_11045319655",
+    "name": "POI sans nom",
+    "lat": 43.6866429,
+    "lng": 7.1058625,
+    "location": {
+      "_latitude": 43.6866429,
+      "_longitude": 7.1058625
+    },
+    "description": "Point d'intérêt: POI sans nom",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [
+      "https://www.wikidata.org/wiki/Q136057991"
+    ],
+    "images": [
+      "https://www.wikidata.org/wiki/Q136057991"
+    ],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 11045319655,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871732,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:32.101928"
+  },
+  {
+    "id": "osm_11045341530",
+    "name": "POI sans nom",
+    "lat": 43.7219777,
+    "lng": 7.1523863,
+    "location": {
+      "_latitude": 43.7219777,
+      "_longitude": 7.1523863
+    },
+    "description": "Point d'intérêt: POI sans nom",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [
+      "https://www.wikidata.org/wiki/Q136058161"
+    ],
+    "images": [
+      "https://www.wikidata.org/wiki/Q136058161"
+    ],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 11045341530,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871732,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:32.101937"
+  },
+  {
+    "id": "osm_11048630669",
+    "name": "Plaque commémorative MACCAGNAN",
+    "lat": 43.7412096,
+    "lng": 7.310888,
+    "location": {
+      "_latitude": 43.7412096,
+      "_longitude": 7.310888
+    },
+    "description": "Point d'intérêt: Plaque commémorative MACCAGNAN",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 11048630669,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871732,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:32.101948"
+  },
+  {
+    "id": "osm_11048692415",
+    "name": "POI sans nom",
+    "lat": 43.7429902,
+    "lng": 7.3132822,
+    "location": {
+      "_latitude": 43.7429902,
+      "_longitude": 7.3132822
+    },
+    "description": "Point d'intérêt: POI sans nom",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [
+      "https://www.wikidata.org/wiki/Q136058608"
+    ],
+    "images": [
+      "https://www.wikidata.org/wiki/Q136058608"
+    ],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 11048692415,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871732,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:32.101957"
+  },
+  {
+    "id": "osm_11073660521",
+    "name": "POI sans nom",
+    "lat": 43.7395007,
+    "lng": 7.2867818,
+    "location": {
+      "_latitude": 43.7395007,
+      "_longitude": 7.2867818
+    },
+    "description": "Point d'intérêt: POI sans nom",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [
+      "https://www.wikidata.org/wiki/Q136072053"
+    ],
+    "images": [
+      "https://www.wikidata.org/wiki/Q136072053"
+    ],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 11073660521,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871732,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:32.101966"
+  },
+  {
+    "id": "osm_11081807308",
+    "name": "POI sans nom",
+    "lat": 43.6762399,
+    "lng": 7.1904259,
+    "location": {
+      "_latitude": 43.6762399,
+      "_longitude": 7.1904259
+    },
+    "description": "Point d'intérêt: POI sans nom",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [
+      "https://www.wikidata.org/wiki/Q136075425"
+    ],
+    "images": [
+      "https://www.wikidata.org/wiki/Q136075425"
+    ],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 11081807308,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871732,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:32.101975"
+  },
+  {
+    "id": "osm_11081931663",
+    "name": "Stèle commémorative ABONNEL et LEDIEU",
+    "lat": 43.6706408,
+    "lng": 7.1898778,
+    "location": {
+      "_latitude": 43.6706408,
+      "_longitude": 7.1898778
+    },
+    "description": "Point d'intérêt: Stèle commémorative ABONNEL et LEDIEU",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 11081931663,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871732,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:32.101982"
+  },
+  {
+    "id": "osm_11084430341",
+    "name": "POI sans nom",
+    "lat": 43.6976001,
+    "lng": 7.1212296,
+    "location": {
+      "_latitude": 43.6976001,
+      "_longitude": 7.1212296
+    },
+    "description": "Point d'intérêt: POI sans nom",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [
+      "https://www.wikidata.org/wiki/Q136076870"
+    ],
+    "images": [
+      "https://www.wikidata.org/wiki/Q136076870"
+    ],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 11084430341,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871732,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:32.101991"
+  },
+  {
+    "id": "osm_11248397990",
+    "name": "POI sans nom",
+    "lat": 43.7203857,
+    "lng": 7.1145905,
+    "location": {
+      "_latitude": 43.7203857,
+      "_longitude": 7.1145905
+    },
+    "description": "Point d'intérêt: POI sans nom",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [
+      "https://www.wikidata.org/wiki/Q136081394"
+    ],
+    "images": [
+      "https://www.wikidata.org/wiki/Q136081394"
+    ],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 11248397990,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871732,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:32.102000"
+  },
+  {
+    "id": "osm_11248897315",
+    "name": "Monument commémoratif des déportés juifs",
+    "lat": 43.7228243,
+    "lng": 7.1077638,
+    "location": {
+      "_latitude": 43.7228243,
+      "_longitude": 7.1077638
+    },
+    "description": "Point d'intérêt: Monument commémoratif des déportés juifs",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 11248897315,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871732,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:32.102007"
+  },
+  {
+    "id": "osm_11251442167",
+    "name": "Monument aux morts du cimetière",
+    "lat": 43.7037803,
+    "lng": 7.3086901,
+    "location": {
+      "_latitude": 43.7037803,
+      "_longitude": 7.3086901
+    },
+    "description": "Point d'intérêt: Monument aux morts du cimetière",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 11251442167,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871732,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:32.102014"
+  },
+  {
+    "id": "osm_11251632492",
+    "name": "Monument régimentaire des Chasseurs Alpins",
+    "lat": 43.7023643,
+    "lng": 7.3109078,
+    "location": {
+      "_latitude": 43.7023643,
+      "_longitude": 7.3109078
+    },
+    "description": "Point d'intérêt: Monument régimentaire des Chasseurs Alpins",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 11251632492,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871732,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:32.102021"
+  },
+  {
+    "id": "osm_11251678860",
+    "name": "Plaque commémorative Louis MISSUD",
+    "lat": 43.7034777,
+    "lng": 7.311432,
+    "location": {
+      "_latitude": 43.7034777,
+      "_longitude": 7.311432
+    },
+    "description": "Point d'intérêt: Plaque commémorative Louis MISSUD",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 11251678860,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871732,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:32.102031"
+  },
+  {
+    "id": "osm_11251728498",
+    "name": "POI sans nom",
+    "lat": 43.7160337,
+    "lng": 7.3344004,
+    "location": {
+      "_latitude": 43.7160337,
+      "_longitude": 7.3344004
+    },
+    "description": "plaque commémorative du quartier Saint-Michel",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 11251728498,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871732,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:32.102038"
+  },
+  {
+    "id": "osm_11251745325",
+    "name": "Plaque commémorative du col de Villefranche",
+    "lat": 43.7050204,
+    "lng": 7.301227,
+    "location": {
+      "_latitude": 43.7050204,
+      "_longitude": 7.301227
+    },
+    "description": "Point d'intérêt: Plaque commémorative du col de Villefranche",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 11251745325,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871732,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:32.102046"
+  },
+  {
+    "id": "osm_11251890382",
+    "name": "Mémorial aux marins français de Mers-El-Kébir",
+    "lat": 43.7027882,
+    "lng": 7.3237736,
+    "location": {
+      "_latitude": 43.7027882,
+      "_longitude": 7.3237736
+    },
+    "description": "Point d'intérêt: Mémorial aux marins français de Mers-El-Kébir",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 11251890382,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871732,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:32.102052"
+  },
+  {
+    "id": "osm_11251912855",
+    "name": "Plaque commémorative de Charlotte SALOMON",
+    "lat": 43.703862,
+    "lng": 7.3063312,
+    "location": {
+      "_latitude": 43.703862,
+      "_longitude": 7.3063312
+    },
+    "description": "Point d'intérêt: Plaque commémorative de Charlotte SALOMON",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 11251912855,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871732,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:32.102059"
+  },
+  {
+    "id": "osm_11253053347",
+    "name": "Stèle commémorative A.F.N. et Outre-Mer",
+    "lat": 43.6598904,
+    "lng": 7.1225679,
+    "location": {
+      "_latitude": 43.6598904,
+      "_longitude": 7.1225679
+    },
+    "description": "Point d'intérêt: Stèle commémorative A.F.N. et Outre-Mer",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 11253053347,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871732,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:32.102069"
+  },
+  {
+    "id": "osm_11253369752",
+    "name": "Monument aux morts paroissial Notre-Dame de Lourdes quartier Arénas",
+    "lat": 43.6691712,
+    "lng": 7.2199523,
+    "location": {
+      "_latitude": 43.6691712,
+      "_longitude": 7.2199523
+    },
+    "description": "Point d'intérêt: Monument aux morts paroissial Notre-Dame de Lourdes quartier Arénas",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [
+      "https://www.wikidata.org/wiki/Q136097373"
+    ],
+    "images": [
+      "https://www.wikidata.org/wiki/Q136097373"
+    ],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 11253369752,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871732,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:32.102078"
+  },
+  {
+    "id": "osm_11264973076",
+    "name": "Monument aux morts de l'Ariane et de l'Abadie",
+    "lat": 43.7377606,
+    "lng": 7.3068369,
+    "location": {
+      "_latitude": 43.7377606,
+      "_longitude": 7.3068369
+    },
+    "description": "Point d'intérêt: Monument aux morts de l'Ariane et de l'Abadie",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [
+      "https://www.wikidata.org/wiki/Q136095961"
+    ],
+    "images": [
+      "https://www.wikidata.org/wiki/Q136095961"
+    ],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 11264973076,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871732,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:32.102087"
+  },
+  {
+    "id": "osm_11265178209",
+    "name": "Monument aux morts du cimetière de la Madeleine",
+    "lat": 43.7103776,
+    "lng": 7.2323029,
+    "location": {
+      "_latitude": 43.7103776,
+      "_longitude": 7.2323029
+    },
+    "description": "Point d'intérêt: Monument aux morts du cimetière de la Madeleine",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [
+      "https://www.wikidata.org/wiki/Q136096356"
+    ],
+    "images": [
+      "https://www.wikidata.org/wiki/Q136096356"
+    ],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 11265178209,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871732,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:32.102096"
+  },
+  {
+    "id": "osm_11267631999",
+    "name": "Plaque commémorative du Souvenir Français cimetière Saint-Roch",
+    "lat": 43.7193667,
+    "lng": 7.2952811,
+    "location": {
+      "_latitude": 43.7193667,
+      "_longitude": 7.2952811
+    },
+    "description": "Point d'intérêt: Plaque commémorative du Souvenir Français cimetière Saint-Roch",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 11267631999,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871732,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:32.102103"
+  },
+  {
+    "id": "osm_11270520592",
+    "name": "Monumernt commémoratif aux élèves de l’école Caucade",
+    "lat": 43.6779138,
+    "lng": 7.2115654,
+    "location": {
+      "_latitude": 43.6779138,
+      "_longitude": 7.2115654
+    },
+    "description": "Point d'intérêt: Monumernt commémoratif aux élèves de l’école Caucade",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 11270520592,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871732,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:32.102110"
+  },
+  {
+    "id": "osm_11277324134",
+    "name": "Monument aux morts quartier Gairaut",
+    "lat": 43.7374235,
+    "lng": 7.258543,
+    "location": {
+      "_latitude": 43.7374235,
+      "_longitude": 7.258543
+    },
+    "description": "Point d'intérêt: Monument aux morts quartier Gairaut",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [
+      "https://www.wikidata.org/wiki/Q136096998"
+    ],
+    "images": [
+      "https://www.wikidata.org/wiki/Q136096998"
+    ],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 11277324134,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871732,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:32.102119"
+  },
+  {
+    "id": "osm_11278189898",
+    "name": "Monument aux morts du quartier Riquier",
+    "lat": 43.7060521,
+    "lng": 7.289817,
+    "location": {
+      "_latitude": 43.7060521,
+      "_longitude": 7.289817
+    },
+    "description": "Point d'intérêt: Monument aux morts du quartier Riquier",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [
+      "https://www.wikidata.org/wiki/Q136097235"
+    ],
+    "images": [
+      "https://www.wikidata.org/wiki/Q136097235"
+    ],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 11278189898,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871732,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:32.102131"
+  },
+  {
+    "id": "osm_11279443452",
+    "name": "Monument aux morts du quartier Saint-Antoine",
+    "lat": 43.707319,
+    "lng": 7.2164818,
+    "location": {
+      "_latitude": 43.707319,
+      "_longitude": 7.2164818
+    },
+    "description": "Point d'intérêt: Monument aux morts du quartier Saint-Antoine",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [
+      "https://www.wikidata.org/wiki/Q136097247"
+    ],
+    "images": [
+      "https://www.wikidata.org/wiki/Q136097247"
+    ],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 11279443452,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871732,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:32.102140"
+  },
+  {
+    "id": "osm_11286983561",
+    "name": "Monument aux morts du quartier Ventabrun",
+    "lat": 43.7032761,
+    "lng": 7.2288079,
+    "location": {
+      "_latitude": 43.7032761,
+      "_longitude": 7.2288079
+    },
+    "description": "Point d'intérêt: Monument aux morts du quartier Ventabrun",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [
+      "https://www.wikidata.org/wiki/Q136097340"
+    ],
+    "images": [
+      "https://www.wikidata.org/wiki/Q136097340"
+    ],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 11286983561,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871732,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:32.102149"
+  },
+  {
+    "id": "osm_11287176514",
+    "name": "Monument aux morts du quartier Saint-Isidore",
+    "lat": 43.7111,
+    "lng": 7.1958346,
+    "location": {
+      "_latitude": 43.7111,
+      "_longitude": 7.1958346
+    },
+    "description": "Point d'intérêt: Monument aux morts du quartier Saint-Isidore",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [
+      "https://www.wikidata.org/wiki/Q136097261"
+    ],
+    "images": [
+      "https://www.wikidata.org/wiki/Q136097261"
+    ],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 11287176514,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871732,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:32.102158"
+  },
+  {
+    "id": "osm_11291945577",
+    "name": "Monument aux Morts du quartier Pasteur",
+    "lat": 43.7189712,
+    "lng": 7.2827543,
+    "location": {
+      "_latitude": 43.7189712,
+      "_longitude": 7.2827543
+    },
+    "description": "Point d'intérêt: Monument aux Morts du quartier Pasteur",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [
+      "https://www.wikidata.org/wiki/Q136097193"
+    ],
+    "images": [
+      "https://www.wikidata.org/wiki/Q136097193"
+    ],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 11291945577,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871732,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:32.102167"
+  },
+  {
+    "id": "osm_11295543132",
+    "name": "Monuments commémoratifs des artilleurs à pied et de montagne",
+    "lat": 43.7115016,
+    "lng": 7.2862638,
+    "location": {
+      "_latitude": 43.7115016,
+      "_longitude": 7.2862638
+    },
+    "description": "Point d'intérêt: Monuments commémoratifs des artilleurs à pied et de montagne",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 11295543132,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871732,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:32.102174"
+  },
+  {
+    "id": "osm_11295821057",
+    "name": "Plaques commémoratives MORALÈS et BOBICHON F.F.I.",
+    "lat": 43.6969,
+    "lng": 7.273743,
+    "location": {
+      "_latitude": 43.6969,
+      "_longitude": 7.273743
+    },
+    "description": "Point d'intérêt: Plaques commémoratives MORALÈS et BOBICHON F.F.I.",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 11295821057,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871732,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:32.102182"
+  },
+  {
+    "id": "osm_11295841340",
+    "name": "Plaque commémorative de la Résistance 1er canton",
+    "lat": 43.6958821,
+    "lng": 7.271593,
+    "location": {
+      "_latitude": 43.6958821,
+      "_longitude": 7.271593
+    },
+    "description": "Point d'intérêt: Plaque commémorative de la Résistance 1er canton",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 11295841340,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871732,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:32.102189"
+  },
+  {
+    "id": "osm_11296148187",
+    "name": "Plaques commémoratives Gordolon et Giuge F.F.I.",
+    "lat": 43.695803,
+    "lng": 7.2713599,
+    "location": {
+      "_latitude": 43.695803,
+      "_longitude": 7.2713599
+    },
+    "description": "Point d'intérêt: Plaques commémoratives Gordolon et Giuge F.F.I.",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 11296148187,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871732,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:32.102195"
+  },
+  {
+    "id": "osm_11296307481",
+    "name": "Plaque commémorative Jean Gironne",
+    "lat": 43.70011,
+    "lng": 7.2757909,
+    "location": {
+      "_latitude": 43.70011,
+      "_longitude": 7.2757909
+    },
+    "description": "Point d'intérêt: Plaque commémorative Jean Gironne",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 11296307481,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871732,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:32.102202"
+  },
+  {
+    "id": "osm_11297472711",
+    "name": "Plaque commémorative Andreï KONSTANTINOW",
+    "lat": 43.6990284,
+    "lng": 7.2578503,
+    "location": {
+      "_latitude": 43.6990284,
+      "_longitude": 7.2578503
+    },
+    "description": "Point d'intérêt: Plaque commémorative Andreï KONSTANTINOW",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 11297472711,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871732,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:32.102209"
+  },
+  {
+    "id": "osm_11297594314",
+    "name": "Plaque commémorative quartier Saint-Sylvestre et Saint-Barthelemy supérieur",
+    "lat": 43.7260464,
+    "lng": 7.2471727,
+    "location": {
+      "_latitude": 43.7260464,
+      "_longitude": 7.2471727
+    },
+    "description": "Point d'intérêt: Plaque commémorative quartier Saint-Sylvestre et Saint-Barthelemy supérieur",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 11297594314,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871732,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:32.102219"
+  },
+  {
+    "id": "osm_11297772007",
+    "name": "Plaque commémorative Joseph POMAROLA",
+    "lat": 43.7004653,
+    "lng": 7.2870607,
+    "location": {
+      "_latitude": 43.7004653,
+      "_longitude": 7.2870607
+    },
+    "description": "Point d'intérêt: Plaque commémorative Joseph POMAROLA",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 11297772007,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871732,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:32.102228"
+  },
+  {
+    "id": "osm_11332845904",
+    "name": "Square Odette et Moussa Abadi",
+    "lat": 43.7021968,
+    "lng": 7.2578014,
+    "location": {
+      "_latitude": 43.7021968,
+      "_longitude": 7.2578014
+    },
+    "description": "Point d'intérêt: Square Odette et Moussa Abadi",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 11332845904,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871732,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:32.102236"
+  },
+  {
+    "id": "osm_11365136556",
+    "name": "Plaque commémorative du 363e RI",
+    "lat": 43.70238,
+    "lng": 7.2709275,
+    "location": {
+      "_latitude": 43.70238,
+      "_longitude": 7.2709275
+    },
+    "description": "Point d'intérêt: Plaque commémorative du 363e RI",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 11365136556,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871732,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:32.102242"
+  },
+  {
+    "id": "osm_11365196996",
+    "name": "Plaque commémorative CORBANI Virgile",
+    "lat": 43.6988946,
+    "lng": 7.2783277,
+    "location": {
+      "_latitude": 43.6988946,
+      "_longitude": 7.2783277
+    },
+    "description": "Point d'intérêt: Plaque commémorative CORBANI Virgile",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 11365196996,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871732,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:32.102249"
+  },
+  {
+    "id": "osm_11366604217",
+    "name": "Plaque commémorative Jacques ADAM",
+    "lat": 43.7056587,
+    "lng": 7.2661112,
+    "location": {
+      "_latitude": 43.7056587,
+      "_longitude": 7.2661112
+    },
+    "description": "Point d'intérêt: Plaque commémorative Jacques ADAM",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 11366604217,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871732,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:32.102256"
+  },
+  {
+    "id": "osm_11366774294",
+    "name": "Plaque commémorative Vincent BOSCAROLLO",
+    "lat": 43.7007431,
+    "lng": 7.2792355,
+    "location": {
+      "_latitude": 43.7007431,
+      "_longitude": 7.2792355
+    },
+    "description": "Point d'intérêt: Plaque commémorative Vincent BOSCAROLLO",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 11366774294,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871732,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:32.102263"
+  },
+  {
+    "id": "osm_11366922657",
+    "name": "Plaque commémorative Sauveur DANA",
+    "lat": 43.7048009,
+    "lng": 7.2556064,
+    "location": {
+      "_latitude": 43.7048009,
+      "_longitude": 7.2556064
+    },
+    "description": "Point d'intérêt: Plaque commémorative Sauveur DANA",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 11366922657,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871732,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:32.102270"
+  },
+  {
+    "id": "osm_11366958163",
+    "name": "Stèle commémorative Antoine SOUCHON",
+    "lat": 43.6670102,
+    "lng": 7.2134664,
+    "location": {
+      "_latitude": 43.6670102,
+      "_longitude": 7.2134664
+    },
+    "description": "Point d'intérêt: Stèle commémorative Antoine SOUCHON",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 11366958163,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871732,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:32.102277"
+  },
+  {
+    "id": "osm_11367219795",
+    "name": "Plaque commémorative Eugène GREGORINI",
+    "lat": 43.7039022,
+    "lng": 7.2179641,
+    "location": {
+      "_latitude": 43.7039022,
+      "_longitude": 7.2179641
+    },
+    "description": "Point d'intérêt: Plaque commémorative Eugène GREGORINI",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 11367219795,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871732,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:32.102284"
+  },
+  {
+    "id": "osm_11367300156",
+    "name": "Stèle commémorative MACCAGNO - MARI - ROSSI",
+    "lat": 43.6939247,
+    "lng": 7.2384528,
+    "location": {
+      "_latitude": 43.6939247,
+      "_longitude": 7.2384528
+    },
+    "description": "Point d'intérêt: Stèle commémorative MACCAGNO - MARI - ROSSI",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 11367300156,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871732,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:32.102291"
+  },
+  {
+    "id": "osm_11367416757",
+    "name": "stèle commémorative Marius FANTINO",
+    "lat": 43.7235592,
+    "lng": 7.2839828,
+    "location": {
+      "_latitude": 43.7235592,
+      "_longitude": 7.2839828
+    },
+    "description": "Point d'intérêt: stèle commémorative Marius FANTINO",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 11367416757,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871732,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:32.102297"
+  },
+  {
+    "id": "osm_11367524141",
+    "name": "Plaque commémorative Emile KRIEGER",
+    "lat": 43.7097547,
+    "lng": 7.2707844,
+    "location": {
+      "_latitude": 43.7097547,
+      "_longitude": 7.2707844
+    },
+    "description": "Point d'intérêt: Plaque commémorative Emile KRIEGER",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 11367524141,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871732,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:32.102307"
+  },
+  {
+    "id": "osm_11368421864",
+    "name": "Plaque commémorative Pierre SÉMARD",
+    "lat": 43.7158779,
+    "lng": 7.2896005,
+    "location": {
+      "_latitude": 43.7158779,
+      "_longitude": 7.2896005
+    },
+    "description": "Point d'intérêt: Plaque commémorative Pierre SÉMARD",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 11368421864,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871732,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:32.102314"
+  },
+  {
+    "id": "osm_11368440911",
+    "name": "Plaque commémorative MAIFFRET Père et Fils",
+    "lat": 43.716082,
+    "lng": 7.2569174,
+    "location": {
+      "_latitude": 43.716082,
+      "_longitude": 7.2569174
+    },
+    "description": "Point d'intérêt: Plaque commémorative MAIFFRET Père et Fils",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 11368440911,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871732,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:32.102321"
+  },
+  {
+    "id": "osm_11368633618",
+    "name": "Plaque commémorative Raymond ALBIN",
+    "lat": 43.7024165,
+    "lng": 7.2850416,
+    "location": {
+      "_latitude": 43.7024165,
+      "_longitude": 7.2850416
+    },
+    "description": "Point d'intérêt: Plaque commémorative Raymond ALBIN",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 11368633618,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871732,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:32.102327"
+  },
+  {
+    "id": "osm_11372101608",
+    "name": "Plaques commémoratives ARNAUDO et BADINO",
+    "lat": 43.696856,
+    "lng": 7.2737335,
+    "location": {
+      "_latitude": 43.696856,
+      "_longitude": 7.2737335
+    },
+    "description": "Point d'intérêt: Plaques commémoratives ARNAUDO et BADINO",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 11372101608,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871732,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:32.102335"
+  },
+  {
+    "id": "osm_11372235515",
+    "name": "Plaque commémorative René MATAN",
+    "lat": 43.7154499,
+    "lng": 7.2713361,
+    "location": {
+      "_latitude": 43.7154499,
+      "_longitude": 7.2713361
+    },
+    "description": "Point d'intérêt: Plaque commémorative René MATAN",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 11372235515,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871732,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:32.102341"
+  },
+  {
+    "id": "osm_11372252668",
+    "name": "Plaque commémorative 1914-18 cimetière Saint-Barthélémy",
+    "lat": 43.7187055,
+    "lng": 7.2548183,
+    "location": {
+      "_latitude": 43.7187055,
+      "_longitude": 7.2548183
+    },
+    "description": "Point d'intérêt: Plaque commémorative 1914-18 cimetière Saint-Barthélémy",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 11372252668,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871732,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:32.102351"
+  },
+  {
+    "id": "osm_11373069398",
+    "name": "Plaque commémorative 1870 cimetière Saint-Barthélémy",
+    "lat": 43.7187186,
+    "lng": 7.2548773,
+    "location": {
+      "_latitude": 43.7187186,
+      "_longitude": 7.2548773
+    },
+    "description": "Point d'intérêt: Plaque commémorative 1870 cimetière Saint-Barthélémy",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 11373069398,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871732,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:32.102359"
+  },
+  {
+    "id": "osm_11373678111",
+    "name": "Médaillon Max BAREL",
+    "lat": 43.7006951,
+    "lng": 7.2871928,
+    "location": {
+      "_latitude": 43.7006951,
+      "_longitude": 7.2871928
+    },
+    "description": "Point d'intérêt: Médaillon Max BAREL",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 11373678111,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871732,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:32.102365"
+  },
+  {
+    "id": "osm_11374043814",
+    "name": "Plaque commémorative Auguste BOGNIOT",
+    "lat": 43.7104286,
+    "lng": 7.2621094,
+    "location": {
+      "_latitude": 43.7104286,
+      "_longitude": 7.2621094
+    },
+    "description": "Point d'intérêt: Plaque commémorative Auguste BOGNIOT",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 11374043814,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871732,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:32.102372"
+  },
+  {
+    "id": "osm_11374366285",
+    "name": "Plaque commémorative Paul DUSSOUR Arno KLARSFELD",
+    "lat": 43.7025747,
+    "lng": 7.2643158,
+    "location": {
+      "_latitude": 43.7025747,
+      "_longitude": 7.2643158
+    },
+    "description": "Point d'intérêt: Plaque commémorative Paul DUSSOUR Arno KLARSFELD",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 11374366285,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871732,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:32.102379"
+  },
+  {
+    "id": "osm_11378108732",
+    "name": "Plaque commémorative du 8 mai 1945",
+    "lat": 43.6944324,
+    "lng": 7.2789594,
+    "location": {
+      "_latitude": 43.6944324,
+      "_longitude": 7.2789594
+    },
+    "description": "Point d'intérêt: Plaque commémorative du 8 mai 1945",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 11378108732,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871732,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:32.102385"
+  },
+  {
+    "id": "osm_11378166227",
+    "name": "Plaque commémorative J. MILANO",
+    "lat": 43.7152408,
+    "lng": 7.2883379,
+    "location": {
+      "_latitude": 43.7152408,
+      "_longitude": 7.2883379
+    },
+    "description": "Point d'intérêt: Plaque commémorative J. MILANO",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 11378166227,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871732,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:32.102392"
+  },
+  {
+    "id": "osm_11378352802",
+    "name": "Plaque commémorative Antoine GENOUILLAC",
+    "lat": 43.7030971,
+    "lng": 7.2813166,
+    "location": {
+      "_latitude": 43.7030971,
+      "_longitude": 7.2813166
+    },
+    "description": "Point d'intérêt: Plaque commémorative Antoine GENOUILLAC",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 11378352802,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871732,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:32.102402"
+  },
+  {
+    "id": "osm_11378492065",
+    "name": "Plaque commémorative Alphonse CORNIL",
+    "lat": 43.7082151,
+    "lng": 7.256151,
+    "location": {
+      "_latitude": 43.7082151,
+      "_longitude": 7.256151
+    },
+    "description": "Point d'intérêt: Plaque commémorative Alphonse CORNIL",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 11378492065,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871732,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:32.102409"
+  },
+  {
+    "id": "osm_11378535819",
+    "name": "Plaque commémorative Gabriel PICA",
+    "lat": 43.69356,
+    "lng": 7.2505005,
+    "location": {
+      "_latitude": 43.69356,
+      "_longitude": 7.2505005
+    },
+    "description": "Point d'intérêt: Plaque commémorative Gabriel PICA",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 11378535819,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871732,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:32.102416"
+  },
+  {
+    "id": "osm_11378587045",
+    "name": "Plaque commémorative Laurent LUQUET",
+    "lat": 43.7304453,
+    "lng": 7.2469153,
+    "location": {
+      "_latitude": 43.7304453,
+      "_longitude": 7.2469153
+    },
+    "description": "Point d'intérêt: Plaque commémorative Laurent LUQUET",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 11378587045,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871732,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:32.102422"
+  },
+  {
+    "id": "osm_11379326906",
+    "name": "Plaque commémorative Paul BERAUD",
+    "lat": 43.6988506,
+    "lng": 7.2531931,
+    "location": {
+      "_latitude": 43.6988506,
+      "_longitude": 7.2531931
+    },
+    "description": "Point d'intérêt: Plaque commémorative Paul BERAUD",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 11379326906,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871732,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:32.102429"
+  },
+  {
+    "id": "osm_11379450451",
+    "name": "Plaque commémorative François SUAREZ",
+    "lat": 43.7052079,
+    "lng": 7.2838635,
+    "location": {
+      "_latitude": 43.7052079,
+      "_longitude": 7.2838635
+    },
+    "description": "Point d'intérêt: Plaque commémorative François SUAREZ",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 11379450451,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871732,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:32.102436"
+  },
+  {
+    "id": "osm_11379760886",
+    "name": "Plaque commémorative Séraphin TORRIN",
+    "lat": 43.698747,
+    "lng": 7.2692717,
+    "location": {
+      "_latitude": 43.698747,
+      "_longitude": 7.2692717
+    },
+    "description": "Point d'intérêt: Plaque commémorative Séraphin TORRIN",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 11379760886,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871732,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:32.102442"
+  },
+  {
+    "id": "osm_11379777861",
+    "name": "Plaque commémorative Georges MAKOVSKI",
+    "lat": 43.6996736,
+    "lng": 7.2605633,
+    "location": {
+      "_latitude": 43.6996736,
+      "_longitude": 7.2605633
+    },
+    "description": "Point d'intérêt: Plaque commémorative Georges MAKOVSKI",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 11379777861,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871732,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:32.102449"
+  },
+  {
+    "id": "osm_11380021115",
+    "name": "Plaque paroissiale église Saint-Roch",
+    "lat": 43.7124183,
+    "lng": 7.2917983,
+    "location": {
+      "_latitude": 43.7124183,
+      "_longitude": 7.2917983
+    },
+    "description": "Point d'intérêt: Plaque paroissiale église Saint-Roch",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 11380021115,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871732,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:32.102463"
+  },
+  {
+    "id": "osm_11380357553",
+    "name": "Plaque commémorative Ange GRASSI",
+    "lat": 43.6986924,
+    "lng": 7.2691092,
+    "location": {
+      "_latitude": 43.6986924,
+      "_longitude": 7.2691092
+    },
+    "description": "Point d'intérêt: Plaque commémorative Ange GRASSI",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 11380357553,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871732,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:32.102470"
+  },
+  {
+    "id": "osm_11380396660",
+    "name": "Plaque commémorative Eugène ALENTCHENKO",
+    "lat": 43.7018385,
+    "lng": 7.2776054,
+    "location": {
+      "_latitude": 43.7018385,
+      "_longitude": 7.2776054
+    },
+    "description": "Point d'intérêt: Plaque commémorative Eugène ALENTCHENKO",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 11380396660,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871732,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:32.102477"
+  },
+  {
+    "id": "osm_11806735472",
+    "name": "Main à l’urne",
+    "lat": 43.6980884,
+    "lng": 7.2570182,
+    "location": {
+      "_latitude": 43.6980884,
+      "_longitude": 7.2570182
+    },
+    "description": "Point d'intérêt: Main à l’urne",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 11806735472,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871732,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:32.102484"
+  },
+  {
+    "id": "osm_11918038364",
+    "name": "Monument des fusillés de l'Ariane",
+    "lat": 43.7437866,
+    "lng": 7.309337,
+    "location": {
+      "_latitude": 43.7437866,
+      "_longitude": 7.309337
+    },
+    "description": "Point d'intérêt: Monument des fusillés de l'Ariane",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 11918038364,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871732,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:32.102497"
+  },
+  {
+    "id": "osm_11951826803",
+    "name": "Plaque commémorative des juifs de la caserne Auvare",
+    "lat": 43.7118928,
+    "lng": 7.2882875,
+    "location": {
+      "_latitude": 43.7118928,
+      "_longitude": 7.2882875
+    },
+    "description": "Point d'intérêt: Plaque commémorative des juifs de la caserne Auvare",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 11951826803,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871732,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:32.102504"
+  },
+  {
+    "id": "osm_11952133806",
+    "name": "Plaque commémoratif du quartier de Bellet",
+    "lat": 43.7444551,
+    "lng": 7.2145312,
+    "location": {
+      "_latitude": 43.7444551,
+      "_longitude": 7.2145312
+    },
+    "description": "Point d'intérêt: Plaque commémoratif du quartier de Bellet",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 11952133806,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871732,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:32.102511"
+  },
+  {
+    "id": "osm_11952272660",
+    "name": "Plaque commémorative de l'hôtel Excelsior",
+    "lat": 43.703307,
+    "lng": 7.2625231,
+    "location": {
+      "_latitude": 43.703307,
+      "_longitude": 7.2625231
+    },
+    "description": "Point d'intérêt: Plaque commémorative de l'hôtel Excelsior",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 11952272660,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871732,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:32.102518"
+  },
+  {
+    "id": "osm_11952503577",
+    "name": "Plaque commémorative de l'école Mantéga",
+    "lat": 43.7092379,
+    "lng": 7.2520077,
+    "location": {
+      "_latitude": 43.7092379,
+      "_longitude": 7.2520077
+    },
+    "description": "Point d'intérêt: Plaque commémorative de l'école Mantéga",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 11952503577,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871732,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:32.102524"
+  },
+  {
+    "id": "osm_11953684129",
+    "name": "Plaque commémorative de l'école Fuon Cauda",
+    "lat": 43.712484,
+    "lng": 7.2642411,
+    "location": {
+      "_latitude": 43.712484,
+      "_longitude": 7.2642411
+    },
+    "description": "Point d'intérêt: Plaque commémorative de l'école Fuon Cauda",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 11953684129,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871732,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:32.102531"
+  },
+  {
+    "id": "osm_11953804574",
+    "name": "Plaque commémorative de l'école Auber",
+    "lat": 43.7029518,
+    "lng": 7.2616292,
+    "location": {
+      "_latitude": 43.7029518,
+      "_longitude": 7.2616292
+    },
+    "description": "Point d'intérêt: Plaque commémorative de l'école Auber",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 11953804574,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871732,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:32.102539"
+  },
+  {
+    "id": "osm_11954253989",
+    "name": "Plaque commémorative, Résistants de France d'Abord",
+    "lat": 43.7011402,
+    "lng": 7.2644179,
+    "location": {
+      "_latitude": 43.7011402,
+      "_longitude": 7.2644179
+    },
+    "description": "Point d'intérêt: Plaque commémorative, Résistants de France d'Abord",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 11954253989,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871732,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:32.102546"
+  },
+  {
+    "id": "osm_11954525191",
+    "name": "Plaque commémorative de Paul VALLAGHÉ",
+    "lat": 43.7005855,
+    "lng": 7.2799857,
+    "location": {
+      "_latitude": 43.7005855,
+      "_longitude": 7.2799857
+    },
+    "description": "Point d'intérêt: Plaque commémorative de Paul VALLAGHÉ",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 11954525191,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871732,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:32.102553"
+  },
+  {
+    "id": "osm_11954599436",
+    "name": "Plaque commémorative Bernardo SAUVEUR",
+    "lat": 43.7054418,
+    "lng": 7.2909885,
+    "location": {
+      "_latitude": 43.7054418,
+      "_longitude": 7.2909885
+    },
+    "description": "Point d'intérêt: Plaque commémorative Bernardo SAUVEUR",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 11954599436,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871732,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:32.102559"
+  },
+  {
+    "id": "osm_11954612317",
+    "name": "Plaque commémorative LieutenantRené BENSAID",
+    "lat": 43.7047369,
+    "lng": 7.2636248,
+    "location": {
+      "_latitude": 43.7047369,
+      "_longitude": 7.2636248
+    },
+    "description": "Point d'intérêt: Plaque commémorative LieutenantRené BENSAID",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 11954612317,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871732,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:32.102566"
+  },
+  {
+    "id": "osm_11954692913",
+    "name": "Plaque commémorative Eugénie APROSIO",
+    "lat": 43.7022359,
+    "lng": 7.2581659,
+    "location": {
+      "_latitude": 43.7022359,
+      "_longitude": 7.2581659
+    },
+    "description": "Point d'intérêt: Plaque commémorative Eugénie APROSIO",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 11954692913,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871732,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:32.102573"
+  },
+  {
+    "id": "osm_11956178123",
+    "name": "Plaque commémoraive PAUSELLIDERMADIROSSIAN RATTI F.T.P.F.",
+    "lat": 43.6965288,
+    "lng": 7.2643041,
+    "location": {
+      "_latitude": 43.6965288,
+      "_longitude": 7.2643041
+    },
+    "description": "Point d'intérêt: Plaque commémoraive PAUSELLIDERMADIROSSIAN RATTI F.T.P.F.",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 11956178123,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871732,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:32.102583"
+  },
+  {
+    "id": "osm_11956478779",
+    "name": "Plaque commémorative René SAINSON",
+    "lat": 43.6964702,
+    "lng": 7.2611714,
+    "location": {
+      "_latitude": 43.6964702,
+      "_longitude": 7.2611714
+    },
+    "description": "Point d'intérêt: Plaque commémorative René SAINSON",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 11956478779,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871732,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:32.102590"
+  },
+  {
+    "id": "osm_11956620453",
+    "name": "Plaque commémorative Jean LIPPMANN/Capitaine LORRAIN",
+    "lat": 43.6978339,
+    "lng": 7.2683944,
+    "location": {
+      "_latitude": 43.6978339,
+      "_longitude": 7.2683944
+    },
+    "description": "Point d'intérêt: Plaque commémorative Jean LIPPMANN/Capitaine LORRAIN",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 11956620453,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871732,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:32.102597"
+  },
+  {
+    "id": "osm_11958735817",
+    "name": "Plaque commémorative Raymond FRESCO",
+    "lat": 43.711789,
+    "lng": 7.2651089,
+    "location": {
+      "_latitude": 43.711789,
+      "_longitude": 7.2651089
+    },
+    "description": "Point d'intérêt: Plaque commémorative Raymond FRESCO",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 11958735817,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871732,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:32.102604"
+  },
+  {
+    "id": "osm_11958809715",
+    "name": "Plaque commémorative Raoul BRES et André DUJAT DES ALLIMES",
+    "lat": 43.7014733,
+    "lng": 7.2711899,
+    "location": {
+      "_latitude": 43.7014733,
+      "_longitude": 7.2711899
+    },
+    "description": "Point d'intérêt: Plaque commémorative Raoul BRES et André DUJAT DES ALLIMES",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 11958809715,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871732,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:32.102611"
+  },
+  {
+    "id": "osm_11958854788",
+    "name": "stele commémorative Venance CARTEGIANI",
+    "lat": 43.6845283,
+    "lng": 7.2033667,
+    "location": {
+      "_latitude": 43.6845283,
+      "_longitude": 7.2033667
+    },
+    "description": "Point d'intérêt: stele commémorative Venance CARTEGIANI",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 11958854788,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871732,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:32.102618"
+  },
+  {
+    "id": "osm_11958871891",
+    "name": "Plaque commémorative Verdun VIAL",
+    "lat": 43.6971796,
+    "lng": 7.2731052,
+    "location": {
+      "_latitude": 43.6971796,
+      "_longitude": 7.2731052
+    },
+    "description": "Point d'intérêt: Plaque commémorative Verdun VIAL",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 11958871891,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871732,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:32.102627"
+  },
+  {
+    "id": "osm_11959165151",
+    "name": "Plaque commémorative aux Résistants du 28 août 1944",
+    "lat": 43.703069,
+    "lng": 7.2656184,
+    "location": {
+      "_latitude": 43.703069,
+      "_longitude": 7.2656184
+    },
+    "description": "Point d'intérêt: Plaque commémorative aux Résistants du 28 août 1944",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 11959165151,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871732,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:32.102634"
+  },
+  {
+    "id": "osm_11960816581",
+    "name": "Plaque commémorative Jean-Baptiste MALAUSSÉNA",
+    "lat": 43.732623,
+    "lng": 7.2714778,
+    "location": {
+      "_latitude": 43.732623,
+      "_longitude": 7.2714778
+    },
+    "description": "Point d'intérêt: Plaque commémorative Jean-Baptiste MALAUSSÉNA",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 11960816581,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871732,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:32.102640"
+  },
+  {
+    "id": "osm_11960863355",
+    "name": "Plaque commémorative Jean Moulin",
+    "lat": 43.6961593,
+    "lng": 7.2623829,
+    "location": {
+      "_latitude": 43.6961593,
+      "_longitude": 7.2623829
+    },
+    "description": "Point d'intérêt: Plaque commémorative Jean Moulin",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 11960863355,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871732,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:32.102647"
+  },
+  {
+    "id": "osm_11961191767",
+    "name": "Plaque du Comité Insurrectionnel de Nice",
+    "lat": 43.7118438,
+    "lng": 7.2556272,
+    "location": {
+      "_latitude": 43.7118438,
+      "_longitude": 7.2556272
+    },
+    "description": "Point d'intérêt: Plaque du Comité Insurrectionnel de Nice",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 11961191767,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871732,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:32.102654"
+  },
+  {
+    "id": "osm_11961240879",
+    "name": "Plaques commémoratives des résistants du passage à niveau",
+    "lat": 43.7102668,
+    "lng": 7.2561064,
+    "location": {
+      "_latitude": 43.7102668,
+      "_longitude": 7.2561064
+    },
+    "description": "Point d'intérêt: Plaques commémoratives des résistants du passage à niveau",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 11961240879,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871732,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:32.102661"
+  },
+  {
+    "id": "osm_11961583942",
+    "name": "Monument commémoratif René CASSIN",
+    "lat": 43.6726874,
+    "lng": 7.2251884,
+    "location": {
+      "_latitude": 43.6726874,
+      "_longitude": 7.2251884
+    },
+    "description": "Point d'intérêt: Monument commémoratif René CASSIN",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 11961583942,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871732,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:32.102671"
+  },
+  {
+    "id": "osm_11961609468",
+    "name": "Monument commémoratif des fusillés du Verdon",
+    "lat": 43.6758783,
+    "lng": 7.220099,
+    "location": {
+      "_latitude": 43.6758783,
+      "_longitude": 7.220099
+    },
+    "description": "Point d'intérêt: Monument commémoratif des fusillés du Verdon",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 11961609468,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871732,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:32.102678"
+  },
+  {
+    "id": "osm_12003494559",
+    "name": "Camille Teisseire",
+    "lat": 43.6973432,
+    "lng": 7.2757347,
+    "location": {
+      "_latitude": 43.6973432,
+      "_longitude": 7.2757347
+    },
+    "description": "Point d'intérêt: Camille Teisseire",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 12003494559,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871732,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:32.102685"
+  },
+  {
+    "id": "osm_12071722719",
+    "name": "Maison de Jacques Prévert",
+    "lat": 43.696836,
+    "lng": 7.1226896,
+    "location": {
+      "_latitude": 43.696836,
+      "_longitude": 7.1226896
+    },
+    "description": "Point d'intérêt: Maison de Jacques Prévert",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 12071722719,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871732,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:32.102692"
+  },
+  {
+    "id": "osm_12071722720",
+    "name": "Maison de Paul Brusset",
+    "lat": 43.6967724,
+    "lng": 7.1226348,
+    "location": {
+      "_latitude": 43.6967724,
+      "_longitude": 7.1226348
+    },
+    "description": "Point d'intérêt: Maison de Paul Brusset",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 12071722720,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871732,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:32.102699"
+  },
+  {
+    "id": "osm_12091916849",
+    "name": "POI sans nom",
+    "lat": 43.6958854,
+    "lng": 7.279944,
+    "location": {
+      "_latitude": 43.6958854,
+      "_longitude": 7.279944
+    },
+    "description": "Point d'intérêt: POI sans nom",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 12091916849,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871732,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:32.102706"
+  },
+  {
+    "id": "osm_12091917050",
+    "name": "POI sans nom",
+    "lat": 43.6958853,
+    "lng": 7.2799622,
+    "location": {
+      "_latitude": 43.6958853,
+      "_longitude": 7.2799622
+    },
+    "description": "Point d'intérêt: POI sans nom",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 12091917050,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871732,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:32.102713"
+  },
+  {
+    "id": "osm_12571887508",
+    "name": "Mémorial Pierre de Coubertin",
+    "lat": 43.7087121,
+    "lng": 7.1952996,
+    "location": {
+      "_latitude": 43.7087121,
+      "_longitude": 7.1952996
+    },
+    "description": "Point d'intérêt: Mémorial Pierre de Coubertin",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 12571887508,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871732,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:32.102722"
+  },
+  {
+    "id": "osm_12586141519",
+    "name": "POI sans nom",
+    "lat": 43.7083517,
+    "lng": 7.2930435,
+    "location": {
+      "_latitude": 43.7083517,
+      "_longitude": 7.2930435
+    },
+    "description": "Point d'intérêt: POI sans nom",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 12586141519,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871732,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:32.102729"
+  },
+  {
+    "id": "osm_12698919696",
+    "name": "POI sans nom",
+    "lat": 43.7201448,
+    "lng": 7.2965618,
+    "location": {
+      "_latitude": 43.7201448,
+      "_longitude": 7.2965618
+    },
+    "description": "Point d'intérêt: POI sans nom",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 12698919696,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871732,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:32.102736"
+  },
+  {
+    "id": "osm_12716381730",
+    "name": "POI sans nom",
+    "lat": 43.6861859,
+    "lng": 7.3052068,
+    "location": {
+      "_latitude": 43.6861859,
+      "_longitude": 7.3052068
+    },
+    "description": "Point d'intérêt: POI sans nom",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 12716381730,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871732,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:32.102744"
+  },
+  {
+    "id": "osm_12716428965",
+    "name": "Eleftherios Venizelos",
+    "lat": 43.7046476,
+    "lng": 7.3331809,
+    "location": {
+      "_latitude": 43.7046476,
+      "_longitude": 7.3331809
+    },
+    "description": "Point d'intérêt: Eleftherios Venizelos",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 12716428965,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871732,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:32.102751"
+  },
+  {
+    "id": "osm_12766271627",
+    "name": "Buste de Albert 1er",
+    "lat": 43.6962654,
+    "lng": 7.2684646,
+    "location": {
+      "_latitude": 43.6962654,
+      "_longitude": 7.2684646
+    },
+    "description": "Point d'intérêt: Buste de Albert 1er",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 12766271627,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871732,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:32.102762"
+  },
+  {
+    "id": "osm_13198439587",
+    "name": "Le Terrible",
+    "lat": 43.641821,
+    "lng": 7.138361,
+    "location": {
+      "_latitude": 43.641821,
+      "_longitude": 7.138361
+    },
+    "description": "Point d'intérêt: Le Terrible",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "information",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 13198439587,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871732,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:32.102768"
+  },
+  {
+    "id": "osm_13236417489",
+    "name": "POI sans nom",
+    "lat": 43.6481294,
+    "lng": 7.1367699,
+    "location": {
+      "_latitude": 43.6481294,
+      "_longitude": 7.1367699
+    },
+    "description": "Point d'intérêt: POI sans nom",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 13236417489,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871732,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:32.102775"
+  }
+]

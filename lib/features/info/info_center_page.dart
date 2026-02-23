@@ -3,9 +3,8 @@ import 'package:flutter/material.dart';
 import '../../core/widgets/glass_app_bar.dart';
 import 'tabs/faq_info_tab.dart';
 import 'tabs/features_info_tab.dart';
-import 'tabs/installation_info_tab.dart';
 
-/// Centre d'information de l'app (FAQ / fonctionnalités / installation).
+/// Centre d'information de l'app (FAQ / fonctionnalités).
 ///
 /// Objectif : embarquer dans l'app ce qui existait en pages HTML.
 class InfoCenterPage extends StatefulWidget {
@@ -24,7 +23,7 @@ class _InfoCenterPageState extends State<InfoCenterPage>
   @override
   void initState() {
     super.initState();
-    _tabController = TabController(length: 3, vsync: this);
+    _tabController = TabController(length: 2, vsync: this);
   }
 
   @override
@@ -61,7 +60,6 @@ class _InfoCenterPageState extends State<InfoCenterPage>
               ),
               tabs: const [
                 Tab(icon: Icon(Icons.auto_awesome), text: 'Fonctionnalités'),
-                Tab(icon: Icon(Icons.download), text: 'Installation'),
                 Tab(icon: Icon(Icons.help_outline), text: 'FAQ'),
               ],
             ),
@@ -71,7 +69,6 @@ class _InfoCenterPageState extends State<InfoCenterPage>
               controller: _tabController,
               children: const [
                 FeaturesInfoTab(),
-                InstallationInfoTab(),
                 FaqInfoTab(),
               ],
             ),

@@ -90,14 +90,18 @@ class _SearchPageState extends ConsumerState<SearchPage> {
                       ),
                     ),
                     const SizedBox(height: 8),
-                    // Rayon ajustable - Remplacé par RadiusSelector
-                    RadiusSelector(
-                      currentRadius: mapState.radiusMeters,
-                      radiusOptions: const [5000, 10000, 15000, 20000, 25000, 30000],
-                      onRadiusChanged: (radius) {
-                        _resetPage();
-                        ref.read(mapControllerProvider.notifier).setRadiusMeters(radius);
-                      },
+                    // Rayon ajustable - Limité à 5-20km
+                    ConstrainedBox(
+                      constraints: const BoxConstraints(maxWidth: 360),
+                      child: RadiusSelector(
+                        currentRadius: mapState.radiusMeters,
+                        radiusOptions: const [5000, 10000, 15000, 20000],
+                        compact: true,
+                        onRadiusChanged: (radius) {
+                          _resetPage();
+                          ref.read(mapControllerProvider.notifier).setRadiusMeters(radius);
+                        },
+                      ),
                     ),
                     const SizedBox(height: 8),
                     // Boutons d'action
@@ -249,54 +253,77 @@ class _SearchPageState extends ConsumerState<SearchPage> {
                     );
                   }
 
-                  return SingleChildScrollView(
+                  final items = <_SearchListItem>[];
+
+                  if (mapState.isLoading && pageIndex == 0) {
+                    items.add(const _SearchListItem.progress());
+                  }
+
+                  if (pageFirestore.isNotEmpty) {
+                    items.add(
+                      _SearchListItem.header(
+                        '🏘️ Spots communautaires (${pageFirestore.length})',
+                      ),
+                    );
+                    for (final poi in pageFirestore) {
+                      items.add(_SearchListItem.poi(poi));
+                    }
+                    items.add(const _SearchListItem.spacer(8));
+                  }
+
+                  if (pagePlaces.isNotEmpty) {
+                    items.add(
+                      _SearchListItem.header(
+                        '🗺️ Spots (${pagePlaces.length})',
+                      ),
+                    );
+                    for (final poi in pagePlaces) {
+                      items.add(_SearchListItem.poi(poi));
+                    }
+                  }
+
+                  if (pageIndex == totalPages - 1) {
+                    items.add(const _SearchListItem.spacer(12));
+                    items.add(const _SearchListItem.addSpot());
+                  }
+
+                  items.add(const _SearchListItem.spacer(12));
+
+                  return ListView.builder(
+                    key: PageStorageKey('search_page_$pageIndex'),
                     padding: const EdgeInsets.all(12),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        if (mapState.isLoading && pageIndex == 0)
-                          const LinearProgressIndicator(),
-                        if (pageFirestore.isNotEmpty) ...[
-                          Padding(
+                    itemCount: items.length,
+                    itemBuilder: (context, index) {
+                      final item = items[index];
+                      switch (item.type) {
+                        case _SearchListItemType.progress:
+                          return const LinearProgressIndicator();
+                        case _SearchListItemType.header:
+                          return Padding(
                             padding: const EdgeInsets.symmetric(vertical: 8),
                             child: Text(
-                              '🏘️ Spots communautaires (${pageFirestore.length})',
-                              style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                                    fontWeight: FontWeight.bold,
-                                  ),
+                              item.label ?? '',
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .titleSmall
+                                  ?.copyWith(fontWeight: FontWeight.bold),
                             ),
-                          ),
-                          for (final poi in pageFirestore)
-                            _buildPoiCard(context, poi, userPos),
-                          const SizedBox(height: 8),
-                        ],
-                        if (pagePlaces.isNotEmpty) ...[
-                          Padding(
-                            padding: const EdgeInsets.symmetric(vertical: 8),
-                            child: Text(
-                              '🗺️ Spots (${pagePlaces.length})',
-                              style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                            ),
-                          ),
-                          for (final poi in pagePlaces)
-                            _buildPoiCard(context, poi, userPos),
-                        ],
-                        if (pageIndex == totalPages - 1) ...[
-                          const SizedBox(height: 12),
-                          SizedBox(
+                          );
+                        case _SearchListItemType.poi:
+                          return _buildPoiCard(context, item.poi!, userPos);
+                        case _SearchListItemType.addSpot:
+                          return SizedBox(
                             width: double.infinity,
                             child: OutlinedButton.icon(
                               onPressed: () => context.push('/spots/new'),
                               icon: const Icon(Icons.add_location_alt),
                               label: const Text('➕ Ajouter un spot'),
                             ),
-                          ),
-                        ],
-                        const SizedBox(height: 12),
-                      ],
-                    ),
+                          );
+                        case _SearchListItemType.spacer:
+                          return SizedBox(height: item.spacing ?? 0);
+                      }
+                    },
                   );
                 },
               ),
@@ -438,7 +465,7 @@ class _SearchPageState extends ConsumerState<SearchPage> {
                               ),
                             Expanded(
                               child: Text(
-                                poi.name,
+                                poi.displayName,
                                 style: const TextStyle(
                                   fontWeight: FontWeight.bold,
                                   fontSize: 14,
@@ -453,7 +480,10 @@ class _SearchPageState extends ConsumerState<SearchPage> {
                         Row(
                           children: [
                             Icon(
-                              poi.category.icon,
+                              iconForSubCategory(
+                                poi.subCategory,
+                                poi.category,
+                              ),
                               size: 14,
                               color: poi.category.color,
                             ),
@@ -630,4 +660,39 @@ class _SearchPageState extends ConsumerState<SearchPage> {
       ),
     );
   }
+}
+
+enum _SearchListItemType {
+  progress,
+  header,
+  poi,
+  addSpot,
+  spacer,
+}
+
+class _SearchListItem {
+  final _SearchListItemType type;
+  final String? label;
+  final Poi? poi;
+  final double? spacing;
+
+  const _SearchListItem._(
+    this.type, {
+    this.label,
+    this.poi,
+    this.spacing,
+  });
+
+  const _SearchListItem.progress() : this._(_SearchListItemType.progress);
+
+  const _SearchListItem.addSpot() : this._(_SearchListItemType.addSpot);
+
+  const _SearchListItem.header(String label)
+      : this._(_SearchListItemType.header, label: label);
+
+  const _SearchListItem.poi(Poi poi)
+      : this._(_SearchListItemType.poi, poi: poi);
+
+  const _SearchListItem.spacer(double spacing)
+      : this._(_SearchListItemType.spacer, spacing: spacing);
 }

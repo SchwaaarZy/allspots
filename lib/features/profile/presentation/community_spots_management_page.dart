@@ -128,7 +128,7 @@ class _CommunitySpotsManagementPageState
                           title: Text(
                             ((spotDoc.data()['name'] as String?)?.trim().isNotEmpty ?? false)
                                 ? (spotDoc.data()['name'] as String).trim()
-                                : 'Sans nom',
+                                : (spotDoc.data()['category'] as String? ?? category),
                             style: const TextStyle(fontWeight: FontWeight.w600),
                           ),
                           subtitle: Text(

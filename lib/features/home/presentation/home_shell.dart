@@ -196,7 +196,7 @@ class _HomeShellState extends ConsumerState<HomeShell> {
         ),
         centerTitle: true,
       ) as PreferredSizeWidget,
-      body: IndexedStack(
+      body: _LazyIndexedStack(
         index: _index,
         children: tabs,
       ),
@@ -304,6 +304,51 @@ class _HomeShellState extends ConsumerState<HomeShell> {
           ),
         ),
       ),
+    );
+  }
+}
+
+class _LazyIndexedStack extends StatefulWidget {
+  const _LazyIndexedStack({
+    required this.index,
+    required this.children,
+  });
+
+  final int index;
+  final List<Widget> children;
+
+  @override
+  State<_LazyIndexedStack> createState() => _LazyIndexedStackState();
+}
+
+class _LazyIndexedStackState extends State<_LazyIndexedStack> {
+  late final List<bool> _activated;
+
+  @override
+  void initState() {
+    super.initState();
+    _activated = List<bool>.filled(widget.children.length, false);
+    _activated[widget.index] = true;
+  }
+
+  @override
+  void didUpdateWidget(covariant _LazyIndexedStack oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (widget.index >= 0 && widget.index < _activated.length) {
+      _activated[widget.index] = true;
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return IndexedStack(
+      index: widget.index,
+      children: List<Widget>.generate(widget.children.length, (index) {
+        if (!_activated[index]) {
+          return const SizedBox.shrink();
+        }
+        return widget.children[index];
+      }),
     );
   }
 }

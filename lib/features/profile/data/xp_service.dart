@@ -130,7 +130,7 @@ class XpService {
           visitRef,
           {
             'poiId': poi.id,
-            'poiName': poi.name,
+            'poiName': poi.displayName,
             'lat': poi.lat,
             'lng': poi.lng,
             'source': poi.source,

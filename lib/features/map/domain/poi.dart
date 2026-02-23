@@ -46,5 +46,94 @@ class Poi {
     this.createdBy,
     this.departmentCode,
   });
+
+  /// Retourne le nom du POI, ou une étiquette pertinente si le nom est vide
+  String get displayName {
+    final trimmedName = name.trim();
+    final normalizedName = trimmedName.toLowerCase();
+    final isPlaceholderName = normalizedName.isEmpty ||
+        normalizedName == 'poi sans nom' ||
+        normalizedName.contains('poi sans nom') ||
+        normalizedName.contains("point d'interet: poi sans nom") ||
+        normalizedName.contains('point d interet: poi sans nom');
+
+    if (!isPlaceholderName) return trimmedName;
+
+    final normalizedDescription = shortDescription.trim().toLowerCase();
+    if (normalizedDescription.contains('point de vue')) {
+      return 'Point de vue';
+    }
+
+    final subCategoryLabel = formatPoiSubCategory(subCategory);
+    final isPointInteret = normalizedDescription.contains("point d'interet") ||
+        normalizedDescription.contains("point d'interêt") ||
+        normalizedDescription.contains('point d interet');
+
+    if (isPointInteret && subCategoryLabel.isNotEmpty) {
+      return subCategoryLabel;
+    }
+
+    if (subCategoryLabel.isNotEmpty) return subCategoryLabel;
+    return category.label;
+  }
+
+  Map<String, dynamic> toCacheMap() {
+    return {
+      'id': id,
+      'name': name,
+      'categoryIndex': category.index,
+      'subCategory': subCategory,
+      'lat': lat,
+      'lng': lng,
+      'shortDescription': shortDescription,
+      'imageUrls': imageUrls,
+      'websiteUrl': websiteUrl,
+      'isFree': isFree,
+      'visitDurationMin': visitDurationMin,
+      'pmrAccessible': pmrAccessible,
+      'kidsFriendly': kidsFriendly,
+      'googleRating': googleRating,
+      'googleRatingCount': googleRatingCount,
+      'source': source,
+      'updatedAt': updatedAt.millisecondsSinceEpoch,
+      'createdBy': createdBy,
+      'departmentCode': departmentCode,
+    };
+  }
+
+  static Poi fromCacheMap(Map<String, dynamic> map) {
+    final categoryIndex = map['categoryIndex'] as int? ?? 0;
+    final category = categoryIndex >= 0 &&
+            categoryIndex < PoiCategory.values.length
+        ? PoiCategory.values[categoryIndex]
+        : PoiCategory.culture;
+
+    return Poi(
+      id: (map['id'] as String?) ?? '',
+      name: (map['name'] as String?) ?? '',
+      category: category,
+      subCategory: map['subCategory'] as String?,
+      lat: (map['lat'] as num?)?.toDouble() ?? 0.0,
+      lng: (map['lng'] as num?)?.toDouble() ?? 0.0,
+      shortDescription: (map['shortDescription'] as String?) ?? '',
+      imageUrls: (map['imageUrls'] as List?)
+              ?.map((e) => e.toString())
+              .toList() ??
+          const [],
+      websiteUrl: map['websiteUrl'] as String?,
+      isFree: map['isFree'] as bool?,
+      visitDurationMin: map['visitDurationMin'] as int?,
+      pmrAccessible: map['pmrAccessible'] as bool?,
+      kidsFriendly: map['kidsFriendly'] as bool?,
+      googleRating: (map['googleRating'] as num?)?.toDouble(),
+      googleRatingCount: map['googleRatingCount'] as int?,
+      source: (map['source'] as String?) ?? 'cache',
+      updatedAt: DateTime.fromMillisecondsSinceEpoch(
+        (map['updatedAt'] as int?) ?? DateTime.now().millisecondsSinceEpoch,
+      ),
+      createdBy: map['createdBy'] as String?,
+      departmentCode: map['departmentCode'] as String?,
+    );
+  }
 }
 

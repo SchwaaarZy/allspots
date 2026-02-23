@@ -1,0 +1,758 @@
+[
+  {
+    "id": "osm_277031293",
+    "name": "Gymnase Marcel Bailet",
+    "lat": 43.7081661,
+    "lng": 7.2922507,
+    "location": {
+      "_latitude": 43.7081661,
+      "_longitude": 7.2922507
+    },
+    "description": "Point d'intérêt: Gymnase Marcel Bailet",
+    "category": "activites",
+    "categoryGroup": "Activites plein air",
+    "categoryItem": "other",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [
+      "https://www.wikidata.org/wiki/Q120322888"
+    ],
+    "images": [
+      "https://www.wikidata.org/wiki/Q120322888"
+    ],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 277031293,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871748,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:48.334231"
+  },
+  {
+    "id": "osm_1630243384",
+    "name": "Cavigal JJB",
+    "lat": 43.7069428,
+    "lng": 7.2601091,
+    "location": {
+      "_latitude": 43.7069428,
+      "_longitude": 7.2601091
+    },
+    "description": "Point d'intérêt: Cavigal JJB",
+    "category": "activites",
+    "categoryGroup": "Activites plein air",
+    "categoryItem": "other",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 1630243384,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871748,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:48.334251"
+  },
+  {
+    "id": "osm_2049642157",
+    "name": "Olympic Judo Nice - Fabron",
+    "lat": 43.6868225,
+    "lng": 7.2120924,
+    "location": {
+      "_latitude": 43.6868225,
+      "_longitude": 7.2120924
+    },
+    "description": "Point d'intérêt: Olympic Judo Nice - Fabron",
+    "category": "activites",
+    "categoryGroup": "Activites plein air",
+    "categoryItem": "other",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 2049642157,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871748,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:48.334259"
+  },
+  {
+    "id": "osm_2157568276",
+    "name": "POI sans nom",
+    "lat": 43.6768009,
+    "lng": 7.2197684,
+    "location": {
+      "_latitude": 43.6768009,
+      "_longitude": 7.2197684
+    },
+    "description": "Point d'intérêt: POI sans nom",
+    "category": "activites",
+    "categoryGroup": "Activites plein air",
+    "categoryItem": "other",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 2157568276,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871748,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:48.334266"
+  },
+  {
+    "id": "osm_2157568277",
+    "name": "Plateau sportif",
+    "lat": 43.6763295,
+    "lng": 7.2200955,
+    "location": {
+      "_latitude": 43.6763295,
+      "_longitude": 7.2200955
+    },
+    "description": "Point d'intérêt: Plateau sportif",
+    "category": "activites",
+    "categoryGroup": "Activites plein air",
+    "categoryItem": "other",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 2157568277,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871748,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:48.334272"
+  },
+  {
+    "id": "osm_2214890163",
+    "name": "La Salle",
+    "lat": 43.6791911,
+    "lng": 7.2286897,
+    "location": {
+      "_latitude": 43.6791911,
+      "_longitude": 7.2286897
+    },
+    "description": "Point d'intérêt: La Salle",
+    "category": "activites",
+    "categoryGroup": "Activites plein air",
+    "categoryItem": "other",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": "https://la-salle.fr/index.php/beaulieu-nouveau-2/",
+    "website": "https://la-salle.fr/index.php/beaulieu-nouveau-2/",
+    "source": "openstreetmap",
+    "osmId": 2214890163,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871748,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:48.334279"
+  },
+  {
+    "id": "osm_2270372999",
+    "name": "Tennis Municipal",
+    "lat": 43.7061222,
+    "lng": 7.3033356,
+    "location": {
+      "_latitude": 43.7061222,
+      "_longitude": 7.3033356
+    },
+    "description": "Point d'intérêt: Tennis Municipal",
+    "category": "activites",
+    "categoryGroup": "Activites plein air",
+    "categoryItem": "other",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 2270372999,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871748,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:48.334285"
+  },
+  {
+    "id": "osm_2270373286",
+    "name": "Complexe Multisports de la Barmassa",
+    "lat": 43.7062791,
+    "lng": 7.3097623,
+    "location": {
+      "_latitude": 43.7062791,
+      "_longitude": 7.3097623
+    },
+    "description": "Point d'intérêt: Complexe Multisports de la Barmassa",
+    "category": "activites",
+    "categoryGroup": "Activites plein air",
+    "categoryItem": "other",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 2270373286,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871748,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:48.334291"
+  },
+  {
+    "id": "osm_2270373748",
+    "name": "Tennis Municipal USV",
+    "lat": 43.7021917,
+    "lng": 7.3236669,
+    "location": {
+      "_latitude": 43.7021917,
+      "_longitude": 7.3236669
+    },
+    "description": "Point d'intérêt: Tennis Municipal USV",
+    "category": "activites",
+    "categoryGroup": "Activites plein air",
+    "categoryItem": "other",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 2270373748,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871748,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:48.334297"
+  },
+  {
+    "id": "osm_2364930604",
+    "name": "Art Bloc",
+    "lat": 43.710242,
+    "lng": 7.1932392,
+    "location": {
+      "_latitude": 43.710242,
+      "_longitude": 7.1932392
+    },
+    "description": "Point d'intérêt: Art Bloc",
+    "category": "activites",
+    "categoryGroup": "Activites plein air",
+    "categoryItem": "other",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": "https://www.art-bloc.fr/",
+    "website": "https://www.art-bloc.fr/",
+    "source": "openstreetmap",
+    "osmId": 2364930604,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871748,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:48.334303"
+  },
+  {
+    "id": "osm_2470903272",
+    "name": "Spot de Kitesurf de Saint-Laurent Du Var",
+    "lat": 43.6574579,
+    "lng": 7.1949749,
+    "location": {
+      "_latitude": 43.6574579,
+      "_longitude": 7.1949749
+    },
+    "description": "Point d'intérêt: Spot de Kitesurf de Saint-Laurent Du Var",
+    "category": "activites",
+    "categoryGroup": "Activites plein air",
+    "categoryItem": "other",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 2470903272,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871748,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:48.334309"
+  },
+  {
+    "id": "osm_2597037656",
+    "name": "Jeux de Boules",
+    "lat": 43.7592374,
+    "lng": 7.2194056,
+    "location": {
+      "_latitude": 43.7592374,
+      "_longitude": 7.2194056
+    },
+    "description": "Point d'intérêt: Jeux de Boules",
+    "category": "activites",
+    "categoryGroup": "Activites plein air",
+    "categoryItem": "other",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 2597037656,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871748,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:48.334321"
+  },
+  {
+    "id": "osm_2964765666",
+    "name": "Yacht Club Villeneuve Loubet",
+    "lat": 43.6388098,
+    "lng": 7.1412159,
+    "location": {
+      "_latitude": 43.6388098,
+      "_longitude": 7.1412159
+    },
+    "description": "Point d'intérêt: Yacht Club Villeneuve Loubet",
+    "category": "activites",
+    "categoryGroup": "Activites plein air",
+    "categoryItem": "other",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [
+      "https://www.wikidata.org/wiki/Q120321059"
+    ],
+    "images": [
+      "https://www.wikidata.org/wiki/Q120321059"
+    ],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 2964765666,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871748,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:48.334330"
+  },
+  {
+    "id": "osm_2964847650",
+    "name": "Tennis Padel Vence",
+    "lat": 43.7071008,
+    "lng": 7.1300173,
+    "location": {
+      "_latitude": 43.7071008,
+      "_longitude": 7.1300173
+    },
+    "description": "Point d'intérêt: Tennis Padel Vence",
+    "category": "activites",
+    "categoryGroup": "Activites plein air",
+    "categoryItem": "other",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 2964847650,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871748,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:48.334336"
+  },
+  {
+    "id": "osm_2964973577",
+    "name": "Tennis du Val de Cagnes",
+    "lat": 43.682452,
+    "lng": 7.1480199,
+    "location": {
+      "_latitude": 43.682452,
+      "_longitude": 7.1480199
+    },
+    "description": "Point d'intérêt: Tennis du Val de Cagnes",
+    "category": "activites",
+    "categoryGroup": "Activites plein air",
+    "categoryItem": "other",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [
+      "https://www.wikidata.org/wiki/Q120187591"
+    ],
+    "images": [
+      "https://www.wikidata.org/wiki/Q120187591"
+    ],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 2964973577,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871748,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:48.334345"
+  },
+  {
+    "id": "osm_3754103726",
+    "name": "Coach Sportif A Distance",
+    "lat": 43.6871667,
+    "lng": 7.2954289,
+    "location": {
+      "_latitude": 43.6871667,
+      "_longitude": 7.2954289
+    },
+    "description": "Point d'intérêt: Coach Sportif A Distance",
+    "category": "activites",
+    "categoryGroup": "Activites plein air",
+    "categoryItem": "other",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": "www.coach-sportif-a-distance.fr/",
+    "website": "www.coach-sportif-a-distance.fr/",
+    "source": "openstreetmap",
+    "osmId": 3754103726,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871748,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:48.334351"
+  },
+  {
+    "id": "osm_5829436926",
+    "name": "Club Var Mer",
+    "lat": 43.6560412,
+    "lng": 7.1982993,
+    "location": {
+      "_latitude": 43.6560412,
+      "_longitude": 7.1982993
+    },
+    "description": "Point d'intérêt: Club Var Mer",
+    "category": "activites",
+    "categoryGroup": "Activites plein air",
+    "categoryItem": "other",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [
+      "https://www.wikidata.org/wiki/Q120321831"
+    ],
+    "images": [
+      "https://www.wikidata.org/wiki/Q120321831"
+    ],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 5829436926,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871748,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:48.334359"
+  },
+  {
+    "id": "osm_6106570164",
+    "name": "Piscine municipale Saint-Augustin",
+    "lat": 43.6729227,
+    "lng": 7.204919,
+    "location": {
+      "_latitude": 43.6729227,
+      "_longitude": 7.204919
+    },
+    "description": "Point d'intérêt: Piscine municipale Saint-Augustin",
+    "category": "activites",
+    "categoryGroup": "Activites plein air",
+    "categoryItem": "other",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [
+      "https://www.wikidata.org/wiki/Q118523060"
+    ],
+    "images": [
+      "https://www.wikidata.org/wiki/Q118523060"
+    ],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 6106570164,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871748,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:48.334367"
+  },
+  {
+    "id": "osm_7964934974",
+    "name": "Aquapark06",
+    "lat": 43.6559124,
+    "lng": 7.186188,
+    "location": {
+      "_latitude": 43.6559124,
+      "_longitude": 7.186188
+    },
+    "description": "Point d'intérêt: Aquapark06",
+    "category": "activites",
+    "categoryGroup": "Activites plein air",
+    "categoryItem": "other",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 7964934974,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871748,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:48.334373"
+  },
+  {
+    "id": "osm_9410050774",
+    "name": "Arkose Nice",
+    "lat": 43.706115,
+    "lng": 7.1939448,
+    "location": {
+      "_latitude": 43.706115,
+      "_longitude": 7.1939448
+    },
+    "description": "Point d'intérêt: Arkose Nice",
+    "category": "activites",
+    "categoryGroup": "Activites plein air",
+    "categoryItem": "other",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": "https://arkose.com/nice",
+    "website": "https://arkose.com/nice",
+    "source": "openstreetmap",
+    "osmId": 9410050774,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871748,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:48.334380"
+  },
+  {
+    "id": "osm_9906224961",
+    "name": "OGC Nice Escrime",
+    "lat": 43.7063252,
+    "lng": 7.2912383,
+    "location": {
+      "_latitude": 43.7063252,
+      "_longitude": 7.2912383
+    },
+    "description": "Point d'intérêt: OGC Nice Escrime",
+    "category": "activites",
+    "categoryGroup": "Activites plein air",
+    "categoryItem": "other",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 9906224961,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871748,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:48.334386"
+  },
+  {
+    "id": "osm_12377308395",
+    "name": "Val de Grimpe",
+    "lat": 43.6405343,
+    "lng": 7.1318219,
+    "location": {
+      "_latitude": 43.6405343,
+      "_longitude": 7.1318219
+    },
+    "description": "Salle d'escalade",
+    "category": "activites",
+    "categoryGroup": "Activites plein air",
+    "categoryItem": "other",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": "https://www.valdegrimpe.fr/",
+    "website": "https://www.valdegrimpe.fr/",
+    "source": "openstreetmap",
+    "osmId": 12377308395,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871748,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:48.334392"
+  },
+  {
+    "id": "osm_12475686697",
+    "name": "Flex",
+    "lat": 43.6986536,
+    "lng": 7.2702822,
+    "location": {
+      "_latitude": 43.6986536,
+      "_longitude": 7.2702822
+    },
+    "description": "Point d'intérêt: Flex",
+    "category": "activites",
+    "categoryGroup": "Activites plein air",
+    "categoryItem": "other",
+    "city": "Alpes-Maritimes",
+    "departmentCode": "06",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": "https://www.flexx-club.fr",
+    "website": "https://www.flexx-club.fr",
+    "source": "openstreetmap",
+    "osmId": 12475686697,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771871748,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-23T19:35:48.334398"
+  }
+]
