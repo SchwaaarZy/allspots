@@ -8,7 +8,7 @@ class FaqInfoTab extends StatelessWidget {
     const items = <_FaqItem>[
       _FaqItem(
         q: 'Comment trouver des spots près de moi ?',
-        a: 'Depuis la page carte, AllSpots affiche automatiquement les spots autour de votre position.',
+        a: 'Depuis la page carte, AllSPOTS affiche automatiquement les spots autour de votre position.',
       ),
       _FaqItem(
         q: 'Comment rechercher un spot précis ?',
@@ -16,7 +16,7 @@ class FaqInfoTab extends StatelessWidget {
       ),
       _FaqItem(
         q: 'Comment lancer la navigation vers un spot ?',
-        a: 'Dans le détail du spot, appuyez sur "Voir la route" puis choisissez AllSpots Navigation ou une app externe.',
+        a: 'Dans le détail du spot, appuyez sur "Voir la route" puis choisissez AllSPOTS Navigation ou une app externe.',
       ),
       _FaqItem(
         q: 'Puis-je utiliser une autre app de navigation ?',
@@ -41,7 +41,7 @@ class FaqInfoTab extends StatelessWidget {
       children: [
         const _TitleBlock(
           title: 'FAQ',
-          subtitle: 'Questions fréquentes sur AllSpots.',
+          subtitle: 'Questions fréquentes sur AllSPOTS.',
         ),
         const SizedBox(height: 10),
         ...items.map((it) => _FaqCard(item: it)),
@@ -123,7 +123,7 @@ class _Footer extends StatelessWidget {
     final year = DateTime.now().year;
     return Center(
       child: Text(
-        '© $year AllSpots',
+        '© $year AllSPOTS',
         style: TextStyle(color: Colors.grey[600], fontSize: 12),
       ),
     );
