@@ -14,7 +14,7 @@ class AllSpotsApp extends ConsumerWidget {
 
     return _PresenceTracker(
       child: MaterialApp.router(
-        title: "All'SPOTS",
+        title: 'AllSPOTS',
         debugShowCheckedModeBanner: false,
         routerConfig: router,
         theme: AppTheme.light(),

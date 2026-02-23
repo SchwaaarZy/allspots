@@ -1,15 +1,14 @@
 # 🗺️ Scripts d'Import de POIs
 
-Solution complète pour importer des POIs en France avec stratégie hybride **gratuite et illimitée**.
+Solution complète pour importer des POIs en France avec stratégie publique **gratuite et illimitée**.
 
-## 📊 Stratégie Hybride (80% / 20%)
+## 📊 Stratégie Recommandée (sans Google)
 
 | Source | Part | Coût | Avantages |
 |--------|------|------|-----------|
-| **OpenStreetMap** | 60% | 🆓 Gratuit | Illimité, excellente couverture France |
-| **Google Places** | 20% | 🆓 Quota gratuit | Photos HD, avis, horaires |
-| **Data.gouv.fr** | 10% | 🆓 Gratuit | Monuments historiques, musées officiels |
-| **Decathlon Outdoor** | 10% | 🆓 Gratuit | Itinéraires randonnée, vélo, trail |
+| **OpenStreetMap** | ~75% | 🆓 Gratuit | Illimité, excellente couverture France |
+| **UNESCO** | ~15% | 🆓 Gratuit | Patrimoine mondial (France + DOM-TOM) |
+| **Data.gouv.fr** | ~10% | 🆓 Gratuit | Monuments historiques, musées officiels |
 
 **Total: 100% GRATUIT** 🎉
 
@@ -20,20 +19,20 @@ Solution complète pour importer des POIs en France avec stratégie hybride **gr
 ### Option 1: Import Automatique Tout-en-Un
 
 ```bash
-# Import complet: toutes les grandes villes de France
+# Import public rapide (OSM + UNESCO + Data.gouv, sans Google)
 python3 scripts/import_hybride.py
 
-# Villes spécifiques
-python3 scripts/import_hybride.py --cities paris marseille lyon
+# Import plus rapide sur villes majeures (au lieu all-departments)
+python3 scripts/import_hybride.py --osm-mode cities --cities paris marseille lyon
 
 # Catégories spécifiques
 python3 scripts/import_hybride.py --categories culture histoire
 
-# OSM uniquement (sans Google Places)
-python3 scripts/import_hybride.py --skip-google
+# OSM uniquement
+python3 scripts/import_hybride.py --skip-datagouv --skip-unesco
 ```
 
-**⚡ En 1 commande** → Génère `pois_france_complet.json` prêt pour Firestore !
+**⚡ En 1 commande** → Génère `pois_france_public.json` prêt pour Firestore !
 
 ---
 
@@ -55,6 +54,21 @@ python3 scripts/import_osm_france.py \
   --department 13 \
   --category nature \
   --radius 20000
+
+# France entière + DOM-TOM (centres départements)
+python3 scripts/import_osm_france.py \
+  --all-departments \
+  --category culture \
+  --radius 20000
+
+# Inventaire complet départements + villes/villages
+python3 scripts/import_osm_france.py \
+  --all-departments \
+  --catalog-output scripts/france_domtom_catalog.json \
+  --catalog-only
+
+# (Optionnel) Regénérer le fallback local 101 départements
+python3 scripts/generate_departments_fallback.py
 ```
 
 **Catégories disponibles:**
@@ -64,7 +78,7 @@ python3 scripts/import_osm_france.py \
 - `histoire` → Monuments, châteaux, sites historiques
 - `activites` → Attractions, loisirs, sports
 
-**⚠️ Rate Limiting:** Attendre 60 secondes entre chaque requête
+**⚠️ Rate Limiting:** utilisez `--sleep-seconds` (ex: `1.5`) selon votre volume
 
 ---
 
@@ -136,7 +150,35 @@ python3 scripts/import_datagouv.py \
 
 ---
 
-### 4️⃣ Decathlon Outdoor (Itinéraires)
+### 4️⃣ UNESCO (Patrimoine Mondial)
+
+**✅ Recommandé pour:** Sites UNESCO France + DOM-TOM (patrimoine culturel/naturel)
+
+```bash
+# Tous les sites UNESCO France (incl. DOM-TOM)
+python3 scripts/import_unesco.py \
+  --category tous \
+  --output pois_unesco_france.json
+
+# Filtrer par categorie de l'app
+python3 scripts/import_unesco.py \
+  --category nature \
+  --output pois_unesco_nature.json
+```
+
+**Mapping categories UNESCO -> app:**
+- Cultural -> `histoire`
+- Natural -> `nature`
+- Mixed -> `histoire`
+
+**Notes:**
+- Par defaut, le script filtre sur le pays `France` (inclut les sites DOM-TOM)
+- Les sites transfrontaliers sont inclus si `France` fait partie des pays
+- Si l'API UNESCO bloque les requetes automatisées (403), le script bascule automatiquement sur un fallback Wikidata (sites UNESCO France)
+
+---
+
+### 5️⃣ Decathlon Outdoor (Itinéraires)
 
 **✅ Recommandé pour:** Randonnée, vélo, trail, activités outdoor
 
@@ -188,11 +230,14 @@ python3 scripts/import_decathlon_outdoor.py \
 ## 🔥 Import dans Firestore
 
 ```bash
-# Méthode 1: Firebase CLI (recommandé)
-firebase firestore:import pois_france_complet.json --project allspots
-
-# Méthode 2: Firebase Admin SDK (Node.js)
+# Méthode recommandée: Firebase Admin SDK (Node.js)
 node scripts/import_to_firestore.js pois_france_complet.json
+
+# Nettoyage des doublons déjà présents (dry-run)
+node scripts/dedupe_firestore_spots.js
+
+# Nettoyage effectif + backup JSON
+node scripts/dedupe_firestore_spots.js --apply --backup scripts/out/duplicates_backup.json
 ```
 
 **Structure Firestore générée:**
@@ -253,25 +298,29 @@ python3 scripts/import_hybride.py \
 
 ### Phase 3: Couverture Nationale (Semaines 3-4)
 
-**Import par région:**
+**Import national (métropole + outre-mer):**
 ```bash
-# Île-de-France (75, 77, 78, 91, 92, 93, 94, 95)
-for dept in 75 77 78 91 92 93 94 95; do
-  python3 scripts/import_osm_france.py --department $dept --category culture
-  sleep 60
-done
+# Passage par centre de département (rapide)
+python3 scripts/import_osm_france.py \
+  --all-departments \
+  --category culture \
+  --radius 20000 \
+  --sleep-seconds 1.5
 
-# PACA (04, 05, 06, 13, 83, 84)
-for dept in 04 05 06 13 83 84; do
-  python3 scripts/import_osm_france.py --department $dept --category nature
-  sleep 60
-done
+# Maillage fin: villes/villages (plus long, meilleure couverture)
+python3 scripts/import_osm_france.py \
+  --all-departments \
+  --use-communes \
+  --communes-limit 0 \
+  --category nature \
+  --radius 8000 \
+  --sleep-seconds 1.5
 ```
 
 **Résultat attendu:**
-- ~15 000 POIs (toute la France)
+- couverture France + DOM-TOM
 - Coût: 0€ (OSM seulement)
-- Temps: ~5 jours (automatisable)
+- Temps: variable selon maillage communes/villages
 
 ---
 

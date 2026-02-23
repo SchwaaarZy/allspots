@@ -19,7 +19,7 @@ class FeaturesInfoTab extends StatelessWidget {
       _FeatureItem(
         icon: Icons.map,
         title: 'Navigation vers un spot',
-        body: "Lancez un itinéraire vers un spot avec All'SPOTS Navigation ou une app externe (Waze, Google Maps…).",
+        body: 'Lancez un itinéraire vers un spot avec AllSPOTS Navigation ou une app externe (Waze, Google Maps…).',
       ),
       _FeatureItem(
         icon: Icons.route,
@@ -29,7 +29,7 @@ class FeaturesInfoTab extends StatelessWidget {
       _FeatureItem(
         icon: Icons.rate_review,
         title: 'Avis et notes',
-        body: "Consultez les notes Google et laissez vos avis All'SPOTS sur les spots visités.",
+        body: 'Consultez les notes Google et laissez vos avis AllSPOTS sur les spots visités.',
       ),
       _FeatureItem(
         icon: Icons.favorite_border,
@@ -63,7 +63,7 @@ class FeaturesInfoTab extends StatelessWidget {
       children: [
         const _TitleBlock(
           title: 'Fonctionnalités',
-          subtitle: "Voici les principales fonctionnalités de All'SPOTS.",
+          subtitle: 'Voici les principales fonctionnalités de AllSPOTS.',
         ),
         const SizedBox(height: 10),
         ...items.map((it) => _FeatureCard(item: it)),
@@ -161,7 +161,7 @@ class _Footer extends StatelessWidget {
     final year = DateTime.now().year;
     return Center(
       child: Text(
-        "© $year All'SPOTS",
+        '© $year AllSPOTS',
         style: TextStyle(color: Colors.grey[600], fontSize: 12),
       ),
     );

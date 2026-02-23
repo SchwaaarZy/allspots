@@ -41,7 +41,7 @@ class MapState {
         error: null,
         nearbyPois: const [],
         filters: PoiFilters.defaults(),
-        radiusMeters: 10000, // 10 km par défaut
+      radiusMeters: 20000000, // France + DOM-TOM
         isSatellite: false,
         buildingsEnabled: true,
       );
@@ -98,6 +98,8 @@ class MapController extends StateNotifier<MapState> {
   MapController(this._repo) : super(MapState.initial());
 
   final PoiRepository _repo;
+  static const double _fallbackLat = 46.603354;
+  static const double _fallbackLng = 1.888334;
 
   Future<void> init() async {
     state = state.copyWith(isLoading: true, error: null);
@@ -108,23 +110,31 @@ class MapController extends StateNotifier<MapState> {
       await refreshNearby();
       state = state.copyWith(isLoading: false);
     } catch (e) {
-      state = state.copyWith(isLoading: false, error: e.toString());
+      await refreshNearby(
+        userLatOverride: _fallbackLat,
+        userLngOverride: _fallbackLng,
+      );
+      state = state.copyWith(
+        isLoading: false,
+        error: 'Localisation indisponible: spots France + DOM-TOM affichés.',
+      );
     }
   }
 
-  Future<void> refreshNearby() async {
+  Future<void> refreshNearby({
+    double? userLatOverride,
+    double? userLngOverride,
+  }) async {
     final pos = state.userPosition;
-    if (pos == null) {
-      state = state.copyWith(error: 'Position non disponible');
-      return;
-    }
+    final userLat = userLatOverride ?? pos?.latitude ?? _fallbackLat;
+    final userLng = userLngOverride ?? pos?.longitude ?? _fallbackLng;
 
     state = state.copyWith(isLoading: true, error: null);
     
     try {
       final pois = await _repo.getNearbyPois(
-        userLat: pos.latitude,
-        userLng: pos.longitude,
+        userLat: userLat,
+        userLng: userLng,
         radiusMeters: state.radiusMeters,
         filters: state.filters,
       );
@@ -203,12 +213,13 @@ class MapController extends StateNotifier<MapState> {
     }
 
     // L'utilisateur a des préférences: les utiliser strictement
-    final preferenceSet = preferences.toSet();
+    final preferenceSet = preferences.map(_normalizeLabel).toSet();
     final categories = <PoiCategory>{};
 
     for (final group in poiCategoryGroups) {
       // Vérifier si au moins un élément du groupe est dans les préférences
-      final hasMatch = group.items.any(preferenceSet.contains);
+      final hasMatch =
+          group.items.map(_normalizeLabel).any(preferenceSet.contains);
       if (!hasMatch) continue;
 
       // Mapper le groupe à sa catégorie
@@ -231,7 +242,30 @@ class MapController extends StateNotifier<MapState> {
       }
     }
 
-    // Retourner les catégories trouvées (même si vide)
+    // Si aucun match (anciens libellés / accents), ne pas bloquer la carte
+    if (categories.isEmpty) {
+      return PoiCategory.values.toSet();
+    }
+
     return categories;
+  }
+
+  String _normalizeLabel(String input) {
+    return input
+        .toLowerCase()
+        .trim()
+        .replaceAll('é', 'e')
+        .replaceAll('è', 'e')
+        .replaceAll('ê', 'e')
+        .replaceAll('à', 'a')
+        .replaceAll('â', 'a')
+        .replaceAll('ù', 'u')
+        .replaceAll('û', 'u')
+        .replaceAll('ô', 'o')
+        .replaceAll('î', 'i')
+        .replaceAll('ï', 'i')
+        .replaceAll("'", '')
+        .replaceAll('-', ' ')
+        .replaceAll(RegExp(r'\s+'), ' ');
   }
 }

@@ -1,0 +1,98 @@
+[
+  {
+    "id": "osm_4415553389",
+    "name": "Centre Équestre de Saint-Just",
+    "lat": 46.1839086,
+    "lng": 5.2866842,
+    "location": {
+      "_latitude": 46.1839086,
+      "_longitude": 5.2866842
+    },
+    "description": "Point d'intérêt: Centre Équestre de Saint-Just",
+    "category": "activites",
+    "categoryGroup": "Activites plein air",
+    "categoryItem": "other",
+    "city": "Ain",
+    "departmentCode": "01",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 4415553389,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771774828,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-22T16:40:28.339138"
+  },
+  {
+    "id": "osm_6474734091",
+    "name": "LaserGame - Original Laser",
+    "lat": 46.2036819,
+    "lng": 5.2276388,
+    "location": {
+      "_latitude": 46.2036819,
+      "_longitude": 5.2276388
+    },
+    "description": "Point d'intérêt: LaserGame - Original Laser",
+    "category": "activites",
+    "categoryGroup": "Activites plein air",
+    "categoryItem": "other",
+    "city": "Ain",
+    "departmentCode": "01",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 6474734091,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771774828,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-22T16:40:28.339199"
+  },
+  {
+    "id": "osm_7713075426",
+    "name": "POI sans nom",
+    "lat": 46.2068952,
+    "lng": 5.2469253,
+    "location": {
+      "_latitude": 46.2068952,
+      "_longitude": 5.2469253
+    },
+    "description": "Point d'intérêt: POI sans nom",
+    "category": "activites",
+    "categoryGroup": "Activites plein air",
+    "categoryItem": "other",
+    "city": "Ain",
+    "departmentCode": "01",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 7713075426,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771774828,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-22T16:40:28.339211"
+  }
+]

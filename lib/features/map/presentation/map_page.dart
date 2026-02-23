@@ -241,8 +241,6 @@ class _MapViewState extends ConsumerState<MapView> {
 
     final state = ref.watch(mapControllerProvider);
 
-    Future.microtask(() => _maybeAutoClaimXp(state));
-
     // Centrer automatiquement au premier chargement de la position
     if (!_centeredOnFirstLocation && state.userPosition != null) {
       Future.microtask(_ensureCenteredOnLocation);
@@ -250,145 +248,171 @@ class _MapViewState extends ConsumerState<MapView> {
 
     final userPos = state.userPosition;
 
-    // Debug: afficher le statut du chargement
-    debugPrint(
-      '[MapView] nearbyPois=${state.nearbyPois.length}, '
-      'isLoading=${state.isLoading}, error=${state.error}, '
-      'userPos=${userPos != null ? "OK" : "NULL"}',
-    );
+    return StreamBuilder<QuerySnapshot<Map<String, dynamic>>>(
+      stream: FirebaseFirestore.instance.collection('spots').snapshots(),
+      builder: (context, snapshot) {
+        final activeFirestoreIds = snapshot.hasData
+            ? snapshot.data!.docs
+                .where((doc) => doc.data()['isPublic'] != false)
+                .map((doc) => doc.id)
+                .toSet()
+            : <String>{};
 
-    return Stack(
-      children: [
-        flutter_map.FlutterMap(
-          mapController: _flutterMapController,
-          options: flutter_map.MapOptions(
-            initialCenter: LatLng(
-              userPos?.latitude ?? 48.8566,
-              userPos?.longitude ?? 2.3522,
-            ),
-            initialZoom: 15,
-            minZoom: 1,
-            maxZoom: 18,
-          ),
+        final visiblePois = snapshot.hasData
+            ? state.nearbyPois
+                .where(
+                  (poi) =>
+                      poi.source != 'firestore' ||
+                      activeFirestoreIds.contains(poi.id),
+                )
+                .toList()
+            : state.nearbyPois;
+
+        // Debug: afficher le statut du chargement
+        debugPrint(
+          '[MapView] nearbyPois=${state.nearbyPois.length}, visiblePois=${visiblePois.length}, '
+          'isLoading=${state.isLoading}, error=${state.error}, '
+          'userPos=${userPos != null ? "OK" : "NULL"}',
+        );
+
+        Future.microtask(
+          () => _maybeAutoClaimXp(state.copyWith(nearbyPois: visiblePois)),
+        );
+
+        return Stack(
           children: [
-            flutter_map.TileLayer(
-              urlTemplate: 'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
-              userAgentPackageName: 'com.allspots',
-              subdomains: const ['a', 'b', 'c'],
+            flutter_map.FlutterMap(
+              mapController: _flutterMapController,
+              options: flutter_map.MapOptions(
+                initialCenter: LatLng(
+                  userPos?.latitude ?? 48.8566,
+                  userPos?.longitude ?? 2.3522,
+                ),
+                initialZoom: 15,
+                minZoom: 1,
+                maxZoom: 18,
+              ),
+              children: [
+                flutter_map.TileLayer(
+                  urlTemplate: 'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
+                  userAgentPackageName: 'com.allspots',
+                  subdomains: const ['a', 'b', 'c'],
+                ),
+                flutter_map.MarkerLayer(
+                  markers: visiblePois.map((p) {
+                    return flutter_map.Marker(
+                      point: LatLng(p.lat, p.lng),
+                      width: 80,
+                      height: 80,
+                      alignment: Alignment.center,
+                      child: GestureDetector(
+                        onTap: () {
+                          _showPoiPopup(context, p, LatLng(p.lat, p.lng));
+                        },
+                        child: Center(
+                          child: Icon(
+                            Icons.location_on,
+                            color: _getColorForCategory(p.category),
+                            size: 50,
+                          ),
+                        ),
+                      ),
+                    );
+                  }).toList(),
+                ),
+                if (userPos != null)
+                  flutter_map.MarkerLayer(
+                    markers: [
+                      flutter_map.Marker(
+                        point: LatLng(userPos.latitude, userPos.longitude),
+                        width: 12,
+                        height: 12,
+                        child: Container(
+                          decoration: const BoxDecoration(
+                            color: Colors.blue,
+                            shape: BoxShape.circle,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+              ],
             ),
-            flutter_map.MarkerLayer(
-              markers: state.nearbyPois.map((p) {
-                return flutter_map.Marker(
-                  point: LatLng(p.lat, p.lng),
-                  width: 80,
-                  height: 80,
-                  alignment: Alignment.center,
-                  child: GestureDetector(
-                    onTap: () {
-                      _showPoiPopup(context, p, LatLng(p.lat, p.lng));
-                    },
-                    child: Center(
-                      child: Icon(
-                        Icons.location_on,
-                        color: _getColorForCategory(p.category),
-                        size: 50,
+        // Contrôles secondaires (haut droit)
+            Positioned(
+              right: 12,
+              bottom: 12,
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  const _MapUsersCountBadge(),
+                  const SizedBox(height: 8),
+                  Material(
+                    color: Colors.white,
+                    elevation: 3,
+                    borderRadius: BorderRadius.circular(12),
+                    clipBehavior: Clip.antiAlias,
+                    child: IconButton(
+                      onPressed: () => _showLegend(context),
+                      tooltip: 'Légende',
+                      splashRadius: 22,
+                      constraints: const BoxConstraints.tightFor(
+                        width: 44,
+                        height: 44,
+                      ),
+                      padding: EdgeInsets.zero,
+                      icon: const Icon(
+                        Icons.info_outline,
+                        size: 22,
+                        color: Colors.blue,
                       ),
                     ),
                   ),
-                );
-              }).toList(),
-            ),
-            if (userPos != null)
-              flutter_map.MarkerLayer(
-                markers: [
-                  flutter_map.Marker(
-                    point: LatLng(userPos.latitude, userPos.longitude),
-                    width: 12,
-                    height: 12,
-                    child: Container(
-                      decoration: const BoxDecoration(
-                        color: Colors.blue,
-                        shape: BoxShape.circle,
+                  const SizedBox(height: 8),
+                  Container(
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(12),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.black.withValues(alpha: 0.2),
+                          blurRadius: 8,
+                          offset: const Offset(0, 3),
+                        ),
+                      ],
+                    ),
+                    child: Material(
+                      color: Colors.transparent,
+                      child: IconButton(
+                        onPressed: () async {
+                          final pos = ref.read(mapControllerProvider).userPosition;
+                          if (pos == null) return;
+                          _flutterMapController.move(
+                            LatLng(pos.latitude, pos.longitude),
+                            15,
+                          );
+                        },
+                        tooltip: 'Me centrer',
+                        splashRadius: 22,
+                        constraints: const BoxConstraints.tightFor(
+                          width: 44,
+                          height: 44,
+                        ),
+                        padding: EdgeInsets.zero,
+                        icon: const Icon(
+                          Icons.my_location,
+                          size: 22,
+                          color: Colors.blue,
+                        ),
                       ),
                     ),
                   ),
                 ],
               ),
+            ),
           ],
-        ),
-        // Contrôles secondaires (haut droit)
-        Positioned(
-          right: 12,
-          bottom: 12,
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              const _MapUsersCountBadge(),
-              const SizedBox(height: 8),
-              Material(
-                color: Colors.white,
-                elevation: 3,
-                borderRadius: BorderRadius.circular(12),
-                clipBehavior: Clip.antiAlias,
-                child: IconButton(
-                  onPressed: () => _showLegend(context),
-                  tooltip: 'Légende',
-                  splashRadius: 22,
-                  constraints: const BoxConstraints.tightFor(
-                    width: 44,
-                    height: 44,
-                  ),
-                  padding: EdgeInsets.zero,
-                  icon: const Icon(
-                    Icons.info_outline,
-                    size: 22,
-                    color: Colors.blue,
-                  ),
-                ),
-              ),
-              const SizedBox(height: 8),
-              Container(
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(12),
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.black.withValues(alpha: 0.2),
-                      blurRadius: 8,
-                      offset: const Offset(0, 3),
-                    ),
-                  ],
-                ),
-                child: Material(
-                  color: Colors.transparent,
-                  child: IconButton(
-                    onPressed: () async {
-                      final pos = ref.read(mapControllerProvider).userPosition;
-                      if (pos == null) return;
-                      _flutterMapController.move(
-                        LatLng(pos.latitude, pos.longitude),
-                        15,
-                      );
-                    },
-                    tooltip: 'Me centrer',
-                    splashRadius: 22,
-                    constraints: const BoxConstraints.tightFor(
-                      width: 44,
-                      height: 44,
-                    ),
-                    padding: EdgeInsets.zero,
-                    icon: const Icon(
-                      Icons.my_location,
-                      size: 22,
-                      color: Colors.blue,
-                    ),
-                  ),
-                ),
-              ),
-            ],
-          ),
-        ),
-      ],
+        );
+      },
     );
   }
 

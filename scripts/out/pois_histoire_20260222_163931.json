@@ -1,0 +1,1010 @@
+[
+  {
+    "id": "osm_2427436146",
+    "name": "Château de Saix",
+    "lat": 46.1644773,
+    "lng": 5.2235487,
+    "location": {
+      "_latitude": 46.1644773,
+      "_longitude": 5.2235487
+    },
+    "description": "Point d'intérêt: Château de Saix",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "Ain",
+    "departmentCode": "01",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 2427436146,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771774809,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-22T16:40:09.803289"
+  },
+  {
+    "id": "osm_4405331032",
+    "name": "POI sans nom",
+    "lat": 46.2104669,
+    "lng": 5.2362936,
+    "location": {
+      "_latitude": 46.2104669,
+      "_longitude": 5.2362936
+    },
+    "description": "Point d'intérêt: POI sans nom",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "Ain",
+    "departmentCode": "01",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 4405331032,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771774809,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-22T16:40:09.803348"
+  },
+  {
+    "id": "osm_4419446589",
+    "name": "Croix",
+    "lat": 46.1719111,
+    "lng": 5.2804854,
+    "location": {
+      "_latitude": 46.1719111,
+      "_longitude": 5.2804854
+    },
+    "description": "Point d'intérêt: Croix",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "Ain",
+    "departmentCode": "01",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 4419446589,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771774809,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-22T16:40:09.803367"
+  },
+  {
+    "id": "osm_5188836041",
+    "name": "Préfecture (ancienne)",
+    "lat": 46.2054504,
+    "lng": 5.225029,
+    "location": {
+      "_latitude": 46.2054504,
+      "_longitude": 5.225029
+    },
+    "description": "Point d'intérêt: Préfecture (ancienne)",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "attraction",
+    "city": "Ain",
+    "departmentCode": "01",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 5188836041,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771774809,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-22T16:40:09.803395"
+  },
+  {
+    "id": "osm_5195092556",
+    "name": "Stèle Paul Fremion, Sébastien Schellings et Henri Le Borgn",
+    "lat": 46.209964,
+    "lng": 5.2351838,
+    "location": {
+      "_latitude": 46.209964,
+      "_longitude": 5.2351838
+    },
+    "description": "Point d'intérêt: Stèle Paul Fremion, Sébastien Schellings et Henri Le Borgn",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "Ain",
+    "departmentCode": "01",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 5195092556,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771774809,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-22T16:40:09.803408"
+  },
+  {
+    "id": "osm_5195098834",
+    "name": "Stèle à Pierre Goujon",
+    "lat": 46.2027196,
+    "lng": 5.2217124,
+    "location": {
+      "_latitude": 46.2027196,
+      "_longitude": 5.2217124
+    },
+    "description": "Point d'intérêt: Stèle à Pierre Goujon",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "Ain",
+    "departmentCode": "01",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 5195098834,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771774809,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-22T16:40:09.803419"
+  },
+  {
+    "id": "osm_5195103412",
+    "name": "L'Ain à ses Enfants tombés en Afrique du Nord 1952-1962",
+    "lat": 46.2035582,
+    "lng": 5.2189369,
+    "location": {
+      "_latitude": 46.2035582,
+      "_longitude": 5.2189369
+    },
+    "description": "Point d'intérêt: L'Ain à ses Enfants tombés en Afrique du Nord 1952-1962",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "Ain",
+    "departmentCode": "01",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 5195103412,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771774809,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-22T16:40:09.803431"
+  },
+  {
+    "id": "osm_5195107468",
+    "name": "Sarcleuse regardant l’heure au soleil",
+    "lat": 46.2029784,
+    "lng": 5.2220502,
+    "location": {
+      "_latitude": 46.2029784,
+      "_longitude": 5.2220502
+    },
+    "description": "Point d'intérêt: Sarcleuse regardant l’heure au soleil",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "Ain",
+    "departmentCode": "01",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 5195107468,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771774809,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-22T16:40:09.803442"
+  },
+  {
+    "id": "osm_5195111010",
+    "name": "Monument à Jérôme Lalande",
+    "lat": 46.2044669,
+    "lng": 5.2240819,
+    "location": {
+      "_latitude": 46.2044669,
+      "_longitude": 5.2240819
+    },
+    "description": "Point d'intérêt: Monument à Jérôme Lalande",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "Ain",
+    "departmentCode": "01",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 5195111010,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771774809,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-22T16:40:09.803455"
+  },
+  {
+    "id": "osm_5579998420",
+    "name": "POI sans nom",
+    "lat": 46.1918756,
+    "lng": 5.2798417,
+    "location": {
+      "_latitude": 46.1918756,
+      "_longitude": 5.2798417
+    },
+    "description": "Point d'intérêt: POI sans nom",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "Ain",
+    "departmentCode": "01",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 5579998420,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771774809,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-22T16:40:09.803466"
+  },
+  {
+    "id": "osm_5893750784",
+    "name": "POI sans nom",
+    "lat": 46.2019186,
+    "lng": 5.1898955,
+    "location": {
+      "_latitude": 46.2019186,
+      "_longitude": 5.1898955
+    },
+    "description": "Point d'intérêt: POI sans nom",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "Ain",
+    "departmentCode": "01",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 5893750784,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771774809,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-22T16:40:09.803477"
+  },
+  {
+    "id": "osm_5905172895",
+    "name": "POI sans nom",
+    "lat": 46.1786625,
+    "lng": 5.2033682,
+    "location": {
+      "_latitude": 46.1786625,
+      "_longitude": 5.2033682
+    },
+    "description": "Point d'intérêt: POI sans nom",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "Ain",
+    "departmentCode": "01",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 5905172895,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771774809,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-22T16:40:09.803488"
+  },
+  {
+    "id": "osm_5905179524",
+    "name": "POI sans nom",
+    "lat": 46.1688253,
+    "lng": 5.2819036,
+    "location": {
+      "_latitude": 46.1688253,
+      "_longitude": 5.2819036
+    },
+    "description": "Point d'intérêt: POI sans nom",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "Ain",
+    "departmentCode": "01",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 5905179524,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771774809,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-22T16:40:09.803499"
+  },
+  {
+    "id": "osm_7414902190",
+    "name": "POI sans nom",
+    "lat": 46.1825276,
+    "lng": 5.1973458,
+    "location": {
+      "_latitude": 46.1825276,
+      "_longitude": 5.1973458
+    },
+    "description": "Point d'intérêt: POI sans nom",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "Ain",
+    "departmentCode": "01",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 7414902190,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771774809,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-22T16:40:09.803509"
+  },
+  {
+    "id": "osm_7795557133",
+    "name": "Monument de la Résistance de Jasseron",
+    "lat": 46.2119316,
+    "lng": 5.3094462,
+    "location": {
+      "_latitude": 46.2119316,
+      "_longitude": 5.3094462
+    },
+    "description": "Point d'intérêt: Monument de la Résistance de Jasseron",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "Ain",
+    "departmentCode": "01",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 7795557133,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771774809,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-22T16:40:09.803539"
+  },
+  {
+    "id": "osm_10234475895",
+    "name": "Jean Claude Milliet",
+    "lat": 46.1777273,
+    "lng": 5.2328742,
+    "location": {
+      "_latitude": 46.1777273,
+      "_longitude": 5.2328742
+    },
+    "description": "Point d'intérêt: Jean Claude Milliet",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "Ain",
+    "departmentCode": "01",
+    "imageUrls": [
+      "File:Stèle à la mémoire de Jean Claude Milliet décédé lors du circuit motocycliste de Bourg-en-Bresse (1er mai 1954).JPG"
+    ],
+    "images": [
+      "File:Stèle à la mémoire de Jean Claude Milliet décédé lors du circuit motocycliste de Bourg-en-Bresse (1er mai 1954).JPG"
+    ],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 10234475895,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771774809,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-22T16:40:09.803552"
+  },
+  {
+    "id": "osm_10274903643",
+    "name": "POI sans nom",
+    "lat": 46.2150572,
+    "lng": 5.2379189,
+    "location": {
+      "_latitude": 46.2150572,
+      "_longitude": 5.2379189
+    },
+    "description": "Point d'intérêt: POI sans nom",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "Ain",
+    "departmentCode": "01",
+    "imageUrls": [
+      "File:Jardin du Souvenir du cimetière de Bourg-en-Bresse (octobre 2022).jpg"
+    ],
+    "images": [
+      "File:Jardin du Souvenir du cimetière de Bourg-en-Bresse (octobre 2022).jpg"
+    ],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 10274903643,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771774809,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-22T16:40:09.803563"
+  },
+  {
+    "id": "osm_10279601613",
+    "name": "Monument à la mémoire des français d'outre-mer morts pour la patrie",
+    "lat": 46.2160556,
+    "lng": 5.2367418,
+    "location": {
+      "_latitude": 46.2160556,
+      "_longitude": 5.2367418
+    },
+    "description": "Point d'intérêt: Monument à la mémoire des français d'outre-mer morts pour la patrie",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "Ain",
+    "departmentCode": "01",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 10279601613,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771774809,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-22T16:40:09.803575"
+  },
+  {
+    "id": "osm_10279887080",
+    "name": "Monument au 23e régiment d'infanterie",
+    "lat": 46.2161844,
+    "lng": 5.2364608,
+    "location": {
+      "_latitude": 46.2161844,
+      "_longitude": 5.2364608
+    },
+    "description": "Point d'intérêt: Monument au 23e régiment d'infanterie",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "Ain",
+    "departmentCode": "01",
+    "imageUrls": [
+      "File:Monument au 23e régiment d'infanterie dans le cimetière de Bourg-en-Bresse.JPG"
+    ],
+    "images": [
+      "File:Monument au 23e régiment d'infanterie dans le cimetière de Bourg-en-Bresse.JPG"
+    ],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 10279887080,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771774809,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-22T16:40:09.803591"
+  },
+  {
+    "id": "osm_10773210550",
+    "name": "POI sans nom",
+    "lat": 46.2067189,
+    "lng": 5.2232927,
+    "location": {
+      "_latitude": 46.2067189,
+      "_longitude": 5.2232927
+    },
+    "description": "Point d'intérêt: POI sans nom",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "attraction",
+    "city": "Ain",
+    "departmentCode": "01",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 10773210550,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771774809,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-22T16:40:09.803602"
+  },
+  {
+    "id": "osm_11052222527",
+    "name": "POI sans nom",
+    "lat": 46.2005688,
+    "lng": 5.2197261,
+    "location": {
+      "_latitude": 46.2005688,
+      "_longitude": 5.2197261
+    },
+    "description": "Point d'intérêt: POI sans nom",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "Ain",
+    "departmentCode": "01",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 11052222527,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771774809,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-22T16:40:09.803612"
+  },
+  {
+    "id": "osm_11261998265",
+    "name": "Arcades du couvent de la Visitation",
+    "lat": 46.2032284,
+    "lng": 5.2246687,
+    "location": {
+      "_latitude": 46.2032284,
+      "_longitude": 5.2246687
+    },
+    "description": "Arcades murées",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "attraction",
+    "city": "Ain",
+    "departmentCode": "01",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 11261998265,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771774809,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-22T16:40:09.803623"
+  },
+  {
+    "id": "osm_11277734868",
+    "name": "Jerôme Lalande",
+    "lat": 46.2035756,
+    "lng": 5.2230794,
+    "location": {
+      "_latitude": 46.2035756,
+      "_longitude": 5.2230794
+    },
+    "description": "Point d'intérêt: Jerôme Lalande",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "Ain",
+    "departmentCode": "01",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 11277734868,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771774809,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-22T16:40:09.803634"
+  },
+  {
+    "id": "osm_11277741169",
+    "name": "Lalande",
+    "lat": 46.2035752,
+    "lng": 5.2230789,
+    "location": {
+      "_latitude": 46.2035752,
+      "_longitude": 5.2230789
+    },
+    "description": "Point d'intérêt: Lalande",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "Ain",
+    "departmentCode": "01",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 11277741169,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771774809,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-22T16:40:09.803646"
+  },
+  {
+    "id": "osm_11411878430",
+    "name": "Hommage à Paul Pioda",
+    "lat": 46.2041112,
+    "lng": 5.2272061,
+    "location": {
+      "_latitude": 46.2041112,
+      "_longitude": 5.2272061
+    },
+    "description": "Point d'intérêt: Hommage à Paul Pioda",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "Ain",
+    "departmentCode": "01",
+    "imageUrls": [
+      "File:Plaque Paul Pioda, Bourg-en-Bresse (December 2023).JPG"
+    ],
+    "images": [
+      "File:Plaque Paul Pioda, Bourg-en-Bresse (December 2023).JPG"
+    ],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 11411878430,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771774809,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-22T16:40:09.803674"
+  },
+  {
+    "id": "osm_11998765359",
+    "name": "Charles Fornier et ses fils",
+    "lat": 46.2041971,
+    "lng": 5.2244294,
+    "location": {
+      "_latitude": 46.2041971,
+      "_longitude": 5.2244294
+    },
+    "description": "Point d'intérêt: Charles Fornier et ses fils",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "Ain",
+    "departmentCode": "01",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 11998765359,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771774809,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-22T16:40:09.803687"
+  },
+  {
+    "id": "osm_12157174983",
+    "name": "POI sans nom",
+    "lat": 46.2025537,
+    "lng": 5.2201602,
+    "location": {
+      "_latitude": 46.2025537,
+      "_longitude": 5.2201602
+    },
+    "description": "Point d'intérêt: POI sans nom",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "Ain",
+    "departmentCode": "01",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 12157174983,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771774809,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-22T16:40:09.803705"
+  },
+  {
+    "id": "osm_12157174984",
+    "name": "POI sans nom",
+    "lat": 46.2025677,
+    "lng": 5.2201703,
+    "location": {
+      "_latitude": 46.2025677,
+      "_longitude": 5.2201703
+    },
+    "description": "Point d'intérêt: POI sans nom",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "Ain",
+    "departmentCode": "01",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 12157174984,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771774809,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-22T16:40:09.803718"
+  },
+  {
+    "id": "osm_12199167947",
+    "name": "POI sans nom",
+    "lat": 46.2076958,
+    "lng": 5.2159073,
+    "location": {
+      "_latitude": 46.2076958,
+      "_longitude": 5.2159073
+    },
+    "description": "Point d'intérêt: POI sans nom",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "Ain",
+    "departmentCode": "01",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 12199167947,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771774809,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-22T16:40:09.803729"
+  },
+  {
+    "id": "osm_12199215519",
+    "name": "Claude-Charles Aubry de la Bouchardière",
+    "lat": 46.2056706,
+    "lng": 5.2172581,
+    "location": {
+      "_latitude": 46.2056706,
+      "_longitude": 5.2172581
+    },
+    "description": "Point d'intérêt: Claude-Charles Aubry de la Bouchardière",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "Ain",
+    "departmentCode": "01",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 12199215519,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771774809,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-22T16:40:09.803740"
+  },
+  {
+    "id": "osm_13415576239",
+    "name": "Charles Juliet, 1934-2024",
+    "lat": 46.2015451,
+    "lng": 5.2176831,
+    "location": {
+      "_latitude": 46.2015451,
+      "_longitude": 5.2176831
+    },
+    "description": "Point d'intérêt: Charles Juliet, 1934-2024",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "Ain",
+    "departmentCode": "01",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 13415576239,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771774809,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-22T16:40:09.803751"
+  }
+]

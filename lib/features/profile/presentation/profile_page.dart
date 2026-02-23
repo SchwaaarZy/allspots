@@ -26,6 +26,7 @@ class ProfilePage extends ConsumerStatefulWidget {
 
 class _ProfilePageState extends ConsumerState<ProfilePage>
     with SingleTickerProviderStateMixin {
+  static const double _tabBarHeight = 72;
   late TabController _tabController;
 
   double _profileHeaderHeight(BuildContext context) {
@@ -42,10 +43,18 @@ class _ProfilePageState extends ConsumerState<ProfilePage>
   void initState() {
     super.initState();
     _tabController = TabController(length: 4, vsync: this);
+    _tabController.addListener(_onTabChanged);
+  }
+
+  void _onTabChanged() {
+    if (mounted) {
+      setState(() {});
+    }
   }
 
   @override
   void dispose() {
+    _tabController.removeListener(_onTabChanged);
     _tabController.dispose();
     super.dispose();
   }
@@ -70,161 +79,98 @@ class _ProfilePageState extends ConsumerState<ProfilePage>
           return _buildIncompleteProfile(context);
         }
 
-        return DefaultTabController(
-          length: 4,
-          child: Scaffold(
-            body: Stack(
-              children: [
-                NestedScrollView(
-                  headerSliverBuilder: (context, innerBoxIsScrolled) => [
-                    SliverAppBar(
-                      expandedHeight: _profileHeaderHeight(context),
-                      floating: false,
-                      pinned: true,
-                      toolbarHeight: 0,
-                      flexibleSpace: FlexibleSpaceBar(
-                        background: _buildProfileHeader(profile),
-                      ),
-                      bottom: PreferredSize(
-                        preferredSize: const Size.fromHeight(48),
-                        child: _buildTabBar(),
-                      ),
-                    ),
-                  ],
-                  body: Column(
-                    children: [
-                  // Barre d'action pour l'onglet Spots
-                  AnimatedBuilder(
-                    animation: _tabController,
-                    builder: (context, child) {
-                      final tabIndex = _tabController.index;
-                      final isSpotsTab = tabIndex == 0;
-                      final isRoadTripTab = tabIndex == 2;
-
-                      if (!isSpotsTab && !isRoadTripTab) {
-                        return const SizedBox.shrink();
-                      }
-
-                      return LayoutBuilder(
-                        builder: (context, constraints) {
-                          final isCompactHeight = constraints.maxHeight < 360;
-
-                          void showEditHint() {
-                            ScaffoldMessenger.of(context).showSnackBar(
-                              const SnackBar(
-                                content: Text(
-                                  'Sélectionnez un spot dans la liste puis Modifier.',
-                                ),
-                              ),
-                            );
-                          }
-
-                          final createButton = ElevatedButton.icon(
-                            onPressed: () => context
-                                .push(isSpotsTab ? '/spots/new' : '/nearby-results'),
-                            style: ElevatedButton.styleFrom(
-                              visualDensity: VisualDensity.compact,
-                              padding: const EdgeInsets.symmetric(
-                                vertical: 10,
-                                horizontal: 8,
-                              ),
-                            ),
-                            icon: Icon(
-                              isSpotsTab ? Icons.add_location_alt : Icons.route,
-                            ),
-                            label: Text(
-                              isSpotsTab
-                                  ? (isCompactHeight ? 'Créer' : 'Créer un spot')
-                                  : (isCompactHeight
-                                      ? 'Créer'
-                                      : 'Créer un Road Trip'),
-                            ),
-                          );
-
-                          final editButton = OutlinedButton.icon(
-                            onPressed: showEditHint,
-                            style: OutlinedButton.styleFrom(
-                              visualDensity: VisualDensity.compact,
-                              padding: const EdgeInsets.symmetric(
-                                vertical: 10,
-                                horizontal: 8,
-                              ),
-                            ),
-                            icon: const Icon(Icons.edit),
-                            label: const Text('Modifier un spot'),
-                          );
-
-                          return Padding(
-                            padding: const EdgeInsets.fromLTRB(12, 8, 12, 8),
-                            child: Center(
-                              child: ConstrainedBox(
-                                constraints:
-                                    const BoxConstraints(maxWidth: 560),
-                                child: isSpotsTab && isCompactHeight
-                                    ? Row(
-                                        children: [
-                                          Expanded(child: createButton),
-                                          const SizedBox(width: 8),
-                                          PopupMenuButton<String>(
-                                            tooltip: 'Actions',
-                                            onSelected: (value) {
-                                              if (value == 'edit') {
-                                                showEditHint();
-                                              }
-                                            },
-                                            itemBuilder: (context) => const [
-                                              PopupMenuItem<String>(
-                                                value: 'edit',
-                                                child: Text('Modifier un spot'),
-                                              ),
-                                            ],
-                                            child: const Padding(
-                                              padding: EdgeInsets.all(8),
-                                              child: Icon(Icons.more_horiz),
-                                            ),
-                                          ),
-                                        ],
-                                      )
-                                    : isSpotsTab
-                                        ? Row(
-                                            children: [
-                                              Expanded(child: createButton),
-                                              const SizedBox(width: 8),
-                                              Expanded(child: editButton),
-                                            ],
-                                          )
-                                        : Row(
-                                        children: [
-                                          Expanded(child: createButton),
-                                        ],
-                                      ),
-                              ),
-                            ),
-                          );
-                        },
-                      );
-                    },
-                  ),
-                  // TabBarView avec contenu scrollable
-                  Expanded(
-                    child: TabBarView(
-                      controller: _tabController,
-                      children: [
-                        _MyPoiTab(userId: user.uid),
-                        _FavoritesTab(userId: user.uid),
-                        const _RoadTripTab(),
-                        _PremiumTab(profile: profile, user: user),
-                      ],
-                    ),
-                  ),
-                    ],
-                  ),
+        return Scaffold(
+          body: NestedScrollView(
+            headerSliverBuilder: (context, innerBoxIsScrolled) => [
+              
+              SliverAppBar(
+                expandedHeight: _profileHeaderHeight(context) +
+                    _actionBarHeight(context),
+                floating: false,
+                pinned: true,
+                toolbarHeight: 0,
+                flexibleSpace: FlexibleSpaceBar(
+                  background: _buildProfileHeader(profile),
                 ),
+                bottom: PreferredSize(
+                  preferredSize:
+                      Size.fromHeight(_tabBarHeight + _actionBarHeight(context)),
+                  child: _buildTabAndActions(context),
+                ),
+              ),
+            ],
+            body: TabBarView(
+              controller: _tabController,
+              children: [
+                _MyPoiTab(userId: user.uid),
+                _FavoritesTab(userId: user.uid),
+                const _RoadTripTab(),
+                _PremiumTab(profile: profile, user: user),
               ],
             ),
           ),
         );
       },
+    );
+  }
+
+  double _actionBarHeight(BuildContext context) {
+    final tabIndex = _tabController.index;
+    final isSpotsTab = tabIndex == 0;
+    final isRoadTripTab = tabIndex == 2;
+    return (isSpotsTab || isRoadTripTab) ? 56 : 0;
+  }
+
+  Widget _buildTabAndActions(BuildContext context) {
+    final tabIndex = _tabController.index;
+    final isSpotsTab = tabIndex == 0;
+    final isRoadTripTab = tabIndex == 2;
+    final showActions = isSpotsTab || isRoadTripTab;
+    final isCompactWidth = MediaQuery.sizeOf(context).width < 390;
+
+    final createButton = ElevatedButton.icon(
+      onPressed: () =>
+          context.push(isSpotsTab ? '/spots/new' : '/nearby-results'),
+      style: ElevatedButton.styleFrom(
+        visualDensity: VisualDensity.compact,
+        padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 8),
+      ),
+      icon: Icon(isSpotsTab ? Icons.add_location_alt : Icons.route),
+      label: Text(
+        isSpotsTab
+            ? (isCompactWidth ? 'Créer' : 'Créer un spot')
+            : (isCompactWidth ? 'Créer' : 'Créer un Road Trip'),
+      ),
+    );
+
+    return Material(
+      color: Colors.white,
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          _buildTabBar(),
+          if (showActions)
+            Container(
+              width: double.infinity,
+              decoration: BoxDecoration(
+                border: Border(
+                  bottom: BorderSide(color: Colors.grey.shade200),
+                ),
+              ),
+              padding: const EdgeInsets.fromLTRB(12, 6, 12, 6),
+              child: Center(
+                child: ConstrainedBox(
+                  constraints: const BoxConstraints(maxWidth: 560),
+                  child: Row(
+                    children: [
+                      Expanded(child: createButton),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+        ],
+      ),
     );
   }
 

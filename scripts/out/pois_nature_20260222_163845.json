@@ -1,0 +1,34 @@
+[
+  {
+    "id": "osm_11176518661",
+    "name": "Jardin de la providence",
+    "lat": 46.195704,
+    "lng": 5.2489107,
+    "location": {
+      "_latitude": 46.195704,
+      "_longitude": 5.2489107
+    },
+    "description": "Point d'intérêt: Jardin de la providence",
+    "category": "nature",
+    "categoryGroup": "Nature",
+    "categoryItem": "other",
+    "city": "Ain",
+    "departmentCode": "01",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 11176518661,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1771774727,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-22T16:38:47.153123"
+  }
+]
