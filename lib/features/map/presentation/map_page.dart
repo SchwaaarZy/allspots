@@ -302,8 +302,8 @@ class _MapViewState extends ConsumerState<MapView> {
                   markers: visiblePois.map((p) {
                     return flutter_map.Marker(
                       point: LatLng(p.lat, p.lng),
-                      width: 80,
-                      height: 80,
+                      width: 50,
+                      height: 50,
                       alignment: Alignment.center,
                       child: GestureDetector(
                         onTap: () {
@@ -313,7 +313,7 @@ class _MapViewState extends ConsumerState<MapView> {
                           child: Icon(
                             Icons.location_on,
                             color: _getColorForCategory(p.category),
-                            size: 50,
+                            size: 30,
                           ),
                         ),
                       ),
@@ -442,7 +442,7 @@ class _MapViewState extends ConsumerState<MapView> {
                         color: _legendColorForCategory(category),
                       ),
                       const SizedBox(width: 8),
-                      Text(category.label),
+                      Text(category.localizationLabel(context)),
                     ],
                   ),
                 ),
@@ -455,14 +455,17 @@ class _MapViewState extends ConsumerState<MapView> {
 
   void _showPoiPopup(BuildContext context, Poi poi, LatLng position) {
     final subCategoryLabel = formatPoiSubCategory(poi.subCategory);
-    final categoryLabel =
-        subCategoryLabel.isNotEmpty ? subCategoryLabel : poi.category.label;
     final rating = poi.googleRating;
     final photoCount = poi.imageUrls.length;
 
     showDialog(
       context: context,
       builder: (dialogContext) {
+        // Utilise le context original pour la localisation
+        final categoryLabel = subCategoryLabel.isNotEmpty 
+            ? subCategoryLabel 
+            : poi.category.localizationLabel(context);
+        
         return Stack(
           children: [
             // Overlay semi-transparent

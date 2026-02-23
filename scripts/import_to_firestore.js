@@ -47,6 +47,61 @@ function buildDeterministicId(poi, lat, lng) {
   return `${source}_${category}_${name}_${roundedLat}_${roundedLng}`.substring(0, 140);
 }
 
+function normalizeImageValue(raw) {
+  if (!raw) return null;
+  const value = String(raw).trim();
+  if (!value) return null;
+
+  if (value.startsWith('//')) return `https:${value}`;
+  if (value.startsWith('http://') || value.startsWith('https://')) return value;
+
+  const lower = value.toLowerCase();
+  if (lower.startsWith('file:')) {
+    const file = value.split(':').slice(1).join(':').trim().replace(/\s+/g, '_');
+    if (!file) return null;
+    return `https://commons.wikimedia.org/wiki/Special:FilePath/${file}`;
+  }
+
+  if (lower.startsWith('wikimedia_commons:')) {
+    const file = value.split(':').slice(1).join(':').trim().replace(/\s+/g, '_');
+    if (!file) return null;
+    return `https://commons.wikimedia.org/wiki/Special:FilePath/${file}`;
+  }
+
+  if (/^Q\d+$/.test(value)) {
+    return `https://www.wikidata.org/wiki/${value}`;
+  }
+
+  if (!value.includes('/') && value.includes('.')) {
+    const file = value.replace(/\s+/g, '_');
+    return `https://commons.wikimedia.org/wiki/Special:FilePath/${file}`;
+  }
+
+  return null;
+}
+
+function extractNormalizedImageUrls(poi) {
+  const candidates = [
+    ...(Array.isArray(poi.imageUrls) ? poi.imageUrls : []),
+    ...(Array.isArray(poi.images) ? poi.images : []),
+    poi.image,
+    poi.photo,
+    poi.thumbnail,
+    poi.cover_image,
+    poi.wikimedia_commons,
+  ];
+
+  const urls = [];
+  for (const candidate of candidates) {
+    const normalized = normalizeImageValue(candidate);
+    if (normalized && !urls.includes(normalized)) {
+      urls.push(normalized);
+    }
+    if (urls.length >= 5) break;
+  }
+  return urls;
+}
+
 // Initialiser Firebase Admin (utilise les credentials par défaut)
 admin.initializeApp();
 const db = admin.firestore();
@@ -83,6 +138,8 @@ async function importPois(jsonFilePath) {
     seenIds.add(docId);
     
     const docRef = db.collection('spots').doc(docId);
+
+    const imageUrls = extractNormalizedImageUrls(poi);
     
     // Convertir les timestamps
     if (poi.createdAt && poi.createdAt._seconds) {
@@ -111,6 +168,8 @@ async function importPois(jsonFilePath) {
       docRef,
       {
         ...poi,
+        imageUrls,
+        images: imageUrls,
         dedupeKey: docId,
         importedAt: admin.firestore.FieldValue.serverTimestamp(),
       },

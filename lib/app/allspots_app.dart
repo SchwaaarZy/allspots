@@ -2,7 +2,10 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import '../core/theme/app_theme.dart';
+import '../core/l10n/app_localizations.dart';
+import '../core/l10n/locale_provider.dart';
 import 'router.dart';
 
 class AllSpotsApp extends ConsumerWidget {
@@ -11,6 +14,7 @@ class AllSpotsApp extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final router = ref.watch(appRouterProvider);
+    final locale = ref.watch(localeProvider);
 
     return _PresenceTracker(
       child: MaterialApp.router(
@@ -18,6 +22,17 @@ class AllSpotsApp extends ConsumerWidget {
         debugShowCheckedModeBanner: false,
         routerConfig: router,
         theme: AppTheme.light(),
+        locale: locale,
+        localizationsDelegates: [
+          AppLocalizations.delegate,
+          GlobalMaterialLocalizations.delegate,
+          GlobalWidgetsLocalizations.delegate,
+          GlobalCupertinoLocalizations.delegate,
+        ],
+        supportedLocales: const [
+          Locale('fr'),
+          Locale('en'),
+        ],
         builder: (context, child) {
           final mediaQuery = MediaQuery.of(context);
           final clampedTextScaler = mediaQuery.textScaler.clamp(

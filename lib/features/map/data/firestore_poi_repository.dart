@@ -20,8 +20,10 @@ class FirestorePoiRepository implements PoiRepository {
 
   final FirebaseFirestore _firestore;
   static const int _pageSize = 300;
-  static const int _maxDocsPerZone = 3000;
-  static const int _maxPriorityLocalDocs = 2000;
+  // OPTIMISÉ: Réduit de 3000 à 500 par zone → fetch 10x moins de docs
+  static const int _maxDocsPerZone = 500;
+  // OPTIMISÉ: Réduit de 2000 à 400 → requête plus rapide
+  static const int _maxPriorityLocalDocs = 400;
   static const double _priorityLocalRadiusMeters = 150000; // 150 km
 
   static const List<_GeoZone> _zones = [

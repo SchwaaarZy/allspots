@@ -813,6 +813,39 @@ def fetch_communes(department_code, communes_limit=0, min_population=0):
 def clean_poi_data(element, category, scope_name="", department_code=""):
     """Nettoie et formate les données POI"""
     tags = element.get("tags", {})
+
+    def _normalize_image_url(raw_value):
+        if not raw_value:
+            return None
+        value = str(raw_value).strip()
+        if not value:
+            return None
+
+        if value.startswith("//"):
+            return f"https:{value}"
+        if value.startswith("http://") or value.startswith("https://"):
+            return value
+
+        if value.lower().startswith("file:"):
+            filename = value.split(":", 1)[1].strip().replace(" ", "_")
+            if not filename:
+                return None
+            return f"https://commons.wikimedia.org/wiki/Special:FilePath/{filename}"
+
+        if value.lower().startswith("wikimedia_commons:"):
+            filename = value.split(":", 1)[1].strip().replace(" ", "_")
+            if not filename:
+                return None
+            return f"https://commons.wikimedia.org/wiki/Special:FilePath/{filename}"
+
+        if value.startswith("Q") and value[1:].isdigit():
+            return f"https://www.wikidata.org/wiki/{value}"
+
+        if "/" not in value and "." in value:
+            filename = value.replace(" ", "_")
+            return f"https://commons.wikimedia.org/wiki/Special:FilePath/{filename}"
+
+        return None
     
     # Nom
     name = (
@@ -830,8 +863,17 @@ def clean_poi_data(element, category, scope_name="", department_code=""):
     )
     
     # Image
-    image = tags.get("image") or tags.get("wikimedia_commons")
-    images = [image] if image else []
+    image_candidates = [
+        tags.get("image"),
+        tags.get("wikimedia_commons"),
+        tags.get("wikidata"),
+    ]
+    images = []
+    for candidate in image_candidates:
+        normalized = _normalize_image_url(candidate)
+        if normalized and normalized not in images:
+            images.append(normalized)
+    images = images[:5]
     
     # Website
     website = tags.get("website") or tags.get("contact:website")

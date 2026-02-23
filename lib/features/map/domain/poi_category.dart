@@ -9,6 +9,7 @@ enum PoiCategory {
 }
 
 extension PoiCategoryX on PoiCategory {
+  /// Récupère le label français (par défaut)
   String get label {
     switch (this) {
       case PoiCategory.culture:
@@ -21,6 +22,30 @@ extension PoiCategoryX on PoiCategory {
         return 'Histoire';
       case PoiCategory.activites:
         return 'Activités';
+    }
+  }
+
+  /// Récupère le label localisé (FR/EN) depuis le context
+  String localizationLabel(BuildContext context) {
+    // Import dynamique pour éviter les dépendances circulaires
+    try {
+      // ignore: avoid_dynamic_calls
+      final l10n = (context as dynamic).l10n;
+      switch (this) {
+        case PoiCategory.culture:
+          return l10n.cultureCategoryLabel ?? label;
+        case PoiCategory.nature:
+          return l10n.natureCategoryLabel ?? label;
+        case PoiCategory.experienceGustative:
+          return l10n.experienceGustativeCategoryLabel ?? label;
+        case PoiCategory.histoire:
+          return l10n.histoireCategoryLabel ?? label;
+        case PoiCategory.activites:
+          return l10n.activitesCategoryLabel ?? label;
+      }
+    } catch (_) {
+      // En cas d'erreur, retourner le label par défaut
+      return label;
     }
   }
 

@@ -41,7 +41,7 @@ class MapState {
         error: null,
         nearbyPois: const [],
         filters: PoiFilters.defaults(),
-      radiusMeters: 20000000, // France + DOM-TOM
+      radiusMeters: 5000, // 5 km par défaut
         isSatellite: false,
         buildingsEnabled: true,
       );
@@ -74,6 +74,9 @@ final poiRepositoryProvider = Provider<PoiRepository>((ref) {
   const envKey = String.fromEnvironment('PLACES_API_KEY');
   const fallbackKey = 'AIzaSyBbHU0nLg_T6v9tDsdh9_0cc3ksc1TC-dU';
   final placesKey = envKey.isNotEmpty ? envKey : fallbackKey;
+  
+  // OPTIMISÉ: Google Places désactivé pour réduire les requêtes API
+  // Utilise Firestore seul (données locales, plus rapide)
   final placesRepo = AppConfig.enableGooglePlaces
       ? PlacesPoiRepository(placesKey)
       : EmptyPoiRepository();
@@ -100,6 +103,14 @@ class MapController extends StateNotifier<MapState> {
   final PoiRepository _repo;
   static const double _fallbackLat = 46.603354;
   static const double _fallbackLng = 1.888334;
+  
+  // OPTIMISÉ: Évite les refetch trop fréquents (min 2 secondes entre deux)
+  DateTime? _lastRefreshTime;
+  static const Duration _minRefreshInterval = Duration(seconds: 2);
+  
+  // OPTIMISÉ: Évite refetch si le rayon change de <5% 
+  double? _lastRefreshRadius;
+  static const double _radiusDeltaThreshold = 0.05; // 5%
 
   Future<void> init() async {
     state = state.copyWith(isLoading: true, error: null);
@@ -125,6 +136,13 @@ class MapController extends StateNotifier<MapState> {
     double? userLatOverride,
     double? userLngOverride,
   }) async {
+    // OPTIMISÉ: Vérifie que suffisamment de temps s'est écoulé
+    final now = DateTime.now();
+    if (_lastRefreshTime != null && now.difference(_lastRefreshTime!) < _minRefreshInterval) {
+      return; // Trop récent, ignore
+    }
+    _lastRefreshTime = now;
+
     final pos = state.userPosition;
     final userLat = userLatOverride ?? pos?.latitude ?? _fallbackLat;
     final userLng = userLngOverride ?? pos?.longitude ?? _fallbackLng;
@@ -146,8 +164,20 @@ class MapController extends StateNotifier<MapState> {
   }
 
   Future<void> setRadiusMeters(double value) async {
+    // OPTIMISÉ: Vérifie si le changement de rayon est significatif (>5%)
+    final last = _lastRefreshRadius ?? state.radiusMeters;
+    final delta = (value - last).abs() / last;
+    
     state = state.copyWith(radiusMeters: value);
-    await refreshNearby();
+    
+    if (delta > _radiusDeltaThreshold) {
+      _lastRefreshRadius = value;
+      await refreshNearby();
+    }
+  }
+
+  Future<void> updateRadius(double radiusMeters) async {
+    await setRadiusMeters(radiusMeters);
   }
 
   Future<void> applyCategoryPreferences(List<String> preferences) async {
