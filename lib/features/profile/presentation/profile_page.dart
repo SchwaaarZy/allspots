@@ -26,7 +26,8 @@ class ProfilePage extends ConsumerStatefulWidget {
 
 class _ProfilePageState extends ConsumerState<ProfilePage>
     with SingleTickerProviderStateMixin {
-  static const double _tabBarHeight = 72;
+  static const double _tabBarHeight = 74;
+  static const double _actionsBarHeight = 56;
   late TabController _tabController;
 
   double _profileHeaderHeight(BuildContext context) {
@@ -118,7 +119,7 @@ class _ProfilePageState extends ConsumerState<ProfilePage>
     final tabIndex = _tabController.index;
     final isSpotsTab = tabIndex == 0;
     final isRoadTripTab = tabIndex == 2;
-    return (isSpotsTab || isRoadTripTab) ? 56 : 0;
+    return (isSpotsTab || isRoadTripTab) ? _actionsBarHeight : 0;
   }
 
   Widget _buildTabAndActions(BuildContext context) {
@@ -150,21 +151,24 @@ class _ProfilePageState extends ConsumerState<ProfilePage>
         children: [
           _buildTabBar(),
           if (showActions)
-            Container(
-              width: double.infinity,
-              decoration: BoxDecoration(
-                border: Border(
-                  bottom: BorderSide(color: Colors.grey.shade200),
+            SizedBox(
+              height: _actionsBarHeight,
+              child: Container(
+                width: double.infinity,
+                decoration: BoxDecoration(
+                  border: Border(
+                    bottom: BorderSide(color: Colors.grey.shade200),
+                  ),
                 ),
-              ),
-              padding: const EdgeInsets.fromLTRB(12, 6, 12, 6),
-              child: Center(
-                child: ConstrainedBox(
-                  constraints: const BoxConstraints(maxWidth: 560),
-                  child: Row(
-                    children: [
-                      Expanded(child: createButton),
-                    ],
+                padding: const EdgeInsets.symmetric(horizontal: 12),
+                child: Center(
+                  child: ConstrainedBox(
+                    constraints: const BoxConstraints(maxWidth: 560),
+                    child: Row(
+                      children: [
+                        Expanded(child: createButton),
+                      ],
+                    ),
                   ),
                 ),
               ),
@@ -210,9 +214,12 @@ class _ProfilePageState extends ConsumerState<ProfilePage>
             children: [
               const Icon(Icons.person_add, size: 48, color: Colors.blue),
               const SizedBox(height: 16),
-              const Text(
+              Text(
                 'Complétez votre profil',
-                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                style: TextStyle(
+                  fontSize: context.fontSize(18),
+                  fontWeight: FontWeight.bold,
+                ),
               ),
               const SizedBox(height: 24),
               SizedBox(
@@ -338,9 +345,9 @@ class _ProfilePageState extends ConsumerState<ProfilePage>
                                         Flexible(
                                           child: Text(
                                             profile.displayName,
-                                            style: const TextStyle(
+                                            style: TextStyle(
                                               color: Colors.white,
-                                              fontSize: 16,
+                                              fontSize: context.fontSize(16),
                                               fontWeight: FontWeight.bold,
                                             ),
                                             maxLines: 1,
@@ -794,6 +801,8 @@ class _ProfilePageState extends ConsumerState<ProfilePage>
   }
 
   Widget _buildTabBar() {
+    final isCompact = MediaQuery.sizeOf(context).width < 390;
+
     return Container(
       color: Colors.white,
       child: TabBar(
@@ -802,22 +811,32 @@ class _ProfilePageState extends ConsumerState<ProfilePage>
         unselectedLabelColor: Colors.grey,
         indicatorColor: Colors.blue,
         indicatorWeight: 2,
+        labelStyle: TextStyle(
+          fontSize: isCompact ? 10 : 12,
+          fontWeight: FontWeight.w600,
+          height: 1.1,
+        ),
+        unselectedLabelStyle: TextStyle(
+          fontSize: isCompact ? 10 : 12,
+          fontWeight: FontWeight.w500,
+          height: 1.1,
+        ),
         labelPadding: const EdgeInsets.symmetric(horizontal: 8),
-        tabs: const [
+        tabs: [
           Tab(
-            icon: Icon(Icons.location_on, size: 15),
+            icon: Icon(Icons.location_on, size: isCompact ? 14 : 15),
             text: 'Spots',
           ),
           Tab(
-            icon: Icon(Icons.favorite, size: 15),
+            icon: Icon(Icons.favorite, size: isCompact ? 14 : 15),
             text: 'Favoris',
           ),
           Tab(
-            icon: Icon(Icons.route, size: 15),
+            icon: Icon(Icons.route, size: isCompact ? 14 : 15),
             text: 'Road Trip',
           ),
           Tab(
-            icon: Icon(Icons.workspace_premium, size: 15),
+            icon: Icon(Icons.workspace_premium, size: isCompact ? 14 : 15),
             text: 'Premium',
           ),
         ],
@@ -915,19 +934,24 @@ class _MyPoiTabState extends ConsumerState<_MyPoiTab> {
         final allSpots = snapshot.data?.docs ?? [];
 
         if (allSpots.isEmpty) {
-          return Center(
-            child: Padding(
-              padding: const EdgeInsets.all(16),
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  const Icon(Icons.location_on, size: 48, color: Colors.blue),
-                  const SizedBox(height: 12),
-                  const Text(
-                    'Vous n\'avez pas encore créé de spots.',
-                    textAlign: TextAlign.center,
-                  ),
-                ],
+          final bottomInset = MediaQuery.paddingOf(context).bottom;
+          return SafeArea(
+            top: false,
+            minimum: EdgeInsets.only(bottom: bottomInset > 0 ? 4 : 8),
+            child: Center(
+              child: Padding(
+                padding: const EdgeInsets.all(16),
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    const Icon(Icons.location_on, size: 48, color: Colors.blue),
+                    const SizedBox(height: 12),
+                    const Text(
+                      'Vous n\'avez pas encore créé de spots.',
+                      textAlign: TextAlign.center,
+                    ),
+                  ],
+                ),
               ),
             ),
           );
@@ -1105,17 +1129,22 @@ class _FavoritesTabState extends ConsumerState<_FavoritesTab> {
 
         final allSpots = snapshot.data!.docs;
         if (allSpots.isEmpty) {
-          return Center(
-            child: Padding(
-              padding: const EdgeInsets.all(16),
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  const Icon(Icons.favorite, size: 48, color: Colors.red),
-                  const SizedBox(height: 12),
-                  const Text('Aucun favori pour le moment',
-                      textAlign: TextAlign.center),
-                ],
+          final bottomInset = MediaQuery.paddingOf(context).bottom;
+          return SafeArea(
+            top: false,
+            minimum: EdgeInsets.only(bottom: bottomInset > 0 ? 4 : 8),
+            child: Center(
+              child: Padding(
+                padding: const EdgeInsets.all(16),
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    const Icon(Icons.favorite, size: 48, color: Colors.red),
+                    const SizedBox(height: 12),
+                    const Text('Aucun favori pour le moment',
+                        textAlign: TextAlign.center),
+                  ],
+                ),
               ),
             ),
           );
@@ -1126,82 +1155,88 @@ class _FavoritesTabState extends ConsumerState<_FavoritesTab> {
         final endIndex = (startIndex + _itemsPerPage).clamp(0, allSpots.length);
         final visibleSpots = allSpots.sublist(startIndex, endIndex);
 
-        return Column(
-          children: [
-            Padding(
-              padding: const EdgeInsets.all(12),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        'Favoris: ${allSpots.length}',
-                        style: const TextStyle(fontWeight: FontWeight.w700),
-                      ),
-                      if (totalPages > 1)
+        final bottomInset = MediaQuery.paddingOf(context).bottom;
+
+        return SafeArea(
+          top: false,
+          minimum: EdgeInsets.only(bottom: bottomInset > 0 ? 4 : 8),
+          child: Column(
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(12),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
                         Text(
-                          'Page ${_currentPage + 1} / $totalPages',
-                          style: const TextStyle(
-                              fontWeight: FontWeight.w600, fontSize: 12),
+                          'Favoris: ${allSpots.length}',
+                          style: const TextStyle(fontWeight: FontWeight.w700),
                         ),
+                        if (totalPages > 1)
+                          Text(
+                            'Page ${_currentPage + 1} / $totalPages',
+                            style: const TextStyle(
+                                fontWeight: FontWeight.w600, fontSize: 12),
+                          ),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+              const Divider(height: 1),
+              Expanded(
+                child: ListView(
+                  padding: EdgeInsets.fromLTRB(12, 12, 12, 12 + bottomInset),
+                  children: [
+                    for (final doc in visibleSpots)
+                      _FavoriteTile(
+                        spotId: doc.id,
+                        spotData: doc.data() as Map<String, dynamic>,
+                        userId: widget.userId,
+                      ),
+                  ],
+                ),
+              ),
+              if (totalPages > 1)
+                Container(
+                  padding:
+                      const EdgeInsets.symmetric(vertical: 8, horizontal: 12),
+                  decoration: BoxDecoration(
+                    color: Theme.of(context).scaffoldBackgroundColor,
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.black.withValues(alpha: 0.05),
+                        blurRadius: 4,
+                        offset: const Offset(0, -2),
+                      ),
                     ],
                   ),
-                ],
-              ),
-            ),
-            const Divider(height: 1),
-            Expanded(
-              child: ListView(
-                padding: const EdgeInsets.all(12),
-                children: [
-                  for (final doc in visibleSpots)
-                    _FavoriteTile(
-                      spotId: doc.id,
-                      spotData: doc.data() as Map<String, dynamic>,
-                      userId: widget.userId,
-                    ),
-                ],
-              ),
-            ),
-            if (totalPages > 1)
-              Container(
-                padding:
-                    const EdgeInsets.symmetric(vertical: 8, horizontal: 12),
-                decoration: BoxDecoration(
-                  color: Theme.of(context).scaffoldBackgroundColor,
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.black.withValues(alpha: 0.05),
-                      blurRadius: 4,
-                      offset: const Offset(0, -2),
-                    ),
-                  ],
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      IconButton(
+                        icon: const Icon(Icons.arrow_back),
+                        onPressed: _currentPage > 0
+                            ? () => setState(() => _currentPage--)
+                            : null,
+                      ),
+                      Text(
+                        '${_currentPage + 1} / $totalPages',
+                        style: const TextStyle(fontWeight: FontWeight.bold),
+                      ),
+                      IconButton(
+                        icon: const Icon(Icons.arrow_forward),
+                        onPressed: _currentPage < totalPages - 1
+                            ? () => setState(() => _currentPage++)
+                            : null,
+                      ),
+                    ],
+                  ),
                 ),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    IconButton(
-                      icon: const Icon(Icons.arrow_back),
-                      onPressed: _currentPage > 0
-                          ? () => setState(() => _currentPage--)
-                          : null,
-                    ),
-                    Text(
-                      '${_currentPage + 1} / $totalPages',
-                      style: const TextStyle(fontWeight: FontWeight.bold),
-                    ),
-                    IconButton(
-                      icon: const Icon(Icons.arrow_forward),
-                      onPressed: _currentPage < totalPages - 1
-                          ? () => setState(() => _currentPage++)
-                          : null,
-                    ),
-                  ],
-                ),
-              ),
-          ],
+            ],
+          ),
         );
       },
     );
@@ -1240,6 +1275,8 @@ class _FavoriteTile extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final previewImageHeight =
+      context.imageHeight.clamp(120.0, 180.0).toDouble();
     final categoryRaw = spotData['category'] as String?;
     final category = categoryRaw != null
         ? poiCategoryFromString(categoryRaw)
@@ -1267,14 +1304,14 @@ class _FavoriteTile extends ConsumerWidget {
             if (spotData['imageUrls'] != null &&
                 (spotData['imageUrls'] as List?)?.isNotEmpty == true)
               SizedBox(
-                height: 150,
+                height: previewImageHeight,
                 width: double.infinity,
                 child: ClipRRect(
                   borderRadius:
                       const BorderRadius.vertical(top: Radius.circular(4)),
                   child: OptimizedNetworkImage(
                     imageUrl: (spotData['imageUrls'] as List).first,
-                    height: 150,
+                    height: previewImageHeight,
                     width: double.infinity,
                     fit: BoxFit.cover,
                   ),
@@ -1294,8 +1331,10 @@ class _FavoriteTile extends ConsumerWidget {
                           children: [
                             Text(
                               spotData['name'] ?? 'Spot',
-                              style: const TextStyle(
-                                  fontWeight: FontWeight.bold, fontSize: 14),
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: context.fontSize(14),
+                              ),
                               maxLines: 2,
                               overflow: TextOverflow.ellipsis,
                             ),
@@ -1740,170 +1779,184 @@ class _PremiumTab extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return SingleChildScrollView(
-      padding: const EdgeInsets.all(16),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          // En-tête Premium
-          Container(
-            padding: const EdgeInsets.all(24),
-            decoration: BoxDecoration(
-              gradient: LinearGradient(
-                colors: [
-                  Colors.blue.shade600,
-                  Colors.blue.shade400,
-                ],
+    final bottomInset = MediaQuery.paddingOf(context).bottom;
+    final premiumTitleSize = context.fontSize(28).clamp(22.0, 32.0).toDouble();
+    final premiumPriceSize = context.fontSize(24).clamp(18.0, 28.0).toDouble();
+    final sectionTitleSize = context.fontSize(20).clamp(16.0, 24.0).toDouble();
+    final detailTitleSize = context.fontSize(16).clamp(14.0, 20.0).toDouble();
+    final ctaSize = context.fontSize(18).clamp(15.0, 22.0).toDouble();
+    final premiumBadgeTitleSize =
+        context.fontSize(16).clamp(14.0, 20.0).toDouble();
+
+    return SafeArea(
+      top: false,
+      minimum: EdgeInsets.only(bottom: bottomInset > 0 ? 4 : 8),
+      child: SingleChildScrollView(
+        padding: EdgeInsets.fromLTRB(16, 16, 16, 16 + bottomInset),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            // En-tête Premium
+            Container(
+              padding: const EdgeInsets.all(24),
+              decoration: BoxDecoration(
+                gradient: LinearGradient(
+                  colors: [
+                    Colors.blue.shade600,
+                    Colors.blue.shade400,
+                  ],
+                ),
+                borderRadius: BorderRadius.circular(20),
               ),
-              borderRadius: BorderRadius.circular(20),
-            ),
-            child: const Column(
-              children: [
-                Icon(
-                  Icons.workspace_premium,
-                  size: 80,
-                  color: Colors.white,
-                ),
-                SizedBox(height: 16),
-                Text(
-                  'Passez Premium',
-                  style: TextStyle(
-                    fontSize: 28,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.white,
-                  ),
-                ),
-                SizedBox(height: 8),
-                Text(
-                  '2.99€ pour 30 jours',
-                  style: TextStyle(
-                    fontSize: 24,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.white,
-                  ),
-                ),
-              ],
-            ),
-          ),
-          const SizedBox(height: 32),
-          // Avantages Premium
-          const Card(
-            child: Padding(
-              padding: EdgeInsets.all(16),
               child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
+                  const Icon(
+                    Icons.workspace_premium,
+                    size: 80,
+                    color: Colors.white,
+                  ),
+                  const SizedBox(height: 16),
                   Text(
-                    'Avantages Premium',
+                    'Passez Premium',
                     style: TextStyle(
-                      fontSize: 20,
+                      fontSize: premiumTitleSize,
                       fontWeight: FontWeight.bold,
+                      color: Colors.white,
                     ),
                   ),
-                  SizedBox(height: 16),
-                  ListTile(
-                    leading:
-                        Icon(Icons.check_circle, color: Colors.green, size: 32),
-                    title: Text('Sans publicité'),
-                    subtitle: Text('Profitez d\'une expérience fluide'),
-                  ),
-                  ListTile(
-                    leading:
-                        Icon(Icons.check_circle, color: Colors.green, size: 32),
-                    title: Text('Recherches illimitées'),
-                    subtitle:
-                        Text('Accès complet à toutes les fonctionnalités'),
+                  const SizedBox(height: 8),
+                  Text(
+                    '2.99€ pour 30 jours',
+                    style: TextStyle(
+                      fontSize: premiumPriceSize,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white,
+                    ),
                   ),
                 ],
               ),
             ),
-          ),
-          const SizedBox(height: 24),
-          // Détails de l'abonnement
-          Container(
-            padding: const EdgeInsets.all(16),
-            decoration: BoxDecoration(
-              color: Colors.grey[100],
-              borderRadius: BorderRadius.circular(12),
-            ),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const Text(
-                  'Détails:',
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 16,
-                  ),
-                ),
-                const SizedBox(height: 12),
-                _buildDetail('Durée', '30 jours'),
-                _buildDetail('Renouvellement', 'Automatique'),
-                _buildDetail('Annulation', 'Possible à tout moment'),
-              ],
-            ),
-          ),
-          const SizedBox(height: 32),
-          if (profile.hasPremiumPass)
+            const SizedBox(height: 32),
+            // Avantages Premium
             Card(
-              color: Colors.amber.shade50,
               child: Padding(
                 padding: const EdgeInsets.all(16),
-                child: Row(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Icon(Icons.verified,
-                        color: Colors.amber.shade700, size: 28),
-                    const SizedBox(width: 12),
-                    Expanded(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          const Text(
-                            'Vous êtes Premium ✓',
-                            style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              fontSize: 16,
-                            ),
-                          ),
-                          Text(
-                            'Merci de votre soutien!',
-                            style: TextStyle(
-                              fontSize: 12,
-                              color: Colors.amber.shade700,
-                            ),
-                          ),
-                        ],
+                    Text(
+                      'Avantages Premium',
+                      style: TextStyle(
+                        fontSize: sectionTitleSize,
+                        fontWeight: FontWeight.bold,
                       ),
+                    ),
+                    const SizedBox(height: 16),
+                    const ListTile(
+                      leading:
+                          Icon(Icons.check_circle, color: Colors.green, size: 32),
+                      title: Text('Sans publicité'),
+                      subtitle: Text('Profitez d\'une expérience fluide'),
+                    ),
+                    const ListTile(
+                      leading:
+                          Icon(Icons.check_circle, color: Colors.green, size: 32),
+                      title: Text('Recherches illimitées'),
+                      subtitle:
+                          Text('Accès complet à toutes les fonctionnalités'),
                     ),
                   ],
                 ),
               ),
-            )
-          else
-            SizedBox(
-              width: double.infinity,
-              child: ElevatedButton.icon(
-                onPressed: () => _buyPremium(context, user),
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.blue.shade600,
-                  padding: const EdgeInsets.symmetric(vertical: 16),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(12),
+            ),
+            const SizedBox(height: 24),
+            // Détails de l'abonnement
+            Container(
+              padding: const EdgeInsets.all(16),
+              decoration: BoxDecoration(
+                color: Colors.grey[100],
+                borderRadius: BorderRadius.circular(12),
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    'Détails:',
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: detailTitleSize,
+                    ),
+                  ),
+                  const SizedBox(height: 12),
+                  _buildDetail('Durée', '30 jours'),
+                  _buildDetail('Renouvellement', 'Automatique'),
+                  _buildDetail('Annulation', 'Possible à tout moment'),
+                ],
+              ),
+            ),
+            const SizedBox(height: 32),
+            if (profile.hasPremiumPass)
+              Card(
+                color: Colors.amber.shade50,
+                child: Padding(
+                  padding: const EdgeInsets.all(16),
+                  child: Row(
+                    children: [
+                      Icon(Icons.verified,
+                          color: Colors.amber.shade700, size: 28),
+                      const SizedBox(width: 12),
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            Text(
+                              'Vous êtes Premium ✓',
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: premiumBadgeTitleSize,
+                              ),
+                            ),
+                            Text(
+                              'Merci de votre soutien!',
+                              style: TextStyle(
+                                fontSize:
+                                    context.fontSize(12).clamp(11.0, 14.0),
+                                color: Colors.amber.shade700,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
                   ),
                 ),
-                icon: const Icon(Icons.shopping_cart),
-                label: const Text(
-                  'Activer Premium - 2.99€',
-                  style: TextStyle(
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.white,
+              )
+            else
+              SizedBox(
+                width: double.infinity,
+                child: ElevatedButton.icon(
+                  onPressed: () => _buyPremium(context, user),
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.blue.shade600,
+                    padding: const EdgeInsets.symmetric(vertical: 16),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                  ),
+                  icon: const Icon(Icons.shopping_cart),
+                  label: Text(
+                    'Activer Premium - 2.99€',
+                    style: TextStyle(
+                      fontSize: ctaSize,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white,
+                    ),
                   ),
                 ),
               ),
-            ),
-        ],
+          ],
+        ),
       ),
     );
   }
