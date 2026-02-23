@@ -358,32 +358,18 @@ class _ProfilePageState extends ConsumerState<ProfilePage>
                                           const SizedBox(width: 6),
                                           Container(
                                             padding: const EdgeInsets.symmetric(
-                                              horizontal: 6,
-                                              vertical: 2,
+                                              horizontal: 4,
+                                              vertical: 4,
                                             ),
                                             decoration: BoxDecoration(
                                               color: Colors.amber,
                                               borderRadius:
                                                   BorderRadius.circular(8),
                                             ),
-                                            child: const Row(
-                                              mainAxisSize: MainAxisSize.min,
-                                              children: [
-                                                Icon(
-                                                  Icons.workspace_premium,
-                                                  size: 12,
-                                                  color: Colors.white,
-                                                ),
-                                                SizedBox(width: 2),
-                                                Text(
-                                                  'PRO',
-                                                  style: TextStyle(
-                                                    color: Colors.white,
-                                                    fontSize: 10,
-                                                    fontWeight: FontWeight.bold,
-                                                  ),
-                                                ),
-                                              ],
+                                            child: const Icon(
+                                              Icons.workspace_premium,
+                                              size: 14,
+                                              color: Colors.white,
                                             ),
                                           ),
                                         ],
@@ -656,6 +642,7 @@ class _ProfilePageState extends ConsumerState<ProfilePage>
                                           label: const Text('Modifier profil'),
                                         ),
                                       ),
+                                      const SizedBox(height: 8),
                                       if (profile.isAdmin) ...[
                                         const SizedBox(height: 8),
                                         SizedBox(
@@ -1936,9 +1923,10 @@ class _PremiumTab extends ConsumerWidget {
               SizedBox(
                 width: double.infinity,
                 child: ElevatedButton.icon(
-                  onPressed: () => _buyPremium(context, user),
+                  onPressed: null,
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.blue.shade600,
+                    backgroundColor: Colors.grey.shade400,
+                    disabledBackgroundColor: Colors.grey.shade400,
                     padding: const EdgeInsets.symmetric(vertical: 16),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(12),
@@ -1946,11 +1934,11 @@ class _PremiumTab extends ConsumerWidget {
                   ),
                   icon: const Icon(Icons.shopping_cart),
                   label: Text(
-                    'Activer Premium - 2.99€',
+                    'Activer Premium - 2.99€ (Indisponible)',
                     style: TextStyle(
                       fontSize: ctaSize,
                       fontWeight: FontWeight.bold,
-                      color: Colors.white,
+                      color: Colors.grey.shade600,
                     ),
                   ),
                 ),
@@ -1974,53 +1962,7 @@ class _PremiumTab extends ConsumerWidget {
     );
   }
 
-  void _buyPremium(BuildContext context, User user) {
-    showDialog(
-      context: context,
-      builder: (dialogContext) => AlertDialog(
-        title: const Text('🎉 Sans pub'),
-        content: const Text(
-            'Accès illimité aux recherches et sans publicité pour seulement 2.99€.'),
-        actions: [
-          TextButton(
-            onPressed: () => Navigator.pop(dialogContext),
-            child: const Text('Annuler'),
-          ),
-          ElevatedButton(
-            onPressed: () async {
-              Navigator.pop(dialogContext);
-              // Activer le pass premium dans Firestore
-              await FirebaseFirestore.instance
-                  .collection('profiles')
-                  .doc(user.uid)
-                  .update({'hasPremiumPass': true});
 
-              final expiryDate = DateTime.now().add(const Duration(days: 30));
-              await FirebaseFirestore.instance
-                  .collection('users')
-                  .doc(user.uid)
-                  .set({
-                'isPremium': true,
-                'premiumExpiryDate': Timestamp.fromDate(expiryDate),
-                'premiumActivationDate': Timestamp.fromDate(DateTime.now()),
-                'premiumPrice': 2.99,
-                'premiumDuration': 30,
-              }, SetOptions(merge: true));
-
-              if (!context.mounted) return;
-              ScaffoldMessenger.of(context).showSnackBar(
-                const SnackBar(
-                  content: Text('✅ Merci! Vous êtes passé en premium.'),
-                  duration: Duration(seconds: 2),
-                ),
-              );
-            },
-            child: const Text('Confirmer (2.99€)'),
-          ),
-        ],
-      ),
-    );
-  }
 }
 
 class _PoiTile extends StatelessWidget {

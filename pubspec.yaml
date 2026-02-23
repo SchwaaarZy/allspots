@@ -36,6 +36,9 @@ dependencies:
   # Ads
   google_mobile_ads: ^7.0.0
 
+  # Storage
+  shared_preferences: ^2.2.3
+
   # Utilitaires
   uuid: ^4.4.0
   collection: ^1.18.0

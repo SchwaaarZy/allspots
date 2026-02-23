@@ -29,13 +29,17 @@ class OptimizedNetworkImage extends StatelessWidget {
       fit: fit,
       placeholder: (context, url) =>
           placeholder ??
-          Center(
-            child: SizedBox(
-              width: 24,
-              height: 24,
-              child: CircularProgressIndicator(
-                strokeWidth: 2,
-                color: Colors.grey.shade400,
+          // OPTIMISÉ: Placeholder ultra-léger (pas de spinner lourd)
+          Container(
+            color: Colors.grey.shade200,
+            child: const Center(
+              child: SizedBox(
+                width: 16,
+                height: 16,
+                child: CircularProgressIndicator(
+                  strokeWidth: 1.5,
+                  valueColor: AlwaysStoppedAnimation(Colors.grey),
+                ),
               ),
             ),
           ),
@@ -48,11 +52,10 @@ class OptimizedNetworkImage extends StatelessWidget {
               color: Colors.grey,
             ),
           ),
-      // Optimisations mémoire
-      memCacheWidth: width != null ? (width! * 2).toInt() : null,
+      fadeOutDuration: const Duration(milliseconds: 200),
+      fadeInDuration: const Duration(milliseconds: 300),
       memCacheHeight: height != null ? (height! * 2).toInt() : null,
-      maxWidthDiskCache: 1000,
-      maxHeightDiskCache: 1000,
+      memCacheWidth: width != null ? (width! * 2).toInt() : null,
     );
   }
 }

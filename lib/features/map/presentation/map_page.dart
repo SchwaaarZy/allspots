@@ -7,6 +7,7 @@ import 'package:flutter_map/flutter_map.dart' as flutter_map;
 import 'package:latlong2/latlong.dart';
 import 'package:geolocator/geolocator.dart';
 import '../../../core/utils/responsive_utils.dart';
+import '../../../core/widgets/radius_selector.dart';
 import '../../auth/data/auth_providers.dart';
 import '../../../core/widgets/app_header.dart';
 import '../../../core/widgets/optimized_image.dart';
@@ -51,6 +52,7 @@ class _MapViewState extends ConsumerState<MapView> {
   bool _initialized = false;
   bool _centeredOnFirstLocation = false;
   bool _isAutoXpRunning = false;
+  bool _showRadiusSelector = false;
   Position? _lastAutoXpPosition;
   DateTime? _lastAutoXpRunAt;
   final Map<String, DateTime> _lastAutoAttemptBySpot = {};
@@ -239,14 +241,30 @@ class _MapViewState extends ConsumerState<MapView> {
       );
     }
 
-    final state = ref.watch(mapControllerProvider);
+    // OPTIMISÉ: Utiliser .select() pour ne reconstruire QUE si displayedPois ou userPosition changent
+    // Évite les rebuilds inutiles sur les changements de filters, isSatellite, etc.
+    final displayedPois = ref.watch(
+      mapControllerProvider.select((state) => state.displayedPois),
+    );
+    
+    final userPosition = ref.watch(
+      mapControllerProvider.select((state) => state.userPosition),
+    );
+    final isLoading = ref.watch(
+      mapControllerProvider.select((state) => state.isLoading),
+    );
+    final error = ref.watch(
+      mapControllerProvider.select((state) => state.error),
+    );
 
     // Centrer automatiquement au premier chargement de la position
-    if (!_centeredOnFirstLocation && state.userPosition != null) {
+    if (!_centeredOnFirstLocation && userPosition != null) {
       Future.microtask(_ensureCenteredOnLocation);
     }
 
-    final userPos = state.userPosition;
+    final userPos = userPosition;
+    // Recréer l'état complet pour _maybeAutoClaimXp (il en a besoin)
+    final fullState = ref.read(mapControllerProvider);
 
     return StreamBuilder<QuerySnapshot<Map<String, dynamic>>>(
       stream: FirebaseFirestore.instance.collection('spots').snapshots(),
@@ -259,24 +277,24 @@ class _MapViewState extends ConsumerState<MapView> {
             : <String>{};
 
         final visiblePois = snapshot.hasData
-            ? state.nearbyPois
+            ? displayedPois
                 .where(
                   (poi) =>
                       poi.source != 'firestore' ||
                       activeFirestoreIds.contains(poi.id),
                 )
                 .toList()
-            : state.nearbyPois;
+            : displayedPois;
 
         // Debug: afficher le statut du chargement
         debugPrint(
-          '[MapView] nearbyPois=${state.nearbyPois.length}, visiblePois=${visiblePois.length}, '
-          'isLoading=${state.isLoading}, error=${state.error}, '
+          '[MapView] displayed=${displayedPois.length}, visible=${visiblePois.length}, '
+          'isLoading=$isLoading, error=$error, '
           'userPos=${userPos != null ? "OK" : "NULL"}',
         );
 
         Future.microtask(
-          () => _maybeAutoClaimXp(state.copyWith(nearbyPois: visiblePois)),
+          () => _maybeAutoClaimXp(fullState.copyWith(nearbyPois: visiblePois)),
         );
 
         return Stack(
@@ -338,7 +356,40 @@ class _MapViewState extends ConsumerState<MapView> {
                   ),
               ],
             ),
-        // Contrôles secondaires (haut droit)
+            // Aucun message d'erreur - les spots s'affichent par proximité automatiquement
+            if (error != null)
+              Positioned(
+                top: 0,
+                left: 0,
+                right: 0,
+                child: Container(
+                  color: Colors.orange.shade600,
+                  padding: const EdgeInsets.all(12),
+                  child: Text(
+                    error,
+                    style: const TextStyle(
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 12,
+                    ),
+                  ),
+                ),
+              ),
+            // Sélecteur de rayon (bas gauche)
+            if (_showRadiusSelector)
+              Positioned(
+                left: 12,
+                bottom: 12,
+                right: 90,
+                child: RadiusSelector(
+                  currentRadius: ref.watch(mapControllerProvider).radiusMeters,
+                  radiusOptions: const [5000, 10000, 15000, 20000],
+                  onRadiusChanged: (radius) {
+                    ref.read(mapControllerProvider.notifier).updateRadius(radius);
+                  },
+                ),
+              ),
+            // Contrôles secondaires (haut droit)
             Positioned(
               right: 12,
               bottom: 12,
@@ -365,6 +416,38 @@ class _MapViewState extends ConsumerState<MapView> {
                         Icons.info_outline,
                         size: 22,
                         color: Colors.blue,
+                      ),
+                    ),
+                  ),
+                  const SizedBox(height: 8),
+                  Container(
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(12),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.black.withValues(alpha: 0.2),
+                          blurRadius: 8,
+                          offset: const Offset(0, 3),
+                        ),
+                      ],
+                    ),
+                    child: Material(
+                      color: Colors.transparent,
+                      child: IconButton(
+                        onPressed: () => setState(() => _showRadiusSelector = !_showRadiusSelector),
+                        tooltip: 'Rayon de recherche',
+                        splashRadius: 22,
+                        constraints: const BoxConstraints.tightFor(
+                          width: 44,
+                          height: 44,
+                        ),
+                        padding: EdgeInsets.zero,
+                        icon: const Icon(
+                          Icons.radio_button_checked,
+                          size: 22,
+                          color: Colors.blue,
+                        ),
                       ),
                     ),
                   ),
@@ -515,7 +598,7 @@ class _MapViewState extends ConsumerState<MapView> {
                                       fontSize: 16,
                                       fontWeight: FontWeight.bold,
                                     ),
-                                    maxLines: 1,
+                                    maxLines: 2,
                                     overflow: TextOverflow.ellipsis,
                                     textAlign: TextAlign.center,
                                   ),

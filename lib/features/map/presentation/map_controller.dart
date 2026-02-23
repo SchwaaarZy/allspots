@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:geolocator/geolocator.dart';
 import '../../../core/config/app_config.dart';
 import '../../../core/constants/poi_categories.dart';
+import '../../../core/utils/geo_utils.dart';
 import '../data/empty_poi_repository.dart';
 import '../data/firestore_poi_repository.dart';
 import '../data/mixed_poi_repository.dart';
@@ -19,6 +20,9 @@ class MapState {
   final bool isLoading;
   final String? error;
   final List<Poi> nearbyPois;
+  // OPTIMISÉ: Afficher QUE les POIs visibles sur l'écran
+  // Évite de créer 500+ widgets d'un coup
+  final List<Poi> displayedPois;
   final PoiFilters filters;
   final double radiusMeters;
   final bool isSatellite;
@@ -29,6 +33,7 @@ class MapState {
     required this.isLoading,
     required this.error,
     required this.nearbyPois,
+    required this.displayedPois,
     required this.filters,
     required this.radiusMeters,
     required this.isSatellite,
@@ -40,6 +45,7 @@ class MapState {
         isLoading: false,
         error: null,
         nearbyPois: const [],
+        displayedPois: const [],
         filters: PoiFilters.defaults(),
       radiusMeters: 5000, // 5 km par défaut
         isSatellite: false,
@@ -51,6 +57,7 @@ class MapState {
     bool? isLoading,
     String? error,
     List<Poi>? nearbyPois,
+    List<Poi>? displayedPois,
     PoiFilters? filters,
     double? radiusMeters,
     bool? isSatellite,
@@ -61,6 +68,7 @@ class MapState {
       isLoading: isLoading ?? this.isLoading,
       error: error,
       nearbyPois: nearbyPois ?? this.nearbyPois,
+      displayedPois: displayedPois ?? this.displayedPois,
       filters: filters ?? this.filters,
       radiusMeters: radiusMeters ?? this.radiusMeters,
       isSatellite: isSatellite ?? this.isSatellite,
@@ -108,9 +116,8 @@ class MapController extends StateNotifier<MapState> {
   DateTime? _lastRefreshTime;
   static const Duration _minRefreshInterval = Duration(seconds: 2);
   
-  // OPTIMISÉ: Évite refetch si le rayon change de <5% 
-  double? _lastRefreshRadius;
-  static const double _radiusDeltaThreshold = 0.05; // 5%
+  // Accumule TOUS les POIs jamais fetches (ne remplace pas, fusionne)
+  final Map<String, Poi> _allPoisBySameSession = {};
 
   Future<void> init() async {
     state = state.copyWith(isLoading: true, error: null);
@@ -136,9 +143,15 @@ class MapController extends StateNotifier<MapState> {
     double? userLatOverride,
     double? userLngOverride,
   }) async {
+    // Les spots s'affichent automatiquement par proximité (5km)
+    // Pas de vérification de sélection nécessaire
+
     // OPTIMISÉ: Vérifie que suffisamment de temps s'est écoulé
     final now = DateTime.now();
     if (_lastRefreshTime != null && now.difference(_lastRefreshTime!) < _minRefreshInterval) {
+      // Si on ne peut pas rafraîchir à cause du throttle mais qu'une erreur se montre,
+      // on s'assure que c'est bien une erreur valide (pas juste "pas de destination")
+      // qui persiste correctement
       return; // Trop récent, ignore
     }
     _lastRefreshTime = now;
@@ -157,23 +170,54 @@ class MapController extends StateNotifier<MapState> {
         filters: state.filters,
       );
 
-      state = state.copyWith(nearbyPois: pois, isLoading: false);
+      // Ajoute les nouveaux POIs à l'accumulator (fusionne au lieu de remplacer)
+      for (final poi in pois) {
+        _allPoisBySameSession[poi.id] = poi;
+      }
+      
+      // Récupère TOUS les POIs accumulés ET les trie par distance
+      final allPois = _allPoisBySameSession.values.toList();
+      allPois.sort((a, b) {
+        final distA = GeoUtils.distanceMeters(
+          lat1: userLat,
+          lon1: userLng,
+          lat2: a.lat,
+          lon2: a.lng,
+        );
+        final distB = GeoUtils.distanceMeters(
+          lat1: userLat,
+          lon1: userLng,
+          lat2: b.lat,
+          lon2: b.lng,
+        );
+        return distA.compareTo(distB);
+      });
+      
+      // Filtre pour n'afficher que les POIs dans le rayon actuel
+      final displayedPois = allPois.where((poi) {
+        final dist = GeoUtils.distanceMeters(
+          lat1: userLat,
+          lon1: userLng,
+          lat2: poi.lat,
+          lon2: poi.lng,
+        );
+        return dist <= state.radiusMeters;
+      }).toList();
+
+      state = state.copyWith(
+        nearbyPois: allPois,
+        displayedPois: displayedPois,
+        isLoading: false,
+      );
     } catch (e) {
       state = state.copyWith(error: e.toString(), isLoading: false);
     }
   }
 
   Future<void> setRadiusMeters(double value) async {
-    // OPTIMISÉ: Vérifie si le changement de rayon est significatif (>5%)
-    final last = _lastRefreshRadius ?? state.radiusMeters;
-    final delta = (value - last).abs() / last;
-    
+    // Rafraîchit TOUJOURS quand le rayon change (pas de seuil)
     state = state.copyWith(radiusMeters: value);
-    
-    if (delta > _radiusDeltaThreshold) {
-      _lastRefreshRadius = value;
-      await refreshNearby();
-    }
+    await refreshNearby();
   }
 
   Future<void> updateRadius(double radiusMeters) async {

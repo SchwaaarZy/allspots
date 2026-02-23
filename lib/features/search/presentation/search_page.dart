@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:geolocator/geolocator.dart';
 import '../../../core/constants/poi_categories.dart';
 import '../../../core/utils/geo_utils.dart';
+import '../../../core/widgets/radius_selector.dart';
 import '../../auth/data/auth_providers.dart';
 import '../../map/domain/poi.dart';
 import '../../map/domain/poi_category.dart';
@@ -89,36 +90,13 @@ class _SearchPageState extends ConsumerState<SearchPage> {
                       ),
                     ),
                     const SizedBox(height: 8),
-                    // Rayon ajustable
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        const Text(
-                          'Rayon: ',
-                          style: TextStyle(
-                            fontWeight: FontWeight.w600,
-                            fontSize: 13,
-                          ),
-                        ),
-                        Text(
-                          '${(mapState.radiusMeters / 1000).toStringAsFixed(1)} km',
-                          style: const TextStyle(
-                            color: Colors.blue,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                      ],
-                    ),
-                    Slider(
-                      value: mapState.radiusMeters.clamp(5000, 30000),
-                      min: 5000,
-                      max: 30000,
-                      divisions: 25,
-                      onChanged: (value) {
+                    // Rayon ajustable - Remplacé par RadiusSelector
+                    RadiusSelector(
+                      currentRadius: mapState.radiusMeters,
+                      radiusOptions: const [5000, 10000, 15000, 20000, 25000, 30000],
+                      onRadiusChanged: (radius) {
                         _resetPage();
-                        ref
-                            .read(mapControllerProvider.notifier)
-                            .setRadiusMeters(value);
+                        ref.read(mapControllerProvider.notifier).setRadiusMeters(radius);
                       },
                     ),
                     const SizedBox(height: 8),

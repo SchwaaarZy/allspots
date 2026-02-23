@@ -16,6 +16,7 @@ class UserProfile {
     required this.locationLat,
     required this.locationLng,
     this.hasPremiumPass = false,
+    this.premiumExpiryDate,
     this.favoritePoiIds = const [],
     this.xp = 0,
     this.totalVisits = 0,
@@ -31,6 +32,7 @@ class UserProfile {
   final double? locationLat;
   final double? locationLng;
   final bool hasPremiumPass;
+  final DateTime? premiumExpiryDate;
   final List<String> favoritePoiIds;
   final int xp;
   final int totalVisits;
@@ -54,6 +56,15 @@ class UserProfile {
     final totalVisits = (data['totalVisits'] as num?)?.toInt() ?? 0;
     final uniqueVisitedSpots =
         (data['uniqueVisitedSpots'] as num?)?.toInt() ?? 0;
+    
+    // Extract premium expiry date
+    DateTime? premiumExpiryDate;
+    final expiryData = data['premiumExpiryDate'];
+    if (expiryData is Timestamp) {
+      premiumExpiryDate = expiryData.toDate();
+    } else if (expiryData is DateTime) {
+      premiumExpiryDate = expiryData;
+    }
 
     return UserProfile(
       displayName: (data['displayName'] as String?) ?? '',
@@ -64,6 +75,7 @@ class UserProfile {
       locationLat: lat is num ? lat.toDouble() : null,
       locationLng: lng is num ? lng.toDouble() : null,
       hasPremiumPass: (data['hasPremiumPass'] as bool?) ?? false,
+      premiumExpiryDate: premiumExpiryDate,
       favoritePoiIds: favorites,
       xp: xp,
       totalVisits: totalVisits,

@@ -11,5 +11,5 @@ final localeProvider = StateProvider<Locale>((ref) {
 /// Fonction pour changer la langue
 Future<void> changeLanguage(WidgetRef ref, String languageCode) async {
   ref.read(localeProvider.notifier).state = Locale(languageCode);
-  // TODO: Persister le choix dans SharedPreferences si souhaité
+  // TPersister le choix dans SharedPreferences si souhaité
 }

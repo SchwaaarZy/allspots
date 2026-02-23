@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../../../core/l10n/app_localizations.dart';
 
 enum PoiCategory {
   culture,
@@ -27,24 +28,22 @@ extension PoiCategoryX on PoiCategory {
 
   /// Récupère le label localisé (FR/EN) depuis le context
   String localizationLabel(BuildContext context) {
-    // Import dynamique pour éviter les dépendances circulaires
     try {
-      // ignore: avoid_dynamic_calls
-      final l10n = (context as dynamic).l10n;
+      final l10n = AppLocalizations.of(context);
       switch (this) {
         case PoiCategory.culture:
-          return l10n.cultureCategoryLabel ?? label;
+          return l10n.cultureCategoryLabel;
         case PoiCategory.nature:
-          return l10n.natureCategoryLabel ?? label;
+          return l10n.natureCategoryLabel;
         case PoiCategory.experienceGustative:
-          return l10n.experienceGustativeCategoryLabel ?? label;
+          return l10n.experienceGustativeCategoryLabel;
         case PoiCategory.histoire:
-          return l10n.histoireCategoryLabel ?? label;
+          return l10n.histoireCategoryLabel;
         case PoiCategory.activites:
-          return l10n.activitesCategoryLabel ?? label;
+          return l10n.activitesCategoryLabel;
       }
     } catch (_) {
-      // En cas d'erreur, retourner le label par défaut
+      // En cas d'erreur, retourner le label français par défaut
       return label;
     }
   }
@@ -102,34 +101,88 @@ PoiCategory poiCategoryFromString(String value) {
 String formatPoiSubCategory(String? value) {
   if (value == null || value.trim().isEmpty) return '';
   final normalized = value.trim().toLowerCase();
+  
+  // Dictionnaire complet de traductions FR/EN
   const map = {
+    // Attractions
     'art_gallery': "Galerie d'art",
     'park': 'Parc',
     'tourist_attraction': 'Attraction touristique',
-    'museum': 'Musee',
-    'cafe': 'Cafe',
+    'attraction': 'Attraction',
+    'museum': 'Musée',
+    'gallery': 'Galerie',
+    'monument': 'Monument',
+    'memorial': 'Mémorial',
+    
+    // Restauration
+    'cafe': 'Café',
     'restaurant': 'Restaurant',
+    'bar': 'Bar',
+    'pub': 'Pub',
+    'fast_food': 'Restauration rapide',
+    'bistro': 'Bistro',
+    'bakery': 'Boulangerie',
+    
+    // Nature
     'natural_feature': 'Site naturel',
     'scenic_viewpoint': 'Point de vue',
-    'hiking_area': 'Zone de randonnee',
+    'viewpoint': 'Point de vue',
+    'hiking_area': 'Zone de randonnée',
+    'forest': 'Forêt',
+    'mountain': 'Montagne',
+    'waterfall': 'Cascade',
+    'water': 'Plan d\'eau',
+    'lake': 'Lac',
+    'river': 'Rivière',
+    'beach': 'Plage',
+    'valley': 'Vallée',
+    
+    // Activités
     'sports_complex': 'Complexe sportif',
     'stadium': 'Stade',
-    'church': 'Eglise',
+    'gym': 'Salle de sport',
+    'sports': 'Sports',
+    'tennis': 'Tennis',
+    'swimming_pool': 'Piscine',
+    'ski': 'Ski',
+    'climbing': 'Escalade',
+    'golf': 'Golf',
+    
+    // Histoire/Culture
+    'church': 'Église',
     'place_of_worship': 'Lieu de culte',
-    'mosque': 'Mosquee',
+    'mosque': 'Mosquée',
     'synagogue': 'Synagogue',
-    'castle': 'Chateau',
+    'temple': 'Temple',
+    'castle': 'Château',
+    'archaeological_site': 'Site archéologique',
+    'historic_site': 'Site historique',
+    'ruins': 'Ruines',
+    'fort': 'Fort',
+    'abbey': 'Abbaye',
+    'chateau': 'Château',
+    
+    // Commerce/Loisirs
     'campground': 'Camping',
-    'market': 'Marche',
+    'market': 'Marché',
     'sporting_goods_store': 'Magasin de sport',
     'zoo': 'Zoo',
-    'library': 'Bibliotheque',
+    'library': 'Bibliothèque',
     'amusement_park': 'Parc d\'attractions',
-    'gym': 'Salle de sport',
+    'cinema': 'Cinéma',
+    'theatre': 'Théâtre',
+    'theatre_cinema': 'Théâtre/Cinéma',
+    
+    // Autres/Défaut
+    'other': 'Autre',
+    'poi': 'Point d\'intérêt',
+    'landmark': 'Point de repère',
   };
+  
   final mapped = map[normalized];
   if (mapped != null) return mapped;
 
+  // Fallback: formater en titrant les mots
   final words = normalized
       .replaceAll('-', ' ')
       .replaceAll('_', ' ')

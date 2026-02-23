@@ -23,6 +23,7 @@ class Poi {
   final DateTime updatedAt;
   
   final String? createdBy; // UID de l'utilisateur qui a créé le spot (null pour Google Places/OSM)
+  final String? departmentCode; // Code département (ex: "06", "13", "83")
 
   const Poi({
     required this.id,
@@ -43,5 +44,7 @@ class Poi {
     this.googleRating,
     this.googleRatingCount,
     this.createdBy,
+    this.departmentCode,
   });
 }
+

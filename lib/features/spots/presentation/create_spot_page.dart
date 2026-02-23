@@ -3,20 +3,23 @@ import 'dart:typed_data';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:image_picker/image_picker.dart';
 import '../../../core/constants/poi_categories.dart';
 import '../../../core/widgets/glass_app_bar.dart';
 import '../../../core/utils/geo_utils.dart';
+import '../../auth/data/auth_providers.dart';
+import '../data/spot_creation_service.dart';
 
-class CreateSpotPage extends StatefulWidget {
+class CreateSpotPage extends ConsumerStatefulWidget {
   const CreateSpotPage({super.key});
 
   @override
-  State<CreateSpotPage> createState() => _CreateSpotPageState();
+  ConsumerState<CreateSpotPage> createState() => _CreateSpotPageState();
 }
 
-class _CreateSpotPageState extends State<CreateSpotPage> {
+class _CreateSpotPageState extends ConsumerState<CreateSpotPage> {
   final _formKey = GlobalKey<FormState>();
   final _nameController = TextEditingController();
   final _descController = TextEditingController();
@@ -148,6 +151,30 @@ class _CreateSpotPageState extends State<CreateSpotPage> {
     setState(() => _isSaving = true);
 
     try {
+      // Vérifier les limites de création de spots
+      final profileData = ref.watch(profileStreamProvider);
+      final profile = profileData.whenData((p) => p).asData?.value;
+      
+      if (profile != null) {
+        final canCreate = await SpotCreationService.canCreateSpot(
+          userId: user.uid,
+          hasPremiumPass: profile.hasPremiumPass,
+          premiumExpiryDate: profile.premiumExpiryDate,
+        );
+
+        if (!canCreate.canCreate) {
+          if (!mounted) return;
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              content: Text('❌ ${canCreate.message}'),
+              duration: const Duration(seconds: 4),
+            ),
+          );
+          setState(() => _isSaving = false);
+          return;
+        }
+      }
+
       // Vérifier s'il existe déjà un spot au même endroit
       final hasNearbySpot = await _checkForNearbySpots(
         _position!.latitude,
