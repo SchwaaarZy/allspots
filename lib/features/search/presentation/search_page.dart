@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:geolocator/geolocator.dart';
 import '../../../core/constants/poi_categories.dart';
 import '../../../core/utils/geo_utils.dart';
+import '../../../core/utils/responsive_utils.dart';
 import '../../../core/widgets/radius_selector.dart';
 import '../../auth/data/auth_providers.dart';
 import '../../map/domain/poi.dart';
@@ -220,10 +221,10 @@ class _SearchPageState extends ConsumerState<SearchPage> {
                                 color: Colors.grey.shade300,
                               ),
                               const SizedBox(height: 16),
-                              const Text(
+                              Text(
                                 'Commencez votre recherche',
                                 style: TextStyle(
-                                  fontSize: 16,
+                                  fontSize: context.fontSize(16),
                                   fontWeight: FontWeight.w600,
                                   color: Colors.grey,
                                 ),
@@ -235,7 +236,7 @@ class _SearchPageState extends ConsumerState<SearchPage> {
                                   '1. Sélectionnez des catégories ou cliquez sur "Intérêt"\n2. Ajustez le rayon de recherche\n3. Cliquez sur "Rechercher"',
                                   textAlign: TextAlign.center,
                                   style: TextStyle(
-                                    fontSize: 13,
+                                    fontSize: context.fontSize(13),
                                     color: Colors.grey.shade600,
                                   ),
                                 ),
@@ -466,9 +467,9 @@ class _SearchPageState extends ConsumerState<SearchPage> {
                             Expanded(
                               child: Text(
                                 poi.displayName,
-                                style: const TextStyle(
+                                style: TextStyle(
                                   fontWeight: FontWeight.bold,
-                                  fontSize: 14,
+                                  fontSize: context.fontSize(14),
                                 ),
                                 maxLines: 2,
                                 overflow: TextOverflow.ellipsis,
@@ -491,7 +492,7 @@ class _SearchPageState extends ConsumerState<SearchPage> {
                             Text(
                               categoryLabel,
                               style: TextStyle(
-                                fontSize: 12,
+                                fontSize: context.fontSize(12),
                                 color: Colors.grey.shade600,
                               ),
                             ),
@@ -518,7 +519,7 @@ class _SearchPageState extends ConsumerState<SearchPage> {
                             const SizedBox(width: 2),
                             Text(
                               rating.toStringAsFixed(1),
-                              style: const TextStyle(fontSize: 11),
+                              style: TextStyle(fontSize: context.fontSize(11)),
                             ),
                           ],
                         ),
@@ -532,7 +533,7 @@ class _SearchPageState extends ConsumerState<SearchPage> {
                 maxLines: 2,
                 overflow: TextOverflow.ellipsis,
                 style: TextStyle(
-                  fontSize: 12,
+                  fontSize: context.fontSize(12),
                   color: Colors.grey.shade700,
                 ),
               ),
@@ -549,7 +550,7 @@ class _SearchPageState extends ConsumerState<SearchPage> {
                     Text(
                       '$photoCount',
                       style: TextStyle(
-                        fontSize: 12,
+                        fontSize: context.fontSize(12),
                         color: Colors.grey.shade600,
                       ),
                     ),
@@ -564,8 +565,8 @@ class _SearchPageState extends ConsumerState<SearchPage> {
                     const SizedBox(width: 4),
                     Text(
                       rating.toStringAsFixed(1),
-                      style: const TextStyle(
-                        fontSize: 12,
+                      style: TextStyle(
+                        fontSize: context.fontSize(12),
                         color: Colors.amber,
                       ),
                     ),
@@ -596,9 +597,9 @@ class _SearchPageState extends ConsumerState<SearchPage> {
                     padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
                     child: Text(
                       group.title,
-                      style: const TextStyle(
+                      style: TextStyle(
                         fontWeight: FontWeight.w600,
-                        fontSize: 12,
+                        fontSize: context.fontSize(12),
                         color: Colors.blue,
                       ),
                     ),
@@ -613,7 +614,7 @@ class _SearchPageState extends ConsumerState<SearchPage> {
                             contentPadding: EdgeInsets.zero,
                             title: Text(
                               item,
-                              style: const TextStyle(fontSize: 12),
+                              style: TextStyle(fontSize: context.fontSize(12)),
                             ),
                             value: _selectedCategories.contains(item),
                             onChanged: (selected) {

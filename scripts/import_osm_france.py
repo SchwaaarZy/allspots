@@ -957,6 +957,10 @@ def export_catalog(departments, output_path, include_communes=True, communes_lim
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--department", help="Code département (ex: 75)")
+    parser.add_argument(
+        "--departments",
+        help="Liste de départements séparés par des virgules (ex: 75,77,78,2A,2B)",
+    )
     parser.add_argument("--all-departments", action="store_true", help="Importer tous les départements")
     parser.add_argument("--no-domtom", action="store_true", help="Exclure les DOM-TOM")
     parser.add_argument("--use-communes", action="store_true", help="Importer par centres de communes (villes/villages)")
@@ -992,24 +996,43 @@ def main():
     if args.catalog_only:
         return
 
-    if not args.all_departments and not args.department:
-        print("❌ Spécifiez --department XX ou --all-departments")
+    selected_departments = []
+    if args.departments:
+        selected_departments = [
+            dep.strip().upper() for dep in args.departments.split(",") if dep.strip()
+        ]
+
+    if not args.all_departments and not args.department and not selected_departments:
+        print("❌ Spécifiez --department XX, --departments X,Y,Z ou --all-departments")
         return
 
     if args.department and args.department not in departments:
         print(f"❌ Département {args.department} non supporté")
         return
 
-    target_department_codes = (
-        sorted(departments.keys()) if args.all_departments else [args.department]
-    )
+    for dep_code in selected_departments:
+        if dep_code not in departments:
+            print(f"❌ Département {dep_code} non supporté")
+            return
+
+    if args.all_departments:
+        target_department_codes = sorted(departments.keys())
+    elif args.department:
+        target_department_codes = [args.department]
+    else:
+        target_department_codes = sorted(set(selected_departments))
 
     tags = CATEGORY_TAGS[args.category]
     pois = []
     seen_osm_ids = set()
     request_count = 0
     
-    scope_label = "Tous départements" if args.all_departments else f"Département {args.department}"
+    if args.all_departments:
+        scope_label = "Tous départements"
+    elif args.department:
+        scope_label = f"Département {args.department}"
+    else:
+        scope_label = f"Départements: {', '.join(target_department_codes)}"
     print(f"\n🗺️  Import OSM: {scope_label}")
     print(f"📂 Catégorie: {args.category}")
     print(f"📏 Rayon: {args.radius}m\n")

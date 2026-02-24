@@ -22,6 +22,15 @@ Solution complète pour importer des POIs en France avec stratégie publique **g
 # Import public rapide (OSM + UNESCO + Data.gouv, sans Google)
 python3 scripts/import_hybride.py
 
+# Import par régions (OSM all-departments filtré)
+python3 scripts/import_hybride.py \
+  --regions ile_de_france provence_alpes_cote_dazur occitanie
+
+# Import France entière métropole uniquement (sans DOM-TOM)
+python3 scripts/import_hybride.py \
+  --regions all \
+  --no-domtom
+
 # Import plus rapide sur villes majeures (au lieu all-departments)
 python3 scripts/import_hybride.py --osm-mode cities --cities paris marseille lyon
 
@@ -58,6 +67,12 @@ python3 scripts/import_osm_france.py \
 # France entière + DOM-TOM (centres départements)
 python3 scripts/import_osm_france.py \
   --all-departments \
+  --category culture \
+  --radius 20000
+
+# Régions / départements ciblés
+python3 scripts/import_osm_france.py \
+  --departments 75,77,78,91,92,93,94,95 \
   --category culture \
   --radius 20000
 

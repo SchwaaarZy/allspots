@@ -27,6 +27,22 @@ MAJOR_CITIES = {
 
 CATEGORIES = ["culture", "nature", "experienceGustative", "histoire", "activites"]
 UNESCO_CATEGORIES = ["tous", "culture", "nature", "experienceGustative", "histoire", "activites"]
+REGION_DEPARTMENTS = {
+    "ile_de_france": ["75", "77", "78", "91", "92", "93", "94", "95"],
+    "auvergne_rhone_alpes": ["01", "03", "07", "15", "26", "38", "42", "43", "63", "69", "73", "74"],
+    "provence_alpes_cote_dazur": ["04", "05", "06", "13", "83", "84"],
+    "occitanie": ["09", "11", "12", "30", "31", "32", "34", "46", "48", "65", "66", "81", "82"],
+    "nouvelle_aquitaine": ["16", "17", "19", "23", "24", "33", "40", "47", "64", "79", "86", "87"],
+    "bretagne": ["22", "29", "35", "56"],
+    "pays_de_la_loire": ["44", "49", "53", "72", "85"],
+    "hauts_de_france": ["02", "59", "60", "62", "80"],
+    "grand_est": ["08", "10", "51", "52", "54", "55", "57", "67", "68", "88"],
+    "normandie": ["14", "27", "50", "61", "76"],
+    "centre_val_de_loire": ["18", "28", "36", "37", "41", "45"],
+    "bourgogne_franche_comte": ["21", "25", "39", "58", "70", "71", "89", "90"],
+    "corse": ["2A", "2B"],
+    "dom_tom": ["971", "972", "973", "974", "976"],
+}
 
 
 def run_command(cmd: List[str], label: str) -> bool:
@@ -59,6 +75,7 @@ def run_osm_all_departments(
     min_population: int,
     no_domtom: bool,
     max_requests: int,
+    departments: Optional[List[str]],
 ) -> List[str]:
     files: List[str] = []
 
@@ -67,7 +84,6 @@ def run_osm_all_departments(
         cmd = [
             python_bin,
             "scripts/import_osm_france.py",
-            "--all-departments",
             "--category",
             category,
             "--radius",
@@ -77,6 +93,11 @@ def run_osm_all_departments(
             "--output",
             output_file,
         ]
+
+        if departments:
+            cmd.extend(["--departments", ",".join(departments)])
+        else:
+            cmd.append("--all-departments")
 
         if use_communes:
             cmd.extend([
@@ -246,6 +267,13 @@ def parse_args() -> argparse.Namespace:
         help="Catégories à importer pour OSM",
     )
     parser.add_argument(
+        "--regions",
+        nargs="+",
+        choices=list(REGION_DEPARTMENTS.keys()) + ["all"],
+        default=["all"],
+        help="Régions à importer pour --osm-mode=all-departments",
+    )
+    parser.add_argument(
         "--unesco-category",
         choices=UNESCO_CATEGORIES,
         default="tous",
@@ -309,12 +337,30 @@ def main() -> None:
 
     categories = CATEGORIES if "all" in args.categories else args.categories
     cities = list(MAJOR_CITIES.keys()) if "all" in args.cities else args.cities
+    region_names = list(REGION_DEPARTMENTS.keys()) if "all" in args.regions else args.regions
+
+    selected_departments: List[str] = []
+    if args.osm_mode == "all-departments":
+        selected_set = set()
+        for region_name in region_names:
+            selected_set.update(REGION_DEPARTMENTS[region_name])
+        selected_departments = sorted(selected_set)
+
+        if args.no_domtom:
+            selected_departments = [
+                dep_code
+                for dep_code in selected_departments
+                if dep_code not in set(REGION_DEPARTMENTS["dom_tom"])
+            ]
 
     os.makedirs(args.temp_dir, exist_ok=True)
 
     print("🇫🇷 IMPORT PUBLIC RAPIDE (SANS GOOGLE)")
     print("=" * 64)
     print(f"OSM: {'OFF' if args.skip_osm else 'ON'} / mode={args.osm_mode}")
+    if args.osm_mode == "all-departments" and not args.skip_osm:
+        print(f"Régions OSM: {', '.join(region_names)}")
+        print(f"Départements ciblés: {len(selected_departments)}")
     print(f"Data.gouv: {'OFF' if args.skip_datagouv else 'ON'}")
     print(f"UNESCO: {'OFF' if args.skip_unesco else 'ON'} / catégorie={args.unesco_category}")
     print(f"Sortie finale: {args.output}")
@@ -337,6 +383,7 @@ def main() -> None:
                     min_population=args.min_population,
                     no_domtom=args.no_domtom,
                     max_requests=args.max_requests,
+                    departments=selected_departments,
                 )
             )
         else:

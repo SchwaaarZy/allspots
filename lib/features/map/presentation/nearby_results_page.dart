@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:geolocator/geolocator.dart';
 import '../../../core/utils/geo_utils.dart';
+import '../../../core/utils/responsive_utils.dart';
 import '../domain/poi.dart';
 import '../domain/poi_category.dart';
 import 'map_controller.dart';
@@ -86,16 +87,16 @@ class _NearbyResultsPageState extends ConsumerState<NearbyResultsPage> {
                       children: [
                         Text(
                           'Total: $totalItems spot(s)',
-                          style: const TextStyle(
+                          style: TextStyle(
                             fontWeight: FontWeight.w600,
-                            fontSize: 13,
+                            fontSize: context.fontSize(13),
                           ),
                         ),
                         if (totalItems > 0)
                           Text(
                             'Page ${safePage + 1}/$totalPages',
-                            style: const TextStyle(
-                              fontSize: 11,
+                            style: TextStyle(
+                              fontSize: context.fontSize(11),
                               color: Colors.grey,
                             ),
                           ),
@@ -291,9 +292,9 @@ class _NearbyResultsPageState extends ConsumerState<NearbyResultsPage> {
                             Expanded(
                               child: Text(
                                 poi.displayName,
-                                style: const TextStyle(
+                                style: TextStyle(
                                   fontWeight: FontWeight.bold,
-                                  fontSize: 14,
+                                  fontSize: context.fontSize(14),
                                 ),
                                 maxLines: 2,
                                 overflow: TextOverflow.ellipsis,
@@ -316,7 +317,7 @@ class _NearbyResultsPageState extends ConsumerState<NearbyResultsPage> {
                             Text(
                               categoryLabel,
                               style: TextStyle(
-                                fontSize: 12,
+                                fontSize: context.fontSize(12),
                                 color: Colors.grey.shade600,
                               ),
                             ),
@@ -343,7 +344,7 @@ class _NearbyResultsPageState extends ConsumerState<NearbyResultsPage> {
                             const SizedBox(width: 2),
                             Text(
                               rating.toStringAsFixed(1),
-                              style: const TextStyle(fontSize: 11),
+                              style: TextStyle(fontSize: context.fontSize(11)),
                             ),
                           ],
                         ),
@@ -358,7 +359,7 @@ class _NearbyResultsPageState extends ConsumerState<NearbyResultsPage> {
                 maxLines: 2,
                 overflow: TextOverflow.ellipsis,
                 style: TextStyle(
-                  fontSize: 12,
+                  fontSize: context.fontSize(12),
                   color: Colors.grey.shade700,
                 ),
               ),
@@ -376,7 +377,7 @@ class _NearbyResultsPageState extends ConsumerState<NearbyResultsPage> {
                     Text(
                       '$photoCount',
                       style: TextStyle(
-                        fontSize: 12,
+                        fontSize: context.fontSize(12),
                         color: Colors.grey.shade600,
                       ),
                     ),
@@ -391,8 +392,8 @@ class _NearbyResultsPageState extends ConsumerState<NearbyResultsPage> {
                     const SizedBox(width: 4),
                     Text(
                       rating.toStringAsFixed(1),
-                      style: const TextStyle(
-                        fontSize: 12,
+                      style: TextStyle(
+                        fontSize: context.fontSize(12),
                         color: Colors.amber,
                       ),
                     ),

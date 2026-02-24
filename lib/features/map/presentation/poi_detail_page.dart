@@ -9,6 +9,7 @@ import 'package:go_router/go_router.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'dart:math' as math;
+import '../../../core/utils/responsive_utils.dart';
 import '../../../core/widgets/glass_app_bar.dart';
 import '../../../core/widgets/optimized_image.dart';
 import '../domain/poi.dart';
@@ -399,7 +400,7 @@ class _PoiDetailPageState extends ConsumerState<PoiDetailPage> {
               padding: const EdgeInsets.fromLTRB(16, 16, 16, 0),
               child: Center(
                 child: SizedBox(
-                  height: 180,
+                  height: context.imageHeight,
                   child: PageView.builder(
                     itemCount: widget.poi.imageUrls.length,
                     controller: PageController(viewportFraction: 0.9),
@@ -411,7 +412,7 @@ class _PoiDetailPageState extends ConsumerState<PoiDetailPage> {
                           borderRadius: BorderRadius.circular(12),
                           child: OptimizedNetworkImage(
                             imageUrl: url,
-                            height: 180,
+                            height: context.imageHeight,
                             fit: BoxFit.cover,
                           ),
                         ),
@@ -436,7 +437,7 @@ class _PoiDetailPageState extends ConsumerState<PoiDetailPage> {
 
                   return Center(
                     child: SizedBox(
-                      height: 180,
+                      height: context.imageHeight,
                       child: PageView.builder(
                         itemCount: photoBytes.length,
                         controller: PageController(viewportFraction: 0.9),

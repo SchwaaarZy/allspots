@@ -613,6 +613,11 @@ class _MapViewState extends ConsumerState<MapView> {
                   color: Colors.transparent,
                   child: Container(
                     margin: const EdgeInsets.all(16),
+                    constraints: BoxConstraints(
+                      maxWidth: ResponsiveUtils.getDialogMaxWidth(
+                        dialogContext.screenWidth,
+                      ),
+                    ),
                     decoration: BoxDecoration(
                       color: Colors.white,
                       borderRadius: BorderRadius.circular(12),

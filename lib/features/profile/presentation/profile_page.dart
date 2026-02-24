@@ -390,9 +390,9 @@ class _ProfilePageState extends ConsumerState<ProfilePage>
                                           Flexible(
                                             child: Text(
                                               profile.location,
-                                              style: const TextStyle(
+                                              style: TextStyle(
                                                 color: Colors.white70,
-                                                fontSize: 13,
+                                                fontSize: context.fontSize(13),
                                               ),
                                               maxLines: 1,
                                               overflow: TextOverflow.ellipsis,
@@ -519,9 +519,9 @@ class _ProfilePageState extends ConsumerState<ProfilePage>
                                     ),
                                     Text(
                                       '${profile.totalVisits} visites',
-                                      style: const TextStyle(
+                                      style: TextStyle(
                                         color: Colors.white70,
-                                        fontSize: 12,
+                                        fontSize: context.fontSize(12),
                                       ),
                                     ),
                                   ],
@@ -545,7 +545,7 @@ class _ProfilePageState extends ConsumerState<ProfilePage>
                                   '${grade.currentLevelXp}/${grade.requiredXpForNextLevel} XP vers le niveau suivant',
                                   style: TextStyle(
                                     color: Colors.white70,
-                                    fontSize: isCompact ? 10 : 12,
+                                    fontSize: context.fontSize(isCompact ? 10 : 12),
                                   ),
                                 ),
                               ],
@@ -970,8 +970,10 @@ class _MyPoiTabState extends ConsumerState<_MyPoiTab> {
                         if (totalPages > 1)
                           Text(
                             'Page ${_currentPage + 1} / $totalPages',
-                            style: const TextStyle(
-                                fontWeight: FontWeight.w600, fontSize: 12),
+                            style: TextStyle(
+                              fontWeight: FontWeight.w600,
+                              fontSize: context.fontSize(12),
+                            ),
                           ),
                       ],
                     ),
@@ -1164,8 +1166,10 @@ class _FavoritesTabState extends ConsumerState<_FavoritesTab> {
                         if (totalPages > 1)
                           Text(
                             'Page ${_currentPage + 1} / $totalPages',
-                            style: const TextStyle(
-                                fontWeight: FontWeight.w600, fontSize: 12),
+                            style: TextStyle(
+                              fontWeight: FontWeight.w600,
+                              fontSize: context.fontSize(12),
+                            ),
                           ),
                       ],
                     ),
@@ -1337,7 +1341,7 @@ class _FavoriteTile extends ConsumerWidget {
                                 Text(
                                   categoryLabel,
                                   style: TextStyle(
-                                    fontSize: 12,
+                                    fontSize: context.fontSize(12),
                                     color: Colors.grey.shade600,
                                   ),
                                 ),
@@ -1352,9 +1356,10 @@ class _FavoriteTile extends ConsumerWidget {
                                   const SizedBox(width: 4),
                                   Text(
                                       '${(spotData['googleRating'] as num).toStringAsFixed(1)}/5',
-                                      style: const TextStyle(
-                                          fontSize: 12,
-                                          fontWeight: FontWeight.w600)),
+                                      style: TextStyle(
+                                        fontSize: context.fontSize(12),
+                                        fontWeight: FontWeight.w600,
+                                      )),
                                 ],
                               )
                             ],
@@ -1432,8 +1437,10 @@ class _FavoriteDetailPage extends StatelessWidget {
               children: [
                 Text(
                   spotData['name'] ?? 'Spot',
-                  style: const TextStyle(
-                      fontSize: 20, fontWeight: FontWeight.bold),
+                  style: TextStyle(
+                    fontSize: context.fontSize(20),
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
                 const SizedBox(height: 6),
                 Row(
@@ -1443,7 +1450,7 @@ class _FavoriteDetailPage extends StatelessWidget {
                     Text(
                       categoryLabel,
                       style:
-                          TextStyle(fontSize: 12, color: Colors.grey.shade600),
+                        TextStyle(fontSize: context.fontSize(12), color: Colors.grey.shade600),
                     ),
                   ],
                 ),
@@ -1456,14 +1463,16 @@ class _FavoriteDetailPage extends StatelessWidget {
                       const SizedBox(width: 6),
                       Text(
                         '$googleRating/5',
-                        style: const TextStyle(
-                            fontSize: 16, fontWeight: FontWeight.bold),
+                        style: TextStyle(
+                          fontSize: context.fontSize(16),
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
                       const SizedBox(width: 8),
                       Text(
                         '(${spotData['googleRatingCount'] ?? 0} avis)',
                         style: TextStyle(
-                            fontSize: 12, color: Colors.grey.shade600),
+                            fontSize: context.fontSize(12), color: Colors.grey.shade600),
                       ),
                     ],
                   ),
@@ -1471,13 +1480,16 @@ class _FavoriteDetailPage extends StatelessWidget {
                 ],
                 Text(
                   spotData['description'] ?? 'Pas de description',
-                  style: const TextStyle(fontSize: 14),
+                  style: TextStyle(fontSize: context.fontSize(14)),
                 ),
                 const SizedBox(height: 16),
                 if (spotData['lat'] != null && spotData['lng'] != null)
                   Text(
                     '📍 ${spotData['lat']}, ${spotData['lng']}',
-                    style: const TextStyle(fontSize: 12, color: Colors.grey),
+                    style: TextStyle(
+                      fontSize: context.fontSize(12),
+                      color: Colors.grey,
+                    ),
                   ),
                 const SizedBox(height: 16),
                 Wrap(
@@ -1688,12 +1700,12 @@ class _RoadTripTabState extends ConsumerState<_RoadTripTab> {
                           const SizedBox(width: 6),
                           Text(
                             'Distance: ${_formatDistance(_distanceMeters)}',
-                            style: const TextStyle(fontSize: 12),
+                            style: TextStyle(fontSize: context.fontSize(12)),
                           ),
                           const SizedBox(width: 12),
                           Text(
                             'Duree: ${_formatDuration(_durationSeconds)}',
-                            style: const TextStyle(fontSize: 12),
+                            style: TextStyle(fontSize: context.fontSize(12)),
                           ),
                         ],
                       ),
@@ -2000,9 +2012,9 @@ class _PoiTile extends StatelessWidget {
                     children: [
                       Text(
                         poi.displayName,
-                        style: const TextStyle(
+                        style: TextStyle(
                           fontWeight: FontWeight.bold,
-                          fontSize: 14,
+                          fontSize: context.fontSize(14),
                         ),
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,
@@ -2011,7 +2023,7 @@ class _PoiTile extends StatelessWidget {
                       Text(
                         poi.subCategory ?? poi.category.label,
                         style: TextStyle(
-                          fontSize: 12,
+                          fontSize: context.fontSize(12),
                           color: Colors.grey[600],
                         ),
                       ),
@@ -2036,7 +2048,7 @@ class _PoiTile extends StatelessWidget {
             const SizedBox(height: 8),
             Text(
               poi.shortDescription,
-              style: const TextStyle(fontSize: 12),
+              style: TextStyle(fontSize: context.fontSize(12)),
               maxLines: 2,
               overflow: TextOverflow.ellipsis,
             ),

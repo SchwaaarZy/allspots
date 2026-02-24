@@ -356,34 +356,47 @@ class _ProfileSetupPageState extends State<ProfileSetupPage> {
                           // Sous-catégories du groupe (indentées)
                           Padding(
                             padding: const EdgeInsets.only(left: 16),
-                            child: Wrap(
-                              spacing: 12,
-                              runSpacing: 4,
-                              children: [
-                                for (final item in group.items)
-                                  SizedBox(
-                                    width: 150,
-                                    child: CheckboxListTile(
-                                      contentPadding: EdgeInsets.zero,
-                                      dense: true,
-                                      visualDensity: VisualDensity.compact,
-                                      title: Text(
-                                        item,
-                                        style: const TextStyle(fontSize: 11),
+                            child: LayoutBuilder(
+                              builder: (context, constraints) {
+                                final isNarrow = constraints.maxWidth < 340;
+                                final itemWidth = isNarrow
+                                    ? constraints.maxWidth
+                                    : (constraints.maxWidth - 12) / 2;
+
+                                return Wrap(
+                                  spacing: 12,
+                                  runSpacing: 4,
+                                  children: [
+                                    for (final item in group.items)
+                                      SizedBox(
+                                        width: itemWidth,
+                                        child: CheckboxListTile(
+                                          contentPadding: EdgeInsets.zero,
+                                          dense: true,
+                                          visualDensity:
+                                              VisualDensity.compact,
+                                          title: Text(
+                                            item,
+                                            style:
+                                                const TextStyle(fontSize: 11),
+                                          ),
+                                          value: _selectedCategories
+                                              .contains(item),
+                                          onChanged: (selected) {
+                                            setState(() {
+                                              if (selected == true) {
+                                                _selectedCategories.add(item);
+                                              } else {
+                                                _selectedCategories
+                                                    .remove(item);
+                                              }
+                                            });
+                                          },
+                                        ),
                                       ),
-                                      value: _selectedCategories.contains(item),
-                                      onChanged: (selected) {
-                                        setState(() {
-                                          if (selected == true) {
-                                            _selectedCategories.add(item);
-                                          } else {
-                                            _selectedCategories.remove(item);
-                                          }
-                                        });
-                                      },
-                                    ),
-                                  ),
-                              ],
+                                  ],
+                                );
+                              },
                             ),
                           ),
                           const SizedBox(height: 8),
