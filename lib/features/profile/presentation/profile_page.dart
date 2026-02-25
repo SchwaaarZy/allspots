@@ -83,10 +83,9 @@ class _ProfilePageState extends ConsumerState<ProfilePage>
         return Scaffold(
           body: NestedScrollView(
             headerSliverBuilder: (context, innerBoxIsScrolled) => [
-              
               SliverAppBar(
-                expandedHeight: _profileHeaderHeight(context) +
-                    _actionBarHeight(context),
+                expandedHeight:
+                    _profileHeaderHeight(context) + _actionBarHeight(context),
                 floating: false,
                 pinned: true,
                 toolbarHeight: 0,
@@ -94,8 +93,8 @@ class _ProfilePageState extends ConsumerState<ProfilePage>
                   background: _buildProfileHeader(profile),
                 ),
                 bottom: PreferredSize(
-                  preferredSize:
-                      Size.fromHeight(_tabBarHeight + _actionBarHeight(context)),
+                  preferredSize: Size.fromHeight(
+                      _tabBarHeight + _actionBarHeight(context)),
                   child: _buildTabAndActions(context),
                 ),
               ),
@@ -545,7 +544,8 @@ class _ProfilePageState extends ConsumerState<ProfilePage>
                                   '${grade.currentLevelXp}/${grade.requiredXpForNextLevel} XP vers le niveau suivant',
                                   style: TextStyle(
                                     color: Colors.white70,
-                                    fontSize: context.fontSize(isCompact ? 10 : 12),
+                                    fontSize:
+                                        context.fontSize(isCompact ? 10 : 12),
                                   ),
                                 ),
                               ],
@@ -621,7 +621,8 @@ class _ProfilePageState extends ConsumerState<ProfilePage>
                                             context.push('/users/$uid');
                                           },
                                           icon: const Icon(Icons.public),
-                                          label: const Text('Voir profil public'),
+                                          label:
+                                              const Text('Voir profil public'),
                                         ),
                                       ),
                                       const SizedBox(height: 8),
@@ -658,7 +659,8 @@ class _ProfilePageState extends ConsumerState<ProfilePage>
                                                 ),
                                               );
                                             },
-                                            icon: const Icon(Icons.admin_panel_settings),
+                                            icon: const Icon(
+                                                Icons.admin_panel_settings),
                                             label: const Text('Admin'),
                                           ),
                                         ),
@@ -685,7 +687,8 @@ class _ProfilePageState extends ConsumerState<ProfilePage>
                                           onPressed: () async {
                                             final ctx = context;
                                             Navigator.pop(dialogContext);
-                                            await FirebaseAuth.instance.signOut();
+                                            await FirebaseAuth.instance
+                                                .signOut();
                                             if (ctx.mounted) ctx.go('/auth');
                                           },
                                           icon: const Icon(Icons.logout),
@@ -1117,27 +1120,27 @@ class _FavoritesTabState extends ConsumerState<_FavoritesTab> {
         }
 
         final allSpots = snapshot.data!.docs;
-                if (allSpots.isEmpty) {
-                  final bottomInset = MediaQuery.paddingOf(context).bottom;
-                  return SafeArea(
-                    top: false,
-                    minimum: EdgeInsets.only(bottom: bottomInset > 0 ? 4 : 8),
-                    child: Center(
-                      child: Padding(
-                        padding: const EdgeInsets.all(16),
-                        child: Column(
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            const Icon(Icons.favorite, size: 48, color: Colors.red),
-                            const SizedBox(height: 12),
-                            const Text('Aucun favori pour le moment',
-                                textAlign: TextAlign.center),
-                          ],
-                        ),
-                      ),
-                    ),
-                  );
-                }
+        if (allSpots.isEmpty) {
+          final bottomInset = MediaQuery.paddingOf(context).bottom;
+          return SafeArea(
+            top: false,
+            minimum: EdgeInsets.only(bottom: bottomInset > 0 ? 4 : 8),
+            child: Center(
+              child: Padding(
+                padding: const EdgeInsets.all(16),
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    const Icon(Icons.favorite, size: 48, color: Colors.red),
+                    const SizedBox(height: 12),
+                    const Text('Aucun favori pour le moment',
+                        textAlign: TextAlign.center),
+                  ],
+                ),
+              ),
+            ),
+          );
+        }
 
         final totalPages = (allSpots.length / _itemsPerPage).ceil();
         final startIndex = _currentPage * _itemsPerPage;
@@ -1267,7 +1270,7 @@ class _FavoriteTile extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final previewImageHeight =
-      context.imageHeight.clamp(120.0, 180.0).toDouble();
+        context.imageHeight.clamp(120.0, 180.0).toDouble();
     final categoryRaw = spotData['category'] as String?;
     final category = categoryRaw != null
         ? poiCategoryFromString(categoryRaw)
@@ -1449,8 +1452,9 @@ class _FavoriteDetailPage extends StatelessWidget {
                     const SizedBox(width: 6),
                     Text(
                       categoryLabel,
-                      style:
-                        TextStyle(fontSize: context.fontSize(12), color: Colors.grey.shade600),
+                      style: TextStyle(
+                          fontSize: context.fontSize(12),
+                          color: Colors.grey.shade600),
                     ),
                   ],
                 ),
@@ -1472,7 +1476,8 @@ class _FavoriteDetailPage extends StatelessWidget {
                       Text(
                         '(${spotData['googleRatingCount'] ?? 0} avis)',
                         style: TextStyle(
-                            fontSize: context.fontSize(12), color: Colors.grey.shade600),
+                            fontSize: context.fontSize(12),
+                            color: Colors.grey.shade600),
                       ),
                     ],
                   ),
@@ -1855,14 +1860,14 @@ class _PremiumTab extends ConsumerWidget {
                     ),
                     const SizedBox(height: 16),
                     const ListTile(
-                      leading:
-                          Icon(Icons.check_circle, color: Colors.green, size: 32),
+                      leading: Icon(Icons.check_circle,
+                          color: Colors.green, size: 32),
                       title: Text('Sans publicité'),
                       subtitle: Text('Profitez d\'une expérience fluide'),
                     ),
                     const ListTile(
-                      leading:
-                          Icon(Icons.check_circle, color: Colors.green, size: 32),
+                      leading: Icon(Icons.check_circle,
+                          color: Colors.green, size: 32),
                       title: Text('Recherches illimitées'),
                       subtitle:
                           Text('Accès complet à toutes les fonctionnalités'),
@@ -1976,8 +1981,6 @@ class _PremiumTab extends ConsumerWidget {
       ),
     );
   }
-
-
 }
 
 class _PoiTile extends StatelessWidget {

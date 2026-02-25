@@ -56,7 +56,7 @@ class UserProfile {
     final totalVisits = (data['totalVisits'] as num?)?.toInt() ?? 0;
     final uniqueVisitedSpots =
         (data['uniqueVisitedSpots'] as num?)?.toInt() ?? 0;
-    
+
     // Extract premium expiry date
     DateTime? premiumExpiryDate;
     final expiryData = data['premiumExpiryDate'];
@@ -64,6 +64,17 @@ class UserProfile {
       premiumExpiryDate = expiryData.toDate();
     } else if (expiryData is DateTime) {
       premiumExpiryDate = expiryData;
+    }
+
+    final role = (data['role'] as String?)?.toLowerCase();
+    final isAdmin = (data['isAdmin'] as bool?) ?? role == 'admin';
+    final rawHasPremium = (data['hasPremiumPass'] as bool?) ??
+        (data['isPremium'] as bool?) ??
+        false;
+
+    final hasPremiumPass = isAdmin ? true : rawHasPremium;
+    if (isAdmin && premiumExpiryDate == null) {
+      premiumExpiryDate = DateTime(2999, 1, 1);
     }
 
     return UserProfile(
@@ -74,13 +85,13 @@ class UserProfile {
       categories: categories,
       locationLat: lat is num ? lat.toDouble() : null,
       locationLng: lng is num ? lng.toDouble() : null,
-      hasPremiumPass: (data['hasPremiumPass'] as bool?) ?? false,
+      hasPremiumPass: hasPremiumPass,
       premiumExpiryDate: premiumExpiryDate,
       favoritePoiIds: favorites,
       xp: xp,
       totalVisits: totalVisits,
       uniqueVisitedSpots: uniqueVisitedSpots,
-      isAdmin: (data['isAdmin'] as bool?) ?? false,
+      isAdmin: isAdmin,
     );
   }
 }

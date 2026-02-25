@@ -573,37 +573,53 @@ class _MapViewState extends ConsumerState<MapView> {
     );
   }
 
+  double _harmonizedSheetHeight(BuildContext context) {
+    final screenHeight = MediaQuery.sizeOf(context).height;
+    return (screenHeight * 0.46).clamp(320.0, 460.0);
+  }
+
   void _showLegend(BuildContext context) {
+    final sheetHeight = _harmonizedSheetHeight(context);
+
     showModalBottomSheet(
       context: context,
       showDragHandle: true,
+      isScrollControlled: true,
       builder: (sheetContext) {
-        return Padding(
-          padding: const EdgeInsets.all(16),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const Text(
-                'Legende des categories',
-                style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-              ),
-              const SizedBox(height: 12),
-              for (final category in PoiCategory.values)
-                Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 6),
-                  child: Row(
+        return SizedBox(
+          height: sheetHeight,
+          child: Padding(
+            padding: const EdgeInsets.all(16),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const Text(
+                  'Legende des categories',
+                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                ),
+                const SizedBox(height: 12),
+                Expanded(
+                  child: ListView(
                     children: [
-                      Icon(
-                        Icons.location_on,
-                        color: _legendColorForCategory(category),
-                      ),
-                      const SizedBox(width: 8),
-                      Text(category.localizationLabel(context)),
+                      for (final category in PoiCategory.values)
+                        Padding(
+                          padding: const EdgeInsets.symmetric(vertical: 6),
+                          child: Row(
+                            children: [
+                              Icon(
+                                Icons.location_on,
+                                color: _legendColorForCategory(category),
+                              ),
+                              const SizedBox(width: 8),
+                              Text(category.localizationLabel(context)),
+                            ],
+                          ),
+                        ),
                     ],
                   ),
                 ),
-            ],
+              ],
+            ),
           ),
         );
       },
@@ -612,19 +628,26 @@ class _MapViewState extends ConsumerState<MapView> {
 
   void _showMapStyleSelector(BuildContext context) {
     final currentStyle = ref.read(mapControllerProvider).mapStyle;
+    final sheetHeight = _harmonizedSheetHeight(context);
 
     showModalBottomSheet(
       context: context,
       showDragHandle: true,
       isScrollControlled: true,
       builder: (sheetContext) {
-        return Padding(
-          padding: const EdgeInsets.only(bottom: 16),
-          child: MapStyleSelector(
-            currentStyle: currentStyle,
-            onStyleChanged: (style) {
-              ref.read(mapControllerProvider.notifier).setMapStyle(style);
-            },
+        return SizedBox(
+          height: sheetHeight,
+          child: Padding(
+            padding: const EdgeInsets.all(16),
+            child: Align(
+              alignment: Alignment.topCenter,
+              child: MapStyleSelector(
+                currentStyle: currentStyle,
+                onStyleChanged: (style) {
+                  ref.read(mapControllerProvider.notifier).setMapStyle(style);
+                },
+              ),
+            ),
           ),
         );
       },
@@ -853,6 +876,7 @@ class _MapViewState extends ConsumerState<MapView> {
 
 class _MapUsersCountBadge extends StatelessWidget {
   const _MapUsersCountBadge();
+  static const Duration _presenceFreshness = Duration(minutes: 3);
 
   String _formatCompactCount(int count) {
     if (count >= 1000000000) {
@@ -883,9 +907,36 @@ class _MapUsersCountBadge extends StatelessWidget {
           .snapshots(),
       builder: (context, snapshot) {
         final currentUid = FirebaseAuth.instance.currentUser?.uid;
-        final totalUsers = snapshot.hasData ? snapshot.data!.docs.length : 0;
+        final now = DateTime.now();
+
+        int activeUsers = 0;
+        if (snapshot.hasData) {
+          for (final doc in snapshot.data!.docs) {
+            final data = doc.data();
+            final isCurrentUser = currentUid != null && doc.id == currentUid;
+            if (isCurrentUser) {
+              activeUsers += 1;
+              continue;
+            }
+
+            final lastSeenRaw = data['lastSeen'];
+            DateTime? lastSeen;
+            if (lastSeenRaw is Timestamp) {
+              lastSeen = lastSeenRaw.toDate();
+            } else if (lastSeenRaw is DateTime) {
+              lastSeen = lastSeenRaw;
+            }
+
+            if (lastSeen == null) continue;
+            final isFresh = now.difference(lastSeen) <= _presenceFreshness;
+            if (isFresh) {
+              activeUsers += 1;
+            }
+          }
+        }
+
         final displayedUsers =
-            currentUid != null && totalUsers == 0 ? 1 : totalUsers;
+            currentUid != null && activeUsers == 0 ? 1 : activeUsers;
         final text = _formatCompactCount(displayedUsers);
 
         return Row(

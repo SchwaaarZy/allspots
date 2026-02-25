@@ -8,6 +8,7 @@ import 'package:flutter/foundation.dart'
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import '../../../core/utils/responsive_utils.dart';
+import '../../auth/data/auth_providers.dart';
 import '../../map/presentation/map_page.dart';
 import '../../map/presentation/nearby_results_page.dart';
 import '../../search/presentation/search_page.dart';
@@ -51,6 +52,14 @@ class _HomeShellState extends ConsumerState<HomeShell> {
   }
 
   void _syncAdSchedule() {
+    final profile = ref.read(profileStreamProvider).value;
+    final premiumActive = profile?.hasPremiumPass == true &&
+        (profile?.premiumExpiryDate?.isAfter(DateTime.now()) ?? false);
+    if (profile?.isAdmin == true || premiumActive) {
+      _cancelAdSchedule();
+      return;
+    }
+
     final user = FirebaseAuth.instance.currentUser;
     if (!_isAdsSupported || user == null) {
       _cancelAdSchedule();
@@ -96,21 +105,53 @@ class _HomeShellState extends ConsumerState<HomeShell> {
 
   Future<bool> _shouldShowAds(String uid) async {
     try {
-      final doc =
-          await FirebaseFirestore.instance.collection('users').doc(uid).get();
-      final data = doc.data();
-      if (data == null) return true;
-
-      final isPremium = data['isPremium'] == true;
-      final premiumExpiry = data['premiumExpiryDate'] as Timestamp?;
-      if (isPremium && premiumExpiry != null) {
-        final expiresAt = premiumExpiry.toDate();
-        if (DateTime.now().isBefore(expiresAt)) {
-          return false;
-        }
+      final profile = ref.read(profileStreamProvider).value;
+      final premiumActive = profile?.hasPremiumPass == true &&
+          (profile?.premiumExpiryDate?.isAfter(DateTime.now()) ?? false);
+      if (profile?.isAdmin == true || premiumActive) {
+        return false;
       }
 
-      final demoNoAdsExpiry = data['demoNoAdsExpiry'] as Timestamp?;
+      final usersDoc =
+          await FirebaseFirestore.instance.collection('users').doc(uid).get();
+      final profilesDoc = await FirebaseFirestore.instance
+          .collection('profiles')
+          .doc(uid)
+          .get();
+
+      final usersData = usersDoc.data();
+      final profileData = profilesDoc.data();
+
+      final usersRole = (usersData?['role'] as String?)?.toLowerCase();
+      final profileRole = (profileData?['role'] as String?)?.toLowerCase();
+      final isAdmin = usersData?['isAdmin'] == true ||
+          usersRole == 'admin' ||
+          profileData?['isAdmin'] == true ||
+          profileRole == 'admin';
+      if (isAdmin) {
+        return false;
+      }
+
+      final isPremium = usersData?['isPremium'] == true ||
+          usersData?['hasPremiumPass'] == true ||
+          profileData?['isPremium'] == true ||
+          profileData?['hasPremiumPass'] == true;
+      final premiumExpiryRaw =
+          usersData?['premiumExpiryDate'] ?? profileData?['premiumExpiryDate'];
+      DateTime? premiumExpiry;
+      if (premiumExpiryRaw is Timestamp) {
+        premiumExpiry = premiumExpiryRaw.toDate();
+      } else if (premiumExpiryRaw is DateTime) {
+        premiumExpiry = premiumExpiryRaw;
+      }
+
+      if (isPremium &&
+          premiumExpiry != null &&
+          DateTime.now().isBefore(premiumExpiry)) {
+        return false;
+      }
+
+      final demoNoAdsExpiry = usersData?['demoNoAdsExpiry'] as Timestamp?;
       if (demoNoAdsExpiry != null &&
           DateTime.now().isBefore(demoNoAdsExpiry.toDate())) {
         return false;
@@ -118,7 +159,7 @@ class _HomeShellState extends ConsumerState<HomeShell> {
 
       return true;
     } catch (_) {
-      return true;
+      return false;
     }
   }
 
@@ -169,6 +210,7 @@ class _HomeShellState extends ConsumerState<HomeShell> {
     final screenWidth = context.screenWidth;
     final compactNav = screenWidth < 375;
     const navCornerRadius = 18.0;
+    const headerCornerRadius = 18.0;
     const navBackgroundColor = Colors.white;
     final navHeight = compactNav ? 64.0 : 68.0;
     final navLabelTextStyle = Theme.of(context).textTheme.labelSmall?.copyWith(
@@ -194,17 +236,29 @@ class _HomeShellState extends ConsumerState<HomeShell> {
       'assets/images/monprofil.png',
       'assets/images/autourdemoi.png',
     ];
+    final PreferredSizeWidget shellAppBar = GlassAppBar(
+      titleWidget: Image.asset(
+        _index == 0
+            ? 'assets/images/allspots_simple_logo.png'
+            : titleLogos[_index],
+        height: _index == 0 ? (compactNav ? 44 : 55) : (compactNav ? 18 : 22),
+        fit: BoxFit.contain,
+      ),
+      centerTitle: true,
+    );
+
     return Scaffold(
-      appBar: GlassAppBar(
-        titleWidget: Image.asset(
-          _index == 0
-              ? 'assets/images/allspots_simple_logo.png'
-              : titleLogos[_index],
-          height: _index == 0 ? (compactNav ? 44 : 55) : (compactNav ? 18 : 22),
-          fit: BoxFit.contain,
-        ),
-        centerTitle: true,
-      ) as PreferredSizeWidget,
+      appBar: _index == 0
+          ? PreferredSize(
+              preferredSize: const Size.fromHeight(GlassAppBar.defaultHeight),
+              child: ClipRRect(
+                borderRadius: const BorderRadius.vertical(
+                  bottom: Radius.circular(headerCornerRadius),
+                ),
+                child: shellAppBar,
+              ),
+            )
+          : shellAppBar,
       body: _LazyIndexedStack(
         index: _index,
         children: tabs,

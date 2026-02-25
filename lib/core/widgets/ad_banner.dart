@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/foundation.dart' show defaultTargetPlatform, kIsWeb, TargetPlatform;
+import 'package:flutter/foundation.dart'
+    show defaultTargetPlatform, kIsWeb, TargetPlatform;
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -46,29 +47,52 @@ class _AdBannerState extends State<AdBanner> {
     }
 
     try {
-      final doc = await FirebaseFirestore.instance
+      final usersDoc = await FirebaseFirestore.instance
           .collection('users')
           .doc(user.uid)
           .get();
+      final profilesDoc = await FirebaseFirestore.instance
+          .collection('profiles')
+          .doc(user.uid)
+          .get();
 
-      final data = doc.data();
-      if (data == null) {
-        _loadAd();
+      final usersData = usersDoc.data();
+      final profileData = profilesDoc.data();
+
+      final usersRole = (usersData?['role'] as String?)?.toLowerCase();
+      final profileRole = (profileData?['role'] as String?)?.toLowerCase();
+      final isAdmin = usersData?['isAdmin'] == true ||
+          usersRole == 'admin' ||
+          profileData?['isAdmin'] == true ||
+          profileRole == 'admin';
+
+      if (isAdmin) {
+        setState(() => _shouldShowAd = false);
         return;
       }
 
-      final isPremium = data['isPremium'] ?? false;
-      final premiumExpiry = data['premiumExpiryDate'] as Timestamp?;
+      final isPremium = usersData?['isPremium'] == true ||
+          usersData?['hasPremiumPass'] == true ||
+          profileData?['isPremium'] == true ||
+          profileData?['hasPremiumPass'] == true;
 
-      if (isPremium && premiumExpiry != null) {
-        final expiryDate = premiumExpiry.toDate();
-        if (DateTime.now().isBefore(expiryDate)) {
-          setState(() => _shouldShowAd = false);
-          return;
-        }
+      final premiumExpiryRaw =
+          usersData?['premiumExpiryDate'] ?? profileData?['premiumExpiryDate'];
+      DateTime? premiumExpiry;
+      if (premiumExpiryRaw is Timestamp) {
+        premiumExpiry = premiumExpiryRaw.toDate();
+      } else if (premiumExpiryRaw is DateTime) {
+        premiumExpiry = premiumExpiryRaw;
       }
 
-      final demoExpiry = data['demoNoAdsExpiry'] as Timestamp?;
+      if (isPremium &&
+          premiumExpiry != null &&
+          DateTime.now().isBefore(premiumExpiry)) {
+        setState(() => _shouldShowAd = false);
+        return;
+      }
+
+      final demoExpiry = usersData?['demoNoAdsExpiry'] as Timestamp?;
       if (demoExpiry != null) {
         final expiryDate = demoExpiry.toDate();
         if (DateTime.now().isBefore(expiryDate)) {
