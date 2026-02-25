@@ -16,7 +16,6 @@ import '../../profile/data/road_trip_service.dart';
 import '../../profile/data/xp_service.dart';
 import '../domain/poi.dart';
 import '../domain/poi_category.dart';
-import 'destination_selector_page.dart';
 import 'map_controller.dart';
 import 'poi_detail_page.dart';
 
@@ -421,28 +420,6 @@ class _MapViewState extends ConsumerState<MapView> {
                     borderRadius: BorderRadius.circular(12),
                     clipBehavior: Clip.antiAlias,
                     child: IconButton(
-                      onPressed: () => _showLocalizationSelector(context),
-                      tooltip: 'Localisation',
-                      splashRadius: 22,
-                      constraints: const BoxConstraints.tightFor(
-                        width: 44,
-                        height: 44,
-                      ),
-                      padding: EdgeInsets.zero,
-                      icon: const Icon(
-                        Icons.public,
-                        size: 22,
-                        color: Colors.blue,
-                      ),
-                    ),
-                  ),
-                  const SizedBox(height: 8),
-                  Material(
-                    color: Colors.white,
-                    elevation: 3,
-                    borderRadius: BorderRadius.circular(12),
-                    clipBehavior: Clip.antiAlias,
-                    child: IconButton(
                       onPressed: () => _showMapStyleSelector(context),
                       tooltip: 'Style de carte',
                       splashRadius: 22,
@@ -559,17 +536,6 @@ class _MapViewState extends ConsumerState<MapView> {
           ],
         );
       },
-    );
-  }
-
-  Future<void> _showLocalizationSelector(BuildContext context) async {
-    await Navigator.of(context).push(
-      MaterialPageRoute(
-        builder: (_) => const DestinationSelectorPage(
-          isOnboarding: false,
-        ),
-        fullscreenDialog: true,
-      ),
     );
   }
 

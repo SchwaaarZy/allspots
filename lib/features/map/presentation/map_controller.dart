@@ -51,7 +51,7 @@ class MapState {
         nearbyPois: const [],
         displayedPois: const [],
         filters: PoiFilters.defaults(),
-      radiusMeters: 5000, // 5 km par défaut
+        radiusMeters: 5000, // 5 km par défaut
         isSatellite: false,
         buildingsEnabled: true,
         mapStyle: MapStyle.openStreetMapFrance,
@@ -89,7 +89,7 @@ final poiRepositoryProvider = Provider<PoiRepository>((ref) {
   const envKey = String.fromEnvironment('PLACES_API_KEY');
   const fallbackKey = 'AIzaSyBbHU0nLg_T6v9tDsdh9_0cc3ksc1TC-dU';
   final placesKey = envKey.isNotEmpty ? envKey : fallbackKey;
-  
+
   // OPTIMISÉ: Google Places désactivé pour réduire les requêtes API
   // Utilise Firestore seul (données locales, plus rapide)
   final placesRepo = AppConfig.enableGooglePlaces
@@ -116,13 +116,62 @@ class MapController extends StateNotifier<MapState> {
   MapController(this._repo) : super(MapState.initial());
 
   final PoiRepository _repo;
-  static const double _fallbackLat = 46.603354;
-  static const double _fallbackLng = 1.888334;
-  
+  static const List<
+          ({double minLat, double maxLat, double minLng, double maxLng})>
+      _supportedCoverageZones = [
+    (
+      minLat: 41.0,
+      maxLat: 51.7,
+      minLng: -5.9,
+      maxLng: 10.0
+    ), // France métropolitaine
+    (minLat: 15.7, maxLat: 16.6, minLng: -61.95, maxLng: -61.0), // Guadeloupe
+    (minLat: 14.3, maxLat: 14.95, minLng: -61.3, maxLng: -60.7), // Martinique
+    (minLat: 1.8, maxLat: 6.0, minLng: -54.8, maxLng: -51.5), // Guyane
+    (minLat: -21.45, maxLat: -20.85, minLng: 55.1, maxLng: 55.9), // Réunion
+    (minLat: -13.2, maxLat: -12.55, minLng: 45.0, maxLng: 45.4), // Mayotte
+    (
+      minLat: 46.65,
+      maxLat: 47.2,
+      minLng: -56.6,
+      maxLng: -56.0
+    ), // Saint-Pierre-et-Miquelon
+    (
+      minLat: 17.82,
+      maxLat: 18.22,
+      minLng: -63.3,
+      maxLng: -62.7
+    ), // Saint-Barthélemy
+    (
+      minLat: 18.0,
+      maxLat: 18.16,
+      minLng: -63.2,
+      maxLng: -62.95
+    ), // Saint-Martin
+    (
+      minLat: -14.5,
+      maxLat: -13.1,
+      minLng: -177.4,
+      maxLng: -176.0
+    ), // Wallis-et-Futuna
+    (
+      minLat: -28.5,
+      maxLat: -7.5,
+      minLng: -154.0,
+      maxLng: -134.0
+    ), // Polynésie française
+    (
+      minLat: -23.0,
+      maxLat: -19.0,
+      minLng: 163.0,
+      maxLng: 168.5
+    ), // Nouvelle-Calédonie
+  ];
+
   // OPTIMISÉ: Évite les refetch trop fréquents (min 2 secondes entre deux)
   DateTime? _lastRefreshTime;
   static const Duration _minRefreshInterval = Duration(seconds: 2);
-  
+
   // Accumule TOUS les POIs jamais fetches (ne remplace pas, fusionne)
   final Map<String, Poi> _allPoisBySameSession = {};
 
@@ -136,16 +185,25 @@ class MapController extends StateNotifier<MapState> {
       final pos = await _determinePosition();
       state = state.copyWith(userPosition: pos);
 
+      if (!_isInSupportedCoverage(pos.latitude, pos.longitude)) {
+        state = state.copyWith(
+          nearbyPois: const [],
+          displayedPois: const [],
+          isLoading: false,
+          error: 'Aucun spot disponible dans ce pays pour le moment.',
+        );
+        return;
+      }
+
       await refreshNearby();
       state = state.copyWith(isLoading: false);
     } catch (e) {
-      await refreshNearby(
-        userLatOverride: _fallbackLat,
-        userLngOverride: _fallbackLng,
-      );
       state = state.copyWith(
+        nearbyPois: const [],
+        displayedPois: const [],
         isLoading: false,
-        error: 'Localisation indisponible: spots France + DOM-TOM affichés.',
+        error:
+            'Localisation indisponible. Activez la localisation pour charger les spots.',
       );
     }
   }
@@ -159,7 +217,8 @@ class MapController extends StateNotifier<MapState> {
 
     // OPTIMISÉ: Vérifie que suffisamment de temps s'est écoulé
     final now = DateTime.now();
-    if (_lastRefreshTime != null && now.difference(_lastRefreshTime!) < _minRefreshInterval) {
+    if (_lastRefreshTime != null &&
+        now.difference(_lastRefreshTime!) < _minRefreshInterval) {
       // Si on ne peut pas rafraîchir à cause du throttle mais qu'une erreur se montre,
       // on s'assure que c'est bien une erreur valide (pas juste "pas de destination")
       // qui persiste correctement
@@ -168,11 +227,32 @@ class MapController extends StateNotifier<MapState> {
     _lastRefreshTime = now;
 
     final pos = state.userPosition;
-    final userLat = userLatOverride ?? pos?.latitude ?? _fallbackLat;
-    final userLng = userLngOverride ?? pos?.longitude ?? _fallbackLng;
+    final userLat = userLatOverride ?? pos?.latitude;
+    final userLng = userLngOverride ?? pos?.longitude;
+
+    if (userLat == null || userLng == null) {
+      state = state.copyWith(
+        nearbyPois: const [],
+        displayedPois: const [],
+        isLoading: false,
+        error:
+            'Localisation indisponible. Activez la localisation pour charger les spots.',
+      );
+      return;
+    }
+
+    if (!_isInSupportedCoverage(userLat, userLng)) {
+      state = state.copyWith(
+        nearbyPois: const [],
+        displayedPois: const [],
+        isLoading: false,
+        error: 'Aucun spot disponible dans ce pays pour le moment.',
+      );
+      return;
+    }
 
     state = state.copyWith(isLoading: true, error: null);
-    
+
     try {
       final pois = await _repo.getNearbyPois(
         userLat: userLat,
@@ -185,7 +265,7 @@ class MapController extends StateNotifier<MapState> {
       for (final poi in pois) {
         _allPoisBySameSession[poi.id] = poi;
       }
-      
+
       // Récupère TOUS les POIs accumulés ET les trie par distance
       final allPois = _allPoisBySameSession.values.toList();
       allPois.sort((a, b) {
@@ -203,7 +283,7 @@ class MapController extends StateNotifier<MapState> {
         );
         return distA.compareTo(distB);
       });
-      
+
       // Filtre pour n'afficher que les POIs dans le rayon actuel
       final displayedPois = allPois.where((poi) {
         final dist = GeoUtils.distanceMeters(
@@ -225,6 +305,17 @@ class MapController extends StateNotifier<MapState> {
     } catch (e) {
       state = state.copyWith(error: e.toString(), isLoading: false);
     }
+  }
+
+  bool _isInSupportedCoverage(double lat, double lng) {
+    for (final zone in _supportedCoverageZones) {
+      final matchesLat = lat >= zone.minLat && lat <= zone.maxLat;
+      final matchesLng = lng >= zone.minLng && lng <= zone.maxLng;
+      if (matchesLat && matchesLng) {
+        return true;
+      }
+    }
+    return false;
   }
 
   void _prefetchAroundMe({
