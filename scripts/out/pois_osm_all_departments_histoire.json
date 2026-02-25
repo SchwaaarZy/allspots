@@ -1,0 +1,5444 @@
+[
+  {
+    "id": "osm_59845230",
+    "name": "Tombeau des Bonaparte",
+    "lat": 41.9217025,
+    "lng": 8.7385365,
+    "location": {
+      "_latitude": 41.9217025,
+      "_longitude": 8.7385365
+    },
+    "description": "Point d'intérêt: Tombeau des Bonaparte",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "Corse-du-Sud",
+    "departmentCode": "2A",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 59845230,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1772045654,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-25T19:54:14.475797"
+  },
+  {
+    "id": "osm_803413626",
+    "name": "POI sans nom",
+    "lat": 41.9090225,
+    "lng": 8.719161,
+    "location": {
+      "_latitude": 41.9090225,
+      "_longitude": 8.719161
+    },
+    "description": "Point d'intérêt: POI sans nom",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "Corse-du-Sud",
+    "departmentCode": "2A",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 803413626,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1772045654,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-25T19:54:14.475860"
+  },
+  {
+    "id": "osm_844550949",
+    "name": "POI sans nom",
+    "lat": 41.9165859,
+    "lng": 8.7315535,
+    "location": {
+      "_latitude": 41.9165859,
+      "_longitude": 8.7315535
+    },
+    "description": "Point d'intérêt: POI sans nom",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "Corse-du-Sud",
+    "departmentCode": "2A",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 844550949,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1772045654,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-25T19:54:14.475876"
+  },
+  {
+    "id": "osm_844704924",
+    "name": "POI sans nom",
+    "lat": 41.9285419,
+    "lng": 8.736407,
+    "location": {
+      "_latitude": 41.9285419,
+      "_longitude": 8.736407
+    },
+    "description": "Point d'intérêt: POI sans nom",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "Corse-du-Sud",
+    "departmentCode": "2A",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 844704924,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1772045654,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-25T19:54:14.475892"
+  },
+  {
+    "id": "osm_880251784",
+    "name": "Mémorial de la résistance",
+    "lat": 41.9191056,
+    "lng": 8.7398269,
+    "location": {
+      "_latitude": 41.9191056,
+      "_longitude": 8.7398269
+    },
+    "description": "Point d'intérêt: Mémorial de la résistance",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "Corse-du-Sud",
+    "departmentCode": "2A",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 880251784,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1772045654,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-25T19:54:14.475909"
+  },
+  {
+    "id": "osm_880500780",
+    "name": "POI sans nom",
+    "lat": 41.919849,
+    "lng": 8.7393382,
+    "location": {
+      "_latitude": 41.919849,
+      "_longitude": 8.7393382
+    },
+    "description": "Point d'intérêt: POI sans nom",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "Corse-du-Sud",
+    "departmentCode": "2A",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 880500780,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1772045654,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-25T19:54:14.475925"
+  },
+  {
+    "id": "osm_1438522400",
+    "name": "Lieutenant Pierre Griffi",
+    "lat": 41.9268323,
+    "lng": 8.7389938,
+    "location": {
+      "_latitude": 41.9268323,
+      "_longitude": 8.7389938
+    },
+    "description": "Point d'intérêt: Lieutenant Pierre Griffi",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "Corse-du-Sud",
+    "departmentCode": "2A",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 1438522400,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1772045654,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-25T19:54:14.475941"
+  },
+  {
+    "id": "osm_1888118175",
+    "name": "Monument à la mémoire de Napoléon",
+    "lat": 41.9175582,
+    "lng": 8.7362044,
+    "location": {
+      "_latitude": 41.9175582,
+      "_longitude": 8.7362044
+    },
+    "description": "Point d'intérêt: Monument à la mémoire de Napoléon",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "Corse-du-Sud",
+    "departmentCode": "2A",
+    "imageUrls": [
+      "https://commons.wikimedia.org/wiki/Special:FilePath/Corsica_Ajaccio_monument_Napoleon_Place_du_Général_de_Gaulle.jpg",
+      "https://www.wikidata.org/wiki/Q20807009"
+    ],
+    "images": [
+      "https://commons.wikimedia.org/wiki/Special:FilePath/Corsica_Ajaccio_monument_Napoleon_Place_du_Général_de_Gaulle.jpg",
+      "https://www.wikidata.org/wiki/Q20807009"
+    ],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 1888118175,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1772045654,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-25T19:54:14.475983"
+  },
+  {
+    "id": "osm_2529072331",
+    "name": "Rond Point des Médailles Militaires",
+    "lat": 41.9267374,
+    "lng": 8.7347524,
+    "location": {
+      "_latitude": 41.9267374,
+      "_longitude": 8.7347524
+    },
+    "description": "Point d'intérêt: Rond Point des Médailles Militaires",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "Corse-du-Sud",
+    "departmentCode": "2A",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 2529072331,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1772045654,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-25T19:54:14.476000"
+  },
+  {
+    "id": "osm_2901412333",
+    "name": "POI sans nom",
+    "lat": 41.9204788,
+    "lng": 8.7395739,
+    "location": {
+      "_latitude": 41.9204788,
+      "_longitude": 8.7395739
+    },
+    "description": "Point d'intérêt: POI sans nom",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "Corse-du-Sud",
+    "departmentCode": "2A",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 2901412333,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1772045654,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-25T19:54:14.476015"
+  },
+  {
+    "id": "osm_2905253075",
+    "name": "POI sans nom",
+    "lat": 41.9140595,
+    "lng": 8.729357,
+    "location": {
+      "_latitude": 41.9140595,
+      "_longitude": 8.729357
+    },
+    "description": "Point d'intérêt: POI sans nom",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "Corse-du-Sud",
+    "departmentCode": "2A",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 2905253075,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1772045654,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-25T19:54:14.476031"
+  },
+  {
+    "id": "osm_4542838494",
+    "name": "Statue de Fred Scamaroni",
+    "lat": 41.9154346,
+    "lng": 8.7273042,
+    "location": {
+      "_latitude": 41.9154346,
+      "_longitude": 8.7273042
+    },
+    "description": "Point d'intérêt: Statue de Fred Scamaroni",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "Corse-du-Sud",
+    "departmentCode": "2A",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 4542838494,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1772045654,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-25T19:54:14.476046"
+  },
+  {
+    "id": "osm_4544895698",
+    "name": "POI sans nom",
+    "lat": 41.9164589,
+    "lng": 8.7236831,
+    "location": {
+      "_latitude": 41.9164589,
+      "_longitude": 8.7236831
+    },
+    "description": "Point d'intérêt: POI sans nom",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "yes",
+    "city": "Corse-du-Sud",
+    "departmentCode": "2A",
+    "imageUrls": [
+      "https://www.wikidata.org/wiki/Q18005477"
+    ],
+    "images": [
+      "https://www.wikidata.org/wiki/Q18005477"
+    ],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 4544895698,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1772045654,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-25T19:54:14.476067"
+  },
+  {
+    "id": "osm_6001435915",
+    "name": "Statue du cardinal Fesch",
+    "lat": 41.9219508,
+    "lng": 8.7386316,
+    "location": {
+      "_latitude": 41.9219508,
+      "_longitude": 8.7386316
+    },
+    "description": "Point d'intérêt: Statue du cardinal Fesch",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "Corse-du-Sud",
+    "departmentCode": "2A",
+    "imageUrls": [
+      "https://www.wikidata.org/wiki/Q56560958"
+    ],
+    "images": [
+      "https://www.wikidata.org/wiki/Q56560958"
+    ],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 6001435915,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1772045654,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-25T19:54:14.476087"
+  },
+  {
+    "id": "osm_6001437051",
+    "name": "Statue du général Abbatucci",
+    "lat": 41.9254332,
+    "lng": 8.7384157,
+    "location": {
+      "_latitude": 41.9254332,
+      "_longitude": 8.7384157
+    },
+    "description": "Point d'intérêt: Statue du général Abbatucci",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "Corse-du-Sud",
+    "departmentCode": "2A",
+    "imageUrls": [
+      "https://www.wikidata.org/wiki/Q56561269"
+    ],
+    "images": [
+      "https://www.wikidata.org/wiki/Q56561269"
+    ],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 6001437051,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1772045654,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-25T19:54:14.476120"
+  },
+  {
+    "id": "osm_7117300757",
+    "name": "POI sans nom",
+    "lat": 41.9621352,
+    "lng": 8.7251583,
+    "location": {
+      "_latitude": 41.9621352,
+      "_longitude": 8.7251583
+    },
+    "description": "Point d'intérêt: POI sans nom",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "Corse-du-Sud",
+    "departmentCode": "2A",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 7117300757,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1772045654,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-25T19:54:14.476136"
+  },
+  {
+    "id": "osm_7839526893",
+    "name": "POI sans nom",
+    "lat": 41.9198517,
+    "lng": 8.7393201,
+    "location": {
+      "_latitude": 41.9198517,
+      "_longitude": 8.7393201
+    },
+    "description": "Point d'intérêt: POI sans nom",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "Corse-du-Sud",
+    "departmentCode": "2A",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 7839526893,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1772045654,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-25T19:54:14.476151"
+  },
+  {
+    "id": "osm_7839526894",
+    "name": "POI sans nom",
+    "lat": 41.9198522,
+    "lng": 8.739304,
+    "location": {
+      "_latitude": 41.9198522,
+      "_longitude": 8.739304
+    },
+    "description": "Point d'intérêt: POI sans nom",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "Corse-du-Sud",
+    "departmentCode": "2A",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 7839526894,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1772045654,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-25T19:54:14.476166"
+  },
+  {
+    "id": "osm_7892672290",
+    "name": "POI sans nom",
+    "lat": 42.0136083,
+    "lng": 8.732979,
+    "location": {
+      "_latitude": 42.0136083,
+      "_longitude": 8.732979
+    },
+    "description": "honorer la mémoire de Louis Arbori et Philippe Bressy, deux jeunes pompiers volontaires, âgés seulement de 16 ans, qui ont trouvé la mort lors d’un tragique incendie le 25 août 1972, près du col de San Bastiano. En granite rose",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "Corse-du-Sud",
+    "departmentCode": "2A",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 7892672290,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1772045654,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-25T19:54:14.476183"
+  },
+  {
+    "id": "osm_7893910038",
+    "name": "POI sans nom",
+    "lat": 42.0148581,
+    "lng": 8.7676892,
+    "location": {
+      "_latitude": 42.0148581,
+      "_longitude": 8.7676892
+    },
+    "description": "Point d'intérêt: POI sans nom",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "Corse-du-Sud",
+    "departmentCode": "2A",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 7893910038,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1772045654,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-25T19:54:14.476199"
+  },
+  {
+    "id": "osm_9085564722",
+    "name": "Napoléon",
+    "lat": 41.9199828,
+    "lng": 8.7946906,
+    "location": {
+      "_latitude": 41.9199828,
+      "_longitude": 8.7946906
+    },
+    "description": "Point d'intérêt: Napoléon",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "Corse-du-Sud",
+    "departmentCode": "2A",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 9085564722,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1772045654,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-25T19:54:14.476214"
+  },
+  {
+    "id": "osm_9782058407",
+    "name": "POI sans nom",
+    "lat": 41.9834695,
+    "lng": 8.7970366,
+    "location": {
+      "_latitude": 41.9834695,
+      "_longitude": 8.7970366
+    },
+    "description": "Point d'intérêt: POI sans nom",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "Corse-du-Sud",
+    "departmentCode": "2A",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 9782058407,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1772045654,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-25T19:54:14.476229"
+  },
+  {
+    "id": "osm_9782058408",
+    "name": "POI sans nom",
+    "lat": 41.9759674,
+    "lng": 8.7423779,
+    "location": {
+      "_latitude": 41.9759674,
+      "_longitude": 8.7423779
+    },
+    "description": "Point d'intérêt: POI sans nom",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "Corse-du-Sud",
+    "departmentCode": "2A",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 9782058408,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1772045654,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-25T19:54:14.476245"
+  },
+  {
+    "id": "osm_9782058409",
+    "name": "Monuments aux morts",
+    "lat": 41.9317807,
+    "lng": 8.7569843,
+    "location": {
+      "_latitude": 41.9317807,
+      "_longitude": 8.7569843
+    },
+    "description": "Point d'intérêt: Monuments aux morts",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "Corse-du-Sud",
+    "departmentCode": "2A",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 9782058409,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1772045654,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-25T19:54:14.476261"
+  },
+  {
+    "id": "osm_9782058411",
+    "name": "Citadelle Miollis",
+    "lat": 41.9167826,
+    "lng": 8.7405751,
+    "location": {
+      "_latitude": 41.9167826,
+      "_longitude": 8.7405751
+    },
+    "description": "Point d'intérêt: Citadelle Miollis",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "Corse-du-Sud",
+    "departmentCode": "2A",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 9782058411,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1772045654,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-25T19:54:14.476277"
+  },
+  {
+    "id": "osm_9876719268",
+    "name": "Monument à Emmanuel Arène",
+    "lat": 41.911694,
+    "lng": 8.7226309,
+    "location": {
+      "_latitude": 41.911694,
+      "_longitude": 8.7226309
+    },
+    "description": "Point d'intérêt: Monument à Emmanuel Arène",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "Corse-du-Sud",
+    "departmentCode": "2A",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 9876719268,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1772045654,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-25T19:54:14.476292"
+  },
+  {
+    "id": "osm_10049337647",
+    "name": "POI sans nom",
+    "lat": 41.9239655,
+    "lng": 8.8240734,
+    "location": {
+      "_latitude": 41.9239655,
+      "_longitude": 8.8240734
+    },
+    "description": "Point d'intérêt: POI sans nom",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "Corse-du-Sud",
+    "departmentCode": "2A",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 10049337647,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1772045654,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-25T19:54:14.476317"
+  },
+  {
+    "id": "osm_11028508793",
+    "name": "POI sans nom",
+    "lat": 41.9021527,
+    "lng": 8.6195378,
+    "location": {
+      "_latitude": 41.9021527,
+      "_longitude": 8.6195378
+    },
+    "description": "Point d'intérêt: POI sans nom",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "Corse-du-Sud",
+    "departmentCode": "2A",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 11028508793,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1772045654,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-25T19:54:14.476333"
+  },
+  {
+    "id": "osm_11101245908",
+    "name": "POI sans nom",
+    "lat": 41.9333754,
+    "lng": 8.6800086,
+    "location": {
+      "_latitude": 41.9333754,
+      "_longitude": 8.6800086
+    },
+    "description": "Point d'intérêt: POI sans nom",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "attraction",
+    "city": "Corse-du-Sud",
+    "departmentCode": "2A",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 11101245908,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1772045654,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-25T19:54:14.476349"
+  },
+  {
+    "id": "osm_12119128642",
+    "name": "Monument au Général Grosseti",
+    "lat": 41.9132958,
+    "lng": 8.7286698,
+    "location": {
+      "_latitude": 41.9132958,
+      "_longitude": 8.7286698
+    },
+    "description": "Point d'intérêt: Monument au Général Grosseti",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "Corse-du-Sud",
+    "departmentCode": "2A",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 12119128642,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1772045654,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-25T19:54:14.476364"
+  },
+  {
+    "id": "osm_12284960297",
+    "name": "Borne de la Terre Sacrée",
+    "lat": 41.9098592,
+    "lng": 8.6458254,
+    "location": {
+      "_latitude": 41.9098592,
+      "_longitude": 8.6458254
+    },
+    "description": "Point d'intérêt: Borne de la Terre Sacrée",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "Corse-du-Sud",
+    "departmentCode": "2A",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 12284960297,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1772045654,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-25T19:54:14.476379"
+  },
+  {
+    "id": "osm_13063331312",
+    "name": "POI sans nom",
+    "lat": 41.9184602,
+    "lng": 8.7383517,
+    "location": {
+      "_latitude": 41.9184602,
+      "_longitude": 8.7383517
+    },
+    "description": "Point d'intérêt: POI sans nom",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "Corse-du-Sud",
+    "departmentCode": "2A",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 13063331312,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1772045654,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-25T19:54:14.476400"
+  },
+  {
+    "id": "osm_2504264100",
+    "name": "POI sans nom",
+    "lat": 42.67202,
+    "lng": 9.4434978,
+    "location": {
+      "_latitude": 42.67202,
+      "_longitude": 9.4434978
+    },
+    "description": "Point d'intérêt: POI sans nom",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "Haute-Corse",
+    "departmentCode": "2B",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 2504264100,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1772045658,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-25T19:54:18.876608"
+  },
+  {
+    "id": "osm_3763136432",
+    "name": "POI sans nom",
+    "lat": 42.6003395,
+    "lng": 9.359218,
+    "location": {
+      "_latitude": 42.6003395,
+      "_longitude": 9.359218
+    },
+    "description": "Point d'intérêt: POI sans nom",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "Haute-Corse",
+    "departmentCode": "2B",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 3763136432,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1772045658,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-25T19:54:18.876644"
+  },
+  {
+    "id": "osm_3763154785",
+    "name": "POI sans nom",
+    "lat": 42.6116889,
+    "lng": 9.3563912,
+    "location": {
+      "_latitude": 42.6116889,
+      "_longitude": 9.3563912
+    },
+    "description": "Point d'intérêt: POI sans nom",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "Haute-Corse",
+    "departmentCode": "2B",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 3763154785,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1772045658,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-25T19:54:18.876661"
+  },
+  {
+    "id": "osm_4413025518",
+    "name": "Monument commémoratif de Napoléon Ier",
+    "lat": 42.6998246,
+    "lng": 9.4509419,
+    "location": {
+      "_latitude": 42.6998246,
+      "_longitude": 9.4509419
+    },
+    "description": "Statue de Napoléon en empereur romain",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "Haute-Corse",
+    "departmentCode": "2B",
+    "imageUrls": [
+      "https://www.wikidata.org/wiki/Q22996389"
+    ],
+    "images": [
+      "https://www.wikidata.org/wiki/Q22996389"
+    ],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 4413025518,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1772045658,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-25T19:54:18.876685"
+  },
+  {
+    "id": "osm_4815063985",
+    "name": "Memoria di Rutali",
+    "lat": 42.5866637,
+    "lng": 9.3899577,
+    "location": {
+      "_latitude": 42.5866637,
+      "_longitude": 9.3899577
+    },
+    "description": "Point d'intérêt: Memoria di Rutali",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "Haute-Corse",
+    "departmentCode": "2B",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 4815063985,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1772045658,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-25T19:54:18.876700"
+  },
+  {
+    "id": "osm_4941848347",
+    "name": "Château de Tuda",
+    "lat": 42.6116033,
+    "lng": 9.3551937,
+    "location": {
+      "_latitude": 42.6116033,
+      "_longitude": 9.3551937
+    },
+    "description": "Point d'intérêt: Château de Tuda",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "Haute-Corse",
+    "departmentCode": "2B",
+    "imageUrls": [
+      "https://www.wikidata.org/wiki/Q22949952"
+    ],
+    "images": [
+      "https://www.wikidata.org/wiki/Q22949952"
+    ],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 4941848347,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1772045658,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-25T19:54:18.876719"
+  },
+  {
+    "id": "osm_6762337917",
+    "name": "POI sans nom",
+    "lat": 42.6771545,
+    "lng": 9.3855441,
+    "location": {
+      "_latitude": 42.6771545,
+      "_longitude": 9.3855441
+    },
+    "description": "Point d'intérêt: POI sans nom",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "Haute-Corse",
+    "departmentCode": "2B",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 6762337917,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1772045658,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-25T19:54:18.876745"
+  },
+  {
+    "id": "osm_6783320286",
+    "name": "Vieux-Port de Bastia",
+    "lat": 42.6962224,
+    "lng": 9.4500042,
+    "location": {
+      "_latitude": 42.6962224,
+      "_longitude": 9.4500042
+    },
+    "description": "Point d'intérêt: Vieux-Port de Bastia",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "attraction",
+    "city": "Haute-Corse",
+    "departmentCode": "2B",
+    "imageUrls": [
+      "https://www.wikidata.org/wiki/Q98106850"
+    ],
+    "images": [
+      "https://www.wikidata.org/wiki/Q98106850"
+    ],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 6783320286,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1772045658,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-25T19:54:18.876766"
+  },
+  {
+    "id": "osm_6783320287",
+    "name": "Citadelle",
+    "lat": 42.6933474,
+    "lng": 9.4524199,
+    "location": {
+      "_latitude": 42.6933474,
+      "_longitude": 9.4524199
+    },
+    "description": "Point d'intérêt: Citadelle",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "attraction",
+    "city": "Haute-Corse",
+    "departmentCode": "2B",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 6783320287,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1772045658,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-25T19:54:18.876780"
+  },
+  {
+    "id": "osm_6821166649",
+    "name": "Monument aux morts",
+    "lat": 42.6804597,
+    "lng": 9.302104,
+    "location": {
+      "_latitude": 42.6804597,
+      "_longitude": 9.302104
+    },
+    "description": "Point d'intérêt: Monument aux morts",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "Haute-Corse",
+    "departmentCode": "2B",
+    "imageUrls": [
+      "https://www.wikidata.org/wiki/Q136073547"
+    ],
+    "images": [
+      "https://www.wikidata.org/wiki/Q136073547"
+    ],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 6821166649,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1772045658,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-25T19:54:18.876799"
+  },
+  {
+    "id": "osm_8902252175",
+    "name": "Descente de la Gabella - Falata à a Gabella",
+    "lat": 42.6945426,
+    "lng": 9.4506612,
+    "location": {
+      "_latitude": 42.6945426,
+      "_longitude": 9.4506612
+    },
+    "description": "Point d'intérêt: Descente de la Gabella - Falata à a Gabella",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "attraction",
+    "city": "Haute-Corse",
+    "departmentCode": "2B",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 8902252175,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1772045658,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-25T19:54:18.876814"
+  },
+  {
+    "id": "osm_9768239086",
+    "name": "POI sans nom",
+    "lat": 42.6339597,
+    "lng": 9.3549496,
+    "location": {
+      "_latitude": 42.6339597,
+      "_longitude": 9.3549496
+    },
+    "description": "Point d'intérêt: POI sans nom",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "Haute-Corse",
+    "departmentCode": "2B",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 9768239086,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1772045658,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-25T19:54:18.876828"
+  },
+  {
+    "id": "osm_9782095837",
+    "name": "POI sans nom",
+    "lat": 42.7746647,
+    "lng": 9.47463,
+    "location": {
+      "_latitude": 42.7746647,
+      "_longitude": 9.47463
+    },
+    "description": "Point d'intérêt: POI sans nom",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "Haute-Corse",
+    "departmentCode": "2B",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 9782095837,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1772045658,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-25T19:54:18.876842"
+  },
+  {
+    "id": "osm_9782095840",
+    "name": "POI sans nom",
+    "lat": 42.7115327,
+    "lng": 9.4351067,
+    "location": {
+      "_latitude": 42.7115327,
+      "_longitude": 9.4351067
+    },
+    "description": "Point d'intérêt: POI sans nom",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "Haute-Corse",
+    "departmentCode": "2B",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 9782095840,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1772045658,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-25T19:54:18.876856"
+  },
+  {
+    "id": "osm_9782095845",
+    "name": "Menhir U Nativu",
+    "lat": 42.6982099,
+    "lng": 9.361983,
+    "location": {
+      "_latitude": 42.6982099,
+      "_longitude": 9.361983
+    },
+    "description": "Point d'intérêt: Menhir U Nativu",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "attraction",
+    "city": "Haute-Corse",
+    "departmentCode": "2B",
+    "imageUrls": [
+      "https://www.wikidata.org/wiki/Q55441104"
+    ],
+    "images": [
+      "https://www.wikidata.org/wiki/Q55441104"
+    ],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 9782095845,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1772045658,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-25T19:54:18.876874"
+  },
+  {
+    "id": "osm_9798034863",
+    "name": "POI sans nom",
+    "lat": 42.6984982,
+    "lng": 9.3618187,
+    "location": {
+      "_latitude": 42.6984982,
+      "_longitude": 9.3618187
+    },
+    "description": "Point d'intérêt: POI sans nom",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "Haute-Corse",
+    "departmentCode": "2B",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 9798034863,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1772045658,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-25T19:54:18.876889"
+  },
+  {
+    "id": "osm_11582579672",
+    "name": "POI sans nom",
+    "lat": 42.766838,
+    "lng": 9.3694255,
+    "location": {
+      "_latitude": 42.766838,
+      "_longitude": 9.3694255
+    },
+    "description": "Point d'intérêt: POI sans nom",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "Haute-Corse",
+    "departmentCode": "2B",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 11582579672,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1772045658,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-25T19:54:18.876908"
+  },
+  {
+    "id": "osm_12059606301",
+    "name": "POI sans nom",
+    "lat": 42.5992427,
+    "lng": 9.3727857,
+    "location": {
+      "_latitude": 42.5992427,
+      "_longitude": 9.3727857
+    },
+    "description": "Point d'intérêt: POI sans nom",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "Haute-Corse",
+    "departmentCode": "2B",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 12059606301,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1772045658,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-25T19:54:18.876923"
+  },
+  {
+    "id": "osm_12880994687",
+    "name": "POI sans nom",
+    "lat": 42.658582,
+    "lng": 9.4138053,
+    "location": {
+      "_latitude": 42.658582,
+      "_longitude": 9.4138053
+    },
+    "description": "Point d'intérêt: POI sans nom",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "Haute-Corse",
+    "departmentCode": "2B",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 12880994687,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1772045658,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-25T19:54:18.876942"
+  },
+  {
+    "id": "osm_12884612075",
+    "name": "POI sans nom",
+    "lat": 42.627448,
+    "lng": 9.4208649,
+    "location": {
+      "_latitude": 42.627448,
+      "_longitude": 9.4208649
+    },
+    "description": "Point d'intérêt: POI sans nom",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "Haute-Corse",
+    "departmentCode": "2B",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 12884612075,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1772045658,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-25T19:54:18.876957"
+  },
+  {
+    "id": "osm_13027263891",
+    "name": "POI sans nom",
+    "lat": 42.7139849,
+    "lng": 9.4305545,
+    "location": {
+      "_latitude": 42.7139849,
+      "_longitude": 9.4305545
+    },
+    "description": "Point d'intérêt: POI sans nom",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "Haute-Corse",
+    "departmentCode": "2B",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 13027263891,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1772045658,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-25T19:54:18.876971"
+  },
+  {
+    "id": "osm_13027310342",
+    "name": "I Balconi di Campu Canicciu",
+    "lat": 42.7173685,
+    "lng": 9.4426264,
+    "location": {
+      "_latitude": 42.7173685,
+      "_longitude": 9.4426264
+    },
+    "description": "Point d'intérêt: I Balconi di Campu Canicciu",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "attraction",
+    "city": "Haute-Corse",
+    "departmentCode": "2B",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 13027310342,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1772045658,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-25T19:54:18.876985"
+  },
+  {
+    "id": "osm_13453031554",
+    "name": "POI sans nom",
+    "lat": 42.7035729,
+    "lng": 9.4451478,
+    "location": {
+      "_latitude": 42.7035729,
+      "_longitude": 9.4451478
+    },
+    "description": "Point d'intérêt: POI sans nom",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "Haute-Corse",
+    "departmentCode": "2B",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 13453031554,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1772045658,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-25T19:54:18.876999"
+  },
+  {
+    "id": "osm_502579447",
+    "name": "POI sans nom",
+    "lat": 16.2368272,
+    "lng": -61.5348926,
+    "location": {
+      "_latitude": 16.2368272,
+      "_longitude": -61.5348926
+    },
+    "description": "Point d'intérêt: POI sans nom",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "Guadeloupe",
+    "departmentCode": "971",
+    "imageUrls": [
+      "https://www.wikidata.org/wiki/Q136059884"
+    ],
+    "images": [
+      "https://www.wikidata.org/wiki/Q136059884"
+    ],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 502579447,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1772045681,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-25T19:54:41.409034"
+  },
+  {
+    "id": "osm_503156083",
+    "name": "POI sans nom",
+    "lat": 16.2371861,
+    "lng": -61.5339907,
+    "location": {
+      "_latitude": 16.2371861,
+      "_longitude": -61.5339907
+    },
+    "description": "Point d'intérêt: POI sans nom",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "Guadeloupe",
+    "departmentCode": "971",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 503156083,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1772045681,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-25T19:54:41.409077"
+  },
+  {
+    "id": "osm_599811953",
+    "name": "Pointe de la Verdure",
+    "lat": 16.2068421,
+    "lng": -61.5081547,
+    "location": {
+      "_latitude": 16.2068421,
+      "_longitude": -61.5081547
+    },
+    "description": "Point d'intérêt: Pointe de la Verdure",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "attraction",
+    "city": "Guadeloupe",
+    "departmentCode": "971",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 599811953,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1772045681,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-25T19:54:41.409087"
+  },
+  {
+    "id": "osm_2776095678",
+    "name": "Memorial de la première abolition de l'esclavage en Guadeloupe",
+    "lat": 16.2042214,
+    "lng": -61.4429897,
+    "location": {
+      "_latitude": 16.2042214,
+      "_longitude": -61.4429897
+    },
+    "description": "Point d'intérêt: Memorial de la première abolition de l'esclavage en Guadeloupe",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "Guadeloupe",
+    "departmentCode": "971",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 2776095678,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1772045681,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-25T19:54:41.409098"
+  },
+  {
+    "id": "osm_2835947105",
+    "name": "Domaine de Pauda",
+    "lat": 16.2855301,
+    "lng": -61.529403,
+    "location": {
+      "_latitude": 16.2855301,
+      "_longitude": -61.529403
+    },
+    "description": "Point d'intérêt: Domaine de Pauda",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "attraction",
+    "city": "Guadeloupe",
+    "departmentCode": "971",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 2835947105,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1772045681,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-25T19:54:41.409108"
+  },
+  {
+    "id": "osm_2911994216",
+    "name": "Snorkeling Park",
+    "lat": 16.199689,
+    "lng": -61.492381,
+    "location": {
+      "_latitude": 16.199689,
+      "_longitude": -61.492381
+    },
+    "description": "Le sentier découverte sous-marin de l'îlet Gosier randonnée aquatique en PMT (palmes-masque et tuba)",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "attraction",
+    "city": "Guadeloupe",
+    "departmentCode": "971",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": "http://www.facebook.com/SnorkelingPark",
+    "website": "http://www.facebook.com/SnorkelingPark",
+    "source": "openstreetmap",
+    "osmId": 2911994216,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1772045681,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-25T19:54:41.409117"
+  },
+  {
+    "id": "osm_3088049120",
+    "name": "POI sans nom",
+    "lat": 16.2709475,
+    "lng": -61.5050067,
+    "location": {
+      "_latitude": 16.2709475,
+      "_longitude": -61.5050067
+    },
+    "description": "Monument dédié aux guadeloupéens morts pour la France lors de la guerre 1914/1918",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "Guadeloupe",
+    "departmentCode": "971",
+    "imageUrls": [
+      "https://www.wikidata.org/wiki/Q18736768"
+    ],
+    "images": [
+      "https://www.wikidata.org/wiki/Q18736768"
+    ],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 3088049120,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1772045681,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-25T19:54:41.409130"
+  },
+  {
+    "id": "osm_3088112381",
+    "name": "Morne de la Mémoire",
+    "lat": 16.2708156,
+    "lng": -61.5074677,
+    "location": {
+      "_latitude": 16.2708156,
+      "_longitude": -61.5074677
+    },
+    "description": "Point d'intérêt: Morne de la Mémoire",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "Guadeloupe",
+    "departmentCode": "971",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 3088112381,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1772045681,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-25T19:54:41.409142"
+  },
+  {
+    "id": "osm_4494265689",
+    "name": "Laser game",
+    "lat": 16.2555325,
+    "lng": -61.524893,
+    "location": {
+      "_latitude": 16.2555325,
+      "_longitude": -61.524893
+    },
+    "description": "Point d'intérêt: Laser game",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "attraction",
+    "city": "Guadeloupe",
+    "departmentCode": "971",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 4494265689,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1772045681,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-25T19:54:41.409151"
+  },
+  {
+    "id": "osm_5387128107",
+    "name": "26 mai 1967",
+    "lat": 16.2353105,
+    "lng": -61.5343018,
+    "location": {
+      "_latitude": 16.2353105,
+      "_longitude": -61.5343018
+    },
+    "description": "Point d'intérêt: 26 mai 1967",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "Guadeloupe",
+    "departmentCode": "971",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 5387128107,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1772045681,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-25T19:54:41.409161"
+  },
+  {
+    "id": "osm_5387128112",
+    "name": "Monument du Premier Jour",
+    "lat": 16.2360638,
+    "lng": -61.5341205,
+    "location": {
+      "_latitude": 16.2360638,
+      "_longitude": -61.5341205
+    },
+    "description": "Point d'intérêt: Monument du Premier Jour",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "Guadeloupe",
+    "departmentCode": "971",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 5387128112,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1772045681,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-25T19:54:41.409173"
+  },
+  {
+    "id": "osm_6137050822",
+    "name": "Nelson Mandela",
+    "lat": 16.2558735,
+    "lng": -61.5128553,
+    "location": {
+      "_latitude": 16.2558735,
+      "_longitude": -61.5128553
+    },
+    "description": "Point d'intérêt: Nelson Mandela",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "Guadeloupe",
+    "departmentCode": "971",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 6137050822,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1772045681,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-25T19:54:41.409183"
+  },
+  {
+    "id": "osm_7342766285",
+    "name": "Le Jardin d'Alexina",
+    "lat": 16.2096326,
+    "lng": -61.4908215,
+    "location": {
+      "_latitude": 16.2096326,
+      "_longitude": -61.4908215
+    },
+    "description": "Point d'intérêt: Le Jardin d'Alexina",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "attraction",
+    "city": "Guadeloupe",
+    "departmentCode": "971",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 7342766285,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1772045681,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-25T19:54:41.409192"
+  },
+  {
+    "id": "osm_9301809292",
+    "name": "Justin Catayée",
+    "lat": 16.2447473,
+    "lng": -61.5403561,
+    "location": {
+      "_latitude": 16.2447473,
+      "_longitude": -61.5403561
+    },
+    "description": "Point d'intérêt: Justin Catayée",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "Guadeloupe",
+    "departmentCode": "971",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 9301809292,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1772045681,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-25T19:54:41.409203"
+  },
+  {
+    "id": "osm_9301809301",
+    "name": "Anneau de l'esclavage",
+    "lat": 16.2407112,
+    "lng": -61.5331736,
+    "location": {
+      "_latitude": 16.2407112,
+      "_longitude": -61.5331736
+    },
+    "description": "Point d'intérêt: Anneau de l'esclavage",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "Guadeloupe",
+    "departmentCode": "971",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 9301809301,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1772045681,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-25T19:54:41.409213"
+  },
+  {
+    "id": "osm_9316254294",
+    "name": "Mur de la Mémoire",
+    "lat": 16.2743654,
+    "lng": -61.5190667,
+    "location": {
+      "_latitude": 16.2743654,
+      "_longitude": -61.5190667
+    },
+    "description": "Point d'intérêt: Mur de la Mémoire",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "Guadeloupe",
+    "departmentCode": "971",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 9316254294,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1772045681,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-25T19:54:41.409224"
+  },
+  {
+    "id": "osm_9389129248",
+    "name": "POI sans nom",
+    "lat": 16.2356469,
+    "lng": -61.5331565,
+    "location": {
+      "_latitude": 16.2356469,
+      "_longitude": -61.5331565
+    },
+    "description": "Point d'intérêt: POI sans nom",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "Guadeloupe",
+    "departmentCode": "971",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 9389129248,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1772045681,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-25T19:54:41.409233"
+  },
+  {
+    "id": "osm_9710048506",
+    "name": "La route des esclaves",
+    "lat": 16.336238,
+    "lng": -61.4591482,
+    "location": {
+      "_latitude": 16.336238,
+      "_longitude": -61.4591482
+    },
+    "description": "Point d'intérêt: La route des esclaves",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "Guadeloupe",
+    "departmentCode": "971",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 9710048506,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1772045681,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-25T19:54:41.409242"
+  },
+  {
+    "id": "osm_9799316319",
+    "name": "En mémoire des femmes victimes de violence",
+    "lat": 16.2612473,
+    "lng": -61.5710558,
+    "location": {
+      "_latitude": 16.2612473,
+      "_longitude": -61.5710558
+    },
+    "description": "Point d'intérêt: En mémoire des femmes victimes de violence",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "Guadeloupe",
+    "departmentCode": "971",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 9799316319,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1772045681,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-25T19:54:41.409251"
+  },
+  {
+    "id": "osm_9799429721",
+    "name": "Memorial aux Victimes de la Route",
+    "lat": 16.3519801,
+    "lng": -61.4563124,
+    "location": {
+      "_latitude": 16.3519801,
+      "_longitude": -61.4563124
+    },
+    "description": "Point d'intérêt: Memorial aux Victimes de la Route",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "Guadeloupe",
+    "departmentCode": "971",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 9799429721,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1772045681,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-25T19:54:41.409283"
+  },
+  {
+    "id": "osm_10568667109",
+    "name": "Parcours du patrimoine",
+    "lat": 16.2748819,
+    "lng": -61.5825432,
+    "location": {
+      "_latitude": 16.2748819,
+      "_longitude": -61.5825432
+    },
+    "description": "Point d'intérêt: Parcours du patrimoine",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "attraction",
+    "city": "Guadeloupe",
+    "departmentCode": "971",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 10568667109,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1772045681,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-25T19:54:41.409293"
+  },
+  {
+    "id": "osm_10711258805",
+    "name": "Panamax",
+    "lat": 16.219778,
+    "lng": -61.5283669,
+    "location": {
+      "_latitude": 16.219778,
+      "_longitude": -61.5283669
+    },
+    "description": "Point d'intérêt: Panamax",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "attraction",
+    "city": "Guadeloupe",
+    "departmentCode": "971",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": "https://panamaxexcursions.com/",
+    "website": "https://panamaxexcursions.com/",
+    "source": "openstreetmap",
+    "osmId": 10711258805,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1772045681,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-25T19:54:41.409305"
+  },
+  {
+    "id": "osm_11171091688",
+    "name": "Mahatma Gandhi",
+    "lat": 16.3737896,
+    "lng": -61.4859278,
+    "location": {
+      "_latitude": 16.3737896,
+      "_longitude": -61.4859278
+    },
+    "description": "Point d'intérêt: Mahatma Gandhi",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "Guadeloupe",
+    "departmentCode": "971",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 11171091688,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1772045681,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-25T19:54:41.409317"
+  },
+  {
+    "id": "osm_12643396720",
+    "name": "54 morts sur les routes",
+    "lat": 16.2756207,
+    "lng": -61.5193144,
+    "location": {
+      "_latitude": 16.2756207,
+      "_longitude": -61.5193144
+    },
+    "description": "Point d'intérêt: 54 morts sur les routes",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "Guadeloupe",
+    "departmentCode": "971",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 12643396720,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1772045681,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-25T19:54:41.409328"
+  },
+  {
+    "id": "osm_13089419442",
+    "name": "Casemates souterraines",
+    "lat": 16.2172636,
+    "lng": -61.5126044,
+    "location": {
+      "_latitude": 16.2172636,
+      "_longitude": -61.5126044
+    },
+    "description": "Point d'intérêt: Casemates souterraines",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "attraction",
+    "city": "Guadeloupe",
+    "departmentCode": "971",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 13089419442,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1772045681,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-25T19:54:41.409337"
+  },
+  {
+    "id": "osm_13089426003",
+    "name": "Ancienne cuisine",
+    "lat": 16.2168115,
+    "lng": -61.5133446,
+    "location": {
+      "_latitude": 16.2168115,
+      "_longitude": -61.5133446
+    },
+    "description": "Point d'intérêt: Ancienne cuisine",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "attraction",
+    "city": "Guadeloupe",
+    "departmentCode": "971",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 13089426003,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1772045681,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-25T19:54:41.409347"
+  },
+  {
+    "id": "osm_13089426021",
+    "name": "Four souterrain",
+    "lat": 16.2167588,
+    "lng": -61.5137184,
+    "location": {
+      "_latitude": 16.2167588,
+      "_longitude": -61.5137184
+    },
+    "description": "Point d'intérêt: Four souterrain",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "attraction",
+    "city": "Guadeloupe",
+    "departmentCode": "971",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 13089426021,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1772045681,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-25T19:54:41.409364"
+  },
+  {
+    "id": "osm_13089426022",
+    "name": "Cavalier (Batterie haute)",
+    "lat": 16.2173133,
+    "lng": -61.5123454,
+    "location": {
+      "_latitude": 16.2173133,
+      "_longitude": -61.5123454
+    },
+    "description": "Point d'intérêt: Cavalier (Batterie haute)",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "attraction",
+    "city": "Guadeloupe",
+    "departmentCode": "971",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 13089426022,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1772045681,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-25T19:54:41.409373"
+  },
+  {
+    "id": "osm_13288223402",
+    "name": "Marché nocturne du Gosier",
+    "lat": 16.2059528,
+    "lng": -61.4968558,
+    "location": {
+      "_latitude": 16.2059528,
+      "_longitude": -61.4968558
+    },
+    "description": "Point d'intérêt: Marché nocturne du Gosier",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "attraction",
+    "city": "Guadeloupe",
+    "departmentCode": "971",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 13288223402,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1772045681,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-25T19:54:41.409382"
+  },
+  {
+    "id": "osm_13456557101",
+    "name": "pied de goyave",
+    "lat": 16.2380126,
+    "lng": -61.5697475,
+    "location": {
+      "_latitude": 16.2380126,
+      "_longitude": -61.5697475
+    },
+    "description": "Point d'intérêt: pied de goyave",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "attraction",
+    "city": "Guadeloupe",
+    "departmentCode": "971",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 13456557101,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1772045681,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-25T19:54:41.409391"
+  },
+  {
+    "id": "osm_13456591602",
+    "name": "bois d'orme, mutamba, Guazuma ulmifolia",
+    "lat": 16.2405787,
+    "lng": -61.5891734,
+    "location": {
+      "_latitude": 16.2405787,
+      "_longitude": -61.5891734
+    },
+    "description": "Point d'intérêt: bois d'orme, mutamba, Guazuma ulmifolia",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "attraction",
+    "city": "Guadeloupe",
+    "departmentCode": "971",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 13456591602,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1772045681,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-25T19:54:41.409420"
+  },
+  {
+    "id": "osm_1626468629",
+    "name": "Shopping District",
+    "lat": 14.6047963,
+    "lng": -61.0717332,
+    "location": {
+      "_latitude": 14.6047963,
+      "_longitude": -61.0717332
+    },
+    "description": "Point d'intérêt: Shopping District",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "attraction",
+    "city": "Martinique",
+    "departmentCode": "972",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 1626468629,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1772045687,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-25T19:54:47.858706"
+  },
+  {
+    "id": "osm_1675486363",
+    "name": "Cascade de Saut Gendarme",
+    "lat": 14.7249461,
+    "lng": -61.1051063,
+    "location": {
+      "_latitude": 14.7249461,
+      "_longitude": -61.1051063
+    },
+    "description": "Point d'intérêt: Cascade de Saut Gendarme",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "attraction",
+    "city": "Martinique",
+    "departmentCode": "972",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 1675486363,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1772045687,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-25T19:54:47.858762"
+  },
+  {
+    "id": "osm_3465989359",
+    "name": "Habitation Saint-Étienne",
+    "lat": 14.6904722,
+    "lng": -61.0142274,
+    "location": {
+      "_latitude": 14.6904722,
+      "_longitude": -61.0142274
+    },
+    "description": "Point d'intérêt: Habitation Saint-Étienne",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "attraction",
+    "city": "Martinique",
+    "departmentCode": "972",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 3465989359,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1772045687,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-25T19:54:47.858779"
+  },
+  {
+    "id": "osm_3883815810",
+    "name": "6 mai 1853 Arrivée des indiens",
+    "lat": 14.643187,
+    "lng": -61.1387768,
+    "location": {
+      "_latitude": 14.643187,
+      "_longitude": -61.1387768
+    },
+    "description": "Point d'intérêt: 6 mai 1853 Arrivée des indiens",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "Martinique",
+    "departmentCode": "972",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 3883815810,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1772045687,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-25T19:54:47.858795"
+  },
+  {
+    "id": "osm_4070598692",
+    "name": "Domaine d'Emeraude",
+    "lat": 14.7494961,
+    "lng": -61.1014892,
+    "location": {
+      "_latitude": 14.7494961,
+      "_longitude": -61.1014892
+    },
+    "description": "Point d'intérêt: Domaine d'Emeraude",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "attraction",
+    "city": "Martinique",
+    "departmentCode": "972",
+    "imageUrls": [
+      "https://www.wikidata.org/wiki/Q123812530"
+    ],
+    "images": [
+      "https://www.wikidata.org/wiki/Q123812530"
+    ],
+    "websiteUrl": "https://pnr-martinique.com/visiter/domaine-demeraude/",
+    "website": "https://pnr-martinique.com/visiter/domaine-demeraude/",
+    "source": "openstreetmap",
+    "osmId": 4070598692,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1772045687,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-25T19:54:47.858824"
+  },
+  {
+    "id": "osm_4706865203",
+    "name": "Fort Saint-Louis",
+    "lat": 14.5997077,
+    "lng": -61.0663293,
+    "location": {
+      "_latitude": 14.5997077,
+      "_longitude": -61.0663293
+    },
+    "description": "Ancien édifice de défense de l'armée française. Toujours exploité aujourd'hui par la marine. Zone militaire, accès interdit. Possibilité de visite, s'adresser à l'office du tourisme. C'est aussi l'habitat d'une colonie d'iguanes terrestres.",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "Martinique",
+    "departmentCode": "972",
+    "imageUrls": [
+      "https://www.wikidata.org/wiki/Q3078054"
+    ],
+    "images": [
+      "https://www.wikidata.org/wiki/Q3078054"
+    ],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 4706865203,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1772045687,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-25T19:54:47.858844"
+  },
+  {
+    "id": "osm_4738143493",
+    "name": "Les Trois Sources",
+    "lat": 14.746215,
+    "lng": -61.049558,
+    "location": {
+      "_latitude": 14.746215,
+      "_longitude": -61.049558
+    },
+    "description": "Point d'intérêt: Les Trois Sources",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "attraction",
+    "city": "Martinique",
+    "departmentCode": "972",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 4738143493,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1772045687,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-25T19:54:47.858859"
+  },
+  {
+    "id": "osm_4813263920",
+    "name": "POI sans nom",
+    "lat": 14.6796006,
+    "lng": -61.1067989,
+    "location": {
+      "_latitude": 14.6796006,
+      "_longitude": -61.1067989
+    },
+    "description": "Point d'intérêt: POI sans nom",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "Martinique",
+    "departmentCode": "972",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 4813263920,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1772045687,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-25T19:54:47.858877"
+  },
+  {
+    "id": "osm_5192562467",
+    "name": "POI sans nom",
+    "lat": 14.6023476,
+    "lng": -61.0675317,
+    "location": {
+      "_latitude": 14.6023476,
+      "_longitude": -61.0675317
+    },
+    "description": "Point d'intérêt: POI sans nom",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "Martinique",
+    "departmentCode": "972",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 5192562467,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1772045687,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-25T19:54:47.858891"
+  },
+  {
+    "id": "osm_5263049417",
+    "name": "Place Gilbert Gratiant",
+    "lat": 14.6034803,
+    "lng": -61.0713527,
+    "location": {
+      "_latitude": 14.6034803,
+      "_longitude": -61.0713527
+    },
+    "description": "Point d'intérêt: Place Gilbert Gratiant",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "Martinique",
+    "departmentCode": "972",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 5263049417,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1772045687,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-25T19:54:47.858906"
+  },
+  {
+    "id": "osm_5263049758",
+    "name": "Memorial du 16 août",
+    "lat": 14.6047676,
+    "lng": -61.0635756,
+    "location": {
+      "_latitude": 14.6047676,
+      "_longitude": -61.0635756
+    },
+    "description": "Point d'intérêt: Memorial du 16 août",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "Martinique",
+    "departmentCode": "972",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 5263049758,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1772045687,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-25T19:54:47.858920"
+  },
+  {
+    "id": "osm_5313999021",
+    "name": "MAISON MARTIAL FAMILIALE",
+    "lat": 14.6537289,
+    "lng": -61.1241265,
+    "location": {
+      "_latitude": 14.6537289,
+      "_longitude": -61.1241265
+    },
+    "description": "Point d'intérêt: MAISON MARTIAL FAMILIALE",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "Martinique",
+    "departmentCode": "972",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 5313999021,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1772045687,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-25T19:54:47.858935"
+  },
+  {
+    "id": "osm_6177291898",
+    "name": "POI sans nom",
+    "lat": 14.6560496,
+    "lng": -61.154195,
+    "location": {
+      "_latitude": 14.6560496,
+      "_longitude": -61.154195
+    },
+    "description": "Point d'intérêt: POI sans nom",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "attraction",
+    "city": "Martinique",
+    "departmentCode": "972",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 6177291898,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1772045687,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-25T19:54:47.858980"
+  },
+  {
+    "id": "osm_7105899704",
+    "name": "POI sans nom",
+    "lat": 14.6734262,
+    "lng": -61.1648543,
+    "location": {
+      "_latitude": 14.6734262,
+      "_longitude": -61.1648543
+    },
+    "description": "Point d'intérêt: POI sans nom",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "Martinique",
+    "departmentCode": "972",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 7105899704,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1772045687,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-25T19:54:47.858996"
+  },
+  {
+    "id": "osm_8838957601",
+    "name": "Monument du centenaire",
+    "lat": 14.6054437,
+    "lng": -61.0906719,
+    "location": {
+      "_latitude": 14.6054437,
+      "_longitude": -61.0906719
+    },
+    "description": "Point d'intérêt: Monument du centenaire",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "Martinique",
+    "departmentCode": "972",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 8838957601,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1772045687,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-25T19:54:47.859009"
+  },
+  {
+    "id": "osm_8838957602",
+    "name": "Monument aux Morts",
+    "lat": 14.6160181,
+    "lng": -61.1015471,
+    "location": {
+      "_latitude": 14.6160181,
+      "_longitude": -61.1015471
+    },
+    "description": "Point d'intérêt: Monument aux Morts",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "Martinique",
+    "departmentCode": "972",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 8838957602,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1772045687,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-25T19:54:47.859023"
+  },
+  {
+    "id": "osm_12127873601",
+    "name": "Habitation Belfort",
+    "lat": 14.6507834,
+    "lng": -60.996505,
+    "location": {
+      "_latitude": 14.6507834,
+      "_longitude": -60.996505
+    },
+    "description": "Point d'intérêt: Habitation Belfort",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "attraction",
+    "city": "Martinique",
+    "departmentCode": "972",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": "https://www.visitebelfort.com/",
+    "website": "https://www.visitebelfort.com/",
+    "source": "openstreetmap",
+    "osmId": 12127873601,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1772045687,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-25T19:54:47.859037"
+  },
+  {
+    "id": "osm_410540729",
+    "name": "Statue de Félix Éboué",
+    "lat": 4.9389669,
+    "lng": -52.3336821,
+    "location": {
+      "_latitude": 4.9389669,
+      "_longitude": -52.3336821
+    },
+    "description": "Point d'intérêt: Statue de Félix Éboué",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "Guyane",
+    "departmentCode": "973",
+    "imageUrls": [
+      "https://www.wikidata.org/wiki/Q29612433"
+    ],
+    "images": [
+      "https://www.wikidata.org/wiki/Q29612433"
+    ],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 410540729,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1772045710,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-25T19:55:10.588011"
+  },
+  {
+    "id": "osm_3463358903",
+    "name": "POI sans nom",
+    "lat": 4.9372723,
+    "lng": -52.3351332,
+    "location": {
+      "_latitude": 4.9372723,
+      "_longitude": -52.3351332
+    },
+    "description": "la statue n'est plus présente depuis 2020, il ne reste que le socle avec une inscription peu visible",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "Guyane",
+    "departmentCode": "973",
+    "imageUrls": [
+      "https://www.wikidata.org/wiki/Q3497593"
+    ],
+    "images": [
+      "https://www.wikidata.org/wiki/Q3497593"
+    ],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 3463358903,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1772045710,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-25T19:55:10.588044"
+  },
+  {
+    "id": "osm_3584606253",
+    "name": "1914-1918",
+    "lat": 4.9361876,
+    "lng": -52.3344141,
+    "location": {
+      "_latitude": 4.9361876,
+      "_longitude": -52.3344141
+    },
+    "description": "Point d'intérêt: 1914-1918",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "Guyane",
+    "departmentCode": "973",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 3584606253,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1772045710,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-25T19:55:10.588055"
+  },
+  {
+    "id": "osm_4494730190",
+    "name": "Sentier du Rorota",
+    "lat": 4.8872946,
+    "lng": -52.2623755,
+    "location": {
+      "_latitude": 4.8872946,
+      "_longitude": -52.2623755
+    },
+    "description": "Point d'intérêt: Sentier du Rorota",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "attraction",
+    "city": "Guyane",
+    "departmentCode": "973",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 4494730190,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1772045710,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-25T19:55:10.588064"
+  },
+  {
+    "id": "osm_5745213625",
+    "name": "POI sans nom",
+    "lat": 4.9245065,
+    "lng": -52.3237335,
+    "location": {
+      "_latitude": 4.9245065,
+      "_longitude": -52.3237335
+    },
+    "description": "Point d'intérêt: POI sans nom",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "Guyane",
+    "departmentCode": "973",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 5745213625,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1772045710,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-25T19:55:10.588074"
+  },
+  {
+    "id": "osm_6198734516",
+    "name": "POI sans nom",
+    "lat": 4.9125328,
+    "lng": -52.2723049,
+    "location": {
+      "_latitude": 4.9125328,
+      "_longitude": -52.2723049
+    },
+    "description": "Point d'intérêt: POI sans nom",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "Guyane",
+    "departmentCode": "973",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 6198734516,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1772045710,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-25T19:55:10.588083"
+  },
+  {
+    "id": "osm_6505108112",
+    "name": "Mémorial des libérés de 1848",
+    "lat": 4.9405713,
+    "lng": -52.3208967,
+    "location": {
+      "_latitude": 4.9405713,
+      "_longitude": -52.3208967
+    },
+    "description": "Point d'intérêt: Mémorial des libérés de 1848",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "Guyane",
+    "departmentCode": "973",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 6505108112,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1772045710,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-25T19:55:10.588094"
+  },
+  {
+    "id": "osm_6593756459",
+    "name": "POI sans nom",
+    "lat": 4.9124147,
+    "lng": -52.2701791,
+    "location": {
+      "_latitude": 4.9124147,
+      "_longitude": -52.2701791
+    },
+    "description": "Point d'intérêt: POI sans nom",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "Guyane",
+    "departmentCode": "973",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 6593756459,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1772045710,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-25T19:55:10.588103"
+  },
+  {
+    "id": "osm_9959598285",
+    "name": "POI sans nom",
+    "lat": 4.8503331,
+    "lng": -52.3312551,
+    "location": {
+      "_latitude": 4.8503331,
+      "_longitude": -52.3312551
+    },
+    "description": "Point d'intérêt: POI sans nom",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "Guyane",
+    "departmentCode": "973",
+    "imageUrls": [
+      "https://www.wikidata.org/wiki/Q118220385"
+    ],
+    "images": [
+      "https://www.wikidata.org/wiki/Q118220385"
+    ],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 9959598285,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1772045710,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-25T19:55:10.588116"
+  },
+  {
+    "id": "osm_10693861679",
+    "name": "POI sans nom",
+    "lat": 4.9453912,
+    "lng": -52.3167463,
+    "location": {
+      "_latitude": 4.9453912,
+      "_longitude": -52.3167463
+    },
+    "description": "Point d'intérêt: POI sans nom",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "Guyane",
+    "departmentCode": "973",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 10693861679,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1772045710,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-25T19:55:10.588136"
+  },
+  {
+    "id": "osm_11054903351",
+    "name": "POI sans nom",
+    "lat": 4.9049396,
+    "lng": -52.2759265,
+    "location": {
+      "_latitude": 4.9049396,
+      "_longitude": -52.2759265
+    },
+    "description": "Point d'intérêt: POI sans nom",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "Guyane",
+    "departmentCode": "973",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 11054903351,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1772045710,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-25T19:55:10.588145"
+  },
+  {
+    "id": "osm_12142177991",
+    "name": "POI sans nom",
+    "lat": 4.938383,
+    "lng": -52.3253445,
+    "location": {
+      "_latitude": 4.938383,
+      "_longitude": -52.3253445
+    },
+    "description": "Point d'intérêt: POI sans nom",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "Guyane",
+    "departmentCode": "973",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": "http://aufildesmotsetdelhistoire.unblog.fr/2013/05/16/le-15-mai-1895-%E2%80%93-le-combat-de-mapa/",
+    "website": "http://aufildesmotsetdelhistoire.unblog.fr/2013/05/16/le-15-mai-1895-%E2%80%93-le-combat-de-mapa/",
+    "source": "openstreetmap",
+    "osmId": 12142177991,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1772045710,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-25T19:55:10.588154"
+  },
+  {
+    "id": "osm_13372256969",
+    "name": "Marrons de la Liberté",
+    "lat": 4.8872642,
+    "lng": -52.2854188,
+    "location": {
+      "_latitude": 4.8872642,
+      "_longitude": -52.2854188
+    },
+    "description": "Point d'intérêt: Marrons de la Liberté",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "Guyane",
+    "departmentCode": "973",
+    "imageUrls": [
+      "https://www.wikidata.org/wiki/Q125520581"
+    ],
+    "images": [
+      "https://www.wikidata.org/wiki/Q125520581"
+    ],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 13372256969,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1772045710,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-25T19:55:10.588166"
+  },
+  {
+    "id": "osm_2326011364",
+    "name": "POI sans nom",
+    "lat": -20.8926116,
+    "lng": 55.5128017,
+    "location": {
+      "_latitude": -20.8926116,
+      "_longitude": 55.5128017
+    },
+    "description": "Point d'intérêt: POI sans nom",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "La Réunion",
+    "departmentCode": "974",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 2326011364,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1772045721,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-25T19:55:21.239408"
+  },
+  {
+    "id": "osm_2430314096",
+    "name": "Casino",
+    "lat": -20.8734722,
+    "lng": 55.4478395,
+    "location": {
+      "_latitude": -20.8734722,
+      "_longitude": 55.4478395
+    },
+    "description": "Point d'intérêt: Casino",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "attraction",
+    "city": "La Réunion",
+    "departmentCode": "974",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 2430314096,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1772045721,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-25T19:55:21.239442"
+  },
+  {
+    "id": "osm_3668847879",
+    "name": "Momument aux morts de la Guerre 1914-1918",
+    "lat": -20.8784866,
+    "lng": 55.448518,
+    "location": {
+      "_latitude": -20.8784866,
+      "_longitude": 55.448518
+    },
+    "description": "1914-1918 La Réunion à ses enfants héros de la Grande Guerre",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "La Réunion",
+    "departmentCode": "974",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 3668847879,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1772045721,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-25T19:55:21.239452"
+  },
+  {
+    "id": "osm_4601377216",
+    "name": "Statue de Roland Garros",
+    "lat": -20.873518,
+    "lng": 55.4470475,
+    "location": {
+      "_latitude": -20.873518,
+      "_longitude": 55.4470475
+    },
+    "description": "Statue de Roland Garros, appuyé sur son avion. Roland Garros est né à Saint-Denis (17, rue de l'Arsenal, aujourd'hui rue Roland Garros) le 6 octobre 1888. Il meurt en combattant dans son avion le 5 octobre 1918.",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "artwork",
+    "city": "La Réunion",
+    "departmentCode": "974",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": "https://e-monumen.net/patrimoine-monumental/statue-de-roland-garros-saint-denis-de-la-reunion/",
+    "website": "https://e-monumen.net/patrimoine-monumental/statue-de-roland-garros-saint-denis-de-la-reunion/",
+    "source": "openstreetmap",
+    "osmId": 4601377216,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1772045721,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-25T19:55:21.239499"
+  },
+  {
+    "id": "osm_4601413242",
+    "name": "Statue de François Mahé de La Bourdonnais",
+    "lat": -20.8787326,
+    "lng": 55.4412151,
+    "location": {
+      "_latitude": -20.8787326,
+      "_longitude": 55.4412151
+    },
+    "description": "La statue représente Labourdonnais posant devant une ancre de marine, la main gauche sur le pommeau de son épée et tenant victorieusement le document de la capitulation de Madras. Déplacée en décembre 2023 du parvis de la préfecture à la caserne Lambert",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "artwork",
+    "city": "La Réunion",
+    "departmentCode": "974",
+    "imageUrls": [
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/5/51/Statue-Mah%C3%A9-La-Bourdonnais-1.JPG/320px-Statue-Mah%C3%A9-La-Bourdonnais-1.JPG",
+      "https://commons.wikimedia.org/wiki/Special:FilePath/Statue-Mahé-La-Bourdonnais-1.JPG",
+      "https://www.wikidata.org/wiki/Q3497580"
+    ],
+    "images": [
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/5/51/Statue-Mah%C3%A9-La-Bourdonnais-1.JPG/320px-Statue-Mah%C3%A9-La-Bourdonnais-1.JPG",
+      "https://commons.wikimedia.org/wiki/Special:FilePath/Statue-Mahé-La-Bourdonnais-1.JPG",
+      "https://www.wikidata.org/wiki/Q3497580"
+    ],
+    "websiteUrl": "https://e-monumen.net/patrimoine-monumental/mahe-de-labourdonnais-saint-denis-de-la-reunion/",
+    "website": "https://e-monumen.net/patrimoine-monumental/mahe-de-labourdonnais-saint-denis-de-la-reunion/",
+    "source": "openstreetmap",
+    "osmId": 4601413242,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1772045721,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-25T19:55:21.239536"
+  },
+  {
+    "id": "osm_4711756941",
+    "name": "Colonne de la Victoire",
+    "lat": -20.8784784,
+    "lng": 55.4484935,
+    "location": {
+      "_latitude": -20.8784784,
+      "_longitude": 55.4484935
+    },
+    "description": "Monument aux morts de la Grande Guerre",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "La Réunion",
+    "departmentCode": "974",
+    "imageUrls": [
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Mairie-saint-denis.JPG/576px-Mairie-saint-denis.JPG",
+      "https://commons.wikimedia.org/wiki/Special:FilePath/Mairie-saint-denis.JPG",
+      "https://www.wikidata.org/wiki/Q2984314"
+    ],
+    "images": [
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Mairie-saint-denis.JPG/576px-Mairie-saint-denis.JPG",
+      "https://commons.wikimedia.org/wiki/Special:FilePath/Mairie-saint-denis.JPG",
+      "https://www.wikidata.org/wiki/Q2984314"
+    ],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 4711756941,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1772045721,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-25T19:55:21.239555"
+  },
+  {
+    "id": "osm_4711756942",
+    "name": "Domaine de Montgaillard",
+    "lat": -20.9138665,
+    "lng": 55.463455,
+    "location": {
+      "_latitude": -20.9138665,
+      "_longitude": 55.463455
+    },
+    "description": "Point d'intérêt: Domaine de Montgaillard",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "La Réunion",
+    "departmentCode": "974",
+    "imageUrls": [
+      "https://www.wikidata.org/wiki/Q3034495"
+    ],
+    "images": [
+      "https://www.wikidata.org/wiki/Q3034495"
+    ],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 4711756942,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1772045721,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-25T19:55:21.239569"
+  },
+  {
+    "id": "osm_4888948833",
+    "name": "Les mausolées anglais et français",
+    "lat": -20.8812455,
+    "lng": 55.4442218,
+    "location": {
+      "_latitude": -20.8812455,
+      "_longitude": 55.4442218
+    },
+    "description": "Point d'intérêt: Les mausolées anglais et français",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "La Réunion",
+    "departmentCode": "974",
+    "imageUrls": [
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/f/ff/Mausolée-français-La-Redoute.JPG/320px-Mausolée-français-La-Redoute.JPG",
+      "https://commons.wikimedia.org/wiki/Special:FilePath/Mausolée-français-La-Redoute.JPG",
+      "https://www.wikidata.org/wiki/Q3301863"
+    ],
+    "images": [
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/f/ff/Mausolée-français-La-Redoute.JPG/320px-Mausolée-français-La-Redoute.JPG",
+      "https://commons.wikimedia.org/wiki/Special:FilePath/Mausolée-français-La-Redoute.JPG",
+      "https://www.wikidata.org/wiki/Q3301863"
+    ],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 4888948833,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1772045721,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-25T19:55:21.239587"
+  },
+  {
+    "id": "osm_4888949744",
+    "name": "Mausolée Français à La Redoute",
+    "lat": -20.8817011,
+    "lng": 55.444164,
+    "location": {
+      "_latitude": -20.8817011,
+      "_longitude": 55.444164
+    },
+    "description": "Mausolée Français à La Redoute",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "La Réunion",
+    "departmentCode": "974",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 4888949744,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1772045721,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-25T19:55:21.239598"
+  },
+  {
+    "id": "osm_5165385877",
+    "name": "POI sans nom",
+    "lat": -20.8757624,
+    "lng": 55.447714,
+    "location": {
+      "_latitude": -20.8757624,
+      "_longitude": 55.447714
+    },
+    "description": "Point d'intérêt: POI sans nom",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "La Réunion",
+    "departmentCode": "974",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 5165385877,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1772045721,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-25T19:55:21.239608"
+  },
+  {
+    "id": "osm_9141066218",
+    "name": "Be Cabot les bas",
+    "lat": -21.0135655,
+    "lng": 55.5000762,
+    "location": {
+      "_latitude": -21.0135655,
+      "_longitude": 55.5000762
+    },
+    "description": "Point d'intérêt: Be Cabot les bas",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "attraction",
+    "city": "La Réunion",
+    "departmentCode": "974",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 9141066218,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1772045721,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-25T19:55:21.239617"
+  },
+  {
+    "id": "osm_9373864644",
+    "name": "Mausolée Anglais de la Redoute",
+    "lat": -20.882117,
+    "lng": 55.4441239,
+    "location": {
+      "_latitude": -20.882117,
+      "_longitude": 55.4441239
+    },
+    "description": "Mausolée Anglais de la Redoute",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "La Réunion",
+    "departmentCode": "974",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 9373864644,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1772045721,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-25T19:55:21.239626"
+  },
+  {
+    "id": "osm_11164804030",
+    "name": "Mémorial au Général de Gaulle",
+    "lat": -20.8743906,
+    "lng": 55.4464936,
+    "location": {
+      "_latitude": -20.8743906,
+      "_longitude": 55.4464936
+    },
+    "description": "\"Au Général de Gaulle / La Réunion reconnaissante\"",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "La Réunion",
+    "departmentCode": "974",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 11164804030,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1772045721,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-25T19:55:21.239636"
+  },
+  {
+    "id": "osm_11414717674",
+    "name": "Stèle à la mémoire de Géréon et Jasmin",
+    "lat": -20.8722375,
+    "lng": 55.450346,
+    "location": {
+      "_latitude": -20.8722375,
+      "_longitude": 55.450346
+    },
+    "description": "Point d'intérêt: Stèle à la mémoire de Géréon et Jasmin",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "artwork",
+    "city": "La Réunion",
+    "departmentCode": "974",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 11414717674,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1772045721,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-25T19:55:21.239648"
+  },
+  {
+    "id": "osm_11414746154",
+    "name": "Ghandi",
+    "lat": -20.886095,
+    "lng": 55.4811786,
+    "location": {
+      "_latitude": -20.886095,
+      "_longitude": 55.4811786
+    },
+    "description": "Point d'intérêt: Ghandi",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "La Réunion",
+    "departmentCode": "974",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 11414746154,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1772045721,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-25T19:55:21.239657"
+  },
+  {
+    "id": "osm_11422517285",
+    "name": "La Vierge de la Mer",
+    "lat": -20.9274873,
+    "lng": 55.3446279,
+    "location": {
+      "_latitude": -20.9274873,
+      "_longitude": 55.3446279
+    },
+    "description": "Point d'intérêt: La Vierge de la Mer",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "La Réunion",
+    "departmentCode": "974",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 11422517285,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1772045721,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-25T19:55:21.239667"
+  },
+  {
+    "id": "osm_11422751906",
+    "name": "Alexandre Monnet",
+    "lat": -20.877345,
+    "lng": 55.4485202,
+    "location": {
+      "_latitude": -20.877345,
+      "_longitude": 55.4485202
+    },
+    "description": "Point d'intérêt: Alexandre Monnet",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "La Réunion",
+    "departmentCode": "974",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 11422751906,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1772045721,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-25T19:55:21.239677"
+  },
+  {
+    "id": "osm_11682745383",
+    "name": "POI sans nom",
+    "lat": -20.8737083,
+    "lng": 55.4466224,
+    "location": {
+      "_latitude": -20.8737083,
+      "_longitude": 55.4466224
+    },
+    "description": "Point d'intérêt: POI sans nom",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "La Réunion",
+    "departmentCode": "974",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 11682745383,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1772045721,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-25T19:55:21.239705"
+  },
+  {
+    "id": "osm_12676339085",
+    "name": "avion",
+    "lat": -20.8907629,
+    "lng": 55.5074655,
+    "location": {
+      "_latitude": -20.8907629,
+      "_longitude": 55.5074655
+    },
+    "description": "Point d'intérêt: avion",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "attraction",
+    "city": "La Réunion",
+    "departmentCode": "974",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 12676339085,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1772045721,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-25T19:55:21.239715"
+  },
+  {
+    "id": "osm_13116096202",
+    "name": "Monument Rontaunay",
+    "lat": -20.923123,
+    "lng": 55.4350212,
+    "location": {
+      "_latitude": -20.923123,
+      "_longitude": 55.4350212
+    },
+    "description": "Point d'intérêt: Monument Rontaunay",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "La Réunion",
+    "departmentCode": "974",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 13116096202,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1772045721,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-25T19:55:21.239737"
+  },
+  {
+    "id": "osm_13230328305",
+    "name": "Aux enfants de Salazie morts pour la France",
+    "lat": -21.0299175,
+    "lng": 55.4762756,
+    "location": {
+      "_latitude": -21.0299175,
+      "_longitude": 55.4762756
+    },
+    "description": "Point d'intérêt: Aux enfants de Salazie morts pour la France",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "La Réunion",
+    "departmentCode": "974",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 13230328305,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1772045721,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-25T19:55:21.239749"
+  },
+  {
+    "id": "osm_13434079207",
+    "name": "Ti Train Lontan",
+    "lat": -20.8961902,
+    "lng": 55.3769682,
+    "location": {
+      "_latitude": -20.8961902,
+      "_longitude": 55.3769682
+    },
+    "description": "Point d'intérêt: Ti Train Lontan",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "attraction",
+    "city": "La Réunion",
+    "departmentCode": "974",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 13434079207,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1772045721,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-25T19:55:21.239759"
+  },
+  {
+    "id": "osm_2539304155",
+    "name": "Cascade de Barakani",
+    "lat": -12.8351781,
+    "lng": 45.1296557,
+    "location": {
+      "_latitude": -12.8351781,
+      "_longitude": 45.1296557
+    },
+    "description": "Point d'intérêt: Cascade de Barakani",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "attraction",
+    "city": "Mayotte",
+    "departmentCode": "976",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 2539304155,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1772045729,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-25T19:55:29.022020"
+  },
+  {
+    "id": "osm_2568542943",
+    "name": "Alambic de distillation d'Ylang Ylang",
+    "lat": -12.8511865,
+    "lng": 45.1697848,
+    "location": {
+      "_latitude": -12.8511865,
+      "_longitude": 45.1697848
+    },
+    "description": "Point d'intérêt: Alambic de distillation d'Ylang Ylang",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "attraction",
+    "city": "Mayotte",
+    "departmentCode": "976",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 2568542943,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1772045729,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-25T19:55:29.022155"
+  },
+  {
+    "id": "osm_3097148193",
+    "name": "Alambic de distillation d'Ylang",
+    "lat": -12.8505198,
+    "lng": 45.1609487,
+    "location": {
+      "_latitude": -12.8505198,
+      "_longitude": 45.1609487
+    },
+    "description": "Point d'intérêt: Alambic de distillation d'Ylang",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "attraction",
+    "city": "Mayotte",
+    "departmentCode": "976",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 3097148193,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1772045729,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-25T19:55:29.022193"
+  },
+  {
+    "id": "osm_4993163186",
+    "name": "Canon",
+    "lat": -12.7989821,
+    "lng": 45.2748193,
+    "location": {
+      "_latitude": -12.7989821,
+      "_longitude": 45.2748193
+    },
+    "description": "Point d'intérêt: Canon",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "Mayotte",
+    "departmentCode": "976",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 4993163186,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1772045729,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-25T19:55:29.022207"
+  },
+  {
+    "id": "osm_6243736039",
+    "name": "Banga traditionnel",
+    "lat": -12.8364561,
+    "lng": 45.1326244,
+    "location": {
+      "_latitude": -12.8364561,
+      "_longitude": 45.1326244
+    },
+    "description": "Point d'intérêt: Banga traditionnel",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "attraction",
+    "city": "Mayotte",
+    "departmentCode": "976",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 6243736039,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1772045729,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-25T19:55:29.022221"
+  },
+  {
+    "id": "osm_6680290265",
+    "name": "POI sans nom",
+    "lat": -12.7782684,
+    "lng": 45.2318983,
+    "location": {
+      "_latitude": -12.7782684,
+      "_longitude": 45.2318983
+    },
+    "description": "Point d'intérêt: POI sans nom",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "Mayotte",
+    "departmentCode": "976",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 6680290265,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1772045729,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-25T19:55:29.022233"
+  },
+  {
+    "id": "osm_6900569138",
+    "name": "POI sans nom",
+    "lat": -12.7778275,
+    "lng": 45.2332763,
+    "location": {
+      "_latitude": -12.7778275,
+      "_longitude": 45.2332763
+    },
+    "description": "Point d'intérêt: POI sans nom",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "Mayotte",
+    "departmentCode": "976",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 6900569138,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1772045729,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-25T19:55:29.022244"
+  },
+  {
+    "id": "osm_7053646041",
+    "name": "POI sans nom",
+    "lat": -12.7820772,
+    "lng": 45.2564174,
+    "location": {
+      "_latitude": -12.7820772,
+      "_longitude": 45.2564174
+    },
+    "description": "Point d'intérêt: POI sans nom",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "Mayotte",
+    "departmentCode": "976",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 7053646041,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1772045729,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-25T19:55:29.022269"
+  },
+  {
+    "id": "osm_8769907765",
+    "name": "POI sans nom",
+    "lat": -12.7710571,
+    "lng": 45.218774,
+    "location": {
+      "_latitude": -12.7710571,
+      "_longitude": 45.218774
+    },
+    "description": "Point d'intérêt: POI sans nom",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "attraction",
+    "city": "Mayotte",
+    "departmentCode": "976",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 8769907765,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1772045729,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-25T19:55:29.022281"
+  },
+  {
+    "id": "osm_8952944117",
+    "name": "Minarets de la mosquée de Tsingoni",
+    "lat": -12.7896397,
+    "lng": 45.1065647,
+    "location": {
+      "_latitude": -12.7896397,
+      "_longitude": 45.1065647
+    },
+    "description": "Point d'intérêt: Minarets de la mosquée de Tsingoni",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "attraction",
+    "city": "Mayotte",
+    "departmentCode": "976",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 8952944117,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1772045729,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-25T19:55:29.022293"
+  },
+  {
+    "id": "osm_9068738690",
+    "name": "La Résidence du Gouverneur",
+    "lat": -12.7827063,
+    "lng": 45.2558472,
+    "location": {
+      "_latitude": -12.7827063,
+      "_longitude": 45.2558472
+    },
+    "description": "Point d'intérêt: La Résidence du Gouverneur",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "attraction",
+    "city": "Mayotte",
+    "departmentCode": "976",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 9068738690,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1772045729,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-25T19:55:29.022304"
+  },
+  {
+    "id": "osm_9093848004",
+    "name": "Vestiges de l'ancien village de Soulou",
+    "lat": -12.7657355,
+    "lng": 45.1055985,
+    "location": {
+      "_latitude": -12.7657355,
+      "_longitude": 45.1055985
+    },
+    "description": "Point d'intérêt: Vestiges de l'ancien village de Soulou",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "attraction",
+    "city": "Mayotte",
+    "departmentCode": "976",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 9093848004,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1772045729,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-25T19:55:29.022317"
+  },
+  {
+    "id": "osm_9093848009",
+    "name": "Vestiges de l'ancienne maison du maître",
+    "lat": -12.7642947,
+    "lng": 45.1052968,
+    "location": {
+      "_latitude": -12.7642947,
+      "_longitude": 45.1052968
+    },
+    "description": "Point d'intérêt: Vestiges de l'ancienne maison du maître",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "attraction",
+    "city": "Mayotte",
+    "departmentCode": "976",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 9093848009,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1772045729,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-25T19:55:29.022328"
+  },
+  {
+    "id": "osm_9343732617",
+    "name": "Forêt de Bambou géant",
+    "lat": -12.8033952,
+    "lng": 45.1580331,
+    "location": {
+      "_latitude": -12.8033952,
+      "_longitude": 45.1580331
+    },
+    "description": "Point d'intérêt: Forêt de Bambou géant",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "attraction",
+    "city": "Mayotte",
+    "departmentCode": "976",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 9343732617,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1772045729,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-25T19:55:29.022339"
+  },
+  {
+    "id": "osm_9548948263",
+    "name": "Vestiges de l'ancien séchoir à coprah",
+    "lat": -12.7610797,
+    "lng": 45.1031564,
+    "location": {
+      "_latitude": -12.7610797,
+      "_longitude": 45.1031564
+    },
+    "description": "Point d'intérêt: Vestiges de l'ancien séchoir à coprah",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "attraction",
+    "city": "Mayotte",
+    "departmentCode": "976",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 9548948263,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1772045729,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-25T19:55:29.022350"
+  },
+  {
+    "id": "osm_9548948264",
+    "name": "Vestiges de l'ancienne distillerie d'Ylang-Ylang",
+    "lat": -12.7617004,
+    "lng": 45.0986798,
+    "location": {
+      "_latitude": -12.7617004,
+      "_longitude": 45.0986798
+    },
+    "description": "Point d'intérêt: Vestiges de l'ancienne distillerie d'Ylang-Ylang",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "attraction",
+    "city": "Mayotte",
+    "departmentCode": "976",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 9548948264,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1772045729,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-25T19:55:29.022360"
+  },
+  {
+    "id": "osm_9548948265",
+    "name": "Vestiges de l'ancienne usine sucrière de Soulou",
+    "lat": -12.765082,
+    "lng": 45.1046794,
+    "location": {
+      "_latitude": -12.765082,
+      "_longitude": 45.1046794
+    },
+    "description": "Point d'intérêt: Vestiges de l'ancienne usine sucrière de Soulou",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "attraction",
+    "city": "Mayotte",
+    "departmentCode": "976",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 9548948265,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1772045729,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-25T19:55:29.022371"
+  },
+  {
+    "id": "osm_9554325885",
+    "name": "Vestiges de l'ancien entrepôt sucrier de Soulou",
+    "lat": -12.7695298,
+    "lng": 45.1020916,
+    "location": {
+      "_latitude": -12.7695298,
+      "_longitude": 45.1020916
+    },
+    "description": "Point d'intérêt: Vestiges de l'ancien entrepôt sucrier de Soulou",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "attraction",
+    "city": "Mayotte",
+    "departmentCode": "976",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 9554325885,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1772045729,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-25T19:55:29.022381"
+  },
+  {
+    "id": "osm_9554325886",
+    "name": "Vestiges de l'ancien débarcadère de Soulou",
+    "lat": -12.7696939,
+    "lng": 45.1019581,
+    "location": {
+      "_latitude": -12.7696939,
+      "_longitude": 45.1019581
+    },
+    "description": "Point d'intérêt: Vestiges de l'ancien débarcadère de Soulou",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "attraction",
+    "city": "Mayotte",
+    "departmentCode": "976",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 9554325886,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1772045729,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-25T19:55:29.022392"
+  },
+  {
+    "id": "osm_9903534950",
+    "name": "Cascade de Tsingoni",
+    "lat": -12.7877558,
+    "lng": 45.1055573,
+    "location": {
+      "_latitude": -12.7877558,
+      "_longitude": 45.1055573
+    },
+    "description": "Point d'intérêt: Cascade de Tsingoni",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "attraction",
+    "city": "Mayotte",
+    "departmentCode": "976",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 9903534950,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1772045729,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-25T19:55:29.022403"
+  },
+  {
+    "id": "osm_10129999742",
+    "name": "Pièces machines usine sucrière",
+    "lat": -12.7878239,
+    "lng": 45.1324441,
+    "location": {
+      "_latitude": -12.7878239,
+      "_longitude": 45.1324441
+    },
+    "description": "Point d'intérêt: Pièces machines usine sucrière",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "attraction",
+    "city": "Mayotte",
+    "departmentCode": "976",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 10129999742,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1772045729,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-25T19:55:29.022419"
+  },
+  {
+    "id": "osm_10130299964",
+    "name": "Pièces machines usine sucrière",
+    "lat": -12.7869852,
+    "lng": 45.1327868,
+    "location": {
+      "_latitude": -12.7869852,
+      "_longitude": 45.1327868
+    },
+    "description": "Point d'intérêt: Pièces machines usine sucrière",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "attraction",
+    "city": "Mayotte",
+    "departmentCode": "976",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 10130299964,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1772045729,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-25T19:55:29.022430"
+  },
+  {
+    "id": "osm_10130299965",
+    "name": "Pièces machines usine sucrière",
+    "lat": -12.7869813,
+    "lng": 45.1327727,
+    "location": {
+      "_latitude": -12.7869813,
+      "_longitude": 45.1327727
+    },
+    "description": "Point d'intérêt: Pièces machines usine sucrière",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "attraction",
+    "city": "Mayotte",
+    "departmentCode": "976",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 10130299965,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1772045729,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-25T19:55:29.022441"
+  },
+  {
+    "id": "osm_11192685105",
+    "name": "Vestiges de l'ancien séchoir à coprah",
+    "lat": -12.7812427,
+    "lng": 45.1177973,
+    "location": {
+      "_latitude": -12.7812427,
+      "_longitude": 45.1177973
+    },
+    "description": "Point d'intérêt: Vestiges de l'ancien séchoir à coprah",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "attraction",
+    "city": "Mayotte",
+    "departmentCode": "976",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 11192685105,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1772045729,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-25T19:55:29.022451"
+  },
+  {
+    "id": "osm_11786497469",
+    "name": "POI sans nom",
+    "lat": -12.7783675,
+    "lng": 45.2315061,
+    "location": {
+      "_latitude": -12.7783675,
+      "_longitude": 45.2315061
+    },
+    "description": "Point d'intérêt: POI sans nom",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "other",
+    "city": "Mayotte",
+    "departmentCode": "976",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 11786497469,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1772045729,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-25T19:55:29.022463"
+  },
+  {
+    "id": "osm_12069826100",
+    "name": "Pièces machines usine sucrière",
+    "lat": -12.7870313,
+    "lng": 45.1326912,
+    "location": {
+      "_latitude": -12.7870313,
+      "_longitude": 45.1326912
+    },
+    "description": "Point d'intérêt: Pièces machines usine sucrière",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "attraction",
+    "city": "Mayotte",
+    "departmentCode": "976",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 12069826100,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1772045729,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-25T19:55:29.022473"
+  },
+  {
+    "id": "osm_12069826101",
+    "name": "Pièces machines usine sucrière",
+    "lat": -12.7869921,
+    "lng": 45.1326212,
+    "location": {
+      "_latitude": -12.7869921,
+      "_longitude": 45.1326212
+    },
+    "description": "Point d'intérêt: Pièces machines usine sucrière",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "attraction",
+    "city": "Mayotte",
+    "departmentCode": "976",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 12069826101,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1772045729,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-25T19:55:29.022484"
+  },
+  {
+    "id": "osm_12069826102",
+    "name": "Pièces machines usine sucrière",
+    "lat": -12.7870359,
+    "lng": 45.1326004,
+    "location": {
+      "_latitude": -12.7870359,
+      "_longitude": 45.1326004
+    },
+    "description": "Point d'intérêt: Pièces machines usine sucrière",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "attraction",
+    "city": "Mayotte",
+    "departmentCode": "976",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 12069826102,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1772045729,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-25T19:55:29.022494"
+  },
+  {
+    "id": "osm_12150999533",
+    "name": "POI sans nom",
+    "lat": -12.861708,
+    "lng": 45.136456,
+    "location": {
+      "_latitude": -12.861708,
+      "_longitude": 45.136456
+    },
+    "description": "Point d'intérêt: POI sans nom",
+    "category": "histoire",
+    "categoryGroup": "Patrimoine et Histoire",
+    "categoryItem": "attraction",
+    "city": "Mayotte",
+    "departmentCode": "976",
+    "imageUrls": [],
+    "images": [],
+    "websiteUrl": null,
+    "website": null,
+    "source": "openstreetmap",
+    "osmId": 12150999533,
+    "isPublic": true,
+    "isValidated": true,
+    "isFree": null,
+    "pmrAccessible": false,
+    "kidsFriendly": null,
+    "createdAt": {
+      "_seconds": 1772045729,
+      "_nanoseconds": 0
+    },
+    "updatedAt": "2026-02-25T19:55:29.022506"
+  }
+]
