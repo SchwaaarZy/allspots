@@ -165,10 +165,21 @@ class _HomeShellState extends ConsumerState<HomeShell> {
   @override
   Widget build(BuildContext context) {
     _syncAdSchedule();
+    final colorScheme = Theme.of(context).colorScheme;
     final screenWidth = context.screenWidth;
     final compactNav = screenWidth < 375;
-    final navIconSize = compactNav ? 20.0 : 24.0;
-    final navFontSize = compactNav ? context.fontSize(9.5) : context.fontSize(11);
+    const navCornerRadius = 18.0;
+    const navBackgroundColor = Colors.white;
+    final navHeight = compactNav ? 64.0 : 68.0;
+    final navLabelTextStyle = Theme.of(context).textTheme.labelSmall?.copyWith(
+          fontSize: compactNav ? context.fontSize(9.5) : context.fontSize(11),
+        );
+
+    final navSelectedIndex = switch (_index) {
+      3 => 2,
+      2 => 3,
+      _ => _index,
+    };
 
     final tabs = [
       const MapView(),
@@ -189,9 +200,7 @@ class _HomeShellState extends ConsumerState<HomeShell> {
           _index == 0
               ? 'assets/images/allspots_simple_logo.png'
               : titleLogos[_index],
-          height: _index == 0
-              ? (compactNav ? 44 : 55)
-              : (compactNav ? 18 : 22),
+          height: _index == 0 ? (compactNav ? 44 : 55) : (compactNav ? 18 : 22),
           fit: BoxFit.contain,
         ),
         centerTitle: true,
@@ -204,105 +213,71 @@ class _HomeShellState extends ConsumerState<HomeShell> {
         mainAxisSize: MainAxisSize.min,
         children: [
           const AdBanner(),
-          Container(
-            padding: EdgeInsets.symmetric(
-              vertical: compactNav ? 8 : 10,
-              horizontal: compactNav ? 2 : 4,
+          ClipRRect(
+            borderRadius: const BorderRadius.vertical(
+              top: Radius.circular(navCornerRadius),
             ),
-            decoration: BoxDecoration(
-              color: Theme.of(context).colorScheme.surface,
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.black.withValues(alpha: 0.08),
-                  blurRadius: 8,
-                  offset: const Offset(0, -2),
+            child: ColoredBox(
+              color: navBackgroundColor,
+              child: SafeArea(
+                top: false,
+                left: false,
+                right: false,
+                child: NavigationBarTheme(
+                  data: NavigationBarTheme.of(context).copyWith(
+                    backgroundColor: navBackgroundColor,
+                    labelTextStyle: WidgetStateProperty.resolveWith((states) {
+                      final base = navLabelTextStyle ?? const TextStyle();
+                      final selected = states.contains(WidgetState.selected);
+                      return base.copyWith(
+                        fontWeight:
+                            selected ? FontWeight.w700 : FontWeight.w600,
+                        color: selected
+                            ? colorScheme.primary
+                            : colorScheme.onSurfaceVariant,
+                      );
+                    }),
+                  ),
+                  child: NavigationBar(
+                    backgroundColor: navBackgroundColor,
+                    height: navHeight,
+                    selectedIndex: navSelectedIndex,
+                    onDestinationSelected: (destination) {
+                      final mappedIndex = switch (destination) {
+                        2 => 3,
+                        3 => 2,
+                        _ => destination,
+                      };
+                      setState(() => _index = mappedIndex);
+                    },
+                    destinations: const [
+                      NavigationDestination(
+                        icon: Icon(Icons.public),
+                        selectedIcon: Icon(Icons.public),
+                        label: 'Accueil',
+                      ),
+                      NavigationDestination(
+                        icon: Icon(Icons.search),
+                        selectedIcon: Icon(Icons.search),
+                        label: 'Recherche',
+                      ),
+                      NavigationDestination(
+                        icon: Icon(Icons.near_me),
+                        selectedIcon: Icon(Icons.near_me),
+                        label: 'Autour',
+                      ),
+                      NavigationDestination(
+                        icon: Icon(Icons.person_outline),
+                        selectedIcon: Icon(Icons.person),
+                        label: 'Profil',
+                      ),
+                    ],
+                  ),
                 ),
-              ],
-            ),
-            child: SafeArea(
-              top: false,
-              left: false,
-              right: false,
-              child: Row(
-                children: [
-                  _buildNavItem(
-                    icon: Icons.public,
-                    label: 'Accueil',
-                    selected: _index == 0,
-                    iconSize: navIconSize,
-                    fontSize: navFontSize,
-                    onTap: () {
-                      setState(() => _index = 0);
-                    },
-                  ),
-                  _buildNavItem(
-                    icon: Icons.search,
-                    label: 'Recherche',
-                    selected: _index == 1,
-                    iconSize: navIconSize,
-                    fontSize: navFontSize,
-                    onTap: () => setState(() => _index = 1),
-                  ),
-                  _buildNavItem(
-                    icon: Icons.near_me,
-                    label: 'Autour de moi',
-                    selected: _index == 3,
-                    iconSize: navIconSize,
-                    fontSize: navFontSize,
-                    onTap: () {
-                      setState(() => _index = 3);
-                    },
-                  ),
-                  // Satelite button disabled - using map only
-                  const SizedBox(width: 8),
-                  _buildNavItem(
-                    icon: Icons.person_outline,
-                    label: 'Profil',
-                    selected: _index == 2,
-                    iconSize: navIconSize,
-                    fontSize: navFontSize,
-                    onTap: () => setState(() => _index = 2),
-                  ),
-                ],
               ),
             ),
           ),
         ],
-      ),
-    );
-  }
-
-  Widget _buildNavItem({
-    required IconData icon,
-    required String label,
-    required bool selected,
-    required double iconSize,
-    required double fontSize,
-    required VoidCallback onTap,
-  }) {
-    final color =
-        selected ? Theme.of(context).colorScheme.primary : Colors.grey;
-
-    return Expanded(
-      child: InkWell(
-        onTap: onTap,
-        child: Padding(
-          padding: const EdgeInsets.symmetric(vertical: 8),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Icon(icon, color: color, size: iconSize),
-              const SizedBox(height: 2),
-              Text(
-                label,
-                style: TextStyle(fontSize: fontSize, color: color),
-                maxLines: 1,
-                overflow: TextOverflow.ellipsis,
-                textAlign: TextAlign.center,
-              ),
-            ],
-          ),
-        ),
       ),
     );
   }

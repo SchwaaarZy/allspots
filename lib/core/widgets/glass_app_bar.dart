@@ -4,7 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 class GlassAppBar extends StatelessWidget implements PreferredSizeWidget {
-  static const double defaultHeight = 96;
+  static const double defaultHeight = 84;
+  static const double cornerRadius = 18;
 
   final String? title;
   final Widget? titleWidget;
@@ -22,7 +23,7 @@ class GlassAppBar extends StatelessWidget implements PreferredSizeWidget {
 
   /// Hauteur de la barre (utile pour agrandir un logo)
   final double height;
-  
+
   /// Image de background pour le header
   final String? backgroundImage;
 
@@ -54,6 +55,12 @@ class GlassAppBar extends StatelessWidget implements PreferredSizeWidget {
 
     return AppBar(
       toolbarHeight: height,
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(
+          bottom: Radius.circular(cornerRadius),
+        ),
+      ),
+      clipBehavior: Clip.antiAlias,
       title: titleWidget != null
           ? DefaultTextStyle.merge(style: titleStyle, child: titleWidget!)
           : (title != null

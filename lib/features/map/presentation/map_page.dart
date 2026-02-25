@@ -16,6 +16,7 @@ import '../../profile/data/road_trip_service.dart';
 import '../../profile/data/xp_service.dart';
 import '../domain/poi.dart';
 import '../domain/poi_category.dart';
+import 'destination_selector_page.dart';
 import 'map_controller.dart';
 import 'poi_detail_page.dart';
 
@@ -26,7 +27,6 @@ class MapPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppHeader(
-        height: 96,
         backgroundImage: 'assets/images/bg_header_allspots.png',
         titleWidget: SizedBox(
           height: 44,
@@ -49,6 +49,7 @@ class MapView extends ConsumerStatefulWidget {
 }
 
 class _MapViewState extends ConsumerState<MapView> {
+  static const double _mapCornerRadius = 18;
   late flutter_map.MapController _flutterMapController;
   bool _initialized = false;
   bool _centeredOnFirstLocation = false;
@@ -247,7 +248,7 @@ class _MapViewState extends ConsumerState<MapView> {
     final displayedPois = ref.watch(
       mapControllerProvider.select((state) => state.displayedPois),
     );
-    
+
     final userPosition = ref.watch(
       mapControllerProvider.select((state) => state.userPosition),
     );
@@ -300,63 +301,75 @@ class _MapViewState extends ConsumerState<MapView> {
 
         return Stack(
           children: [
-            flutter_map.FlutterMap(
-              mapController: _flutterMapController,
-              options: flutter_map.MapOptions(
-                initialCenter: LatLng(
-                  userPos?.latitude ?? 48.8566,
-                  userPos?.longitude ?? 2.3522,
-                ),
-                initialZoom: 15,
-                minZoom: 1,
-                maxZoom: 18,
+            ClipRRect(
+              borderRadius: const BorderRadius.vertical(
+                top: Radius.circular(_mapCornerRadius),
+                bottom: Radius.circular(_mapCornerRadius),
               ),
-              children: [
-                flutter_map.TileLayer(
-                  urlTemplate: ref.watch(mapControllerProvider).mapStyle.urlTemplate,
-                  userAgentPackageName: 'com.allspots',
-                  subdomains: ref.watch(mapControllerProvider).mapStyle.subdomains,
-                  maxZoom: ref.watch(mapControllerProvider).mapStyle.maxZoom.toDouble(),
-                ),
-                flutter_map.MarkerLayer(
-                  markers: visiblePois.map((p) {
-                    return flutter_map.Marker(
-                      point: LatLng(p.lat, p.lng),
-                      width: 50,
-                      height: 50,
-                      alignment: Alignment.center,
-                      child: GestureDetector(
-                        onTap: () {
-                          _showPoiPopup(context, p, LatLng(p.lat, p.lng));
-                        },
-                        child: Center(
-                          child: Icon(
-                            Icons.location_on,
-                            color: _getColorForCategory(p.category),
-                            size: 30,
-                          ),
-                        ),
-                      ),
-                    );
-                  }).toList(),
-                ),
-                if (userPos != null)
-                  flutter_map.MarkerLayer(
-                    markers: [
-                      flutter_map.Marker(
-                        point: LatLng(userPos.latitude, userPos.longitude),
-                        width: 12,
-                        height: 12,
-                        child: Container(
-                          decoration: const BoxDecoration(
-                            color: Colors.blue,
-                            shape: BoxShape.circle,
-                          ),
-                        ),
-                      ),
-                    ],
+              child: flutter_map.FlutterMap(
+                mapController: _flutterMapController,
+                options: flutter_map.MapOptions(
+                  initialCenter: LatLng(
+                    userPos?.latitude ?? 48.8566,
+                    userPos?.longitude ?? 2.3522,
                   ),
-              ],
+                  initialZoom: 15,
+                  minZoom: 1,
+                  maxZoom: 18,
+                ),
+                children: [
+                  flutter_map.TileLayer(
+                    urlTemplate:
+                        ref.watch(mapControllerProvider).mapStyle.urlTemplate,
+                    userAgentPackageName: 'com.allspots',
+                    subdomains:
+                        ref.watch(mapControllerProvider).mapStyle.subdomains,
+                    maxZoom: ref
+                        .watch(mapControllerProvider)
+                        .mapStyle
+                        .maxZoom
+                        .toDouble(),
+                  ),
+                  flutter_map.MarkerLayer(
+                    markers: visiblePois.map((p) {
+                      return flutter_map.Marker(
+                        point: LatLng(p.lat, p.lng),
+                        width: 50,
+                        height: 50,
+                        alignment: Alignment.center,
+                        child: GestureDetector(
+                          onTap: () {
+                            _showPoiPopup(context, p, LatLng(p.lat, p.lng));
+                          },
+                          child: Center(
+                            child: Icon(
+                              Icons.location_on,
+                              color: _getColorForCategory(p.category),
+                              size: 30,
+                            ),
+                          ),
+                        ),
+                      );
+                    }).toList(),
+                  ),
+                  if (userPos != null)
+                    flutter_map.MarkerLayer(
+                      markers: [
+                        flutter_map.Marker(
+                          point: LatLng(userPos.latitude, userPos.longitude),
+                          width: 12,
+                          height: 12,
+                          child: Container(
+                            decoration: const BoxDecoration(
+                              color: Colors.blue,
+                              shape: BoxShape.circle,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                ],
+              ),
             ),
             // Aucun message d'erreur - les spots s'affichent par proximité automatiquement
             if (error != null)
@@ -387,7 +400,9 @@ class _MapViewState extends ConsumerState<MapView> {
                   currentRadius: ref.watch(mapControllerProvider).radiusMeters,
                   radiusOptions: const [5000, 10000, 15000, 20000],
                   onRadiusChanged: (radius) {
-                    ref.read(mapControllerProvider.notifier).updateRadius(radius);
+                    ref
+                        .read(mapControllerProvider.notifier)
+                        .updateRadius(radius);
                   },
                 ),
               ),
@@ -399,6 +414,28 @@ class _MapViewState extends ConsumerState<MapView> {
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   const _MapUsersCountBadge(),
+                  const SizedBox(height: 8),
+                  Material(
+                    color: Colors.white,
+                    elevation: 3,
+                    borderRadius: BorderRadius.circular(12),
+                    clipBehavior: Clip.antiAlias,
+                    child: IconButton(
+                      onPressed: () => _showLocalizationSelector(context),
+                      tooltip: 'Localisation',
+                      splashRadius: 22,
+                      constraints: const BoxConstraints.tightFor(
+                        width: 44,
+                        height: 44,
+                      ),
+                      padding: EdgeInsets.zero,
+                      icon: const Icon(
+                        Icons.public,
+                        size: 22,
+                        color: Colors.blue,
+                      ),
+                    ),
+                  ),
                   const SizedBox(height: 8),
                   Material(
                     color: Colors.white,
@@ -459,7 +496,8 @@ class _MapViewState extends ConsumerState<MapView> {
                     child: Material(
                       color: Colors.transparent,
                       child: IconButton(
-                        onPressed: () => setState(() => _showRadiusSelector = !_showRadiusSelector),
+                        onPressed: () => setState(
+                            () => _showRadiusSelector = !_showRadiusSelector),
                         tooltip: 'Rayon de recherche',
                         splashRadius: 22,
                         constraints: const BoxConstraints.tightFor(
@@ -492,7 +530,8 @@ class _MapViewState extends ConsumerState<MapView> {
                       color: Colors.transparent,
                       child: IconButton(
                         onPressed: () async {
-                          final pos = ref.read(mapControllerProvider).userPosition;
+                          final pos =
+                              ref.read(mapControllerProvider).userPosition;
                           if (pos == null) return;
                           _flutterMapController.move(
                             LatLng(pos.latitude, pos.longitude),
@@ -520,6 +559,17 @@ class _MapViewState extends ConsumerState<MapView> {
           ],
         );
       },
+    );
+  }
+
+  Future<void> _showLocalizationSelector(BuildContext context) async {
+    await Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (_) => const DestinationSelectorPage(
+          isOnboarding: false,
+        ),
+        fullscreenDialog: true,
+      ),
     );
   }
 
@@ -562,7 +612,7 @@ class _MapViewState extends ConsumerState<MapView> {
 
   void _showMapStyleSelector(BuildContext context) {
     final currentStyle = ref.read(mapControllerProvider).mapStyle;
-    
+
     showModalBottomSheet(
       context: context,
       showDragHandle: true,
@@ -590,10 +640,10 @@ class _MapViewState extends ConsumerState<MapView> {
       context: context,
       builder: (dialogContext) {
         // Utilise le context original pour la localisation
-        final categoryLabel = subCategoryLabel.isNotEmpty 
-            ? subCategoryLabel 
+        final categoryLabel = subCategoryLabel.isNotEmpty
+            ? subCategoryLabel
             : poi.category.localizationLabel(context);
-        
+
         return Stack(
           children: [
             // Overlay semi-transparent
