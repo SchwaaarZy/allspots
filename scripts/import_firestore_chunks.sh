@@ -39,7 +39,11 @@ if [[ ! -d "$CHUNKS_DIR" ]]; then
   exit 1
 fi
 
-mapfile -t FILES < <(find "$CHUNKS_DIR" -maxdepth 1 -type f -name '*.json' | sort)
+FILES=()
+while IFS= read -r file; do
+  FILES+=("$file")
+done < <(find "$CHUNKS_DIR" -maxdepth 1 -type f -name '*.json' | sort)
+
 if [[ ${#FILES[@]} -eq 0 ]]; then
   echo "Aucun chunk JSON trouvé dans: $CHUNKS_DIR"
   exit 1
