@@ -210,7 +210,6 @@ class _HomeShellState extends ConsumerState<HomeShell> {
     final screenWidth = context.screenWidth;
     final compactNav = screenWidth < 375;
     const navCornerRadius = 18.0;
-    const headerCornerRadius = 18.0;
     const navBackgroundColor = Colors.white;
     final navHeight = compactNav ? 64.0 : 68.0;
     final navLabelTextStyle = Theme.of(context).textTheme.labelSmall?.copyWith(
@@ -248,17 +247,7 @@ class _HomeShellState extends ConsumerState<HomeShell> {
     );
 
     return Scaffold(
-      appBar: _index == 0
-          ? PreferredSize(
-              preferredSize: const Size.fromHeight(GlassAppBar.defaultHeight),
-              child: ClipRRect(
-                borderRadius: const BorderRadius.vertical(
-                  bottom: Radius.circular(headerCornerRadius),
-                ),
-                child: shellAppBar,
-              ),
-            )
-          : shellAppBar,
+      appBar: shellAppBar,
       body: _LazyIndexedStack(
         index: _index,
         children: tabs,

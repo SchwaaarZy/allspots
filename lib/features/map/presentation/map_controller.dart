@@ -5,6 +5,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:geolocator/geolocator.dart';
 import '../../../core/config/app_config.dart';
 import '../../../core/constants/poi_categories.dart';
+import '../../../core/models/region_model.dart';
 import '../../../core/utils/geo_utils.dart';
 import '../data/empty_poi_repository.dart';
 import '../data/firestore_poi_repository.dart';
@@ -30,6 +31,9 @@ class MapState {
   final bool isSatellite;
   final bool buildingsEnabled;
   final MapStyle mapStyle;
+  final String? localizedCountryCode;
+  final String? localizedRegionCode;
+  final String? localizedDepartmentCode;
 
   const MapState({
     required this.userPosition,
@@ -42,6 +46,9 @@ class MapState {
     required this.isSatellite,
     required this.buildingsEnabled,
     required this.mapStyle,
+    required this.localizedCountryCode,
+    required this.localizedRegionCode,
+    required this.localizedDepartmentCode,
   });
 
   factory MapState.initial() => MapState(
@@ -55,6 +62,9 @@ class MapState {
         isSatellite: false,
         buildingsEnabled: true,
         mapStyle: MapStyle.openStreetMapFrance,
+        localizedCountryCode: null,
+        localizedRegionCode: null,
+        localizedDepartmentCode: null,
       );
 
   MapState copyWith({
@@ -68,6 +78,9 @@ class MapState {
     bool? isSatellite,
     bool? buildingsEnabled,
     MapStyle? mapStyle,
+    String? localizedCountryCode,
+    String? localizedRegionCode,
+    String? localizedDepartmentCode,
   }) {
     return MapState(
       userPosition: userPosition ?? this.userPosition,
@@ -80,6 +93,10 @@ class MapState {
       isSatellite: isSatellite ?? this.isSatellite,
       buildingsEnabled: buildingsEnabled ?? this.buildingsEnabled,
       mapStyle: mapStyle ?? this.mapStyle,
+      localizedCountryCode: localizedCountryCode ?? this.localizedCountryCode,
+      localizedRegionCode: localizedRegionCode ?? this.localizedRegionCode,
+      localizedDepartmentCode:
+          localizedDepartmentCode ?? this.localizedDepartmentCode,
     );
   }
 }
@@ -172,12 +189,9 @@ class MapController extends StateNotifier<MapState> {
   DateTime? _lastRefreshTime;
   static const Duration _minRefreshInterval = Duration(seconds: 2);
 
-  // Accumule TOUS les POIs jamais fetches (ne remplace pas, fusionne)
-  final Map<String, Poi> _allPoisBySameSession = {};
-
   DateTime? _lastPrefetchTime;
   static const Duration _minPrefetchInterval = Duration(seconds: 30);
-  static const double _prefetchRadiusMeters = 20000;
+  static const double _prefetchRadiusMeters = 10000;
 
   Future<void> init() async {
     state = state.copyWith(isLoading: true, error: null);
@@ -195,6 +209,11 @@ class MapController extends StateNotifier<MapState> {
         return;
       }
 
+      state = state.copyWith(
+        localizedCountryCode:
+        _countryCodeFromCoordinates(pos.latitude, pos.longitude),
+      );
+
       await refreshNearby();
       state = state.copyWith(isLoading: false);
     } catch (e) {
@@ -211,13 +230,16 @@ class MapController extends StateNotifier<MapState> {
   Future<void> refreshNearby({
     double? userLatOverride,
     double? userLngOverride,
+    bool forceRefresh = false,
+    bool includeExistingPois = false,
   }) async {
     // Les spots s'affichent automatiquement par proximité (5km)
     // Pas de vérification de sélection nécessaire
 
     // OPTIMISÉ: Vérifie que suffisamment de temps s'est écoulé
     final now = DateTime.now();
-    if (_lastRefreshTime != null &&
+    if (!forceRefresh &&
+      _lastRefreshTime != null &&
         now.difference(_lastRefreshTime!) < _minRefreshInterval) {
       // Si on ne peut pas rafraîchir à cause du throttle mais qu'une erreur se montre,
       // on s'assure que c'est bien une erreur valide (pas juste "pas de destination")
@@ -261,13 +283,30 @@ class MapController extends StateNotifier<MapState> {
         filters: state.filters,
       );
 
-      // Ajoute les nouveaux POIs à l'accumulator (fusionne au lieu de remplacer)
-      for (final poi in pois) {
-        _allPoisBySameSession[poi.id] = poi;
+      final mergedById = <String, Poi>{};
+      if (includeExistingPois) {
+        for (final existingPoi in state.nearbyPois) {
+          mergedById[existingPoi.id] = existingPoi;
+        }
       }
+      for (final poi in pois) {
+        mergedById[poi.id] = poi;
+      }
+      final candidatePois = mergedById.values.toList();
 
-      // Récupère TOUS les POIs accumulés ET les trie par distance
-      final allPois = _allPoisBySameSession.values.toList();
+      final localizedDepartmentCode =
+          _inferLocalizedDepartmentCode(candidatePois, userLat, userLng);
+      final localizedRegionCode =
+          _regionCodeFromDepartmentCode(localizedDepartmentCode);
+      final areaFilteredPois = _filterToLocalizedArea(
+        pois: candidatePois,
+        localizedDepartmentCode: localizedDepartmentCode,
+        localizedRegionCode: localizedRegionCode,
+        userLat: userLat,
+        userLng: userLng,
+      );
+
+      final allPois = areaFilteredPois.toList();
       allPois.sort((a, b) {
         final distA = GeoUtils.distanceMeters(
           lat1: userLat,
@@ -298,6 +337,8 @@ class MapController extends StateNotifier<MapState> {
       state = state.copyWith(
         nearbyPois: allPois,
         displayedPois: displayedPois,
+        localizedDepartmentCode: localizedDepartmentCode,
+        localizedRegionCode: localizedRegionCode,
         isLoading: false,
       );
 
@@ -316,6 +357,134 @@ class MapController extends StateNotifier<MapState> {
       }
     }
     return false;
+  }
+
+  String? _countryCodeFromCoordinates(double lat, double lng) {
+    if (lat >= 41.0 && lat <= 51.7 && lng >= -5.9 && lng <= 10.0) {
+      return 'fr';
+    }
+    if (lat >= 15.7 && lat <= 16.6 && lng >= -61.95 && lng <= -61.0) {
+      return 'gp';
+    }
+    if (lat >= 14.3 && lat <= 14.95 && lng >= -61.3 && lng <= -60.7) {
+      return 'mq';
+    }
+    if (lat >= 1.8 && lat <= 6.0 && lng >= -54.8 && lng <= -51.5) {
+      return 'gf';
+    }
+    if (lat >= -21.45 && lat <= -20.85 && lng >= 55.1 && lng <= 55.9) {
+      return 're';
+    }
+    if (lat >= -13.2 && lat <= -12.55 && lng >= 45.0 && lng <= 45.4) {
+      return 'yt';
+    }
+    return null;
+  }
+
+  String? _inferLocalizedDepartmentCode(
+    List<Poi> pois,
+    double userLat,
+    double userLng,
+  ) {
+    final closePois = pois.where((poi) {
+      if (poi.departmentCode == null || poi.departmentCode!.isEmpty) {
+        return false;
+      }
+      final distance = GeoUtils.distanceMeters(
+        lat1: userLat,
+        lon1: userLng,
+        lat2: poi.lat,
+        lon2: poi.lng,
+      );
+      return distance <= 25000;
+    }).toList();
+
+    if (closePois.isEmpty) {
+      return null;
+    }
+
+    final frequency = <String, int>{};
+    for (final poi in closePois) {
+      final code = poi.departmentCode!;
+      frequency[code] = (frequency[code] ?? 0) + 1;
+    }
+
+    final ranked = frequency.entries.toList()
+      ..sort((a, b) => b.value.compareTo(a.value));
+    return ranked.firstOrNull?.key;
+  }
+
+  String? _regionCodeFromDepartmentCode(String? departmentCode) {
+    if (departmentCode == null || departmentCode.isEmpty) {
+      return null;
+    }
+
+    for (final country in allCountries) {
+      for (final region in country.regions) {
+        final hasDepartment =
+            region.departments.any((department) => department.code == departmentCode);
+        if (hasDepartment) {
+          return region.code;
+        }
+      }
+    }
+    return null;
+  }
+
+  Set<String> _departmentCodesForRegion(String regionCode) {
+    for (final country in allCountries) {
+      final region =
+          country.regions.firstWhereOrNull((candidate) => candidate.code == regionCode);
+      if (region != null) {
+        return region.departments.map((department) => department.code).toSet();
+      }
+    }
+    return const <String>{};
+  }
+
+  List<Poi> _filterToLocalizedArea({
+    required List<Poi> pois,
+    required String? localizedDepartmentCode,
+    required String? localizedRegionCode,
+    required double userLat,
+    required double userLng,
+  }) {
+    if (localizedDepartmentCode != null && localizedDepartmentCode.isNotEmpty) {
+      return pois.where((poi) {
+        final code = poi.departmentCode;
+        if (code == null || code.isEmpty) {
+          final distance = GeoUtils.distanceMeters(
+            lat1: userLat,
+            lon1: userLng,
+            lat2: poi.lat,
+            lon2: poi.lng,
+          );
+          return distance <= state.radiusMeters;
+        }
+        return code == localizedDepartmentCode;
+      }).toList();
+    }
+
+    if (localizedRegionCode != null && localizedRegionCode.isNotEmpty) {
+      final departmentCodes = _departmentCodesForRegion(localizedRegionCode);
+      if (departmentCodes.isNotEmpty) {
+        return pois.where((poi) {
+          final code = poi.departmentCode;
+          if (code == null || code.isEmpty) {
+            final distance = GeoUtils.distanceMeters(
+              lat1: userLat,
+              lon1: userLng,
+              lat2: poi.lat,
+              lon2: poi.lng,
+            );
+            return distance <= state.radiusMeters;
+          }
+          return departmentCodes.contains(code);
+        }).toList();
+      }
+    }
+
+    return pois;
   }
 
   void _prefetchAroundMe({
@@ -343,8 +512,14 @@ class MapController extends StateNotifier<MapState> {
 
   Future<void> setRadiusMeters(double value) async {
     // Rafraîchit TOUJOURS quand le rayon change (pas de seuil)
+    final previousRadius = state.radiusMeters;
+    final isExpansion = value > previousRadius;
+
     state = state.copyWith(radiusMeters: value);
-    await refreshNearby();
+    await refreshNearby(
+      forceRefresh: true,
+      includeExistingPois: isExpansion,
+    );
   }
 
   Future<void> updateRadius(double radiusMeters) async {

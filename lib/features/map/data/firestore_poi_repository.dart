@@ -133,6 +133,7 @@ class FirestorePoiRepository implements PoiRepository {
             source: 'firestore',
             updatedAt: _extractUpdatedAt(data),
             createdBy: data['createdBy'] as String?,
+            departmentCode: _extractDepartmentCode(data),
           ),
         );
       }
@@ -356,6 +357,19 @@ class FirestorePoiRepository implements PoiRepository {
     }
 
     return DateTime.now();
+  }
+
+  String? _extractDepartmentCode(Map<String, dynamic> data) {
+    final raw = data['departmentCode'] ?? data['departementCode'] ?? data['dept'];
+    if (raw == null) return null;
+
+    var code = raw.toString().trim().toUpperCase();
+    if (code.isEmpty) return null;
+
+    if (RegExp(r'^\d$').hasMatch(code)) {
+      code = '0$code';
+    }
+    return code;
   }
 
   List<String> _stringList(dynamic value) {

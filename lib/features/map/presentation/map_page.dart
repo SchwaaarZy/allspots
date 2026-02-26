@@ -266,276 +266,250 @@ class _MapViewState extends ConsumerState<MapView> {
     final userPos = userPosition;
     // Recréer l'état complet pour _maybeAutoClaimXp (il en a besoin)
     final fullState = ref.read(mapControllerProvider);
+    final visiblePois = displayedPois;
 
-    return StreamBuilder<QuerySnapshot<Map<String, dynamic>>>(
-      stream: FirebaseFirestore.instance.collection('spots').snapshots(),
-      builder: (context, snapshot) {
-        final activeFirestoreIds = snapshot.hasData
-            ? snapshot.data!.docs
-                .where((doc) => doc.data()['isPublic'] != false)
-                .map((doc) => doc.id)
-                .toSet()
-            : <String>{};
+    // Debug: afficher le statut du chargement
+    debugPrint(
+      '[MapView] displayed=${displayedPois.length}, visible=${visiblePois.length}, '
+      'isLoading=$isLoading, error=$error, '
+      'userPos=${userPos != null ? "OK" : "NULL"}',
+    );
 
-        final visiblePois = snapshot.hasData
-            ? displayedPois
-                .where(
-                  (poi) =>
-                      poi.source != 'firestore' ||
-                      activeFirestoreIds.contains(poi.id),
-                )
-                .toList()
-            : displayedPois;
+    Future.microtask(
+      () => _maybeAutoClaimXp(fullState.copyWith(nearbyPois: visiblePois)),
+    );
 
-        // Debug: afficher le statut du chargement
-        debugPrint(
-          '[MapView] displayed=${displayedPois.length}, visible=${visiblePois.length}, '
-          'isLoading=$isLoading, error=$error, '
-          'userPos=${userPos != null ? "OK" : "NULL"}',
-        );
-
-        Future.microtask(
-          () => _maybeAutoClaimXp(fullState.copyWith(nearbyPois: visiblePois)),
-        );
-
-        return Stack(
-          children: [
-            ClipRRect(
-              borderRadius: const BorderRadius.vertical(
-                top: Radius.circular(_mapCornerRadius),
-                bottom: Radius.circular(_mapCornerRadius),
+    return Stack(
+      children: [
+        ClipRRect(
+          borderRadius: const BorderRadius.vertical(
+            top: Radius.zero,
+            bottom: Radius.circular(_mapCornerRadius),
+          ),
+          child: flutter_map.FlutterMap(
+            mapController: _flutterMapController,
+            options: flutter_map.MapOptions(
+              initialCenter: LatLng(
+                userPos?.latitude ?? 48.8566,
+                userPos?.longitude ?? 2.3522,
               ),
-              child: flutter_map.FlutterMap(
-                mapController: _flutterMapController,
-                options: flutter_map.MapOptions(
-                  initialCenter: LatLng(
-                    userPos?.latitude ?? 48.8566,
-                    userPos?.longitude ?? 2.3522,
-                  ),
-                  initialZoom: 15,
-                  minZoom: 1,
-                  maxZoom: 18,
-                ),
-                children: [
-                  flutter_map.TileLayer(
-                    urlTemplate:
-                        ref.watch(mapControllerProvider).mapStyle.urlTemplate,
-                    userAgentPackageName: 'com.allspots',
-                    subdomains:
-                        ref.watch(mapControllerProvider).mapStyle.subdomains,
-                    maxZoom: ref
-                        .watch(mapControllerProvider)
-                        .mapStyle
-                        .maxZoom
-                        .toDouble(),
-                  ),
-                  flutter_map.MarkerLayer(
-                    markers: visiblePois.map((p) {
-                      return flutter_map.Marker(
-                        point: LatLng(p.lat, p.lng),
-                        width: 50,
-                        height: 50,
-                        alignment: Alignment.center,
-                        child: GestureDetector(
-                          onTap: () {
-                            _showPoiPopup(context, p, LatLng(p.lat, p.lng));
-                          },
-                          child: Center(
-                            child: Icon(
-                              Icons.location_on,
-                              color: _getColorForCategory(p.category),
-                              size: 30,
-                            ),
-                          ),
+              initialZoom: 15,
+              minZoom: 1,
+              maxZoom: 18,
+            ),
+            children: [
+              flutter_map.TileLayer(
+                urlTemplate: ref.watch(mapControllerProvider).mapStyle.urlTemplate,
+                userAgentPackageName: 'com.allspots',
+                subdomains: ref.watch(mapControllerProvider).mapStyle.subdomains,
+                maxZoom: ref
+                    .watch(mapControllerProvider)
+                    .mapStyle
+                    .maxZoom
+                    .toDouble(),
+              ),
+              flutter_map.MarkerLayer(
+                markers: visiblePois.map((p) {
+                  return flutter_map.Marker(
+                    point: LatLng(p.lat, p.lng),
+                    width: 50,
+                    height: 50,
+                    alignment: Alignment.center,
+                    child: GestureDetector(
+                      onTap: () {
+                        _showPoiPopup(context, p, LatLng(p.lat, p.lng));
+                      },
+                      child: Center(
+                        child: Icon(
+                          Icons.location_on,
+                          color: _getColorForCategory(p.category),
+                          size: 30,
                         ),
+                      ),
+                    ),
+                  );
+                }).toList(),
+              ),
+              if (userPos != null)
+                flutter_map.MarkerLayer(
+                  markers: [
+                    flutter_map.Marker(
+                      point: LatLng(userPos.latitude, userPos.longitude),
+                      width: 12,
+                      height: 12,
+                      child: Container(
+                        decoration: const BoxDecoration(
+                          color: Colors.blue,
+                          shape: BoxShape.circle,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+            ],
+          ),
+        ),
+        // Aucun message d'erreur - les spots s'affichent par proximité automatiquement
+        if (error != null)
+          Positioned(
+            top: 0,
+            left: 0,
+            right: 0,
+            child: Container(
+              color: Colors.orange.shade600,
+              padding: const EdgeInsets.all(12),
+              child: Text(
+                error,
+                style: const TextStyle(
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 12,
+                ),
+              ),
+            ),
+          ),
+        // Sélecteur de rayon (bas gauche)
+        if (_showRadiusSelector)
+          Positioned(
+            left: 12,
+            bottom: 12,
+            right: 90,
+            child: RadiusSelector(
+              currentRadius: ref.watch(mapControllerProvider).radiusMeters,
+              radiusOptions: const [5000, 10000, 15000, 20000],
+              onRadiusChanged: (radius) {
+                ref.read(mapControllerProvider.notifier).updateRadius(radius);
+              },
+            ),
+          ),
+        // Contrôles secondaires (haut droit)
+        Positioned(
+          right: 12,
+          bottom: 12,
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              const _MapUsersCountBadge(),
+              const SizedBox(height: 8),
+              Material(
+                color: Colors.white,
+                elevation: 3,
+                borderRadius: BorderRadius.circular(12),
+                clipBehavior: Clip.antiAlias,
+                child: IconButton(
+                  onPressed: () => _showMapStyleSelector(context),
+                  tooltip: 'Style de carte',
+                  splashRadius: 22,
+                  constraints: const BoxConstraints.tightFor(
+                    width: 44,
+                    height: 44,
+                  ),
+                  padding: EdgeInsets.zero,
+                  icon: const Icon(
+                    Icons.layers,
+                    size: 22,
+                    color: Colors.blue,
+                  ),
+                ),
+              ),
+              const SizedBox(height: 8),
+              Material(
+                color: Colors.white,
+                elevation: 3,
+                borderRadius: BorderRadius.circular(12),
+                clipBehavior: Clip.antiAlias,
+                child: IconButton(
+                  onPressed: () => _showLegend(context),
+                  tooltip: 'Légende',
+                  splashRadius: 22,
+                  constraints: const BoxConstraints.tightFor(
+                    width: 44,
+                    height: 44,
+                  ),
+                  padding: EdgeInsets.zero,
+                  icon: const Icon(
+                    Icons.info_outline,
+                    size: 22,
+                    color: Colors.blue,
+                  ),
+                ),
+              ),
+              const SizedBox(height: 8),
+              Container(
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(12),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.black.withValues(alpha: 0.2),
+                      blurRadius: 8,
+                      offset: const Offset(0, 3),
+                    ),
+                  ],
+                ),
+                child: Material(
+                  color: Colors.transparent,
+                  child: IconButton(
+                    onPressed: () =>
+                        setState(() => _showRadiusSelector = !_showRadiusSelector),
+                    tooltip: 'Rayon de recherche',
+                    splashRadius: 22,
+                    constraints: const BoxConstraints.tightFor(
+                      width: 44,
+                      height: 44,
+                    ),
+                    padding: EdgeInsets.zero,
+                    icon: const Icon(
+                      Icons.radio_button_checked,
+                      size: 22,
+                      color: Colors.blue,
+                    ),
+                  ),
+                ),
+              ),
+              const SizedBox(height: 8),
+              Container(
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(12),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.black.withValues(alpha: 0.2),
+                      blurRadius: 8,
+                      offset: const Offset(0, 3),
+                    ),
+                  ],
+                ),
+                child: Material(
+                  color: Colors.transparent,
+                  child: IconButton(
+                    onPressed: () async {
+                      final pos = ref.read(mapControllerProvider).userPosition;
+                      if (pos == null) return;
+                      _flutterMapController.move(
+                        LatLng(pos.latitude, pos.longitude),
+                        15,
                       );
-                    }).toList(),
-                  ),
-                  if (userPos != null)
-                    flutter_map.MarkerLayer(
-                      markers: [
-                        flutter_map.Marker(
-                          point: LatLng(userPos.latitude, userPos.longitude),
-                          width: 12,
-                          height: 12,
-                          child: Container(
-                            decoration: const BoxDecoration(
-                              color: Colors.blue,
-                              shape: BoxShape.circle,
-                            ),
-                          ),
-                        ),
-                      ],
+                    },
+                    tooltip: 'Me centrer',
+                    splashRadius: 22,
+                    constraints: const BoxConstraints.tightFor(
+                      width: 44,
+                      height: 44,
                     ),
-                ],
-              ),
-            ),
-            // Aucun message d'erreur - les spots s'affichent par proximité automatiquement
-            if (error != null)
-              Positioned(
-                top: 0,
-                left: 0,
-                right: 0,
-                child: Container(
-                  color: Colors.orange.shade600,
-                  padding: const EdgeInsets.all(12),
-                  child: Text(
-                    error,
-                    style: const TextStyle(
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 12,
+                    padding: EdgeInsets.zero,
+                    icon: const Icon(
+                      Icons.my_location,
+                      size: 22,
+                      color: Colors.blue,
                     ),
                   ),
                 ),
               ),
-            // Sélecteur de rayon (bas gauche)
-            if (_showRadiusSelector)
-              Positioned(
-                left: 12,
-                bottom: 12,
-                right: 90,
-                child: RadiusSelector(
-                  currentRadius: ref.watch(mapControllerProvider).radiusMeters,
-                  radiusOptions: const [5000, 10000, 15000, 20000],
-                  onRadiusChanged: (radius) {
-                    ref
-                        .read(mapControllerProvider.notifier)
-                        .updateRadius(radius);
-                  },
-                ),
-              ),
-            // Contrôles secondaires (haut droit)
-            Positioned(
-              right: 12,
-              bottom: 12,
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  const _MapUsersCountBadge(),
-                  const SizedBox(height: 8),
-                  Material(
-                    color: Colors.white,
-                    elevation: 3,
-                    borderRadius: BorderRadius.circular(12),
-                    clipBehavior: Clip.antiAlias,
-                    child: IconButton(
-                      onPressed: () => _showMapStyleSelector(context),
-                      tooltip: 'Style de carte',
-                      splashRadius: 22,
-                      constraints: const BoxConstraints.tightFor(
-                        width: 44,
-                        height: 44,
-                      ),
-                      padding: EdgeInsets.zero,
-                      icon: const Icon(
-                        Icons.layers,
-                        size: 22,
-                        color: Colors.blue,
-                      ),
-                    ),
-                  ),
-                  const SizedBox(height: 8),
-                  Material(
-                    color: Colors.white,
-                    elevation: 3,
-                    borderRadius: BorderRadius.circular(12),
-                    clipBehavior: Clip.antiAlias,
-                    child: IconButton(
-                      onPressed: () => _showLegend(context),
-                      tooltip: 'Légende',
-                      splashRadius: 22,
-                      constraints: const BoxConstraints.tightFor(
-                        width: 44,
-                        height: 44,
-                      ),
-                      padding: EdgeInsets.zero,
-                      icon: const Icon(
-                        Icons.info_outline,
-                        size: 22,
-                        color: Colors.blue,
-                      ),
-                    ),
-                  ),
-                  const SizedBox(height: 8),
-                  Container(
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(12),
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.black.withValues(alpha: 0.2),
-                          blurRadius: 8,
-                          offset: const Offset(0, 3),
-                        ),
-                      ],
-                    ),
-                    child: Material(
-                      color: Colors.transparent,
-                      child: IconButton(
-                        onPressed: () => setState(
-                            () => _showRadiusSelector = !_showRadiusSelector),
-                        tooltip: 'Rayon de recherche',
-                        splashRadius: 22,
-                        constraints: const BoxConstraints.tightFor(
-                          width: 44,
-                          height: 44,
-                        ),
-                        padding: EdgeInsets.zero,
-                        icon: const Icon(
-                          Icons.radio_button_checked,
-                          size: 22,
-                          color: Colors.blue,
-                        ),
-                      ),
-                    ),
-                  ),
-                  const SizedBox(height: 8),
-                  Container(
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(12),
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.black.withValues(alpha: 0.2),
-                          blurRadius: 8,
-                          offset: const Offset(0, 3),
-                        ),
-                      ],
-                    ),
-                    child: Material(
-                      color: Colors.transparent,
-                      child: IconButton(
-                        onPressed: () async {
-                          final pos =
-                              ref.read(mapControllerProvider).userPosition;
-                          if (pos == null) return;
-                          _flutterMapController.move(
-                            LatLng(pos.latitude, pos.longitude),
-                            15,
-                          );
-                        },
-                        tooltip: 'Me centrer',
-                        splashRadius: 22,
-                        constraints: const BoxConstraints.tightFor(
-                          width: 44,
-                          height: 44,
-                        ),
-                        padding: EdgeInsets.zero,
-                        icon: const Icon(
-                          Icons.my_location,
-                          size: 22,
-                          color: Colors.blue,
-                        ),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ],
-        );
-      },
+            ],
+          ),
+        ),
+      ],
     );
   }
 

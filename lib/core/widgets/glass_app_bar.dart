@@ -48,12 +48,17 @@ class GlassAppBar extends StatelessWidget implements PreferredSizeWidget {
   Widget build(BuildContext context) {
     const topBlue = Color(0xFF38BDF8);
     const bottomBlue = Color(0xFF7DD3FC);
+    const targetTopInset = 47.0;
     final titleStyle = Theme.of(context).appBarTheme.titleTextStyle;
     final resolvedBackgroundImage =
         backgroundImage ?? 'assets/images/bg_header_allspots.png';
+    final topInset = MediaQuery.paddingOf(context).top;
+    final extraToolbarHeight = topInset < targetTopInset
+        ? targetTopInset - topInset
+        : 0.0;
 
     return AppBar(
-      toolbarHeight: height,
+      toolbarHeight: height + extraToolbarHeight,
       title: titleWidget != null
           ? DefaultTextStyle.merge(style: titleStyle, child: titleWidget!)
           : (title != null

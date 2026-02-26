@@ -50,12 +50,8 @@ class Poi {
   /// Retourne le nom du POI, ou une étiquette pertinente si le nom est vide
   String get displayName {
     final trimmedName = name.trim();
-    final normalizedName = trimmedName.toLowerCase();
-    final isPlaceholderName = normalizedName.isEmpty ||
-        normalizedName == 'poi sans nom' ||
-        normalizedName.contains('poi sans nom') ||
-        normalizedName.contains("point d'interet: poi sans nom") ||
-        normalizedName.contains('point d interet: poi sans nom');
+    final normalizedName = _normalizeLabel(trimmedName);
+    final isPlaceholderName = _isPlaceholderName(normalizedName);
 
     if (!isPlaceholderName) return trimmedName;
 
@@ -75,6 +71,52 @@ class Poi {
 
     if (subCategoryLabel.isNotEmpty) return subCategoryLabel;
     return category.label;
+  }
+
+  bool _isPlaceholderName(String normalizedName) {
+    if (normalizedName.isEmpty) return true;
+
+    const placeholders = {
+      'poi sans nom',
+      'point d interet poi sans nom',
+      'point dinteret poi sans nom',
+      'point interet poi sans nom',
+      'sans nom',
+      'spot',
+      'unknown',
+      'unnamed',
+      'poi',
+    };
+
+    if (placeholders.contains(normalizedName)) return true;
+    if (normalizedName.contains('poi sans nom')) return true;
+    if (normalizedName.contains('point d interet') &&
+        normalizedName.contains('sans nom')) {
+      return true;
+    }
+    return false;
+  }
+
+  String _normalizeLabel(String input) {
+    return input
+        .toLowerCase()
+        .trim()
+        .replaceAll('é', 'e')
+        .replaceAll('è', 'e')
+        .replaceAll('ê', 'e')
+        .replaceAll('à', 'a')
+        .replaceAll('â', 'a')
+        .replaceAll('ù', 'u')
+        .replaceAll('û', 'u')
+        .replaceAll('ô', 'o')
+        .replaceAll('î', 'i')
+        .replaceAll('ï', 'i')
+        .replaceAll("'", ' ')
+        .replaceAll('-', ' ')
+        .replaceAll(':', ' ')
+        .replaceAll(RegExp(r'[^a-z0-9 ]'), ' ')
+        .replaceAll(RegExp(r'\s+'), ' ')
+        .trim();
   }
 
   Map<String, dynamic> toCacheMap() {

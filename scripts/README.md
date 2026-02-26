@@ -253,6 +253,20 @@ node scripts/dedupe_firestore_spots.js
 
 # Nettoyage effectif + backup JSON
 node scripts/dedupe_firestore_spots.js --apply --backup scripts/out/duplicates_backup.json
+
+# Nettoyage des noms placeholders (dry-run)
+python3 scripts/clean_poi_placeholder_names.py
+
+# Nettoyage effectif des noms placeholders
+python3 scripts/clean_poi_placeholder_names.py --apply
+
+# Nettoyage effectif + backup JSON des changements
+python3 scripts/clean_poi_placeholder_names.py \
+  --apply \
+  --backup scripts/out/poi_name_cleanup_backup.json
+
+# Test sur un échantillon
+python3 scripts/clean_poi_placeholder_names.py --limit 500
 ```
 
 **Structure Firestore générée:**
