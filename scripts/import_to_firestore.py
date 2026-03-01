@@ -8,8 +8,10 @@ Usage:
 from __future__ import annotations
 
 import json
+import os
 import re
 import sys
+import time
 import unicodedata
 from datetime import datetime, timezone
 from pathlib import Path
@@ -148,6 +150,34 @@ def chunks(items: List[Tuple[str, Dict[str, Any]]], size: int) -> Iterable[List[
         yield items[index : index + size]
 
 
+def _is_retryable_firestore_error(exc: Exception) -> bool:
+    message = str(exc).lower()
+    retry_markers = (
+        "429",
+        "quota exceeded",
+        "resource exhausted",
+        "deadline exceeded",
+        "timed out",
+        "unavailable",
+    )
+    return any(marker in message for marker in retry_markers)
+
+
+def commit_with_retry(batch, *, max_retries: int = 8, base_delay: float = 2.0) -> None:
+    for attempt in range(max_retries + 1):
+        try:
+            batch.commit()
+            return
+        except Exception as exc:
+            if attempt >= max_retries or not _is_retryable_firestore_error(exc):
+                raise
+            wait_seconds = min(base_delay * (2**attempt), 90.0)
+            print(
+                f"⏳ Batch retry {attempt + 1}/{max_retries} après erreur quota/réseau: {exc} | pause={wait_seconds:.1f}s"
+            )
+            time.sleep(wait_seconds)
+
+
 def import_pois(json_path: Path) -> None:
     if not json_path.exists():
         raise FileNotFoundError(f"Fichier introuvable: {json_path}")
@@ -202,17 +232,47 @@ def import_pois(json_path: Path) -> None:
 
     print(f"📊 Préparés: {len(prepared)} | ignorés: {skipped}")
 
-    imported = 0
-    for part in chunks(prepared, 500):
+    progress_dir = Path(
+        os.getenv("FIRESTORE_PROGRESS_DIR", str(json_path.parent / "import_progress"))
+    )
+    progress_dir.mkdir(parents=True, exist_ok=True)
+    progress_file = progress_dir / f"{json_path.stem}.offset"
+
+    start_offset = 0
+    if progress_file.exists():
+        try:
+            start_offset = int(progress_file.read_text(encoding="utf-8").strip() or "0")
+        except Exception:
+            start_offset = 0
+
+    total_prepared = len(prepared)
+    if start_offset > 0:
+        if start_offset >= total_prepared:
+            print(f"✅ Chunk déjà terminé (offset={start_offset}/{total_prepared})")
+            return
+        prepared = prepared[start_offset:]
+        print(f"↪️ Reprise depuis offset {start_offset}/{total_prepared}")
+
+    batch_size = int(os.getenv("FIRESTORE_BATCH_SIZE", "250"))
+    batch_size = max(1, min(batch_size, 500))
+    inter_batch_sleep = float(os.getenv("FIRESTORE_BATCH_SLEEP", "0.2"))
+
+    imported = start_offset
+    for part in chunks(prepared, batch_size):
         batch = db.batch()
         for doc_id, record in part:
             ref = db.collection("spots").document(doc_id)
             batch.set(ref, record, merge=True)
-        batch.commit()
+        commit_with_retry(batch)
         imported += len(part)
-        print(f"💾 Batch ok: {imported}/{len(prepared)}")
+        progress_file.write_text(str(imported), encoding="utf-8")
+        print(f"💾 Batch ok: {imported}/{total_prepared}")
+        if inter_batch_sleep > 0:
+            time.sleep(inter_batch_sleep)
 
     print(f"✅ Import terminé: {imported} spots")
+    if progress_file.exists():
+        progress_file.unlink()
     if skipped:
         print(f"⚠️ Ignorés: {skipped}")
 
