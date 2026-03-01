@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/foundation.dart';
+import 'dart:core';
 import 'dart:math' as math;
 import '../../../core/utils/geo_utils.dart';
 import '../domain/poi.dart';
@@ -90,6 +91,7 @@ class FirestorePoiRepository implements PoiRepository {
       for (final doc in docs) {
         final data = doc.data();
         if (data['isPublic'] == false) continue;
+        if (_isGenericSpotData(data)) continue;
 
         final coordinates = _extractCoordinates(data);
         final lat = coordinates.$1;
@@ -370,6 +372,77 @@ class FirestorePoiRepository implements PoiRepository {
       code = '0$code';
     }
     return code;
+  }
+
+  bool _isGenericSpotData(Map<String, dynamic> data) {
+    final normalizedName = _normalizeToken((data['name'] as String?) ?? '');
+    final normalizedCategoryGroup =
+        _normalizeToken((data['categoryGroup'] as String?) ?? (data['category'] as String?) ?? '');
+    final normalizedCategoryItem =
+        _normalizeToken((data['categoryItem'] as String?) ?? (data['subCategory'] as String?) ?? '');
+
+    const genericNames = {
+      'autre',
+      'other',
+      'poi',
+      'spot',
+      'sans nom',
+      'poi sans nom',
+      'point d interet poi sans nom',
+      'point dinteret poi sans nom',
+      'point interet poi sans nom',
+      'point d interet',
+      'point interet',
+      'unknown',
+      'unnamed',
+    };
+
+    const genericCategories = {'autre', 'other'};
+    const genericSubCategories = {
+      'autre',
+      'other',
+      'poi',
+      'point d interet',
+      'point interet',
+    };
+
+    if (normalizedName.isEmpty || genericNames.contains(normalizedName)) {
+      return true;
+    }
+    if (normalizedName.contains('poi sans nom')) {
+      return true;
+    }
+
+    if (genericCategories.contains(normalizedCategoryGroup)) {
+      return true;
+    }
+    if (genericSubCategories.contains(normalizedCategoryItem)) {
+      return true;
+    }
+
+    return false;
+  }
+
+  String _normalizeToken(String value) {
+    return value
+        .toLowerCase()
+        .trim()
+        .replaceAll('é', 'e')
+        .replaceAll('è', 'e')
+        .replaceAll('ê', 'e')
+        .replaceAll('à', 'a')
+        .replaceAll('â', 'a')
+        .replaceAll('ù', 'u')
+        .replaceAll('û', 'u')
+        .replaceAll('ô', 'o')
+        .replaceAll('î', 'i')
+        .replaceAll('ï', 'i')
+        .replaceAll("'", ' ')
+        .replaceAll('-', ' ')
+        .replaceAll(':', ' ')
+        .replaceAll(RegExp(r'[^a-z0-9 ]'), ' ')
+        .replaceAll(RegExp(r'\s+'), ' ')
+        .trim();
   }
 
   List<String> _stringList(dynamic value) {

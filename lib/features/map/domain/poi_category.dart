@@ -81,21 +81,40 @@ extension PoiCategoryX on PoiCategory {
 
 /// Convertit une string en PoiCategory
 PoiCategory poiCategoryFromString(String value) {
-  switch (value.toLowerCase()) {
-    case 'culture':
-      return PoiCategory.culture;
-    case 'nature':
-      return PoiCategory.nature;
-    case 'experiencegustative':
-    case 'experience gustative':
-      return PoiCategory.experienceGustative;
-    case 'histoire':
-      return PoiCategory.histoire;
-    case 'activites':
-      return PoiCategory.activites;
-    default:
-      return PoiCategory.culture;
+  final normalized = value
+      .toLowerCase()
+      .trim()
+      .replaceAll('é', 'e')
+      .replaceAll('è', 'e')
+      .replaceAll('ê', 'e')
+      .replaceAll('à', 'a')
+      .replaceAll('â', 'a')
+      .replaceAll('ù', 'u')
+      .replaceAll('û', 'u')
+      .replaceAll('ô', 'o')
+      .replaceAll('î', 'i')
+      .replaceAll('ï', 'i')
+      .replaceAll(RegExp(r'[^a-z0-9 ]'), ' ')
+      .replaceAll(RegExp(r'\s+'), ' ')
+      .trim();
+
+  if (normalized.contains('patrimoine') || normalized.contains('histoire')) {
+    return PoiCategory.histoire;
   }
+  if (normalized.contains('nature')) {
+    return PoiCategory.nature;
+  }
+  if (normalized.contains('culture')) {
+    return PoiCategory.culture;
+  }
+  if (normalized.contains('experience') || normalized.contains('gustative')) {
+    return PoiCategory.experienceGustative;
+  }
+  if (normalized.contains('activite') || normalized.contains('plein air')) {
+    return PoiCategory.activites;
+  }
+
+  return PoiCategory.culture;
 }
 
 String formatPoiSubCategory(String? value) {

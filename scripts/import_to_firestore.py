@@ -241,7 +241,9 @@ def import_pois(json_path: Path) -> None:
     start_offset = 0
     if progress_file.exists():
         try:
-            start_offset = int(progress_file.read_text(encoding="utf-8").strip() or "0")
+            raw_offset = progress_file.read_text(encoding="utf-8").strip()
+            match = re.search(r"\d+", raw_offset or "")
+            start_offset = int(match.group(0)) if match else 0
         except Exception:
             start_offset = 0
 

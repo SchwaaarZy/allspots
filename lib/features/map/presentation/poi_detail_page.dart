@@ -38,6 +38,7 @@ class _PoiDetailPageState extends ConsumerState<PoiDetailPage> {
   final _commentController = TextEditingController();
   bool _isLoadingRating = false;
   bool _isTogglingFavorite = false;
+  bool _isReportingSpot = false;
   Uint8List? _selectedPhotoBytes;
   String? _selectedPhotoBase64;
 
@@ -211,6 +212,138 @@ class _PoiDetailPageState extends ConsumerState<PoiDetailPage> {
         );
         break;
     }
+  }
+
+  Future<void> _submitSpotReport({
+    required String reason,
+    required String details,
+  }) async {
+    if (_isReportingSpot) return;
+
+    final user = FirebaseAuth.instance.currentUser;
+    if (user == null) {
+      if (!mounted) return;
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('Connectez-vous pour signaler un spot.')),
+      );
+      return;
+    }
+
+    setState(() => _isReportingSpot = true);
+    try {
+      await FirebaseFirestore.instance.collection('spot_reports').add({
+        'spotId': widget.poi.id,
+        'spotName': widget.poi.displayName,
+        'spotCategory': widget.poi.category.name,
+        'departmentCode': widget.poi.departmentCode,
+        'lat': widget.poi.lat,
+        'lng': widget.poi.lng,
+        'reason': reason,
+        'details': details.trim(),
+        'status': 'open',
+        'createdAt': FieldValue.serverTimestamp(),
+        'updatedAt': FieldValue.serverTimestamp(),
+        'reporterId': user.uid,
+        'reporterEmail': user.email,
+      });
+
+      if (!mounted) return;
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text('✅ Signalement envoyé à l\'administration.'),
+        ),
+      );
+    } catch (e) {
+      if (!mounted) return;
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('Erreur envoi signalement: $e')),
+      );
+    } finally {
+      if (mounted) {
+        setState(() => _isReportingSpot = false);
+      }
+    }
+  }
+
+  Future<void> _showReportSpotDialog() async {
+    final detailsController = TextEditingController();
+    String selectedReason = 'Lieu inexistant';
+
+    final confirmed = await showDialog<bool>(
+      context: context,
+      builder: (dialogContext) {
+        return StatefulBuilder(
+          builder: (context, setDialogState) => AlertDialog(
+            title: const Text('Signaler ce spot'),
+            content: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                DropdownButtonFormField<String>(
+                  initialValue: selectedReason,
+                  decoration: const InputDecoration(
+                    labelText: 'Raison',
+                    border: OutlineInputBorder(),
+                    isDense: true,
+                  ),
+                  items: const [
+                    DropdownMenuItem(
+                      value: 'Lieu inexistant',
+                      child: Text('Lieu inexistant'),
+                    ),
+                    DropdownMenuItem(
+                      value: 'Informations incorrectes',
+                      child: Text('Informations incorrectes'),
+                    ),
+                    DropdownMenuItem(
+                      value: 'Doublon',
+                      child: Text('Doublon'),
+                    ),
+                    DropdownMenuItem(
+                      value: 'Autre',
+                      child: Text('Autre'),
+                    ),
+                  ],
+                  onChanged: (value) {
+                    if (value == null) return;
+                    setDialogState(() {
+                      selectedReason = value;
+                    });
+                  },
+                ),
+                const SizedBox(height: 10),
+                TextField(
+                  controller: detailsController,
+                  maxLines: 3,
+                  decoration: const InputDecoration(
+                    labelText: 'Détails (optionnel)',
+                    hintText: 'Ex: fermé définitivement, adresse erronée...',
+                    border: OutlineInputBorder(),
+                  ),
+                ),
+              ],
+            ),
+            actions: [
+              TextButton(
+                onPressed: () => Navigator.pop(dialogContext, false),
+                child: const Text('Annuler'),
+              ),
+              ElevatedButton(
+                onPressed: () => Navigator.pop(dialogContext, true),
+                child: const Text('Envoyer'),
+              ),
+            ],
+          ),
+        );
+      },
+    );
+
+    if (confirmed == true) {
+      await _submitSpotReport(
+        reason: selectedReason,
+        details: detailsController.text,
+      );
+    }
+    detailsController.dispose();
   }
 
   void _toggleFavorite(
@@ -574,6 +707,27 @@ class _PoiDetailPageState extends ConsumerState<PoiDetailPage> {
                 onPressed: _addToRoadTrip,
                 icon: const Icon(Icons.route),
                 label: const Text('Ajouter au road trip'),
+              ),
+            ),
+          ),
+
+          Padding(
+            padding: const EdgeInsets.fromLTRB(16, 0, 16, 16),
+            child: SizedBox(
+              width: double.infinity,
+              child: OutlinedButton.icon(
+                onPressed: _isReportingSpot ? null : _showReportSpotDialog,
+                icon: _isReportingSpot
+                    ? const SizedBox(
+                        width: 16,
+                        height: 16,
+                        child: CircularProgressIndicator(strokeWidth: 2),
+                      )
+                    : const Icon(Icons.flag_outlined),
+                style: OutlinedButton.styleFrom(
+                  foregroundColor: Colors.orange.shade800,
+                ),
+                label: const Text('Signaler ce spot'),
               ),
             ),
           ),

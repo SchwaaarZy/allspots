@@ -648,20 +648,61 @@ class _ProfilePageState extends ConsumerState<ProfilePage>
                                         const SizedBox(height: 8),
                                         SizedBox(
                                           width: double.infinity,
-                                          child: ElevatedButton.icon(
-                                            onPressed: () {
-                                              Navigator.pop(dialogContext);
-                                              Navigator.push(
-                                                context,
-                                                MaterialPageRoute(
-                                                  builder: (_) =>
-                                                      const CommunitySpotsManagementPage(),
+                                          child: StreamBuilder<QuerySnapshot>(
+                                            stream: FirebaseFirestore.instance
+                                                .collection('spot_reports')
+                                                .where('status', isEqualTo: 'open')
+                                                .snapshots(),
+                                            builder: (context, reportSnapshot) {
+                                              final openReportsCount =
+                                                  reportSnapshot.data?.docs.length ?? 0;
+
+                                              return ElevatedButton.icon(
+                                                onPressed: () {
+                                                  Navigator.pop(dialogContext);
+                                                  Navigator.push(
+                                                    context,
+                                                    MaterialPageRoute(
+                                                      builder: (_) =>
+                                                          const CommunitySpotsManagementPage(),
+                                                    ),
+                                                  );
+                                                },
+                                                icon: const Icon(
+                                                    Icons.admin_panel_settings),
+                                                label: Row(
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment.center,
+                                                  mainAxisSize: MainAxisSize.min,
+                                                  children: [
+                                                    const Text('Admin spots'),
+                                                    if (openReportsCount > 0) ...[
+                                                      const SizedBox(width: 8),
+                                                      Container(
+                                                        padding:
+                                                            const EdgeInsets.symmetric(
+                                                          horizontal: 8,
+                                                          vertical: 2,
+                                                        ),
+                                                        decoration: BoxDecoration(
+                                                          color: Colors.red,
+                                                          borderRadius:
+                                                              BorderRadius.circular(999),
+                                                        ),
+                                                        child: Text(
+                                                          '$openReportsCount',
+                                                          style: const TextStyle(
+                                                            color: Colors.white,
+                                                            fontWeight: FontWeight.bold,
+                                                            fontSize: 12,
+                                                          ),
+                                                        ),
+                                                      ),
+                                                    ],
+                                                  ],
                                                 ),
                                               );
                                             },
-                                            icon: const Icon(
-                                                Icons.admin_panel_settings),
-                                            label: const Text('Admin'),
                                           ),
                                         ),
                                       ],
