@@ -1,0 +1,1209 @@
+{
+  "generatedAt": "2026-03-02T12:22:27.348756Z",
+  "mode": "apply",
+  "scanned": 120,
+  "candidates": 120,
+  "deleted": 120,
+  "changes": [
+    {
+      "id": "osm_10000045063",
+      "name": "POI sans nom",
+      "categoryGroup": "Culture",
+      "categoryItem": "artwork",
+      "subCategory": null,
+      "departmentCode": "40",
+      "lat": 43.8822497,
+      "lng": -0.5204166
+    },
+    {
+      "id": "osm_10000364841",
+      "name": "POI sans nom",
+      "categoryGroup": "Culture",
+      "categoryItem": "artwork",
+      "subCategory": null,
+      "departmentCode": "53",
+      "lat": 48.0629547,
+      "lng": -0.7835392
+    },
+    {
+      "id": "osm_1000073255",
+      "name": "POI sans nom",
+      "categoryGroup": "Patrimoine et Histoire",
+      "categoryItem": "other",
+      "subCategory": null,
+      "departmentCode": "75",
+      "lat": 48.8361897,
+      "lng": 2.2406318
+    },
+    {
+      "id": "osm_1000092836",
+      "name": "POI sans nom",
+      "categoryGroup": "Culture",
+      "categoryItem": "artwork",
+      "subCategory": null,
+      "departmentCode": "75",
+      "lat": 48.8328301,
+      "lng": 2.2313618
+    },
+    {
+      "id": "osm_10001010472",
+      "name": "POI sans nom",
+      "categoryGroup": "Patrimoine et Histoire",
+      "categoryItem": "attraction",
+      "subCategory": null,
+      "departmentCode": "01",
+      "lat": 46.1389461,
+      "lng": 5.3568641
+    },
+    {
+      "id": "osm_10003330349",
+      "name": "POI sans nom",
+      "categoryGroup": "Culture",
+      "categoryItem": "artwork",
+      "subCategory": null,
+      "departmentCode": "17",
+      "lat": 46.0736776,
+      "lng": -1.0901322
+    },
+    {
+      "id": "osm_10003330350",
+      "name": "POI sans nom",
+      "categoryGroup": "Culture",
+      "categoryItem": "artwork",
+      "subCategory": null,
+      "departmentCode": "17",
+      "lat": 46.0738018,
+      "lng": -1.0901989
+    },
+    {
+      "id": "osm_10003811432",
+      "name": "POI sans nom",
+      "categoryGroup": "Patrimoine et Histoire",
+      "categoryItem": "other",
+      "subCategory": null,
+      "departmentCode": "34",
+      "lat": 43.6070424,
+      "lng": 3.8679796
+    },
+    {
+      "id": "osm_10003912947",
+      "name": "POI sans nom",
+      "categoryGroup": "Culture",
+      "categoryItem": "artwork",
+      "subCategory": null,
+      "departmentCode": "84",
+      "lat": 43.9448747,
+      "lng": 4.805052
+    },
+    {
+      "id": "osm_10006242952",
+      "name": "POI sans nom",
+      "categoryGroup": "Patrimoine et Histoire",
+      "categoryItem": "other",
+      "subCategory": null,
+      "departmentCode": "75",
+      "lat": 48.8615696,
+      "lng": 2.3415435
+    },
+    {
+      "id": "osm_10006278512",
+      "name": "POI sans nom",
+      "categoryGroup": "Culture",
+      "categoryItem": "artwork",
+      "subCategory": null,
+      "departmentCode": "84",
+      "lat": 43.9483747,
+      "lng": 4.8070183
+    },
+    {
+      "id": "osm_10006290258",
+      "name": "POI sans nom",
+      "categoryGroup": "Culture",
+      "categoryItem": "artwork",
+      "subCategory": null,
+      "departmentCode": "84",
+      "lat": 43.9481701,
+      "lng": 4.8075155
+    },
+    {
+      "id": "osm_10006298968",
+      "name": "POI sans nom",
+      "categoryGroup": "Culture",
+      "categoryItem": "artwork",
+      "subCategory": null,
+      "departmentCode": "84",
+      "lat": 43.9467754,
+      "lng": 4.8108248
+    },
+    {
+      "id": "osm_10006328718",
+      "name": "POI sans nom",
+      "categoryGroup": "Culture",
+      "categoryItem": "artwork",
+      "subCategory": null,
+      "departmentCode": "84",
+      "lat": 43.9485728,
+      "lng": 4.8061484
+    },
+    {
+      "id": "osm_10006340976",
+      "name": "POI sans nom",
+      "categoryGroup": "Culture",
+      "categoryItem": "artwork",
+      "subCategory": null,
+      "departmentCode": "75",
+      "lat": 48.8158526,
+      "lng": 2.3742017
+    },
+    {
+      "id": "osm_10006341085",
+      "name": "POI sans nom",
+      "categoryGroup": "Culture",
+      "categoryItem": "artwork",
+      "subCategory": null,
+      "departmentCode": "84",
+      "lat": 43.9488301,
+      "lng": 4.8034145
+    },
+    {
+      "id": "osm_10009190445",
+      "name": "POI sans nom",
+      "categoryGroup": "Culture",
+      "categoryItem": "artwork",
+      "subCategory": null,
+      "departmentCode": "46",
+      "lat": 44.4852785,
+      "lng": 1.5542248
+    },
+    {
+      "id": "osm_10009955420",
+      "name": "POI sans nom",
+      "categoryGroup": "Patrimoine et Histoire",
+      "categoryItem": "other",
+      "subCategory": null,
+      "departmentCode": "87",
+      "lat": 45.7991503,
+      "lng": 1.1538756
+    },
+    {
+      "id": "osm_10010137604",
+      "name": "POI sans nom",
+      "categoryGroup": "Culture",
+      "categoryItem": "artwork",
+      "subCategory": null,
+      "departmentCode": "75",
+      "lat": 48.8308114,
+      "lng": 2.3195839
+    },
+    {
+      "id": "osm_10010511481",
+      "name": "POI sans nom",
+      "categoryGroup": "Culture",
+      "categoryItem": "artwork",
+      "subCategory": null,
+      "departmentCode": "75",
+      "lat": 48.8331637,
+      "lng": 2.3620763
+    },
+    {
+      "id": "osm_10010511485",
+      "name": "POI sans nom",
+      "categoryGroup": "Culture",
+      "categoryItem": "artwork",
+      "subCategory": null,
+      "departmentCode": "75",
+      "lat": 48.8319889,
+      "lng": 2.3634619
+    },
+    {
+      "id": "osm_10010511486",
+      "name": "POI sans nom",
+      "categoryGroup": "Culture",
+      "categoryItem": "artwork",
+      "subCategory": null,
+      "departmentCode": "75",
+      "lat": 48.832238,
+      "lng": 2.3631376
+    },
+    {
+      "id": "osm_10010663068",
+      "name": "POI sans nom",
+      "categoryGroup": "Culture",
+      "categoryItem": "artwork",
+      "subCategory": null,
+      "departmentCode": "63",
+      "lat": 45.7277082,
+      "lng": 3.1064647
+    },
+    {
+      "id": "osm_10010969266",
+      "name": "POI sans nom",
+      "categoryGroup": "Patrimoine et Histoire",
+      "categoryItem": "other",
+      "subCategory": null,
+      "departmentCode": "34",
+      "lat": 43.6085994,
+      "lng": 3.8692044
+    },
+    {
+      "id": "osm_10011618547",
+      "name": "POI sans nom",
+      "categoryGroup": "Nature",
+      "categoryItem": "viewpoint",
+      "subCategory": null,
+      "departmentCode": "06",
+      "lat": 43.7685075,
+      "lng": 7.2658263
+    },
+    {
+      "id": "osm_10011628741",
+      "name": "POI sans nom",
+      "categoryGroup": "Nature",
+      "categoryItem": "viewpoint",
+      "subCategory": null,
+      "departmentCode": "06",
+      "lat": 43.7138949,
+      "lng": 7.3303526
+    },
+    {
+      "id": "osm_10011634731",
+      "name": "POI sans nom",
+      "categoryGroup": "Nature",
+      "categoryItem": "viewpoint",
+      "subCategory": null,
+      "departmentCode": "06",
+      "lat": 43.7665067,
+      "lng": 7.2602938
+    },
+    {
+      "id": "osm_10011814719",
+      "name": "POI sans nom",
+      "categoryGroup": "Experience gustative",
+      "categoryItem": "restaurant",
+      "subCategory": null,
+      "departmentCode": "83",
+      "lat": 43.8464185,
+      "lng": 6.5124279
+    },
+    {
+      "id": "osm_10012890423",
+      "name": "POI sans nom",
+      "categoryGroup": "Patrimoine et Histoire",
+      "categoryItem": "other",
+      "subCategory": null,
+      "departmentCode": "38",
+      "lat": 45.1195624,
+      "lng": 5.6677865
+    },
+    {
+      "id": "osm_10012919423",
+      "name": "POI sans nom",
+      "categoryGroup": "Patrimoine et Histoire",
+      "categoryItem": "other",
+      "subCategory": null,
+      "departmentCode": "38",
+      "lat": 45.1190893,
+      "lng": 5.6738361
+    },
+    {
+      "id": "osm_10013462022",
+      "name": "POI sans nom",
+      "categoryGroup": "Patrimoine et Histoire",
+      "categoryItem": "other",
+      "subCategory": null,
+      "departmentCode": "38",
+      "lat": 45.12265,
+      "lng": 5.6911184
+    },
+    {
+      "id": "osm_10013803873",
+      "name": "POI sans nom",
+      "categoryGroup": "Nature",
+      "categoryItem": "viewpoint",
+      "subCategory": null,
+      "departmentCode": "74",
+      "lat": 45.8488278,
+      "lng": 6.254551
+    },
+    {
+      "id": "osm_10015405930",
+      "name": "POI sans nom",
+      "categoryGroup": "Culture",
+      "categoryItem": "artwork",
+      "subCategory": null,
+      "departmentCode": "01",
+      "lat": 46.2181313,
+      "lng": 5.3679712
+    },
+    {
+      "id": "osm_10015405955",
+      "name": "POI sans nom",
+      "categoryGroup": "Patrimoine et Histoire",
+      "categoryItem": "other",
+      "subCategory": null,
+      "departmentCode": "01",
+      "lat": 46.218334,
+      "lng": 5.3680332
+    },
+    {
+      "id": "osm_10015764664",
+      "name": "POI sans nom",
+      "categoryGroup": "Culture",
+      "categoryItem": "artwork",
+      "subCategory": null,
+      "departmentCode": "38",
+      "lat": 45.1732022,
+      "lng": 5.729561
+    },
+    {
+      "id": "osm_10015764710",
+      "name": "POI sans nom",
+      "categoryGroup": "Patrimoine et Histoire",
+      "categoryItem": "other",
+      "subCategory": null,
+      "departmentCode": "38",
+      "lat": 45.1929694,
+      "lng": 5.7270386
+    },
+    {
+      "id": "osm_10015764714",
+      "name": "POI sans nom",
+      "categoryGroup": "Patrimoine et Histoire",
+      "categoryItem": "other",
+      "subCategory": null,
+      "departmentCode": "38",
+      "lat": 45.1929929,
+      "lng": 5.7271493
+    },
+    {
+      "id": "osm_10015764715",
+      "name": "POI sans nom",
+      "categoryGroup": "Patrimoine et Histoire",
+      "categoryItem": "other",
+      "subCategory": null,
+      "departmentCode": "38",
+      "lat": 45.1929902,
+      "lng": 5.7272057
+    },
+    {
+      "id": "osm_10015781533",
+      "name": "POI sans nom",
+      "categoryGroup": "Patrimoine et Histoire",
+      "categoryItem": "other",
+      "subCategory": null,
+      "departmentCode": "38",
+      "lat": 45.1945872,
+      "lng": 5.7288561
+    },
+    {
+      "id": "osm_10015988067",
+      "name": "POI sans nom",
+      "categoryGroup": "Patrimoine et Histoire",
+      "categoryItem": "other",
+      "subCategory": null,
+      "departmentCode": "14",
+      "lat": 49.2532327,
+      "lng": -0.3915844
+    },
+    {
+      "id": "osm_10015988069",
+      "name": "POI sans nom",
+      "categoryGroup": "Patrimoine et Histoire",
+      "categoryItem": "other",
+      "subCategory": null,
+      "departmentCode": "14",
+      "lat": 49.250897,
+      "lng": -0.3878305
+    },
+    {
+      "id": "osm_10016008323",
+      "name": "POI sans nom",
+      "categoryGroup": "Patrimoine et Histoire",
+      "categoryItem": "other",
+      "subCategory": null,
+      "departmentCode": "14",
+      "lat": 49.2537895,
+      "lng": -0.3918171
+    },
+    {
+      "id": "osm_10017509618",
+      "name": "POI sans nom",
+      "categoryGroup": "Culture",
+      "categoryItem": "artwork",
+      "subCategory": null,
+      "departmentCode": "63",
+      "lat": 45.8854453,
+      "lng": 3.1116627
+    },
+    {
+      "id": "osm_10018221722",
+      "name": "POI sans nom",
+      "categoryGroup": "Culture",
+      "categoryItem": "artwork",
+      "subCategory": null,
+      "departmentCode": "93",
+      "lat": 48.9773235,
+      "lng": 2.382922
+    },
+    {
+      "id": "osm_10018440825",
+      "name": "POI sans nom",
+      "categoryGroup": "Nature",
+      "categoryItem": "viewpoint",
+      "subCategory": null,
+      "departmentCode": "43",
+      "lat": 44.9460673,
+      "lng": 3.9720531
+    },
+    {
+      "id": "osm_10018580649",
+      "name": "POI sans nom",
+      "categoryGroup": "Nature",
+      "categoryItem": "viewpoint",
+      "subCategory": null,
+      "departmentCode": "43",
+      "lat": 44.9461609,
+      "lng": 3.9768818
+    },
+    {
+      "id": "osm_10019511037",
+      "name": "POI sans nom",
+      "categoryGroup": "Patrimoine et Histoire",
+      "categoryItem": "other",
+      "subCategory": null,
+      "departmentCode": "91",
+      "lat": 48.6740228,
+      "lng": 2.2912341
+    },
+    {
+      "id": "osm_10024624529",
+      "name": "POI sans nom",
+      "categoryGroup": "Experience gustative",
+      "categoryItem": "bakery",
+      "subCategory": null,
+      "departmentCode": "26",
+      "lat": 44.9322592,
+      "lng": 4.8967645
+    },
+    {
+      "id": "osm_10025410306",
+      "name": "POI sans nom",
+      "categoryGroup": "Culture",
+      "categoryItem": "artwork",
+      "subCategory": null,
+      "departmentCode": "38",
+      "lat": 45.1319402,
+      "lng": 5.6838252
+    },
+    {
+      "id": "osm_10025885406",
+      "name": "POI sans nom",
+      "categoryGroup": "Patrimoine et Histoire",
+      "categoryItem": "other",
+      "subCategory": null,
+      "departmentCode": "75",
+      "lat": 48.8597957,
+      "lng": 2.3335268
+    },
+    {
+      "id": "osm_10026914420",
+      "name": "POI sans nom",
+      "categoryGroup": "Culture",
+      "categoryItem": "artwork",
+      "subCategory": null,
+      "departmentCode": "38",
+      "lat": 45.132345,
+      "lng": 5.666756
+    },
+    {
+      "id": "osm_10026972665",
+      "name": "POI sans nom",
+      "categoryGroup": "Patrimoine et Histoire",
+      "categoryItem": "other",
+      "subCategory": null,
+      "departmentCode": "38",
+      "lat": 45.1274065,
+      "lng": 5.6758241
+    },
+    {
+      "id": "osm_10027865706",
+      "name": "POI sans nom",
+      "categoryGroup": "Nature",
+      "categoryItem": "viewpoint",
+      "subCategory": null,
+      "departmentCode": "13",
+      "lat": 43.2284592,
+      "lng": 5.3796035
+    },
+    {
+      "id": "osm_10028798384",
+      "name": "POI sans nom",
+      "categoryGroup": "Nature",
+      "categoryItem": "viewpoint",
+      "subCategory": null,
+      "departmentCode": "06",
+      "lat": 43.7849484,
+      "lng": 7.2429869
+    },
+    {
+      "id": "osm_10030024477",
+      "name": "POI sans nom",
+      "categoryGroup": "Culture",
+      "categoryItem": "gallery",
+      "subCategory": null,
+      "departmentCode": "75",
+      "lat": 48.8645921,
+      "lng": 2.352815
+    },
+    {
+      "id": "osm_10030087388",
+      "name": "POI sans nom",
+      "categoryGroup": "Nature",
+      "categoryItem": "viewpoint",
+      "subCategory": null,
+      "departmentCode": "69",
+      "lat": 45.6683363,
+      "lng": 4.854965
+    },
+    {
+      "id": "osm_10030115844",
+      "name": "POI sans nom",
+      "categoryGroup": "Nature",
+      "categoryItem": "viewpoint",
+      "subCategory": null,
+      "departmentCode": "69",
+      "lat": 45.6659144,
+      "lng": 4.854569
+    },
+    {
+      "id": "osm_10030159998",
+      "name": "POI sans nom",
+      "categoryGroup": "Patrimoine et Histoire",
+      "categoryItem": "other",
+      "subCategory": null,
+      "departmentCode": "14",
+      "lat": 49.2068611,
+      "lng": -0.4318989
+    },
+    {
+      "id": "osm_10030171596",
+      "name": "POI sans nom",
+      "categoryGroup": "Patrimoine et Histoire",
+      "categoryItem": "other",
+      "subCategory": null,
+      "departmentCode": "14",
+      "lat": 49.1006854,
+      "lng": -0.4589977
+    },
+    {
+      "id": "osm_10030224639",
+      "name": "POI sans nom",
+      "categoryGroup": "Patrimoine et Histoire",
+      "categoryItem": "other",
+      "subCategory": null,
+      "departmentCode": "53",
+      "lat": 48.0712806,
+      "lng": -0.7659147
+    },
+    {
+      "id": "osm_4433",
+      "name": "Sans nom",
+      "categoryGroup": null,
+      "categoryItem": null,
+      "subCategory": null,
+      "departmentCode": null,
+      "lat": null,
+      "lng": null
+    },
+    {
+      "id": "osm_4434",
+      "name": "Sans nom",
+      "categoryGroup": null,
+      "categoryItem": null,
+      "subCategory": null,
+      "departmentCode": null,
+      "lat": null,
+      "lng": null
+    },
+    {
+      "id": "osm_4435",
+      "name": "Sans nom",
+      "categoryGroup": null,
+      "categoryItem": null,
+      "subCategory": null,
+      "departmentCode": null,
+      "lat": null,
+      "lng": null
+    },
+    {
+      "id": "osm_4436",
+      "name": "Sans nom",
+      "categoryGroup": null,
+      "categoryItem": null,
+      "subCategory": null,
+      "departmentCode": null,
+      "lat": null,
+      "lng": null
+    },
+    {
+      "id": "osm_4437",
+      "name": "Sans nom",
+      "categoryGroup": null,
+      "categoryItem": null,
+      "subCategory": null,
+      "departmentCode": null,
+      "lat": null,
+      "lng": null
+    },
+    {
+      "id": "osm_4438",
+      "name": "Sans nom",
+      "categoryGroup": null,
+      "categoryItem": null,
+      "subCategory": null,
+      "departmentCode": null,
+      "lat": null,
+      "lng": null
+    },
+    {
+      "id": "osm_4439",
+      "name": "Sans nom",
+      "categoryGroup": null,
+      "categoryItem": null,
+      "subCategory": null,
+      "departmentCode": null,
+      "lat": null,
+      "lng": null
+    },
+    {
+      "id": "osm_4440",
+      "name": "Sans nom",
+      "categoryGroup": null,
+      "categoryItem": null,
+      "subCategory": null,
+      "departmentCode": null,
+      "lat": null,
+      "lng": null
+    },
+    {
+      "id": "osm_4441",
+      "name": "Sans nom",
+      "categoryGroup": null,
+      "categoryItem": null,
+      "subCategory": null,
+      "departmentCode": null,
+      "lat": null,
+      "lng": null
+    },
+    {
+      "id": "osm_4442",
+      "name": "Sans nom",
+      "categoryGroup": null,
+      "categoryItem": null,
+      "subCategory": null,
+      "departmentCode": null,
+      "lat": null,
+      "lng": null
+    },
+    {
+      "id": "osm_4443",
+      "name": "Sans nom",
+      "categoryGroup": null,
+      "categoryItem": null,
+      "subCategory": null,
+      "departmentCode": null,
+      "lat": null,
+      "lng": null
+    },
+    {
+      "id": "osm_4444",
+      "name": "Sans nom",
+      "categoryGroup": null,
+      "categoryItem": null,
+      "subCategory": null,
+      "departmentCode": null,
+      "lat": null,
+      "lng": null
+    },
+    {
+      "id": "osm_4445",
+      "name": "Sans nom",
+      "categoryGroup": null,
+      "categoryItem": null,
+      "subCategory": null,
+      "departmentCode": null,
+      "lat": null,
+      "lng": null
+    },
+    {
+      "id": "osm_4446",
+      "name": "Sans nom",
+      "categoryGroup": null,
+      "categoryItem": null,
+      "subCategory": null,
+      "departmentCode": null,
+      "lat": null,
+      "lng": null
+    },
+    {
+      "id": "osm_4447",
+      "name": "Sans nom",
+      "categoryGroup": null,
+      "categoryItem": null,
+      "subCategory": null,
+      "departmentCode": null,
+      "lat": null,
+      "lng": null
+    },
+    {
+      "id": "osm_4448",
+      "name": "Sans nom",
+      "categoryGroup": null,
+      "categoryItem": null,
+      "subCategory": null,
+      "departmentCode": null,
+      "lat": null,
+      "lng": null
+    },
+    {
+      "id": "osm_4449",
+      "name": "Sans nom",
+      "categoryGroup": null,
+      "categoryItem": null,
+      "subCategory": null,
+      "departmentCode": null,
+      "lat": null,
+      "lng": null
+    },
+    {
+      "id": "osm_4450",
+      "name": "Sans nom",
+      "categoryGroup": null,
+      "categoryItem": null,
+      "subCategory": null,
+      "departmentCode": null,
+      "lat": null,
+      "lng": null
+    },
+    {
+      "id": "osm_4451",
+      "name": "Sans nom",
+      "categoryGroup": null,
+      "categoryItem": null,
+      "subCategory": null,
+      "departmentCode": null,
+      "lat": null,
+      "lng": null
+    },
+    {
+      "id": "osm_4452",
+      "name": "Sans nom",
+      "categoryGroup": null,
+      "categoryItem": null,
+      "subCategory": null,
+      "departmentCode": null,
+      "lat": null,
+      "lng": null
+    },
+    {
+      "id": "osm_4453",
+      "name": "Sans nom",
+      "categoryGroup": null,
+      "categoryItem": null,
+      "subCategory": null,
+      "departmentCode": null,
+      "lat": null,
+      "lng": null
+    },
+    {
+      "id": "osm_4454",
+      "name": "Sans nom",
+      "categoryGroup": null,
+      "categoryItem": null,
+      "subCategory": null,
+      "departmentCode": null,
+      "lat": null,
+      "lng": null
+    },
+    {
+      "id": "osm_4455",
+      "name": "Sans nom",
+      "categoryGroup": null,
+      "categoryItem": null,
+      "subCategory": null,
+      "departmentCode": null,
+      "lat": null,
+      "lng": null
+    },
+    {
+      "id": "osm_4456",
+      "name": "Sans nom",
+      "categoryGroup": null,
+      "categoryItem": null,
+      "subCategory": null,
+      "departmentCode": null,
+      "lat": null,
+      "lng": null
+    },
+    {
+      "id": "osm_4457",
+      "name": "Sans nom",
+      "categoryGroup": null,
+      "categoryItem": null,
+      "subCategory": null,
+      "departmentCode": null,
+      "lat": null,
+      "lng": null
+    },
+    {
+      "id": "osm_4458",
+      "name": "Sans nom",
+      "categoryGroup": null,
+      "categoryItem": null,
+      "subCategory": null,
+      "departmentCode": null,
+      "lat": null,
+      "lng": null
+    },
+    {
+      "id": "osm_4459",
+      "name": "Sans nom",
+      "categoryGroup": null,
+      "categoryItem": null,
+      "subCategory": null,
+      "departmentCode": null,
+      "lat": null,
+      "lng": null
+    },
+    {
+      "id": "osm_4460",
+      "name": "Sans nom",
+      "categoryGroup": null,
+      "categoryItem": null,
+      "subCategory": null,
+      "departmentCode": null,
+      "lat": null,
+      "lng": null
+    },
+    {
+      "id": "osm_4461",
+      "name": "Sans nom",
+      "categoryGroup": null,
+      "categoryItem": null,
+      "subCategory": null,
+      "departmentCode": null,
+      "lat": null,
+      "lng": null
+    },
+    {
+      "id": "osm_4462",
+      "name": "Sans nom",
+      "categoryGroup": null,
+      "categoryItem": null,
+      "subCategory": null,
+      "departmentCode": null,
+      "lat": null,
+      "lng": null
+    },
+    {
+      "id": "osm_4463",
+      "name": "Sans nom",
+      "categoryGroup": null,
+      "categoryItem": null,
+      "subCategory": null,
+      "departmentCode": null,
+      "lat": null,
+      "lng": null
+    },
+    {
+      "id": "osm_4464",
+      "name": "Sans nom",
+      "categoryGroup": null,
+      "categoryItem": null,
+      "subCategory": null,
+      "departmentCode": null,
+      "lat": null,
+      "lng": null
+    },
+    {
+      "id": "osm_4465",
+      "name": "Sans nom",
+      "categoryGroup": null,
+      "categoryItem": null,
+      "subCategory": null,
+      "departmentCode": null,
+      "lat": null,
+      "lng": null
+    },
+    {
+      "id": "osm_4466",
+      "name": "Sans nom",
+      "categoryGroup": null,
+      "categoryItem": null,
+      "subCategory": null,
+      "departmentCode": null,
+      "lat": null,
+      "lng": null
+    },
+    {
+      "id": "osm_4467",
+      "name": "Sans nom",
+      "categoryGroup": null,
+      "categoryItem": null,
+      "subCategory": null,
+      "departmentCode": null,
+      "lat": null,
+      "lng": null
+    },
+    {
+      "id": "osm_4468",
+      "name": "Sans nom",
+      "categoryGroup": null,
+      "categoryItem": null,
+      "subCategory": null,
+      "departmentCode": null,
+      "lat": null,
+      "lng": null
+    },
+    {
+      "id": "osm_4469",
+      "name": "Sans nom",
+      "categoryGroup": null,
+      "categoryItem": null,
+      "subCategory": null,
+      "departmentCode": null,
+      "lat": null,
+      "lng": null
+    },
+    {
+      "id": "osm_4470",
+      "name": "Sans nom",
+      "categoryGroup": null,
+      "categoryItem": null,
+      "subCategory": null,
+      "departmentCode": null,
+      "lat": null,
+      "lng": null
+    },
+    {
+      "id": "osm_4471",
+      "name": "Sans nom",
+      "categoryGroup": null,
+      "categoryItem": null,
+      "subCategory": null,
+      "departmentCode": null,
+      "lat": null,
+      "lng": null
+    },
+    {
+      "id": "osm_4472",
+      "name": "Sans nom",
+      "categoryGroup": null,
+      "categoryItem": null,
+      "subCategory": null,
+      "departmentCode": null,
+      "lat": null,
+      "lng": null
+    },
+    {
+      "id": "osm_4473",
+      "name": "Sans nom",
+      "categoryGroup": null,
+      "categoryItem": null,
+      "subCategory": null,
+      "departmentCode": null,
+      "lat": null,
+      "lng": null
+    },
+    {
+      "id": "osm_4474",
+      "name": "Sans nom",
+      "categoryGroup": null,
+      "categoryItem": null,
+      "subCategory": null,
+      "departmentCode": null,
+      "lat": null,
+      "lng": null
+    },
+    {
+      "id": "osm_4475",
+      "name": "Sans nom",
+      "categoryGroup": null,
+      "categoryItem": null,
+      "subCategory": null,
+      "departmentCode": null,
+      "lat": null,
+      "lng": null
+    },
+    {
+      "id": "osm_4476",
+      "name": "Sans nom",
+      "categoryGroup": null,
+      "categoryItem": null,
+      "subCategory": null,
+      "departmentCode": null,
+      "lat": null,
+      "lng": null
+    },
+    {
+      "id": "osm_4477",
+      "name": "Sans nom",
+      "categoryGroup": null,
+      "categoryItem": null,
+      "subCategory": null,
+      "departmentCode": null,
+      "lat": null,
+      "lng": null
+    },
+    {
+      "id": "osm_4478",
+      "name": "Sans nom",
+      "categoryGroup": null,
+      "categoryItem": null,
+      "subCategory": null,
+      "departmentCode": null,
+      "lat": null,
+      "lng": null
+    },
+    {
+      "id": "osm_4479",
+      "name": "Sans nom",
+      "categoryGroup": null,
+      "categoryItem": null,
+      "subCategory": null,
+      "departmentCode": null,
+      "lat": null,
+      "lng": null
+    },
+    {
+      "id": "osm_4480",
+      "name": "Sans nom",
+      "categoryGroup": null,
+      "categoryItem": null,
+      "subCategory": null,
+      "departmentCode": null,
+      "lat": null,
+      "lng": null
+    },
+    {
+      "id": "osm_4481",
+      "name": "Sans nom",
+      "categoryGroup": null,
+      "categoryItem": null,
+      "subCategory": null,
+      "departmentCode": null,
+      "lat": null,
+      "lng": null
+    },
+    {
+      "id": "osm_4482",
+      "name": "Sans nom",
+      "categoryGroup": null,
+      "categoryItem": null,
+      "subCategory": null,
+      "departmentCode": null,
+      "lat": null,
+      "lng": null
+    },
+    {
+      "id": "osm_4483",
+      "name": "Sans nom",
+      "categoryGroup": null,
+      "categoryItem": null,
+      "subCategory": null,
+      "departmentCode": null,
+      "lat": null,
+      "lng": null
+    },
+    {
+      "id": "osm_4484",
+      "name": "Sans nom",
+      "categoryGroup": null,
+      "categoryItem": null,
+      "subCategory": null,
+      "departmentCode": null,
+      "lat": null,
+      "lng": null
+    },
+    {
+      "id": "osm_4485",
+      "name": "Sans nom",
+      "categoryGroup": null,
+      "categoryItem": null,
+      "subCategory": null,
+      "departmentCode": null,
+      "lat": null,
+      "lng": null
+    },
+    {
+      "id": "osm_4486",
+      "name": "Sans nom",
+      "categoryGroup": null,
+      "categoryItem": null,
+      "subCategory": null,
+      "departmentCode": null,
+      "lat": null,
+      "lng": null
+    },
+    {
+      "id": "osm_4487",
+      "name": "Sans nom",
+      "categoryGroup": null,
+      "categoryItem": null,
+      "subCategory": null,
+      "departmentCode": null,
+      "lat": null,
+      "lng": null
+    },
+    {
+      "id": "osm_4488",
+      "name": "Sans nom",
+      "categoryGroup": null,
+      "categoryItem": null,
+      "subCategory": null,
+      "departmentCode": null,
+      "lat": null,
+      "lng": null
+    },
+    {
+      "id": "osm_4489",
+      "name": "Sans nom",
+      "categoryGroup": null,
+      "categoryItem": null,
+      "subCategory": null,
+      "departmentCode": null,
+      "lat": null,
+      "lng": null
+    },
+    {
+      "id": "osm_4490",
+      "name": "Sans nom",
+      "categoryGroup": null,
+      "categoryItem": null,
+      "subCategory": null,
+      "departmentCode": null,
+      "lat": null,
+      "lng": null
+    },
+    {
+      "id": "osm_4491",
+      "name": "Sans nom",
+      "categoryGroup": null,
+      "categoryItem": null,
+      "subCategory": null,
+      "departmentCode": null,
+      "lat": null,
+      "lng": null
+    },
+    {
+      "id": "osm_4492",
+      "name": "Sans nom",
+      "categoryGroup": null,
+      "categoryItem": null,
+      "subCategory": null,
+      "departmentCode": null,
+      "lat": null,
+      "lng": null
+    }
+  ]
+}

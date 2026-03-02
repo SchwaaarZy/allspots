@@ -47,13 +47,20 @@ class MapView extends ConsumerStatefulWidget {
   ConsumerState<MapView> createState() => _MapViewState();
 }
 
+enum _MapOverlayPanel {
+  none,
+  radius,
+  legend,
+  style,
+}
+
 class _MapViewState extends ConsumerState<MapView> {
   static const double _mapCornerRadius = 18;
   late flutter_map.MapController _flutterMapController;
   bool _initialized = false;
   bool _centeredOnFirstLocation = false;
   bool _isAutoXpRunning = false;
-  bool _showRadiusSelector = false;
+  _MapOverlayPanel _activePanel = _MapOverlayPanel.none;
   Position? _lastAutoXpPosition;
   DateTime? _lastAutoXpRunAt;
   final Map<String, DateTime> _lastAutoAttemptBySpot = {};
@@ -296,6 +303,11 @@ class _MapViewState extends ConsumerState<MapView> {
               initialZoom: 15,
               minZoom: 1,
               maxZoom: 18,
+              onTap: (_, __) {
+                if (_activePanel != _MapOverlayPanel.none) {
+                  setState(() => _activePanel = _MapOverlayPanel.none);
+                }
+              },
             ),
             children: [
               flutter_map.TileLayer(
@@ -368,20 +380,28 @@ class _MapViewState extends ConsumerState<MapView> {
               ),
             ),
           ),
-        // Sélecteur de rayon (bas gauche)
-        if (_showRadiusSelector)
-          Positioned(
-            left: 12,
-            bottom: 12,
-            right: 90,
-            child: RadiusSelector(
-              currentRadius: ref.watch(mapControllerProvider).radiusMeters,
-              radiusOptions: const [5000, 10000, 15000, 20000],
-              onRadiusChanged: (radius) {
-                ref.read(mapControllerProvider.notifier).updateRadius(radius);
-              },
-            ),
+        // Panneau flottant (Rayon / Légende / Style) avec animation harmonisée
+        Positioned(
+          left: 12,
+          bottom: 12,
+          right: 90,
+          child: AnimatedSwitcher(
+            duration: const Duration(milliseconds: 220),
+            switchInCurve: Curves.easeOutCubic,
+            switchOutCurve: Curves.easeInCubic,
+            transitionBuilder: (child, animation) {
+              final slide = Tween<Offset>(
+                begin: const Offset(0, 0.08),
+                end: Offset.zero,
+              ).animate(animation);
+              return FadeTransition(
+                opacity: animation,
+                child: SlideTransition(position: slide, child: child),
+              );
+            },
+            child: _buildOverlayPanel(),
           ),
+        ),
         // Contrôles secondaires (haut droit)
         Positioned(
           right: 12,
@@ -397,7 +417,7 @@ class _MapViewState extends ConsumerState<MapView> {
                 borderRadius: BorderRadius.circular(12),
                 clipBehavior: Clip.antiAlias,
                 child: IconButton(
-                  onPressed: () => _showMapStyleSelector(context),
+                  onPressed: () => _togglePanel(_MapOverlayPanel.style),
                   tooltip: 'Style de carte',
                   splashRadius: 22,
                   constraints: const BoxConstraints.tightFor(
@@ -419,7 +439,7 @@ class _MapViewState extends ConsumerState<MapView> {
                 borderRadius: BorderRadius.circular(12),
                 clipBehavior: Clip.antiAlias,
                 child: IconButton(
-                  onPressed: () => _showLegend(context),
+                  onPressed: () => _togglePanel(_MapOverlayPanel.legend),
                   tooltip: 'Légende',
                   splashRadius: 22,
                   constraints: const BoxConstraints.tightFor(
@@ -450,8 +470,7 @@ class _MapViewState extends ConsumerState<MapView> {
                 child: Material(
                   color: Colors.transparent,
                   child: IconButton(
-                    onPressed: () =>
-                        setState(() => _showRadiusSelector = !_showRadiusSelector),
+                    onPressed: () => _togglePanel(_MapOverlayPanel.radius),
                     tooltip: 'Rayon de recherche',
                     splashRadius: 22,
                     constraints: const BoxConstraints.tightFor(
@@ -513,85 +532,79 @@ class _MapViewState extends ConsumerState<MapView> {
     );
   }
 
-  double _harmonizedSheetHeight(BuildContext context) {
-    final screenHeight = MediaQuery.sizeOf(context).height;
-    return (screenHeight * 0.46).clamp(320.0, 460.0);
+  void _togglePanel(_MapOverlayPanel panel) {
+    setState(() {
+      _activePanel = _activePanel == panel ? _MapOverlayPanel.none : panel;
+    });
   }
 
-  void _showLegend(BuildContext context) {
-    final sheetHeight = _harmonizedSheetHeight(context);
-
-    showModalBottomSheet(
-      context: context,
-      showDragHandle: true,
-      isScrollControlled: true,
-      builder: (sheetContext) {
-        return SizedBox(
-          height: sheetHeight,
-          child: Padding(
-            padding: const EdgeInsets.all(16),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const Text(
-                  'Legende des categories',
-                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-                ),
-                const SizedBox(height: 12),
-                Expanded(
-                  child: ListView(
+  Widget _buildOverlayPanel() {
+    switch (_activePanel) {
+      case _MapOverlayPanel.none:
+        return const SizedBox.shrink(key: ValueKey('panel-none'));
+      case _MapOverlayPanel.radius:
+        return RadiusSelector(
+          key: const ValueKey('panel-radius'),
+          currentRadius: ref.watch(mapControllerProvider).radiusMeters,
+          radiusOptions: const [5000, 10000, 15000, 20000],
+          onRadiusChanged: (radius) {
+            ref.read(mapControllerProvider.notifier).updateRadius(radius);
+            setState(() => _activePanel = _MapOverlayPanel.none);
+          },
+        );
+      case _MapOverlayPanel.legend:
+        return Container(
+          key: const ValueKey('panel-legend'),
+          padding: const EdgeInsets.all(12),
+          decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.circular(12),
+            boxShadow: [
+              BoxShadow(
+                color: Colors.black.withValues(alpha: 0.1),
+                blurRadius: 8,
+                offset: const Offset(0, 2),
+              ),
+            ],
+          ),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const Text(
+                'Legende des categories',
+                style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+              ),
+              const SizedBox(height: 8),
+              ...PoiCategory.values.map(
+                (category) => Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 5),
+                  child: Row(
                     children: [
-                      for (final category in PoiCategory.values)
-                        Padding(
-                          padding: const EdgeInsets.symmetric(vertical: 6),
-                          child: Row(
-                            children: [
-                              Icon(
-                                Icons.location_on,
-                                color: _legendColorForCategory(category),
-                              ),
-                              const SizedBox(width: 8),
-                              Text(category.localizationLabel(context)),
-                            ],
-                          ),
-                        ),
+                      Icon(
+                        Icons.location_on,
+                        color: _legendColorForCategory(category),
+                      ),
+                      const SizedBox(width: 8),
+                      Text(category.localizationLabel(context)),
                     ],
                   ),
                 ),
-              ],
-            ),
-          ),
-        );
-      },
-    );
-  }
-
-  void _showMapStyleSelector(BuildContext context) {
-    final currentStyle = ref.read(mapControllerProvider).mapStyle;
-    final sheetHeight = _harmonizedSheetHeight(context);
-
-    showModalBottomSheet(
-      context: context,
-      showDragHandle: true,
-      isScrollControlled: true,
-      builder: (sheetContext) {
-        return SizedBox(
-          height: sheetHeight,
-          child: Padding(
-            padding: const EdgeInsets.all(16),
-            child: Align(
-              alignment: Alignment.topCenter,
-              child: MapStyleSelector(
-                currentStyle: currentStyle,
-                onStyleChanged: (style) {
-                  ref.read(mapControllerProvider.notifier).setMapStyle(style);
-                },
               ),
-            ),
+            ],
           ),
         );
-      },
-    );
+      case _MapOverlayPanel.style:
+        return MapStyleSelector(
+          key: const ValueKey('panel-style'),
+          currentStyle: ref.watch(mapControllerProvider).mapStyle,
+          closeOnSelect: false,
+          onStyleChanged: (style) {
+            ref.read(mapControllerProvider.notifier).setMapStyle(style);
+            setState(() => _activePanel = _MapOverlayPanel.none);
+          },
+        );
+    }
   }
 
   void _showPoiPopup(BuildContext context, Poi poi, LatLng position) {

@@ -5,11 +5,13 @@ import '../../features/map/domain/map_style.dart';
 class MapStyleSelector extends StatelessWidget {
   final MapStyle currentStyle;
   final ValueChanged<MapStyle> onStyleChanged;
+  final bool closeOnSelect;
 
   const MapStyleSelector({
     super.key,
     required this.currentStyle,
     required this.onStyleChanged,
+    this.closeOnSelect = true,
   });
 
   @override
@@ -87,7 +89,9 @@ class MapStyleSelector extends StatelessWidget {
                 selectedTileColor: Colors.blue.shade50,
                 onTap: () {
                   onStyleChanged(style);
-                  Navigator.of(context).pop();
+                  if (closeOnSelect) {
+                    Navigator.of(context).maybePop();
+                  }
                 },
               );
             },

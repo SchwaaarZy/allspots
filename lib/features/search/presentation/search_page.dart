@@ -28,16 +28,19 @@ class _SearchPageState extends ConsumerState<SearchPage> {
   bool _nearbyOnly = false;
   bool _initialized = false;
   final int _itemsPerPage = 10;
-  int _currentPage = 0;
   bool _searchPerformed = false;
   late PageController _pageController;
+  late ValueNotifier<int> _pageNotifier;
   late final List<RegionModel> _regions;
   late final Map<String, List<DepartmentModel>> _departmentsByRegion;
+  String? _cachedResultsKey;
+  List<Poi> _cachedResults = const <Poi>[];
 
   @override
   void initState() {
     super.initState();
     _pageController = PageController();
+    _pageNotifier = ValueNotifier<int>(0);
     final france = allCountries.firstWhere(
       (country) => country.code.toLowerCase() == 'fr',
       orElse: () => allCountries.first,
@@ -59,6 +62,7 @@ class _SearchPageState extends ConsumerState<SearchPage> {
   @override
   void dispose() {
     _pageController.dispose();
+    _pageNotifier.dispose();
     super.dispose();
   }
 
@@ -211,10 +215,11 @@ class _SearchPageState extends ConsumerState<SearchPage> {
                                 _selectedRegionCode = null;
                                 _selectedDepartmentCode = null;
                                 _nearbyOnly = false;
-                                _currentPage = 0;
                                 _searchPerformed = false;
-                                _pageController.jumpToPage(0);
+                                _cachedResultsKey = null;
+                                _cachedResults = const <Poi>[];
                               });
+                              _resetPage();
                             },
                             icon: const Icon(Icons.refresh, size: 16),
                             label: const Text('Réinitialiser'),
@@ -227,6 +232,7 @@ class _SearchPageState extends ConsumerState<SearchPage> {
                             onPressed: () {
                               setState(() {
                                 _nearbyOnly = !_nearbyOnly;
+                                _cachedResultsKey = null;
                               });
                             },
                             icon: Icon(
@@ -290,36 +296,35 @@ class _SearchPageState extends ConsumerState<SearchPage> {
 
             final allPois = snapshot.data!.docs
                 .map(_poiFromDoc)
-              .where((poi) => (poi.lat != 0 || poi.lng != 0) && !_isGenericSpot(poi))
+                .where((poi) => (poi.lat != 0 || poi.lng != 0) && !_isGenericSpot(poi))
                 .toList(growable: false);
 
-            final geoFiltered = allPois.where((poi) {
-              if (!_matchesGeoFilter(poi)) return false;
-              if (_nearbyOnly) {
-                if (userPos == null) return false;
-                final distance = GeoUtils.distanceMeters(
-                  lat1: userPos.latitude,
-                  lon1: userPos.longitude,
-                  lat2: poi.lat,
-                  lon2: poi.lng,
-                );
-                return distance <= _nearbyMaxDistanceMeters;
-              }
-              return true;
-            }).toList(growable: false);
+            final cacheKey = _buildResultsCacheKey(
+              docsIdentity: identityHashCode(snapshot.data),
+              docsLength: snapshot.data!.docs.length,
+              profileCategories: profileCategories,
+              userPos: userPos,
+            );
 
-            final categoryFiltered = geoFiltered
-                .where((poi) => _matchesCategoryFilter(poi, profileCategories))
-                .toList(growable: false);
+            if (_cachedResultsKey != cacheKey) {
+              _cachedResults = _computeFilteredResults(
+                allPois: allPois,
+                userPos: userPos,
+                profileCategories: profileCategories,
+              );
+              _cachedResultsKey = cacheKey;
+            }
 
-            final results = _sortedByDistance(categoryFiltered, userPos);
+            final results = _cachedResults;
             final totalItems = results.length;
             final totalPages = (totalItems / _itemsPerPage).ceil();
-            final pageIndex = totalPages == 0
+            final currentPage = totalPages == 0
                 ? 0
-                : _currentPage.clamp(0, totalPages - 1);
-            final startIndex = pageIndex * _itemsPerPage;
-            final endIndex = (startIndex + _itemsPerPage).clamp(0, totalItems);
+                : _pageNotifier.value.clamp(0, totalPages - 1);
+
+            if (_pageNotifier.value != currentPage) {
+              _pageNotifier.value = currentPage;
+            }
 
                   return Column(
                     children: [
@@ -327,9 +332,9 @@ class _SearchPageState extends ConsumerState<SearchPage> {
                         child: PageView.builder(
                     controller: _pageController,
                     onPageChanged: (page) {
-                      setState(() {
-                        _currentPage = page;
-                      });
+                      if (_pageNotifier.value != page) {
+                        _pageNotifier.value = page;
+                      }
                     },
                     itemCount: totalPages == 0 ? 1 : totalPages,
                         itemBuilder: (context, pageIndex) {
@@ -376,79 +381,62 @@ class _SearchPageState extends ConsumerState<SearchPage> {
 
                       items.add(const _SearchListItem.spacer(12));
 
-                      return ListView.builder(
-                        key: PageStorageKey('search_page_$pageIndex'),
-                        padding: const EdgeInsets.all(12),
-                        itemCount: items.length,
-                        itemBuilder: (context, index) {
-                          final item = items[index];
-                          switch (item.type) {
-                            case _SearchListItemType.header:
-                              return Padding(
-                                padding: const EdgeInsets.symmetric(vertical: 8),
-                                child: Text(
-                                  item.label ?? '',
-                                  style: Theme.of(context)
-                                      .textTheme
-                                      .titleSmall
-                                      ?.copyWith(fontWeight: FontWeight.bold),
-                                ),
-                              );
-                            case _SearchListItemType.poi:
-                              return _buildPoiCard(context, item.poi!, userPos);
-                            case _SearchListItemType.addSpot:
-                              return SizedBox(
-                                width: double.infinity,
-                                child: OutlinedButton.icon(
-                                  onPressed: () => context.push('/spots/new'),
-                                  icon: const Icon(Icons.add_location_alt),
-                                  label: const Text('➕ Ajouter un spot'),
-                                ),
-                              );
-                            case _SearchListItemType.spacer:
-                              return SizedBox(height: item.spacing ?? 0);
-                          }
-                        },
+                      return _buildPageListWithAllSpotsRatings(
+                        context: context,
+                        pageIndex: pageIndex,
+                        pageResults: pageResults,
+                        items: items,
+                        userPos: userPos,
                       );
                           },
                         ),
                       ),
                       if (totalItems > _itemsPerPage)
-                        Padding(
-                    padding: const EdgeInsets.all(12),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        ElevatedButton.icon(
-                          onPressed: pageIndex > 0
-                              ? () {
-                                  _pageController.previousPage(
-                                    duration: const Duration(milliseconds: 300),
-                                    curve: Curves.easeInOut,
-                                  );
-                                }
-                              : null,
-                          icon: const Icon(Icons.arrow_back),
-                          label: const Text('Précédent'),
-                        ),
-                        Text(
-                          '${startIndex + 1} - $endIndex sur $totalItems',
-                          style: const TextStyle(fontWeight: FontWeight.w600),
-                        ),
-                        ElevatedButton.icon(
-                          onPressed: pageIndex < totalPages - 1
-                              ? () {
-                                  _pageController.nextPage(
-                                    duration: const Duration(milliseconds: 300),
-                                    curve: Curves.easeInOut,
-                                  );
-                                }
-                              : null,
-                          icon: const Icon(Icons.arrow_forward),
-                          label: const Text('Suivant'),
-                        ),
-                      ],
-                    ),
+                        ValueListenableBuilder<int>(
+                          valueListenable: _pageNotifier,
+                          builder: (context, pageValue, _) {
+                            final clampedPage = pageValue.clamp(0, totalPages - 1);
+                            final startIndex = clampedPage * _itemsPerPage;
+                            final endIndex =
+                                (startIndex + _itemsPerPage).clamp(0, totalItems);
+
+                            return Padding(
+                              padding: const EdgeInsets.all(12),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: [
+                                  ElevatedButton.icon(
+                                    onPressed: clampedPage > 0
+                                        ? () {
+                                            _pageController.previousPage(
+                                              duration: const Duration(milliseconds: 300),
+                                              curve: Curves.easeInOut,
+                                            );
+                                          }
+                                        : null,
+                                    icon: const Icon(Icons.arrow_back),
+                                    label: const Text('Précédent'),
+                                  ),
+                                  Text(
+                                    '${startIndex + 1} - $endIndex sur $totalItems',
+                                    style: const TextStyle(fontWeight: FontWeight.w600),
+                                  ),
+                                  ElevatedButton.icon(
+                                    onPressed: clampedPage < totalPages - 1
+                                        ? () {
+                                            _pageController.nextPage(
+                                              duration: const Duration(milliseconds: 300),
+                                              curve: Curves.easeInOut,
+                                            );
+                                          }
+                                        : null,
+                                    icon: const Icon(Icons.arrow_forward),
+                                    label: const Text('Suivant'),
+                                  ),
+                                ],
+                              ),
+                            );
+                          },
                         ),
                     ],
                   );
@@ -802,8 +790,186 @@ class _SearchPageState extends ConsumerState<SearchPage> {
   }
 
   void _resetPage() {
-    if (_currentPage == 0) return;
-    setState(() => _currentPage = 0);
+    if (_pageNotifier.value != 0) {
+      _pageNotifier.value = 0;
+    }
+    if (_pageController.hasClients) {
+      _pageController.jumpToPage(0);
+    }
+  }
+
+  String _buildResultsCacheKey({
+    required int docsIdentity,
+    required int docsLength,
+    required Set<String> profileCategories,
+    required Position? userPos,
+  }) {
+    final sortedCategories = profileCategories.toList()..sort();
+    final userKey = userPos == null
+        ? 'null'
+        : '${userPos.latitude.toStringAsFixed(4)},${userPos.longitude.toStringAsFixed(4)}';
+
+    return [
+      docsIdentity,
+      docsLength,
+      _selectedRegionCode ?? 'null',
+      _selectedDepartmentCode ?? 'null',
+      _nearbyOnly,
+      userKey,
+      sortedCategories.join('|'),
+    ].join('::');
+  }
+
+  List<Poi> _computeFilteredResults({
+    required List<Poi> allPois,
+    required Position? userPos,
+    required Set<String> profileCategories,
+  }) {
+    final geoFiltered = allPois.where((poi) {
+      if (!_matchesGeoFilter(poi)) return false;
+      if (_nearbyOnly) {
+        if (userPos == null) return false;
+        final distance = GeoUtils.distanceMeters(
+          lat1: userPos.latitude,
+          lon1: userPos.longitude,
+          lat2: poi.lat,
+          lon2: poi.lng,
+        );
+        return distance <= _nearbyMaxDistanceMeters;
+      }
+      return true;
+    }).toList(growable: false);
+
+    final categoryFiltered = geoFiltered
+        .where((poi) => _matchesCategoryFilter(poi, profileCategories))
+        .toList(growable: false);
+
+    return _sortedByDistance(categoryFiltered, userPos);
+  }
+
+  Widget _buildPageListWithAllSpotsRatings({
+    required BuildContext context,
+    required int pageIndex,
+    required List<Poi> pageResults,
+    required List<_SearchListItem> items,
+    required Position? userPos,
+  }) {
+    final poiIds = pageResults.map((poi) => poi.id).toSet().toList(growable: false);
+
+    if (poiIds.isEmpty) {
+      return _buildSearchItemsList(
+        context: context,
+        pageIndex: pageIndex,
+        items: items,
+        userPos: userPos,
+        allSpotsRatingsByPoiId: const <String, double>{},
+      );
+    }
+
+    return StreamBuilder<QuerySnapshot<Map<String, dynamic>>>(
+      stream: FirebaseFirestore.instance
+          .collection('poi_ratings')
+          .where('poiId', whereIn: poiIds)
+          .snapshots(),
+      builder: (context, snapshot) {
+        final allSpotsRatingsByPoiId = _extractAllSpotsRatingsByPoi(
+          snapshot.data?.docs,
+        );
+
+        return _buildSearchItemsList(
+          context: context,
+          pageIndex: pageIndex,
+          items: items,
+          userPos: userPos,
+          allSpotsRatingsByPoiId: allSpotsRatingsByPoiId,
+        );
+      },
+    );
+  }
+
+  Widget _buildSearchItemsList({
+    required BuildContext context,
+    required int pageIndex,
+    required List<_SearchListItem> items,
+    required Position? userPos,
+    required Map<String, double> allSpotsRatingsByPoiId,
+  }) {
+    return ListView.builder(
+      key: PageStorageKey('search_page_$pageIndex'),
+      padding: const EdgeInsets.all(12),
+      itemCount: items.length,
+      itemBuilder: (context, index) {
+        final item = items[index];
+        switch (item.type) {
+          case _SearchListItemType.header:
+            return Padding(
+              padding: const EdgeInsets.symmetric(vertical: 8),
+              child: Text(
+                item.label ?? '',
+                style: Theme.of(context)
+                    .textTheme
+                    .titleSmall
+                    ?.copyWith(fontWeight: FontWeight.bold),
+              ),
+            );
+          case _SearchListItemType.poi:
+            final poi = item.poi!;
+            final allSpotsRating = allSpotsRatingsByPoiId[poi.id] ?? 0;
+            return _buildPoiCard(
+              context,
+              poi,
+              userPos,
+              allSpotsRating: allSpotsRating,
+            );
+          case _SearchListItemType.addSpot:
+            return SizedBox(
+              width: double.infinity,
+              child: OutlinedButton.icon(
+                onPressed: () => context.push('/spots/new'),
+                icon: const Icon(Icons.add_location_alt),
+                label: const Text('➕ Ajouter un spot'),
+              ),
+            );
+          case _SearchListItemType.spacer:
+            return SizedBox(height: item.spacing ?? 0);
+        }
+      },
+    );
+  }
+
+  Map<String, double> _extractAllSpotsRatingsByPoi(
+    List<QueryDocumentSnapshot<Map<String, dynamic>>>? docs,
+  ) {
+    if (docs == null || docs.isEmpty) {
+      return const <String, double>{};
+    }
+
+    final sums = <String, double>{};
+    final counts = <String, int>{};
+
+    for (final doc in docs) {
+      final data = doc.data();
+      final poiId = (data['poiId'] as String?)?.trim();
+      if (poiId == null || poiId.isEmpty) continue;
+
+      final isGoogleRating = data['isGoogleRating'] == true;
+      if (isGoogleRating) continue;
+
+      final rating = (data['rating'] as num?)?.toDouble();
+      if (rating == null) continue;
+
+      sums.update(poiId, (value) => value + rating, ifAbsent: () => rating);
+      counts.update(poiId, (value) => value + 1, ifAbsent: () => 1);
+    }
+
+    final averages = <String, double>{};
+    for (final entry in sums.entries) {
+      final count = counts[entry.key] ?? 0;
+      if (count <= 0) continue;
+      averages[entry.key] = entry.value / count;
+    }
+
+    return averages;
   }
 
   String _distanceLabel(Position? pos, double lat, double lng) {
@@ -818,7 +984,12 @@ class _SearchPageState extends ConsumerState<SearchPage> {
     return '${km.toStringAsFixed(1)} km';
   }
 
-  Widget _buildPoiCard(BuildContext context, Poi poi, Position? userPos) {
+  Widget _buildPoiCard(
+    BuildContext context,
+    Poi poi,
+    Position? userPos, {
+    required double allSpotsRating,
+  }) {
     final distanceLabel = _distanceLabel(userPos, poi.lat, poi.lng);
     final isFirestore = poi.source == 'firestore';
     final rating = poi.googleRating;
@@ -931,14 +1102,23 @@ class _SearchPageState extends ConsumerState<SearchPage> {
                 ],
               ),
               const SizedBox(height: 10),
-              Text(
-                poi.shortDescription,
-                maxLines: 2,
-                overflow: TextOverflow.ellipsis,
-                style: TextStyle(
-                  fontSize: context.fontSize(12),
-                  color: Colors.grey.shade700,
-                ),
+              Row(
+                children: [
+                  const Icon(
+                    Icons.star,
+                    size: 14,
+                    color: Colors.amber,
+                  ),
+                  const SizedBox(width: 6),
+                  Text(
+                    'Note AllSPOTS: ${allSpotsRating.toStringAsFixed(1)}/5',
+                    style: TextStyle(
+                      fontSize: context.fontSize(12),
+                      color: Colors.grey.shade700,
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
+                ],
               ),
               const SizedBox(height: 8),
               Row(

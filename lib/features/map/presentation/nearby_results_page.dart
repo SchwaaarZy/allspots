@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:geolocator/geolocator.dart';
 import '../../../core/utils/geo_utils.dart';
 import '../../../core/utils/responsive_utils.dart';
+import '../../../core/widgets/radius_selector.dart';
 import '../domain/poi.dart';
 import '../domain/poi_category.dart';
 import 'map_controller.dart';
@@ -19,7 +20,6 @@ class _NearbyResultsPageState extends ConsumerState<NearbyResultsPage> {
   late PageController _pageController;
   final int _itemsPerPage = 10;
   int _currentPage = 0;
-  String _sortBy = 'distance'; // 'distance', 'interest', 'category'
 
   @override
   void initState() {
@@ -43,7 +43,7 @@ class _NearbyResultsPageState extends ConsumerState<NearbyResultsPage> {
     final userPos = mapState.userPosition;
     final allPois = mapState.nearbyPois;
 
-    // Trier selon le critère sélectionné
+    // Tri par distance
     final sortedPois = _sortPois(allPois, userPos);
 
     // Calcul de la pagination
@@ -67,7 +67,7 @@ class _NearbyResultsPageState extends ConsumerState<NearbyResultsPage> {
       body: NestedScrollView(
         headerSliverBuilder: (context, innerBoxIsScrolled) => [
           SliverAppBar(
-            expandedHeight: 110,
+            expandedHeight: 165,
             floating: false,
             pinned: false,
             backgroundColor: Colors.white,
@@ -104,17 +104,24 @@ class _NearbyResultsPageState extends ConsumerState<NearbyResultsPage> {
                     ),
                     const SizedBox(height: 6),
 
-                    // Tri
-                    SingleChildScrollView(
-                      scrollDirection: Axis.horizontal,
-                      child: Row(
-                        children: [
-                          _buildSortButton('distance', '📍 Distance'),
-                          const SizedBox(width: 6),
-                          _buildSortButton('interest', '⭐ Intérêt'),
-                          const SizedBox(width: 6),
-                          _buildSortButton('category', '🏷️ Catégorie'),
-                        ],
+                    RadiusSelector(
+                      compact: true,
+                      currentRadius: mapState.radiusMeters,
+                      radiusOptions: const [5000, 10000, 15000, 20000],
+                      onRadiusChanged: (radius) async {
+                        if (_pageController.hasClients) {
+                          _pageController.jumpToPage(0);
+                        }
+                        setState(() => _currentPage = 0);
+                        await ref.read(mapControllerProvider.notifier).updateRadius(radius);
+                      },
+                    ),
+                    const SizedBox(height: 2),
+                    Text(
+                      'Rayon actif: ${(mapState.radiusMeters / 1000).toStringAsFixed(0)} km',
+                      style: TextStyle(
+                        fontSize: context.fontSize(11),
+                        color: Colors.grey.shade600,
                       ),
                     ),
                   ],
@@ -206,25 +213,6 @@ class _NearbyResultsPageState extends ConsumerState<NearbyResultsPage> {
           ],
         ),
       ),
-    );
-  }
-
-  Widget _buildSortButton(String value, String label) {
-    final isSelected = _sortBy == value;
-    return FilterChip(
-      label: Text(label),
-      selected: isSelected,
-      onSelected: (selected) {
-        setState(() {
-          _sortBy = value;
-          _currentPage = 0; // Reset to first page when changing sort
-        });
-        if (_pageController.hasClients) {
-          _pageController.jumpToPage(0);
-        }
-      },
-      backgroundColor: isSelected ? Colors.blue.shade100 : Colors.grey.shade100,
-      selectedColor: Colors.blue.shade200,
     );
   }
 
@@ -410,48 +398,21 @@ class _NearbyResultsPageState extends ConsumerState<NearbyResultsPage> {
   List<Poi> _sortPois(List<Poi> pois, Position? userPos) {
     final list = [...pois];
 
-    if (_sortBy == 'distance') {
-      // Trier par distance
-      if (userPos != null) {
-        list.sort((a, b) {
-          final da = GeoUtils.distanceMeters(
-            lat1: userPos.latitude,
-            lon1: userPos.longitude,
-            lat2: a.lat,
-            lon2: a.lng,
-          );
-          final db = GeoUtils.distanceMeters(
-            lat1: userPos.latitude,
-            lon1: userPos.longitude,
-            lat2: b.lat,
-            lon2: b.lng,
-          );
-          return da.compareTo(db);
-        });
-      }
-    } else if (_sortBy == 'interest') {
-      // Trier par intérêt (rating descendant, puis nombre de photos)
+    if (userPos != null) {
       list.sort((a, b) {
-        // D'abord: rating (descendant)
-        final ratingA = a.googleRating ?? 0;
-        final ratingB = b.googleRating ?? 0;
-        final ratingCompare = ratingB.compareTo(ratingA);
-        if (ratingCompare != 0) return ratingCompare;
-
-        // Ensuite: nombre de photos (descendant)
-        return b.imageUrls.length.compareTo(a.imageUrls.length);
-      });
-    } else if (_sortBy == 'category') {
-      // Trier par catégorie (groupes en priorité), puis par intérêt
-      list.sort((a, b) {
-        // D'abord: groupes de catégorie
-        final categoryCompare = (a.category.label).compareTo(b.category.label);
-        if (categoryCompare != 0) return categoryCompare;
-
-        // Ensuite: rating (descendant)
-        final ratingA = a.googleRating ?? 0;
-        final ratingB = b.googleRating ?? 0;
-        return ratingB.compareTo(ratingA);
+        final da = GeoUtils.distanceMeters(
+          lat1: userPos.latitude,
+          lon1: userPos.longitude,
+          lat2: a.lat,
+          lon2: a.lng,
+        );
+        final db = GeoUtils.distanceMeters(
+          lat1: userPos.latitude,
+          lon1: userPos.longitude,
+          lat2: b.lat,
+          lon2: b.lng,
+        );
+        return da.compareTo(db);
       });
     }
 
