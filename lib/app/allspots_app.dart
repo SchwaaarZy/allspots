@@ -3,6 +3,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'dart:async';
+import '../features/auth/data/account_verification_service.dart';
 import '../core/theme/app_theme.dart';
 import '../core/l10n/app_localizations.dart';
 import '../core/l10n/locale_provider.dart';
@@ -61,16 +63,30 @@ class _PresenceTracker extends StatefulWidget {
 
 class _PresenceTrackerState extends State<_PresenceTracker>
     with WidgetsBindingObserver {
+  StreamSubscription<User?>? _authSub;
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    _syncVerificationMetadata();
+  }
+
   @override
   void initState() {
     super.initState();
     WidgetsBinding.instance.addObserver(this);
+    _authSub = FirebaseAuth.instance.authStateChanges().listen((user) {
+      if (user != null) {
+        AccountVerificationService.ensureVerificationMetadata(user);
+      }
+    });
     _setOnline(true);
   }
 
   @override
   void dispose() {
     _setOnline(false);
+    _authSub?.cancel();
     WidgetsBinding.instance.removeObserver(this);
     super.dispose();
   }
@@ -96,6 +112,12 @@ class _PresenceTrackerState extends State<_PresenceTracker>
       },
       SetOptions(merge: true),
     );
+  }
+
+  Future<void> _syncVerificationMetadata() async {
+    final user = FirebaseAuth.instance.currentUser;
+    if (user == null) return;
+    await AccountVerificationService.ensureVerificationMetadata(user);
   }
 
   @override

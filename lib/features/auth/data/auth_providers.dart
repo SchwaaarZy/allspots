@@ -22,6 +22,10 @@ class UserProfile {
     this.totalVisits = 0,
     this.uniqueVisitedSpots = 0,
     this.isAdmin = false,
+    this.isPhoneVerified = false,
+    this.phoneNumber,
+    this.phoneVerificationDeadlineAt,
+    this.accountCreatedAt,
   });
 
   final String displayName;
@@ -38,6 +42,10 @@ class UserProfile {
   final int totalVisits;
   final int uniqueVisitedSpots;
   final bool isAdmin;
+  final bool isPhoneVerified;
+  final String? phoneNumber;
+  final DateTime? phoneVerificationDeadlineAt;
+  final DateTime? accountCreatedAt;
 
   GradeProgress get gradeProgress => XpService.gradeProgressForXp(xp);
 
@@ -68,6 +76,10 @@ class UserProfile {
 
     final role = (data['role'] as String?)?.toLowerCase();
     final isAdmin = (data['isAdmin'] as bool?) ?? role == 'admin';
+    final rawPhone = data['phoneNumber'];
+    final phoneNumber = rawPhone is String ? rawPhone : null;
+    final isPhoneVerified =
+      (data['isPhoneVerified'] as bool?) ?? (phoneNumber?.isNotEmpty == true);
     final rawHasPremium = (data['hasPremiumPass'] as bool?) ??
         (data['isPremium'] as bool?) ??
         false;
@@ -75,6 +87,22 @@ class UserProfile {
     final hasPremiumPass = isAdmin ? true : rawHasPremium;
     if (isAdmin && premiumExpiryDate == null) {
       premiumExpiryDate = DateTime(2999, 1, 1);
+    }
+
+    DateTime? phoneVerificationDeadlineAt;
+    final deadlineRaw = data['phoneVerificationDeadlineAt'];
+    if (deadlineRaw is Timestamp) {
+      phoneVerificationDeadlineAt = deadlineRaw.toDate();
+    } else if (deadlineRaw is DateTime) {
+      phoneVerificationDeadlineAt = deadlineRaw;
+    }
+
+    DateTime? accountCreatedAt;
+    final accountCreatedAtRaw = data['accountCreatedAt'];
+    if (accountCreatedAtRaw is Timestamp) {
+      accountCreatedAt = accountCreatedAtRaw.toDate();
+    } else if (accountCreatedAtRaw is DateTime) {
+      accountCreatedAt = accountCreatedAtRaw;
     }
 
     return UserProfile(
@@ -92,6 +120,10 @@ class UserProfile {
       totalVisits: totalVisits,
       uniqueVisitedSpots: uniqueVisitedSpots,
       isAdmin: isAdmin,
+      isPhoneVerified: isPhoneVerified,
+      phoneNumber: phoneNumber,
+      phoneVerificationDeadlineAt: phoneVerificationDeadlineAt,
+      accountCreatedAt: accountCreatedAt,
     );
   }
 }

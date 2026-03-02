@@ -26,6 +26,11 @@ class VisitXpResult {
     this.totalXp = 0,
     this.totalVisits = 0,
     this.uniqueVisitedSpots = 0,
+    this.leveledUp = false,
+    this.previousLevel,
+    this.newLevel,
+    this.previousGrade,
+    this.newGrade,
   });
 
   final bool awarded;
@@ -34,6 +39,11 @@ class VisitXpResult {
   final int totalXp;
   final int totalVisits;
   final int uniqueVisitedSpots;
+  final bool leveledUp;
+  final int? previousLevel;
+  final int? newLevel;
+  final String? previousGrade;
+  final String? newGrade;
 }
 
 class XpService {
@@ -115,6 +125,9 @@ class XpService {
       final newXp = currentXp + pointsPerVisit;
       final newVisits = currentVisits + 1;
       final newUnique = currentUnique + (isFirstVisitForSpot ? 1 : 0);
+      final previousProgress = gradeProgressForXp(currentXp);
+      final nextProgress = gradeProgressForXp(newXp);
+      final leveledUp = nextProgress.level > previousProgress.level;
 
       tx.set(
           profileRef,
@@ -152,6 +165,11 @@ class XpService {
         totalXp: newXp,
         totalVisits: newVisits,
         uniqueVisitedSpots: newUnique,
+        leveledUp: leveledUp,
+        previousLevel: previousProgress.level,
+        newLevel: nextProgress.level,
+        previousGrade: previousProgress.grade,
+        newGrade: nextProgress.grade,
       );
     });
   }

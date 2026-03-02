@@ -7,6 +7,7 @@ import 'package:geolocator/geolocator.dart';
 import 'package:image_picker/image_picker.dart';
 import '../../../core/constants/poi_categories.dart';
 import '../../../core/widgets/glass_app_bar.dart';
+import '../data/account_verification_service.dart';
 
 class ProfileSetupPage extends StatefulWidget {
   const ProfileSetupPage({super.key});
@@ -181,10 +182,28 @@ class _ProfileSetupPageState extends State<ProfileSetupPage> {
       };
 
       if (!existing.exists) {
+        final verificationDeadline =
+          AccountVerificationService.verificationDeadline(user);
+        final accountCreatedAt =
+          AccountVerificationService.accountCreationDate(user);
         data['createdAt'] = FieldValue.serverTimestamp();
+        data['accountCreatedAt'] = accountCreatedAt != null
+          ? Timestamp.fromDate(accountCreatedAt)
+          : FieldValue.serverTimestamp();
         data['xp'] = 0;
         data['totalVisits'] = 0;
         data['uniqueVisitedSpots'] = 0;
+        data['isPhoneVerified'] =
+          user.phoneNumber != null && user.phoneNumber!.trim().isNotEmpty;
+        data['phoneVerificationStatus'] =
+          data['isPhoneVerified'] == true ? 'verified' : 'pending';
+        data['phoneVerificationDeadlineAt'] = verificationDeadline != null
+          ? Timestamp.fromDate(verificationDeadline)
+          : FieldValue.serverTimestamp();
+        data['phoneNumber'] = user.phoneNumber;
+        if (data['isPhoneVerified'] == true) {
+          data['phoneVerifiedAt'] = FieldValue.serverTimestamp();
+        }
       }
 
       await docRef.set(data, SetOptions(merge: true));
@@ -201,6 +220,18 @@ class _ProfileSetupPageState extends State<ProfileSetupPage> {
 
   bool _isGroupSelected(PoiCategoryGroup group) {
     return group.items.every((item) => _selectedCategories.contains(item));
+  }
+
+  int _groupSelectedCount(PoiCategoryGroup group) {
+    return group.items.where((item) => _selectedCategories.contains(item)).length;
+  }
+
+  IconData _iconForGroup(PoiCategoryGroup group) {
+    if (group.title.contains('Patrimoine')) return Icons.account_balance_outlined;
+    if (group.title.contains('Nature')) return Icons.park_outlined;
+    if (group.title.contains('Culture')) return Icons.palette_outlined;
+    if (group.title.contains('gustative')) return Icons.restaurant_menu_outlined;
+    return Icons.directions_run_outlined;
   }
 
   @override
@@ -320,88 +351,114 @@ class _ProfileSetupPageState extends State<ProfileSetupPage> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        const Text(
-                          'Preferences de spots',
+                        Row(
+                          children: [
+                            Text(
+                              'Centres d\'interet',
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 15,
+                                color: Theme.of(context).colorScheme.primary,
+                              ),
+                            ),
+                            const Spacer(),
+                            TextButton.icon(
+                              onPressed: _selectedCategories.isEmpty
+                                  ? null
+                                  : () {
+                                      setState(_selectedCategories.clear);
+                                    },
+                              icon: const Icon(Icons.clear_all, size: 16),
+                              label: const Text('Vider'),
+                            ),
+                          ],
+                        ),
+                        const SizedBox(height: 6),
+                        Text(
+                          '${_selectedCategories.length} interets selectionnes',
                           style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            fontSize: 13,
+                            color: Theme.of(context).colorScheme.onSurfaceVariant,
+                            fontSize: 12,
                           ),
                         ),
                         const SizedBox(height: 10),
                         for (final group in poiCategoryGroups) ...[
-                          // En-tête du groupe avec checkbox
-                          CheckboxListTile(
-                            contentPadding: EdgeInsets.zero,
-                            dense: true,
-                            title: Text(
-                              group.title,
-                              style: const TextStyle(
-                                fontWeight: FontWeight.w600,
-                                fontSize: 12,
+                          Card(
+                            margin: const EdgeInsets.only(bottom: 8),
+                            elevation: 0,
+                            color: Theme.of(context)
+                                .colorScheme
+                                .surfaceContainerHighest
+                                .withValues(alpha: 0.32),
+                            child: ExpansionTile(
+                              leading: Icon(
+                                _iconForGroup(group),
+                                color: Theme.of(context).colorScheme.primary,
                               ),
-                            ),
-                            value: _isGroupSelected(group),
-                            onChanged: (selected) {
-                              setState(() {
-                                if (selected == true) {
-                                  // Ajouter tous les items du groupe
-                                  _selectedCategories.addAll(group.items);
-                                } else {
-                                  // Retirer tous les items du groupe
-                                  _selectedCategories.removeAll(group.items);
-                                }
-                              });
-                            },
-                          ),
-                          // Sous-catégories du groupe (indentées)
-                          Padding(
-                            padding: const EdgeInsets.only(left: 16),
-                            child: LayoutBuilder(
-                              builder: (context, constraints) {
-                                final isNarrow = constraints.maxWidth < 340;
-                                final itemWidth = isNarrow
-                                    ? constraints.maxWidth
-                                    : (constraints.maxWidth - 12) / 2;
-
-                                return Wrap(
-                                  spacing: 12,
-                                  runSpacing: 4,
-                                  children: [
-                                    for (final item in group.items)
-                                      SizedBox(
-                                        width: itemWidth,
-                                        child: CheckboxListTile(
-                                          contentPadding: EdgeInsets.zero,
-                                          dense: true,
-                                          visualDensity:
-                                              VisualDensity.compact,
-                                          title: Text(
-                                            item,
-                                            style:
-                                                const TextStyle(fontSize: 11),
-                                          ),
-                                          value: _selectedCategories
-                                              .contains(item),
-                                          onChanged: (selected) {
+                              title: Text(
+                                group.title,
+                                style: const TextStyle(
+                                  fontWeight: FontWeight.w700,
+                                  fontSize: 13,
+                                ),
+                              ),
+                              subtitle: Text(
+                                '${_groupSelectedCount(group)}/${group.items.length} selectionnes',
+                                style: TextStyle(
+                                  fontSize: 11,
+                                  color: Theme.of(context).colorScheme.onSurfaceVariant,
+                                ),
+                              ),
+                              trailing: Row(
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  Checkbox(
+                                    value: _isGroupSelected(group),
+                                    onChanged: (selected) {
+                                      setState(() {
+                                        if (selected == true) {
+                                          _selectedCategories.addAll(group.items);
+                                        } else {
+                                          _selectedCategories.removeAll(group.items);
+                                        }
+                                      });
+                                    },
+                                  ),
+                                  const Icon(Icons.expand_more),
+                                ],
+                              ),
+                              childrenPadding:
+                                  const EdgeInsets.fromLTRB(12, 0, 12, 12),
+                              children: [
+                                Align(
+                                  alignment: Alignment.centerLeft,
+                                  child: Wrap(
+                                    spacing: 8,
+                                    runSpacing: 8,
+                                    children: [
+                                      for (final item in group.items)
+                                        FilterChip(
+                                          selected:
+                                              _selectedCategories.contains(item),
+                                          label: Text(item),
+                                          showCheckmark: false,
+                                          onSelected: (selected) {
                                             setState(() {
-                                              if (selected == true) {
+                                              if (selected) {
                                                 _selectedCategories.add(item);
                                               } else {
-                                                _selectedCategories
-                                                    .remove(item);
+                                                _selectedCategories.remove(item);
                                               }
                                             });
                                           },
                                         ),
-                                      ),
-                                  ],
-                                );
-                              },
+                                    ],
+                                  ),
+                                ),
+                              ],
                             ),
                           ),
-                          const SizedBox(height: 8),
                         ],
-                        const SizedBox(height: 4),
                       ],
                     ),
                   ),

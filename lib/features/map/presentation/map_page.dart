@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -64,6 +66,7 @@ class _MapViewState extends ConsumerState<MapView> {
   Position? _lastAutoXpPosition;
   DateTime? _lastAutoXpRunAt;
   final Map<String, DateTime> _lastAutoAttemptBySpot = {};
+  Timer? _spotsSyncTimer;
 
   static const double _autoXpRadiusMeters = 10;
   static const double _autoXpMinMovementMeters = 20;
@@ -78,12 +81,28 @@ class _MapViewState extends ConsumerState<MapView> {
       if (!_initialized) {
         _initialized = true;
         ref.read(mapControllerProvider.notifier).init();
+        _startSpotsSyncTimer();
       }
+    });
+  }
+
+  void _startSpotsSyncTimer() {
+    _spotsSyncTimer?.cancel();
+    _spotsSyncTimer = Timer.periodic(const Duration(seconds: 20), (_) {
+      if (!mounted) return;
+      final state = ref.read(mapControllerProvider);
+      if (state.userPosition == null) return;
+      ref.read(mapControllerProvider.notifier).refreshNearby(
+            forceRefresh: true,
+            includeExistingPois: true,
+            softUpdate: true,
+          );
     });
   }
 
   @override
   void dispose() {
+    _spotsSyncTimer?.cancel();
     _flutterMapController.dispose();
     super.dispose();
   }
@@ -223,7 +242,11 @@ class _MapViewState extends ConsumerState<MapView> {
         if (result.awarded) {
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
-              content: Text('✅ +10 XP auto : ${poi.displayName}'),
+              content: Text(
+                result.leveledUp
+                    ? '🎉 Nouveau grade atteint : ${result.newGrade} (Niv. ${result.newLevel})'
+                    : '✅ +10 XP auto : ${poi.displayName}',
+              ),
               duration: const Duration(seconds: 2),
             ),
           );

@@ -1,0 +1,75 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    function profilePath(uid) {
+      return /databases/$(database)/documents/profiles/$(uid);
+    }
+
+    function profileExists(uid) {
+      return exists(profilePath(uid));
+    }
+
+    function profileData(uid) {
+      return get(profilePath(uid)).data;
+    }
+
+    function isAdmin(uid) {
+      return profileExists(uid)
+        && (profileData(uid).isAdmin == true || profileData(uid).role == 'admin');
+    }
+
+    function verificationGraceExpired(uid) {
+      return profileExists(uid)
+        && !isAdmin(uid)
+        && profileData(uid).isPhoneVerified == false
+        && profileData(uid).phoneVerificationDeadlineAt != null
+        && request.time > profileData(uid).phoneVerificationDeadlineAt;
+    }
+
+    function canUseApp(uid) {
+      return isSignedIn() && !verificationGraceExpired(uid);
+    }
+
+    match /profiles/{userId} {
+      allow read, update, delete: if request.auth.uid == userId && canUseApp(userId);
+      allow create: if request.auth.uid == userId;
+
+      match /favoritePois/{poiId} {
+        allow read, write: if request.auth.uid == userId && canUseApp(userId);
+      }
+
+      match /roadTrips/{docId} {
+        allow read, write: if request.auth.uid == userId && canUseApp(userId);
+      }
+    }
+
+    match /spots/{spotId} {
+      allow read: if true;
+      allow create: if canUseApp(request.auth.uid);
+      allow update, delete: if request.auth.uid == resource.data.createdBy
+        && canUseApp(request.auth.uid);
+    }
+
+    match /poi_ratings/{ratingId} {
+      allow read: if true;
+      allow create: if canUseApp(request.auth.uid)
+        && request.resource.data.userId == request.auth.uid;
+      allow update, delete: if resource.data.userId == request.auth.uid
+        && canUseApp(request.auth.uid);
+    }
+
+    match /spot_reports/{reportId} {
+      allow create: if canUseApp(request.auth.uid)
+        && request.resource.data.reporterId == request.auth.uid;
+      allow read, update, delete: if false;
+    }
+
+    match /users/{userId} {
+      allow read, write: if request.auth.uid == userId && canUseApp(userId);
+    }
+  }
+}

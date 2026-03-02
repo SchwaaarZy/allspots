@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -9,6 +10,7 @@ import 'package:http/http.dart' as http;
 import '../../../core/utils/responsive_utils.dart';
 import '../../../core/widgets/glass_app_bar.dart';
 import '../../../core/widgets/optimized_image.dart';
+import '../../auth/data/account_verification_service.dart';
 import '../../auth/data/auth_providers.dart';
 import '../../auth/presentation/profile_setup_page.dart';
 import '../../info/info_center_page.dart';
@@ -43,7 +45,7 @@ class _ProfilePageState extends ConsumerState<ProfilePage>
   @override
   void initState() {
     super.initState();
-    _tabController = TabController(length: 4, vsync: this);
+    _tabController = TabController(length: 5, vsync: this);
     _tabController.addListener(_onTabChanged);
   }
 
@@ -105,6 +107,7 @@ class _ProfilePageState extends ConsumerState<ProfilePage>
                 _MyPoiTab(userId: user.uid),
                 _FavoritesTab(userId: user.uid),
                 const _RoadTripTab(),
+                _AccountVerificationTab(user: user, profile: profile),
                 _PremiumTab(profile: profile, user: user),
               ],
             ),
@@ -333,7 +336,7 @@ class _ProfilePageState extends ConsumerState<ProfilePage>
                                 ),
                               ),
                               SizedBox(width: isCompact ? 10 : 12),
-                              // Nom et localisation
+                              // Nom et badges
                               Expanded(
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -374,31 +377,39 @@ class _ProfilePageState extends ConsumerState<ProfilePage>
                                         ],
                                       ],
                                     ),
-                                    const SizedBox(height: 4),
-                                    // Localisation
-                                    if (profile.location.isNotEmpty)
-                                      Row(
+                                    const SizedBox(height: 6),
+                                    Container(
+                                      padding: const EdgeInsets.symmetric(
+                                        horizontal: 10,
+                                        vertical: 4,
+                                      ),
+                                      decoration: BoxDecoration(
+                                        color: Colors.white.withValues(alpha: 0.18),
+                                        borderRadius: BorderRadius.circular(999),
+                                        border: Border.all(
+                                          color: Colors.white.withValues(alpha: 0.28),
+                                        ),
+                                      ),
+                                      child: Row(
                                         mainAxisSize: MainAxisSize.min,
                                         children: [
                                           const Icon(
-                                            Icons.location_on,
+                                            Icons.military_tech,
                                             size: 14,
-                                            color: Colors.white70,
+                                            color: Colors.amber,
                                           ),
-                                          const SizedBox(width: 4),
-                                          Flexible(
-                                            child: Text(
-                                              profile.location,
-                                              style: TextStyle(
-                                                color: Colors.white70,
-                                                fontSize: context.fontSize(13),
-                                              ),
-                                              maxLines: 1,
-                                              overflow: TextOverflow.ellipsis,
+                                          const SizedBox(width: 6),
+                                          Text(
+                                            'Grade ${grade.grade} • Niv. ${grade.level}',
+                                            style: TextStyle(
+                                              color: Colors.white,
+                                              fontSize: context.fontSize(12),
+                                              fontWeight: FontWeight.w700,
                                             ),
                                           ),
                                         ],
                                       ),
+                                    ),
                                     if (profile.categories.isNotEmpty ||
                                         spotsCount > 0 ||
                                         favsCount >= 5) ...[
@@ -439,7 +450,7 @@ class _ProfilePageState extends ConsumerState<ProfilePage>
                           SizedBox(height: isCompact ? 8 : 12),
                           // Statistiques
                           Container(
-                            padding: EdgeInsets.all(isCompact ? 8 : 10),
+                            padding: EdgeInsets.all(isCompact ? 7 : 8),
                             decoration: BoxDecoration(
                               color: Colors.white.withValues(alpha: 0.15),
                               borderRadius: BorderRadius.circular(12),
@@ -486,9 +497,9 @@ class _ProfilePageState extends ConsumerState<ProfilePage>
                               ],
                             ),
                           ),
-                          SizedBox(height: isCompact ? 6 : 8),
+                          SizedBox(height: isCompact ? 5 : 6),
                           Container(
-                            padding: EdgeInsets.all(isCompact ? 8 : 10),
+                            padding: EdgeInsets.all(isCompact ? 6 : 8),
                             decoration: BoxDecoration(
                               color: Colors.white.withValues(alpha: 0.12),
                               borderRadius: BorderRadius.circular(12),
@@ -504,15 +515,17 @@ class _ProfilePageState extends ConsumerState<ProfilePage>
                                     const Icon(
                                       Icons.workspace_premium,
                                       color: Colors.white,
-                                      size: 18,
+                                      size: 16,
                                     ),
-                                    const SizedBox(width: 8),
+                                    const SizedBox(width: 6),
                                     Expanded(
                                       child: Text(
                                         '${grade.grade} • Niveau ${grade.level}',
-                                        style: const TextStyle(
+                                        style: TextStyle(
                                           color: Colors.white,
                                           fontWeight: FontWeight.w700,
+                                          fontSize:
+                                              context.fontSize(isCompact ? 12 : 13),
                                         ),
                                       ),
                                     ),
@@ -520,17 +533,17 @@ class _ProfilePageState extends ConsumerState<ProfilePage>
                                       '${profile.totalVisits} visites',
                                       style: TextStyle(
                                         color: Colors.white70,
-                                        fontSize: context.fontSize(12),
+                                        fontSize: context.fontSize(isCompact ? 10 : 11),
                                       ),
                                     ),
                                   ],
                                 ),
-                                SizedBox(height: isCompact ? 4 : 6),
+                                SizedBox(height: isCompact ? 3 : 4),
                                 ClipRRect(
                                   borderRadius: BorderRadius.circular(999),
                                   child: LinearProgressIndicator(
                                     value: grade.progress,
-                                    minHeight: 7,
+                                    minHeight: 6,
                                     backgroundColor:
                                         Colors.white.withValues(alpha: 0.25),
                                     valueColor:
@@ -539,19 +552,19 @@ class _ProfilePageState extends ConsumerState<ProfilePage>
                                     ),
                                   ),
                                 ),
-                                const SizedBox(height: 4),
+                                const SizedBox(height: 3),
                                 Text(
                                   '${grade.currentLevelXp}/${grade.requiredXpForNextLevel} XP vers le niveau suivant',
                                   style: TextStyle(
                                     color: Colors.white70,
                                     fontSize:
-                                        context.fontSize(isCompact ? 10 : 12),
+                                        context.fontSize(isCompact ? 9 : 10),
                                   ),
                                 ),
                               ],
                             ),
                           ),
-                          SizedBox(height: isCompact ? 6 : 10),
+                          SizedBox(height: isCompact ? 4 : 6),
                         ],
                       ),
                     ),
@@ -865,6 +878,10 @@ class _ProfilePageState extends ConsumerState<ProfilePage>
           Tab(
             icon: Icon(Icons.route, size: isCompact ? 14 : 15),
             text: 'Road Trip',
+          ),
+          Tab(
+            icon: Icon(Icons.verified_user, size: isCompact ? 14 : 15),
+            text: 'Vérif',
           ),
           Tab(
             icon: Icon(Icons.workspace_premium, size: isCompact ? 14 : 15),
@@ -2019,6 +2036,302 @@ class _PremiumTab extends ConsumerWidget {
           Text(label, style: const TextStyle(fontWeight: FontWeight.w500)),
           Text(value, style: const TextStyle(color: Colors.grey)),
         ],
+      ),
+    );
+  }
+}
+
+class _AccountVerificationTab extends ConsumerStatefulWidget {
+  const _AccountVerificationTab({
+    required this.user,
+    required this.profile,
+  });
+
+  final User user;
+  final UserProfile profile;
+
+  @override
+  ConsumerState<_AccountVerificationTab> createState() =>
+      _AccountVerificationTabState();
+}
+
+class _AccountVerificationTabState
+    extends ConsumerState<_AccountVerificationTab> {
+  final _phoneController = TextEditingController();
+  final _codeController = TextEditingController();
+
+  String? _verificationId;
+  bool _isSendingCode = false;
+  bool _isVerifyingCode = false;
+  bool _codeSent = false;
+
+  @override
+  void initState() {
+    super.initState();
+    final initialPhone = widget.profile.phoneNumber ?? widget.user.phoneNumber;
+    if (initialPhone != null && initialPhone.trim().isNotEmpty) {
+      _phoneController.text = initialPhone;
+    }
+  }
+
+  @override
+  void dispose() {
+    _phoneController.dispose();
+    _codeController.dispose();
+    super.dispose();
+  }
+
+  DateTime? get _deadline {
+    return widget.profile.phoneVerificationDeadlineAt ??
+        AccountVerificationService.verificationDeadline(widget.user);
+  }
+
+  String _remainingLabel(DateTime deadline) {
+    final now = DateTime.now();
+    final remaining = deadline.difference(now);
+    if (remaining.isNegative) return 'Délai dépassé';
+    final hours = remaining.inHours;
+    final minutes = remaining.inMinutes.remainder(60);
+    return '${hours}h ${minutes}m restantes';
+  }
+
+  Future<void> _sendSmsCode() async {
+    if (_isSendingCode) return;
+    final rawPhone = _phoneController.text.trim();
+    if (rawPhone.isEmpty) {
+      _showSnack('Entrez votre numéro de téléphone.');
+      return;
+    }
+    if (kIsWeb) {
+      _showSnack('Vérification SMS non disponible sur Web dans cette version.');
+      return;
+    }
+
+    setState(() {
+      _isSendingCode = true;
+      _codeSent = false;
+      _verificationId = null;
+    });
+
+    try {
+      await FirebaseAuth.instance.verifyPhoneNumber(
+        phoneNumber: rawPhone,
+        timeout: const Duration(seconds: 60),
+        verificationCompleted: (credential) async {
+          await _applyCredential(credential, rawPhone);
+        },
+        verificationFailed: (e) async {
+          await FirebaseFirestore.instance
+              .collection('profiles')
+              .doc(widget.user.uid)
+              .set(
+            {
+              'phoneVerificationStatus': 'failed',
+              'phoneVerificationError': e.message,
+              'updatedAt': FieldValue.serverTimestamp(),
+            },
+            SetOptions(merge: true),
+          );
+          _showSnack(e.message ?? 'Échec envoi du SMS.');
+        },
+        codeSent: (verificationId, _) async {
+          _verificationId = verificationId;
+          _codeSent = true;
+          await AccountVerificationService.markCodeSent(
+            user: widget.user,
+            phoneNumber: rawPhone,
+          );
+          if (mounted) setState(() {});
+          _showSnack('Code SMS envoyé.');
+        },
+        codeAutoRetrievalTimeout: (verificationId) {
+          _verificationId = verificationId;
+        },
+      );
+    } catch (e) {
+      _showSnack('Erreur envoi SMS: $e');
+    } finally {
+      if (mounted) {
+        setState(() {
+          _isSendingCode = false;
+        });
+      }
+    }
+  }
+
+  Future<void> _verifyCode() async {
+    if (_isVerifyingCode) return;
+    final smsCode = _codeController.text.trim();
+    if ((_verificationId ?? '').isEmpty || smsCode.length < 6) {
+      _showSnack('Entrez le code reçu par SMS.');
+      return;
+    }
+
+    setState(() => _isVerifyingCode = true);
+    try {
+      final credential = PhoneAuthProvider.credential(
+        verificationId: _verificationId!,
+        smsCode: smsCode,
+      );
+      await _applyCredential(credential, _phoneController.text.trim());
+    } catch (e) {
+      _showSnack('Code invalide ou expiré.');
+    } finally {
+      if (mounted) {
+        setState(() => _isVerifyingCode = false);
+      }
+    }
+  }
+
+  Future<void> _applyCredential(
+    PhoneAuthCredential credential,
+    String phoneNumber,
+  ) async {
+    final currentUser = FirebaseAuth.instance.currentUser;
+    if (currentUser == null) {
+      _showSnack('Session expirée. Reconnectez-vous.');
+      return;
+    }
+
+    if (currentUser.phoneNumber == null || currentUser.phoneNumber!.isEmpty) {
+      await currentUser.linkWithCredential(credential);
+    } else {
+      await currentUser.updatePhoneNumber(credential);
+    }
+
+    await currentUser.reload();
+    final reloaded = FirebaseAuth.instance.currentUser;
+    if (reloaded == null) return;
+
+    await AccountVerificationService.markPhoneVerified(
+      user: reloaded,
+      phoneNumber: phoneNumber,
+    );
+
+    if (mounted) {
+      setState(() {
+        _codeSent = false;
+        _codeController.clear();
+      });
+    }
+    _showSnack('Numéro vérifié avec succès ✅');
+  }
+
+  void _showSnack(String message) {
+    if (!mounted) return;
+    ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(message)));
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final profile = ref.watch(profileStreamProvider).value ?? widget.profile;
+    final isAdmin = profile.isAdmin;
+    final isVerified = profile.isPhoneVerified || isAdmin;
+    final deadline = profile.phoneVerificationDeadlineAt ?? _deadline;
+    final bottomInset = MediaQuery.paddingOf(context).bottom;
+
+    return SafeArea(
+      top: false,
+      minimum: EdgeInsets.only(bottom: bottomInset > 0 ? 4 : 8),
+      child: SingleChildScrollView(
+        padding: EdgeInsets.fromLTRB(16, 16, 16, 16 + bottomInset),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            Card(
+              child: Padding(
+                padding: const EdgeInsets.all(16),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const Text(
+                      'Vérification du compte par SMS',
+                      style:
+                          TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+                    ),
+                    const SizedBox(height: 8),
+                    Text(
+                      isAdmin
+                          ? 'Compte admin: vérification SMS non requise ✅'
+                          : isVerified
+                          ? 'Compte vérifié ✅'
+                          : 'Votre compte doit être vérifié sous 24h.',
+                      style: TextStyle(
+                        color: isVerified ? Colors.green : Colors.red,
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
+                    if (!isVerified && deadline != null) ...[
+                      const SizedBox(height: 6),
+                      Text(
+                        'Échéance: ${deadline.toLocal()} (${_remainingLabel(deadline)})',
+                        style: const TextStyle(color: Colors.black87),
+                      ),
+                    ],
+                    const SizedBox(height: 6),
+                    Text(
+                      isAdmin
+                          ? 'Les comptes admin ne sont pas concernés par la suppression automatique de non-vérification.'
+                          : 'Si la vérification n\'est pas faite à temps, le compte et ses données (spots, favoris, roadtrip, notes, signalements) seront supprimés automatiquement.',
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            const SizedBox(height: 12),
+            TextField(
+              controller: _phoneController,
+              keyboardType: TextInputType.phone,
+              enabled: !isVerified,
+              decoration: const InputDecoration(
+                labelText: 'Numéro de téléphone (+33...)',
+                border: OutlineInputBorder(),
+              ),
+            ),
+            const SizedBox(height: 10),
+            SizedBox(
+              width: double.infinity,
+              child: ElevatedButton.icon(
+                onPressed: isVerified || _isSendingCode ? null : _sendSmsCode,
+                icon: _isSendingCode
+                    ? const SizedBox(
+                        width: 16,
+                        height: 16,
+                        child: CircularProgressIndicator(strokeWidth: 2),
+                      )
+                    : const Icon(Icons.sms),
+                label: const Text('Envoyer le code SMS'),
+              ),
+            ),
+            const SizedBox(height: 12),
+            TextField(
+              controller: _codeController,
+              keyboardType: TextInputType.number,
+              enabled: !isVerified,
+              decoration: const InputDecoration(
+                labelText: 'Code SMS',
+                border: OutlineInputBorder(),
+              ),
+            ),
+            const SizedBox(height: 10),
+            SizedBox(
+              width: double.infinity,
+              child: ElevatedButton.icon(
+                onPressed: (!isVerified && (_codeSent || _verificationId != null) && !_isVerifyingCode)
+                    ? _verifyCode
+                    : null,
+                icon: _isVerifyingCode
+                    ? const SizedBox(
+                        width: 16,
+                        height: 16,
+                        child: CircularProgressIndicator(strokeWidth: 2),
+                      )
+                    : const Icon(Icons.verified),
+                label: const Text('Valider le code'),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

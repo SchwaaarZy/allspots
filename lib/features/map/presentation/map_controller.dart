@@ -192,6 +192,8 @@ class MapController extends StateNotifier<MapState> {
   DateTime? _lastPrefetchTime;
   static const Duration _minPrefetchInterval = Duration(seconds: 30);
   static const double _prefetchRadiusMeters = 10000;
+  bool _isRefreshing = false;
+  _RefreshRequest? _pendingRefresh;
 
   Future<void> init() async {
     state = state.copyWith(isLoading: true, error: null);
@@ -232,50 +234,58 @@ class MapController extends StateNotifier<MapState> {
     double? userLngOverride,
     bool forceRefresh = false,
     bool includeExistingPois = false,
+    bool softUpdate = false,
   }) async {
-    // Les spots s'affichent automatiquement par proximité (5km)
-    // Pas de vérification de sélection nécessaire
-
-    // OPTIMISÉ: Vérifie que suffisamment de temps s'est écoulé
-    final now = DateTime.now();
-    if (!forceRefresh &&
-      _lastRefreshTime != null &&
-        now.difference(_lastRefreshTime!) < _minRefreshInterval) {
-      // Si on ne peut pas rafraîchir à cause du throttle mais qu'une erreur se montre,
-      // on s'assure que c'est bien une erreur valide (pas juste "pas de destination")
-      // qui persiste correctement
-      return; // Trop récent, ignore
-    }
-    _lastRefreshTime = now;
-
-    final pos = state.userPosition;
-    final userLat = userLatOverride ?? pos?.latitude;
-    final userLng = userLngOverride ?? pos?.longitude;
-
-    if (userLat == null || userLng == null) {
-      state = state.copyWith(
-        nearbyPois: const [],
-        displayedPois: const [],
-        isLoading: false,
-        error:
-            'Localisation indisponible. Activez la localisation pour charger les spots.',
+    if (_isRefreshing) {
+      _pendingRefresh = _RefreshRequest(
+        userLatOverride: userLatOverride,
+        userLngOverride: userLngOverride,
+        forceRefresh: forceRefresh,
+        includeExistingPois: includeExistingPois,
+        softUpdate: softUpdate,
       );
       return;
     }
-
-    if (!_isInSupportedCoverage(userLat, userLng)) {
-      state = state.copyWith(
-        nearbyPois: const [],
-        displayedPois: const [],
-        isLoading: false,
-        error: 'Aucun spot disponible dans ce pays pour le moment.',
-      );
-      return;
-    }
-
-    state = state.copyWith(isLoading: true, error: null);
-
+    _isRefreshing = true;
     try {
+      final now = DateTime.now();
+      if (!forceRefresh &&
+          _lastRefreshTime != null &&
+          now.difference(_lastRefreshTime!) < _minRefreshInterval) {
+        return;
+      }
+      _lastRefreshTime = now;
+
+      final pos = state.userPosition;
+      final userLat = userLatOverride ?? pos?.latitude;
+      final userLng = userLngOverride ?? pos?.longitude;
+
+      if (userLat == null || userLng == null) {
+        state = state.copyWith(
+          nearbyPois: const [],
+          displayedPois: const [],
+          isLoading: false,
+          error:
+              'Localisation indisponible. Activez la localisation pour charger les spots.',
+        );
+        return;
+      }
+
+      if (!_isInSupportedCoverage(userLat, userLng)) {
+        state = state.copyWith(
+          nearbyPois: const [],
+          displayedPois: const [],
+          isLoading: false,
+          error: 'Aucun spot disponible dans ce pays pour le moment.',
+        );
+        return;
+      }
+
+      final shouldShowLoader = !(softUpdate && state.displayedPois.isNotEmpty);
+      if (state.isLoading != shouldShowLoader || state.error != null) {
+        state = state.copyWith(isLoading: shouldShowLoader, error: null);
+      }
+
       final pois = await _repo.getNearbyPois(
         userLat: userLat,
         userLng: userLng,
@@ -323,7 +333,6 @@ class MapController extends StateNotifier<MapState> {
         return distA.compareTo(distB);
       });
 
-      // Filtre pour n'afficher que les POIs dans le rayon actuel
       final displayedPois = allPois.where((poi) {
         final dist = GeoUtils.distanceMeters(
           lat1: userLat,
@@ -334,18 +343,53 @@ class MapController extends StateNotifier<MapState> {
         return dist <= state.radiusMeters;
       }).toList();
 
-      state = state.copyWith(
-        nearbyPois: allPois,
-        displayedPois: displayedPois,
-        localizedDepartmentCode: localizedDepartmentCode,
-        localizedRegionCode: localizedRegionCode,
-        isLoading: false,
-      );
+      final shouldUpdateLists =
+          !_samePoiListById(state.nearbyPois, allPois) ||
+          !_samePoiListById(state.displayedPois, displayedPois);
+      final shouldUpdateLocalization =
+          state.localizedDepartmentCode != localizedDepartmentCode ||
+          state.localizedRegionCode != localizedRegionCode;
+
+      if (shouldUpdateLists || shouldUpdateLocalization || state.isLoading) {
+        state = state.copyWith(
+          nearbyPois: allPois,
+          displayedPois: displayedPois,
+          localizedDepartmentCode: localizedDepartmentCode,
+          localizedRegionCode: localizedRegionCode,
+          isLoading: false,
+        );
+      }
 
       _prefetchAroundMe(userLat: userLat, userLng: userLng);
     } catch (e) {
       state = state.copyWith(error: e.toString(), isLoading: false);
+    } finally {
+      _isRefreshing = false;
+      final pending = _pendingRefresh;
+      _pendingRefresh = null;
+      if (pending != null) {
+        unawaited(
+          refreshNearby(
+            userLatOverride: pending.userLatOverride,
+            userLngOverride: pending.userLngOverride,
+            forceRefresh: pending.forceRefresh,
+            includeExistingPois: pending.includeExistingPois,
+            softUpdate: pending.softUpdate,
+          ),
+        );
+      }
     }
+  }
+
+  bool _samePoiListById(List<Poi> left, List<Poi> right) {
+    if (identical(left, right)) return true;
+    if (left.length != right.length) return false;
+    for (var index = 0; index < left.length; index++) {
+      if (left[index].id != right[index].id) {
+        return false;
+      }
+    }
+    return true;
   }
 
   bool _isInSupportedCoverage(double lat, double lng) {
@@ -648,4 +692,20 @@ class MapController extends StateNotifier<MapState> {
         .replaceAll('-', ' ')
         .replaceAll(RegExp(r'\s+'), ' ');
   }
+}
+
+class _RefreshRequest {
+  const _RefreshRequest({
+    required this.userLatOverride,
+    required this.userLngOverride,
+    required this.forceRefresh,
+    required this.includeExistingPois,
+    required this.softUpdate,
+  });
+
+  final double? userLatOverride;
+  final double? userLngOverride;
+  final bool forceRefresh;
+  final bool includeExistingPois;
+  final bool softUpdate;
 }

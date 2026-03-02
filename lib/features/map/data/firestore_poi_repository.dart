@@ -20,6 +20,9 @@ class FirestorePoiRepository implements PoiRepository {
   FirestorePoiRepository(this._firestore);
 
   final FirebaseFirestore _firestore;
+  final Map<String, _CacheEntry> _nearbyCache = <String, _CacheEntry>{};
+  static const Duration _cacheTtl = Duration(seconds: 20);
+  static const int _maxCacheEntries = 32;
   static const int _pageSize = 300;
   // OPTIMISÉ: Réduit de 3000 à 500 par zone → fetch 10x moins de docs
   static const int _maxDocsPerZone = 500;
@@ -53,6 +56,17 @@ class FirestorePoiRepository implements PoiRepository {
     required PoiFilters filters,
   }) async {
     try {
+      final cacheKey = _buildCacheKey(
+        userLat: userLat,
+        userLng: userLng,
+        radiusMeters: radiusMeters,
+        filters: filters,
+      );
+      final cached = _nearbyCache[cacheKey];
+      if (cached != null && DateTime.now().difference(cached.createdAt) <= _cacheTtl) {
+        return cached.pois;
+      }
+
       final candidateZones = _selectZones(
         userLat: userLat,
         userLng: userLng,
@@ -156,11 +170,48 @@ class FirestorePoiRepository implements PoiRepository {
         return da.compareTo(db);
       });
 
+      _putCache(cacheKey, results);
       return results;
     } catch (e) {
       debugPrint('[FirestorePoiRepository] error=$e');
       return const [];
     }
+  }
+
+  String _buildCacheKey({
+    required double userLat,
+    required double userLng,
+    required double radiusMeters,
+    required PoiFilters filters,
+  }) {
+    final categories = filters.categories.map((c) => c.name).toList()..sort();
+    final latBucket = userLat.toStringAsFixed(3);
+    final lngBucket = userLng.toStringAsFixed(3);
+    final radiusBucket = radiusMeters.round();
+    return [
+      latBucket,
+      lngBucket,
+      radiusBucket,
+      filters.onlyFree,
+      filters.pmrOnly,
+      filters.kidsOnly,
+      filters.openNow,
+      filters.maxVisitDurationMin ?? -1,
+      categories.join('|'),
+    ].join('::');
+  }
+
+  void _putCache(String key, List<Poi> pois) {
+    if (_nearbyCache.length >= _maxCacheEntries) {
+      final oldestEntry = _nearbyCache.entries.reduce(
+        (left, right) => left.value.createdAt.isBefore(right.value.createdAt) ? left : right,
+      );
+      _nearbyCache.remove(oldestEntry.key);
+    }
+    _nearbyCache[key] = _CacheEntry(
+      createdAt: DateTime.now(),
+      pois: List<Poi>.unmodifiable(pois),
+    );
   }
 
   List<_GeoZone> _selectZones({
@@ -451,6 +502,16 @@ class FirestorePoiRepository implements PoiRepository {
     }
     return const [];
   }
+}
+
+class _CacheEntry {
+  const _CacheEntry({
+    required this.createdAt,
+    required this.pois,
+  });
+
+  final DateTime createdAt;
+  final List<Poi> pois;
 }
 
 class _GeoZone {

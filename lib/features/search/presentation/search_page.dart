@@ -22,9 +22,37 @@ class SearchPage extends ConsumerStatefulWidget {
 
 class _SearchPageState extends ConsumerState<SearchPage> {
   static const double _nearbyMaxDistanceMeters = 20000;
+  static const Set<String> _stopWords = {
+    'a',
+    'au',
+    'aux',
+    'avec',
+    'by',
+    'd',
+    'dans',
+    'de',
+    'des',
+    'du',
+    'en',
+    'et',
+    'for',
+    'la',
+    'le',
+    'les',
+    'of',
+    'ou',
+    'par',
+    'pour',
+    'sur',
+    'the',
+    'un',
+    'une',
+  };
 
   String? _selectedRegionCode;
   String? _selectedDepartmentCode;
+  String _keywordQuery = '';
+  List<String> _selectedKeywords = const <String>[];
   bool _nearbyOnly = false;
   bool _initialized = false;
   final int _itemsPerPage = 10;
@@ -33,6 +61,7 @@ class _SearchPageState extends ConsumerState<SearchPage> {
   late ValueNotifier<int> _pageNotifier;
   late final List<RegionModel> _regions;
   late final Map<String, List<DepartmentModel>> _departmentsByRegion;
+  List<String> _dynamicKeywordSuggestions = const <String>[];
   String? _cachedResultsKey;
   List<Poi> _cachedResults = const <Poi>[];
 
@@ -69,15 +98,21 @@ class _SearchPageState extends ConsumerState<SearchPage> {
   @override
   Widget build(BuildContext context) {
     final primaryBlue = Theme.of(context).colorScheme.primary;
-    final disabledBlue = primaryBlue.withValues(alpha: 0.45);
     final profile = ref.watch(profileStreamProvider);
     final profileCategories = (profile.value?.categories ?? const <String>[]).toSet();
+    final expandedHeight = 360.0;
 
     final mapState = ref.watch(mapControllerProvider);
     final userPos = mapState.userPosition;
-    final selectedDepartments = _selectedRegionCode == null
-      ? const <DepartmentModel>[]
-      : (_departmentsByRegion[_selectedRegionCode!] ?? const []);
+    final localizedCountryLabel = _localizedCountryLabel(mapState.localizedCountryCode);
+    final selectedRegionLabel = _selectedRegionLabel();
+    final selectedDepartmentLabel = _selectedDepartmentLabel();
+
+    _scheduleLocalizedGeoDefaults(
+      localizedRegionCode: mapState.localizedRegionCode,
+      localizedDepartmentCode: mapState.localizedDepartmentCode,
+    );
+
     final hasRequiredGeoSelection =
       _selectedRegionCode != null && _selectedDepartmentCode != null;
 
@@ -85,125 +120,79 @@ class _SearchPageState extends ConsumerState<SearchPage> {
       body: NestedScrollView(
         headerSliverBuilder: (context, innerBoxIsScrolled) => [
           SliverAppBar(
-            expandedHeight: 360,
+            expandedHeight: expandedHeight,
             floating: false,
             pinned: false,
             backgroundColor: Colors.white,
             elevation: 0,
             scrolledUnderElevation: 0,
             flexibleSpace: FlexibleSpaceBar(
-              background: Container(
-                color: Colors.white,
-                padding: const EdgeInsets.fromLTRB(12, 10, 12, 4),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    DropdownButtonFormField<String>(
-                      initialValue: _selectedRegionCode,
-                      isExpanded: true,
-                      iconEnabledColor: primaryBlue,
-                      iconDisabledColor: disabledBlue,
-                      style: TextStyle(
-                        color: primaryBlue,
-                        fontWeight: FontWeight.w600,
+              background: LayoutBuilder(
+                builder: (context, constraints) {
+                  return SingleChildScrollView(
+                    padding: EdgeInsets.zero,
+                    child: ConstrainedBox(
+                      constraints: BoxConstraints(minHeight: constraints.maxHeight),
+                      child: Container(
+                        color: Colors.white,
+                        padding: const EdgeInsets.fromLTRB(12, 10, 12, 4),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                    const SizedBox(height: 8),
+                    Container(
+                      width: double.infinity,
+                      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(24),
+                        border: Border.all(color: primaryBlue.withValues(alpha: 0.55)),
+                        color: primaryBlue.withValues(alpha: 0.04),
                       ),
-                      decoration: InputDecoration(
-                        labelText: 'Région',
-                        labelStyle: TextStyle(
-                          color: primaryBlue,
-                          fontWeight: FontWeight.w600,
-                        ),
-                        border: const OutlineInputBorder(),
-                        enabledBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: primaryBlue),
-                          borderRadius: BorderRadius.circular(28),
-                        ),
-                        focusedBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: primaryBlue, width: 1.6),
-                          borderRadius: BorderRadius.circular(28),
-                        ),
-                        isDense: true,
-                      ),
-                      items: [
-                        for (final region in _regions)
-                          DropdownMenuItem<String>(
-                            value: region.code,
+                      child: Row(
+                        children: [
+                          Icon(Icons.public, size: 18, color: primaryBlue),
+                          const SizedBox(width: 8),
+                          Expanded(
                             child: Text(
-                              region.name,
+                              'Pays géolocalisé: $localizedCountryLabel',
                               style: TextStyle(
                                 color: primaryBlue,
                                 fontWeight: FontWeight.w600,
                               ),
                             ),
                           ),
-                      ],
-                      onChanged: (value) {
-                        if (value == null) return;
-                        setState(() {
-                          _selectedRegionCode = value;
-                          _selectedDepartmentCode = null;
-                          _searchPerformed = false;
-                        });
-                      },
+                        ],
+                      ),
                     ),
                     const SizedBox(height: 8),
-                    DropdownButtonFormField<String>(
-                      initialValue: _selectedDepartmentCode,
-                      isExpanded: true,
-                      iconEnabledColor: primaryBlue,
-                      iconDisabledColor: disabledBlue,
-                      style: TextStyle(
-                        color: primaryBlue,
-                        fontWeight: FontWeight.w600,
-                      ),
-                      decoration: InputDecoration(
-                        labelText: 'Département',
-                        labelStyle: TextStyle(
-                          color: primaryBlue,
-                          fontWeight: FontWeight.w600,
+                    SizedBox(
+                      width: double.infinity,
+                      child: OutlinedButton.icon(
+                        onPressed: _openRegionDepartmentPicker,
+                        icon: const Icon(Icons.map_outlined, size: 16),
+                        label: Text(
+                          selectedDepartmentLabel == null
+                              ? 'Région: $selectedRegionLabel'
+                              : 'Région: $selectedRegionLabel • Dép.: $selectedDepartmentLabel',
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
                         ),
-                        border: const OutlineInputBorder(),
-                        enabledBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: primaryBlue),
-                          borderRadius: BorderRadius.circular(28),
-                        ),
-                        focusedBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: primaryBlue, width: 1.6),
-                          borderRadius: BorderRadius.circular(28),
-                        ),
-                        isDense: true,
                       ),
-                      hint: Text(
-                        _selectedRegionCode == null
-                            ? 'Sélectionnez une région d\'abord'
-                            : 'Sélectionnez un département',
-                        style: TextStyle(color: disabledBlue),
-                      ),
-                      items: [
-                        for (final department in selectedDepartments)
-                          DropdownMenuItem<String>(
-                            value: department.code,
-                            child: Text(
-                              '${department.code} • ${department.name}',
-                              style: TextStyle(
-                                color: primaryBlue,
-                                fontWeight: FontWeight.w600,
-                              ),
-                            ),
-                          ),
-                      ],
-                      onChanged: _selectedRegionCode == null
-                          ? null
-                          : (value) {
-                        if (value == null) return;
-                        setState(() {
-                          _selectedDepartmentCode = value;
-                          _searchPerformed = false;
-                        });
-                      },
                     ),
                     const SizedBox(height: 8),
+                    SizedBox(
+                      width: double.infinity,
+                      child: OutlinedButton.icon(
+                        onPressed: () => _openKeywordPicker(profileCategories),
+                        icon: const Icon(Icons.tune, size: 16),
+                        label: Text(
+                          _selectedKeywords.isEmpty
+                              ? 'Mot-clé'
+                              : 'Mot-clé (${_selectedKeywords.length})',
+                        ),
+                      ),
+                    ),
                     // Boutons d'action
                     Column(
                       children: [
@@ -214,6 +203,8 @@ class _SearchPageState extends ConsumerState<SearchPage> {
                               setState(() {
                                 _selectedRegionCode = null;
                                 _selectedDepartmentCode = null;
+                                _keywordQuery = '';
+                                _selectedKeywords = const <String>[];
                                 _nearbyOnly = false;
                                 _searchPerformed = false;
                                 _cachedResultsKey = null;
@@ -263,8 +254,13 @@ class _SearchPageState extends ConsumerState<SearchPage> {
                         ),
                       ],
                     ),
-                  ],
-                ),
+                    const SizedBox(height: 8),
+                          ],
+                        ),
+                      ),
+                    ),
+                  );
+                },
               ),
             ),
           ),
@@ -272,10 +268,7 @@ class _SearchPageState extends ConsumerState<SearchPage> {
         body: !_searchPerformed || !hasRequiredGeoSelection
             ? _buildInitialSearchState(context)
             : StreamBuilder<QuerySnapshot<Map<String, dynamic>>>(
-                stream: FirebaseFirestore.instance
-                    .collection('spots')
-                    .orderBy('updatedAt', descending: true)
-                    .snapshots(),
+            stream: _spotsStreamForCurrentSelection(),
                 builder: (context, snapshot) {
                   if (snapshot.hasError) {
                     return Center(
@@ -298,6 +291,23 @@ class _SearchPageState extends ConsumerState<SearchPage> {
                 .map(_poiFromDoc)
                 .where((poi) => (poi.lat != 0 || poi.lng != 0) && !_isGenericSpot(poi))
                 .toList(growable: false);
+
+            final dynamicSuggestions = _extractDynamicKeywordsFromPois(
+              allPois: allPois,
+              profileCategories: profileCategories,
+              userPos: userPos,
+            );
+
+            final previousDynamicKey = _dynamicKeywordSuggestions.join('|');
+            final nextDynamicKey = dynamicSuggestions.join('|');
+            if (previousDynamicKey != nextDynamicKey && mounted) {
+              WidgetsBinding.instance.addPostFrameCallback((_) {
+                if (!mounted) return;
+                setState(() {
+                  _dynamicKeywordSuggestions = dynamicSuggestions;
+                });
+              });
+            }
 
             final cacheKey = _buildResultsCacheKey(
               docsIdentity: identityHashCode(snapshot.data),
@@ -473,7 +483,7 @@ class _SearchPageState extends ConsumerState<SearchPage> {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 24),
               child: Text(
-                '1. Sélectionnez une région\n2. Sélectionnez un département de cette région\n3. Les catégories de votre profil sont appliquées automatiquement\n4. Activez "À proximité (0-20 km)" si besoin\n5. Cliquez sur "Rechercher"',
+                '1. Sélectionnez une région\n2. Sélectionnez un département de cette région\n3. Les catégories de votre profil sont appliquées automatiquement\n4. Ajoutez un mot-clé si besoin (optionnel)\n5. Activez "À proximité (0-20 km)" si besoin\n6. Cliquez sur "Rechercher"',
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontSize: context.fontSize(13),
@@ -499,6 +509,19 @@ class _SearchPageState extends ConsumerState<SearchPage> {
         ),
       ),
     );
+  }
+
+  Stream<QuerySnapshot<Map<String, dynamic>>> _spotsStreamForCurrentSelection() {
+    final selectedDepartment = _selectedDepartmentCode;
+    if (selectedDepartment == null || selectedDepartment.isEmpty) {
+      return const Stream.empty();
+    }
+
+    return FirebaseFirestore.instance
+        .collection('spots')
+      .where('isPublic', isEqualTo: true)
+        .where('departmentCode', isEqualTo: selectedDepartment)
+        .snapshots();
   }
 
   List<Poi> _sortedByDistance(
@@ -546,6 +569,680 @@ class _SearchPageState extends ConsumerState<SearchPage> {
         .replaceAll(RegExp(r'[^a-z0-9 ]'), ' ')
         .replaceAll(RegExp(r'\s+'), ' ')
         .trim();
+  }
+
+  String _displayKeyword(String keyword) {
+    final normalized = _normalizeFilterToken(keyword);
+    if (normalized.isEmpty) return keyword;
+    final words = normalized
+        .split(' ')
+        .where((w) => w.isNotEmpty)
+        .map((w) => w[0].toUpperCase() + w.substring(1))
+        .toList(growable: false);
+    return words.join(' ');
+  }
+
+  List<String> _keywordSuggestions(Set<String> profileCategories) {
+    final tokens = profileCategories
+        .map(_normalizeFilterToken)
+        .where((v) => v.isNotEmpty)
+        .toSet();
+
+    final suggestions = <String>{};
+
+    void addAll(List<String> values) {
+      for (final value in values) {
+        final normalized = _normalizeFilterToken(value);
+        if (normalized.isNotEmpty) {
+          suggestions.add(normalized);
+        }
+      }
+    }
+
+    final hasHistory = tokens.any((token) =>
+        token.contains('histoire') ||
+        token.contains('patrimoine') ||
+        token.contains('chateau') ||
+        token.contains('monument') ||
+        token.contains('unesco') ||
+        token.contains('abbaye') ||
+        token.contains('archeologique'));
+    final hasNature = tokens.any((token) =>
+        token.contains('nature') ||
+        token.contains('cascade') ||
+        token.contains('gorge') ||
+        token.contains('lac') ||
+        token.contains('riviere') ||
+        token.contains('foret') ||
+        token.contains('plage') ||
+        token.contains('reserve'));
+    final hasCulture = tokens.any((token) =>
+        token.contains('culture') ||
+        token.contains('musee') ||
+        token.contains('galerie') ||
+        token.contains('theatre') ||
+        token.contains('cinema') ||
+        token.contains('festival') ||
+        token.contains('street art'));
+    final hasFood = tokens.any((token) =>
+        token.contains('gustative') ||
+        token.contains('restaurant') ||
+        token.contains('cafe') ||
+        token.contains('bar') ||
+        token.contains('viticole') ||
+        token.contains('gastronom') ||
+        token.contains('boulanger'));
+    final hasActivities = tokens.any((token) =>
+        token.contains('activite') ||
+        token.contains('randonnee') ||
+        token.contains('escalade') ||
+        token.contains('velo') ||
+        token.contains('ski') ||
+        token.contains('nautique') ||
+        token.contains('golf') ||
+        token.contains('camping'));
+
+    if (hasHistory) {
+      addAll([
+        'chateau',
+        'monument',
+        'ruines',
+        'abbaye',
+        'site historique',
+        'unesco',
+      ]);
+    }
+    if (hasNature) {
+      addAll([
+        'cascade',
+        'point de vue',
+        'lac',
+        'foret',
+        'grotte',
+        'reserve naturelle',
+      ]);
+    }
+    if (hasCulture) {
+      addAll([
+        'musee',
+        'theatre',
+        'galerie',
+        'cinema',
+        'festival',
+        'street art',
+      ]);
+    }
+    if (hasFood) {
+      addAll([
+        'restaurant',
+        'cafe',
+        'bar',
+        'degustation',
+        'domaine viticole',
+        'boulangerie',
+      ]);
+    }
+    if (hasActivities) {
+      addAll([
+        'randonnee',
+        'escalade',
+        'velo',
+        'sports nautiques',
+        'camping',
+        'golf',
+      ]);
+    }
+
+    if (suggestions.isEmpty) {
+      addAll([
+        'musee',
+        'chateau',
+        'cascade',
+        'restaurant',
+        'randonnee',
+        'point de vue',
+      ]);
+    }
+
+    final orderedDynamic = _dynamicKeywordSuggestions
+        .map(_normalizeFilterToken)
+        .where((value) => value.isNotEmpty)
+        .toList(growable: false);
+
+    final contextTokens = <String>{
+      ...tokens,
+      ...orderedDynamic,
+      ..._selectedKeywords.map(_normalizeFilterToken).where((v) => v.isNotEmpty),
+    };
+    addAll(_relatedKeywordSuggestions(contextTokens));
+
+    final mergedOrdered = <String>[];
+    final seen = <String>{};
+
+    for (final value in orderedDynamic) {
+      if (seen.add(value)) {
+        mergedOrdered.add(value);
+      }
+    }
+
+    final orderedStatic = suggestions.toList()..sort();
+    for (final value in orderedStatic) {
+      if (seen.add(value)) {
+        mergedOrdered.add(value);
+      }
+    }
+
+    return mergedOrdered.take(28).toList(growable: false);
+  }
+
+  List<String> _relatedKeywordSuggestions(Set<String> contextTokens) {
+    const relations = <String, List<String>>{
+      'musee': ['exposition', 'art contemporain', 'centre culturel'],
+      'galerie': ['art contemporain', 'vernissage', 'exposition'],
+      'theatre': ['spectacle', 'opera', 'scene nationale'],
+      'cinema': ['film', 'festival cinema', 'cine plein air'],
+      'festival': ['evenement culturel', 'concert', 'programmation'],
+      'chateau': ['forteresse', 'citadelle', 'donjon'],
+      'monument': ['patrimoine', 'memorial', 'site historique'],
+      'abbaye': ['eglise', 'cathedrale', 'cloitre'],
+      'ruine': ['vestiges', 'site archeologique', 'fort'],
+      'cascade': ['randonnee', 'point de vue', 'gorge'],
+      'lac': ['base nautique', 'plage', 'balade'],
+      'grotte': ['site naturel', 'visite guidee', 'speleologie'],
+      'foret': ['sentier', 'randonnee', 'reserve naturelle'],
+      'point de vue': ['belvedere', 'panorama', 'coucher de soleil'],
+      'restaurant': ['brasserie', 'bistronomique', 'table locale'],
+      'cafe': ['salon de the', 'coffee shop', 'brunch'],
+      'bar': ['bar a vins', 'cocktail', 'terrasse'],
+      'domaine viticole': ['cave', 'degustation', 'oenotourisme'],
+      'randonnee': ['sentier', 'trek', 'bivouac'],
+      'velo': ['voie verte', 'piste cyclable', 'vtt'],
+      'escalade': ['via ferrata', 'falaise', 'bloc'],
+      'camping': ['aire naturelle', 'vanlife', 'camping sauvage'],
+      'sports nautiques': ['canoe', 'kayak', 'paddle'],
+    };
+
+    final expanded = <String>{};
+
+    for (final token in contextTokens) {
+      for (final entry in relations.entries) {
+        final key = entry.key;
+        if (_tokenEquals(token, key) || token.contains(key) || key.contains(token)) {
+          for (final value in entry.value) {
+            final normalized = _normalizeFilterToken(value);
+            if (_isUsefulKeyword(normalized)) {
+              expanded.add(normalized);
+            }
+          }
+        }
+      }
+    }
+
+    final ordered = expanded.toList()..sort();
+    return ordered;
+  }
+
+  String _localizedCountryLabel(String? countryCode) {
+    final normalizedCode = countryCode?.toLowerCase();
+    if (normalizedCode == null || normalizedCode.isEmpty) {
+      return allCountries.first.name;
+    }
+
+    final matched = allCountries.where((country) => country.code == normalizedCode);
+    if (matched.isNotEmpty) {
+      return matched.first.name;
+    }
+
+    return normalizedCode.toUpperCase();
+  }
+
+  String _selectedRegionLabel() {
+    final regionCode = _selectedRegionCode;
+    if (regionCode == null) {
+      return 'Choisir';
+    }
+    final matches = _regions.where((region) => region.code == regionCode);
+    if (matches.isEmpty) return 'Choisir';
+    return matches.first.name;
+  }
+
+  String? _selectedDepartmentLabel() {
+    final regionCode = _selectedRegionCode;
+    final departmentCode = _selectedDepartmentCode;
+    if (regionCode == null || departmentCode == null) {
+      return null;
+    }
+
+    final departments = _departmentsByRegion[regionCode] ?? const <DepartmentModel>[];
+    final matches = departments.where((department) => department.code == departmentCode);
+    if (matches.isEmpty) {
+      return null;
+    }
+
+    final selected = matches.first;
+    return '${selected.code} • ${selected.name}';
+  }
+
+  void _scheduleLocalizedGeoDefaults({
+    required String? localizedRegionCode,
+    required String? localizedDepartmentCode,
+  }) {
+    if (_selectedRegionCode != null) {
+      return;
+    }
+
+    final regionCode = localizedRegionCode;
+    if (regionCode == null || !_departmentsByRegion.containsKey(regionCode)) {
+      return;
+    }
+
+    final departments = _departmentsByRegion[regionCode] ?? const <DepartmentModel>[];
+    String? departmentCode;
+    if (localizedDepartmentCode != null &&
+        departments.any((department) => department.code == localizedDepartmentCode)) {
+      departmentCode = localizedDepartmentCode;
+    }
+
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (!mounted || _selectedRegionCode != null) return;
+      setState(() {
+        _selectedRegionCode = regionCode;
+        _selectedDepartmentCode = departmentCode;
+        _searchPerformed = false;
+        _cachedResultsKey = null;
+      });
+    });
+  }
+
+  Future<void> _openRegionDepartmentPicker() async {
+    String? temporaryRegionCode = _selectedRegionCode;
+    String? temporaryDepartmentCode = _selectedDepartmentCode;
+
+    final selection = await showModalBottomSheet<_RegionDepartmentSelection>(
+      context: context,
+      isScrollControlled: true,
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(top: Radius.circular(24)),
+      ),
+      builder: (sheetContext) {
+        return StatefulBuilder(
+          builder: (context, setSheetState) {
+            final colorScheme = Theme.of(context).colorScheme;
+            final departments = temporaryRegionCode == null
+                ? const <DepartmentModel>[]
+                : (_departmentsByRegion[temporaryRegionCode!] ?? const <DepartmentModel>[]);
+            final selectedRegion = temporaryRegionCode == null
+                ? null
+                : _regions
+                    .where((region) => region.code == temporaryRegionCode)
+                    .firstOrNull;
+
+            return SafeArea(
+              child: SizedBox(
+                height: MediaQuery.of(context).size.height * 0.62,
+                child: Column(
+                  children: [
+                    const SizedBox(height: 10),
+                    Container(
+                      width: 42,
+                      height: 4,
+                      decoration: BoxDecoration(
+                        color: colorScheme.outlineVariant,
+                        borderRadius: BorderRadius.circular(8),
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.fromLTRB(16, 12, 16, 8),
+                      child: Row(
+                        children: [
+                          if (temporaryRegionCode != null)
+                            IconButton(
+                              onPressed: () {
+                                setSheetState(() {
+                                  temporaryRegionCode = null;
+                                  temporaryDepartmentCode = null;
+                                });
+                              },
+                              icon: const Icon(Icons.arrow_back),
+                            )
+                          else
+                            const SizedBox(width: 48),
+                          Expanded(
+                            child: Text(
+                              temporaryRegionCode == null
+                                  ? 'Choisir une région'
+                                  : 'Choisir un département',
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                color: colorScheme.primary,
+                                fontWeight: FontWeight.w700,
+                                fontSize: 18,
+                              ),
+                            ),
+                          ),
+                          IconButton(
+                            onPressed: () => Navigator.of(sheetContext).pop(),
+                            icon: const Icon(Icons.close),
+                          ),
+                        ],
+                      ),
+                    ),
+                    if (selectedRegion != null)
+                      Padding(
+                        padding: const EdgeInsets.fromLTRB(16, 0, 16, 8),
+                        child: Align(
+                          alignment: Alignment.centerLeft,
+                          child: Text(
+                            selectedRegion.name,
+                            style: TextStyle(
+                              color: colorScheme.primary,
+                              fontWeight: FontWeight.w600,
+                            ),
+                          ),
+                        ),
+                      ),
+                    Expanded(
+                      child: ListView.builder(
+                        padding: const EdgeInsets.fromLTRB(8, 0, 8, 16),
+                        itemCount:
+                            temporaryRegionCode == null ? _regions.length : departments.length,
+                        itemBuilder: (context, index) {
+                          if (temporaryRegionCode == null) {
+                            final region = _regions[index];
+                            final isSelected = region.code == temporaryRegionCode;
+                            return ListTile(
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(16),
+                              ),
+                              title: Text(region.name),
+                              trailing: Icon(
+                                Icons.chevron_right,
+                                color: colorScheme.primary,
+                              ),
+                              selected: isSelected,
+                              onTap: () {
+                                setSheetState(() {
+                                  temporaryRegionCode = region.code;
+                                  temporaryDepartmentCode = null;
+                                });
+                              },
+                            );
+                          }
+
+                          final department = departments[index];
+                          final isSelected = department.code == temporaryDepartmentCode;
+                          return ListTile(
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(16),
+                            ),
+                            title: Text('${department.code} • ${department.name}'),
+                            trailing: isSelected
+                                ? Icon(Icons.check_circle, color: colorScheme.primary)
+                                : null,
+                            selected: isSelected,
+                            onTap: () {
+                              Navigator.of(sheetContext).pop(
+                                _RegionDepartmentSelection(
+                                  regionCode: temporaryRegionCode!,
+                                  departmentCode: department.code,
+                                ),
+                              );
+                            },
+                          );
+                        },
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            );
+          },
+        );
+      },
+    );
+
+    if (selection == null) return;
+
+    setState(() {
+      _selectedRegionCode = selection.regionCode;
+      _selectedDepartmentCode = selection.departmentCode;
+      _searchPerformed = false;
+      _cachedResultsKey = null;
+    });
+
+    _resetPage();
+  }
+
+  Future<void> _openKeywordPicker(Set<String> profileCategories) async {
+    final options = _keywordSuggestions(profileCategories);
+    final selected = _selectedKeywords.toSet();
+
+    final appliedSelection = await showModalBottomSheet<List<String>>(
+      context: context,
+      isScrollControlled: true,
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(top: Radius.circular(24)),
+      ),
+      builder: (sheetContext) {
+        return StatefulBuilder(
+          builder: (context, setSheetState) {
+            final colorScheme = Theme.of(context).colorScheme;
+            final primary = colorScheme.primary;
+            return SafeArea(
+              child: SizedBox(
+                height: MediaQuery.of(context).size.height * 0.62,
+                child: Column(
+                  children: [
+                    const SizedBox(height: 10),
+                    Container(
+                      width: 42,
+                      height: 4,
+                      decoration: BoxDecoration(
+                        color: colorScheme.outlineVariant,
+                        borderRadius: BorderRadius.circular(8),
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.fromLTRB(16, 12, 16, 8),
+                      child: Row(
+                        children: [
+                          const SizedBox(width: 48),
+                          Expanded(
+                            child: Text(
+                              'Choisir des mots-clés',
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                color: primary,
+                                fontWeight: FontWeight.w700,
+                                fontSize: 18,
+                              ),
+                            ),
+                          ),
+                          IconButton(
+                            onPressed: () => Navigator.of(sheetContext).pop(),
+                            icon: const Icon(Icons.close),
+                          ),
+                        ],
+                      ),
+                    ),
+                    Expanded(
+                      child: SingleChildScrollView(
+                        padding: const EdgeInsets.fromLTRB(12, 0, 12, 12),
+                        child: Wrap(
+                          alignment: WrapAlignment.center,
+                          spacing: 8,
+                          runSpacing: 8,
+                          children: [
+                            for (final keyword in options)
+                              SizedBox(
+                                width: 156,
+                                child: FilterChip(
+                                  materialTapTargetSize:
+                                      MaterialTapTargetSize.shrinkWrap,
+                                  selected: selected.contains(keyword),
+                                  showCheckmark: false,
+                                  selectedColor: primary.withValues(alpha: 0.16),
+                                  backgroundColor:
+                                      colorScheme.surfaceContainerHighest,
+                                  side: BorderSide(
+                                    color: selected.contains(keyword)
+                                        ? primary.withValues(alpha: 0.55)
+                                        : primary.withValues(alpha: 0.22),
+                                  ),
+                                  label: SizedBox(
+                                    width: double.infinity,
+                                    child: Text(
+                                      _displayKeyword(keyword),
+                                      maxLines: 1,
+                                      overflow: TextOverflow.ellipsis,
+                                      textAlign: TextAlign.center,
+                                      style: TextStyle(
+                                        color: selected.contains(keyword)
+                                            ? primary
+                                            : colorScheme.onSurface,
+                                        fontWeight: selected.contains(keyword)
+                                            ? FontWeight.w700
+                                            : FontWeight.w500,
+                                      ),
+                                    ),
+                                  ),
+                                  onSelected: (isSelected) {
+                                    setSheetState(() {
+                                      if (isSelected) {
+                                        selected.add(keyword);
+                                      } else {
+                                        selected.remove(keyword);
+                                      }
+                                    });
+                                  },
+                                ),
+                              ),
+                          ],
+                        ),
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.fromLTRB(16, 4, 16, 12),
+                      child: Row(
+                        children: [
+                          TextButton(
+                            style: TextButton.styleFrom(foregroundColor: primary),
+                            onPressed: () => Navigator.of(sheetContext).pop(),
+                            child: const Text('Annuler'),
+                          ),
+                          const SizedBox(width: 8),
+                          TextButton(
+                            style: TextButton.styleFrom(foregroundColor: primary),
+                            onPressed: () => setSheetState(() => selected.clear()),
+                            child: const Text('Vider'),
+                          ),
+                          const Spacer(),
+                          FilledButton(
+                            onPressed: () => Navigator.of(sheetContext)
+                                .pop(selected.toList(growable: false)),
+                            child: const Text('Appliquer'),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            );
+          },
+        );
+      },
+    );
+
+    if (appliedSelection == null) return;
+
+    setState(() {
+      _selectedKeywords = appliedSelection
+          .map(_normalizeFilterToken)
+          .where((value) => value.isNotEmpty)
+          .toSet()
+          .toList(growable: false)
+        ..sort();
+      _keywordQuery = _selectedKeywords.join(' ');
+      _cachedResultsKey = null;
+      _searchPerformed = false;
+    });
+
+    _resetPage();
+  }
+
+  bool _isUsefulKeyword(String value) {
+    if (value.isEmpty || value.length < 3) return false;
+    if (_stopWords.contains(value)) return false;
+    if (value == 'other' || value == 'autre' || value == 'poi') return false;
+    if (value.contains('point d interet') || value.contains('sans nom')) {
+      return false;
+    }
+    return true;
+  }
+
+  List<String> _extractDynamicKeywordsFromPois({
+    required List<Poi> allPois,
+    required Set<String> profileCategories,
+    required Position? userPos,
+  }) {
+    final frequency = <String, double>{};
+
+    for (final poi in allPois) {
+      if (!_matchesGeoFilter(poi)) continue;
+      if (!_matchesCategoryFilter(poi, profileCategories)) continue;
+
+      if (_nearbyOnly) {
+        if (userPos == null) continue;
+        final distance = GeoUtils.distanceMeters(
+          lat1: userPos.latitude,
+          lon1: userPos.longitude,
+          lat2: poi.lat,
+          lon2: poi.lng,
+        );
+        if (distance > _nearbyMaxDistanceMeters) continue;
+      }
+
+      final candidateKeywords = <String>{
+        _normalizeFilterToken(formatPoiSubCategory(poi.subCategory)),
+        _normalizeFilterToken(poi.subCategory ?? ''),
+        ..._meaningfulTokens(poi.displayName),
+        ..._meaningfulTokens(poi.name),
+        ..._meaningfulTokens(poi.shortDescription),
+      };
+
+      for (final keyword in candidateKeywords) {
+        if (!_isUsefulKeyword(keyword)) continue;
+        var weight = 1.0;
+        if (_selectedKeywords.any((selected) => _tokenEquals(selected, keyword))) {
+          weight += 1.1;
+        }
+        if (_nearbyOnly && userPos != null) {
+          final distance = GeoUtils.distanceMeters(
+            lat1: userPos.latitude,
+            lon1: userPos.longitude,
+            lat2: poi.lat,
+            lon2: poi.lng,
+          );
+          if (distance <= 5000) {
+            weight += 0.4;
+          }
+        }
+        frequency.update(keyword, (value) => value + weight, ifAbsent: () => weight);
+      }
+    }
+
+    final entries = frequency.entries.toList()
+      ..sort((a, b) {
+        final byCount = b.value.compareTo(a.value);
+        if (byCount != 0) return byCount;
+        return a.key.compareTo(b.key);
+      });
+
+    return entries
+        .take(12)
+        .map((entry) => entry.key)
+        .toList(growable: false);
   }
 
   bool _isGenericSpot(Poi poi) {
@@ -628,12 +1325,17 @@ class _SearchPageState extends ConsumerState<SearchPage> {
             .split(' ')
             .where((t) => t.isNotEmpty)
             .map(_canonicalToken)
+            .where((t) => t.length >= 3 && !_stopWords.contains(t))
             .toSet();
         final interestTokens = interest
             .split(' ')
             .where((t) => t.isNotEmpty)
             .map(_canonicalToken)
+            .where((t) => t.length >= 3 && !_stopWords.contains(t))
             .toSet();
+        if (candidateTokens.isEmpty || interestTokens.isEmpty) {
+          return false;
+        }
         return candidateTokens.any(interestTokens.contains);
       });
     });
@@ -675,15 +1377,81 @@ class _SearchPageState extends ConsumerState<SearchPage> {
   Set<String> _aliasesForPoiCategory(PoiCategory category) {
     switch (category) {
       case PoiCategory.histoire:
-        return {'patrimoine', 'histoire', 'monument', 'chateau', 'ruine'};
+        return {
+          'patrimoine',
+          'histoire',
+          'monument',
+          'chateau',
+          'ruine',
+          'site historique',
+          'site archeologique',
+          'eglise',
+          'abbaye',
+          'fort',
+          'citadelle',
+          'unesco',
+          'village',
+          'memorial',
+        };
       case PoiCategory.nature:
-        return {'nature', 'cascade', 'gorge', 'belvedere', 'site naturel'};
+        return {
+          'nature',
+          'cascade',
+          'gorge',
+          'belvedere',
+          'site naturel',
+          'parc naturel',
+          'lac',
+          'riviere',
+          'foret',
+          'plage',
+          'point de vue',
+          'reserve',
+          'grotte',
+        };
       case PoiCategory.culture:
-        return {'culture', 'musee', 'opera', 'exposition', 'festival'};
+        return {
+          'culture',
+          'musee',
+          'opera',
+          'exposition',
+          'festival',
+          'theatre',
+          'cinema',
+          'bibliotheque',
+          'galerie',
+          'street art',
+          'marche',
+        };
       case PoiCategory.experienceGustative:
-        return {'gustative', 'restaurant', 'degustation', 'viticole', 'brasserie'};
+        return {
+          'gustative',
+          'restaurant',
+          'degustation',
+          'viticole',
+          'brasserie',
+          'cafe',
+          'bar',
+          'pub',
+          'boulangerie',
+          'gastronomie',
+          'distillerie',
+        };
       case PoiCategory.activites:
-        return {'activites', 'randonnee', 'sport', 'familiale', 'plein air'};
+        return {
+          'activites',
+          'randonnee',
+          'sport',
+          'familiale',
+          'plein air',
+          'escalade',
+          'velo',
+          'ski',
+          'nautique',
+          'camping',
+          'golf',
+          'loisirs',
+        };
     }
   }
 
@@ -815,9 +1583,161 @@ class _SearchPageState extends ConsumerState<SearchPage> {
       _selectedRegionCode ?? 'null',
       _selectedDepartmentCode ?? 'null',
       _nearbyOnly,
+      _normalizeFilterToken(_keywordQuery),
       userKey,
       sortedCategories.join('|'),
     ].join('::');
+  }
+
+  Set<String> _meaningfulTokens(String value) {
+    return _normalizeFilterToken(value)
+        .split(' ')
+        .where((token) => token.length >= 3)
+        .map(_canonicalToken)
+        .where((token) => token.length >= 3 && !_stopWords.contains(token))
+        .toSet();
+  }
+
+  String _searchableText(Poi poi) {
+    return [
+      poi.displayName,
+      poi.name,
+      poi.shortDescription,
+      poi.category.label,
+      formatPoiSubCategory(poi.subCategory),
+      poi.subCategory ?? '',
+      poi.departmentCode ?? '',
+    ].join(' ');
+  }
+
+  int _keywordScore({
+    required Poi poi,
+    required String normalizedQuery,
+    required Position? userPos,
+  }) {
+    if (normalizedQuery.isEmpty) {
+      return 0;
+    }
+
+    final displayName = _normalizeFilterToken(poi.displayName);
+    final searchable = _normalizeFilterToken(_searchableText(poi));
+    final queryTokens = _meaningfulTokens(normalizedQuery);
+    final searchableTokens = _meaningfulTokens(searchable);
+
+    int score = 0;
+
+    if (displayName == normalizedQuery) {
+      score += 100;
+    } else if (displayName.startsWith(normalizedQuery)) {
+      score += 70;
+    } else if (displayName.contains(normalizedQuery)) {
+      score += 50;
+    }
+
+    if (searchable.contains(normalizedQuery)) {
+      score += 25;
+    }
+
+    if (queryTokens.isNotEmpty && searchableTokens.isNotEmpty) {
+      final overlap = queryTokens.where(searchableTokens.contains).length;
+      score += overlap * 12;
+
+      if (overlap == queryTokens.length) {
+        score += 20;
+      }
+    }
+
+    if (userPos != null) {
+      final distance = GeoUtils.distanceMeters(
+        lat1: userPos.latitude,
+        lon1: userPos.longitude,
+        lat2: poi.lat,
+        lon2: poi.lng,
+      );
+      if (distance <= 2000) {
+        score += 12;
+      } else if (distance <= 7000) {
+        score += 8;
+      } else if (distance <= 15000) {
+        score += 4;
+      }
+    }
+
+    if (poi.googleRating != null) {
+      score += poi.googleRating!.round();
+    }
+
+    return score;
+  }
+
+  bool _matchesKeywordFilter(Poi poi) {
+    final normalizedQuery = _normalizeFilterToken(_keywordQuery);
+    if (normalizedQuery.isEmpty) {
+      return true;
+    }
+
+    final searchable = _normalizeFilterToken(_searchableText(poi));
+    if (searchable.contains(normalizedQuery)) {
+      return true;
+    }
+
+    final queryTokens = _meaningfulTokens(normalizedQuery);
+    final searchableTokens = _meaningfulTokens(searchable);
+    if (queryTokens.isEmpty || searchableTokens.isEmpty) {
+      return false;
+    }
+
+    final overlap = queryTokens.where(searchableTokens.contains).length;
+    return overlap >= (queryTokens.length >= 3 ? 2 : 1);
+  }
+
+  List<Poi> _sortByRelevance(List<Poi> pois, Position? userPos) {
+    final normalizedQuery = _normalizeFilterToken(_keywordQuery);
+    if (normalizedQuery.isEmpty) {
+      return _sortedByDistance(pois, userPos);
+    }
+
+    final sorted = [...pois];
+    sorted.sort((a, b) {
+      final scoreA = _keywordScore(
+        poi: a,
+        normalizedQuery: normalizedQuery,
+        userPos: userPos,
+      );
+      final scoreB = _keywordScore(
+        poi: b,
+        normalizedQuery: normalizedQuery,
+        userPos: userPos,
+      );
+      if (scoreA != scoreB) {
+        return scoreB.compareTo(scoreA);
+      }
+
+      final updatedCompare = b.updatedAt.compareTo(a.updatedAt);
+      if (updatedCompare != 0) {
+        return updatedCompare;
+      }
+
+      final da = userPos == null
+          ? double.infinity
+          : GeoUtils.distanceMeters(
+              lat1: userPos.latitude,
+              lon1: userPos.longitude,
+              lat2: a.lat,
+              lon2: a.lng,
+            );
+      final db = userPos == null
+          ? double.infinity
+          : GeoUtils.distanceMeters(
+              lat1: userPos.latitude,
+              lon1: userPos.longitude,
+              lat2: b.lat,
+              lon2: b.lng,
+            );
+      return da.compareTo(db);
+    });
+
+    return sorted;
   }
 
   List<Poi> _computeFilteredResults({
@@ -844,7 +1764,11 @@ class _SearchPageState extends ConsumerState<SearchPage> {
         .where((poi) => _matchesCategoryFilter(poi, profileCategories))
         .toList(growable: false);
 
-    return _sortedByDistance(categoryFiltered, userPos);
+    final keywordFiltered = categoryFiltered
+      .where(_matchesKeywordFilter)
+      .toList(growable: false);
+
+    return _sortByRelevance(keywordFiltered, userPos);
   }
 
   Widget _buildPageListWithAllSpotsRatings({
@@ -1162,6 +2086,16 @@ class _SearchPageState extends ConsumerState<SearchPage> {
       ),
     );
   }
+}
+
+class _RegionDepartmentSelection {
+  final String regionCode;
+  final String departmentCode;
+
+  const _RegionDepartmentSelection({
+    required this.regionCode,
+    required this.departmentCode,
+  });
 }
 
 enum _SearchListItemType {
