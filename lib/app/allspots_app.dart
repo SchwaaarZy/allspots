@@ -131,7 +131,8 @@ class _PresenceTrackerState extends State<_PresenceTracker>
   }
 
   @override
-  Widget build(BuildContext context) => _OnlineRequiredGate(child: widget.child);
+  Widget build(BuildContext context) =>
+      _OnlineRequiredGate(child: widget.child);
 }
 
 class _OnlineRequiredGate extends StatefulWidget {
@@ -179,54 +180,58 @@ class _OnlineRequiredGateState extends State<_OnlineRequiredGate> {
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      children: [
-        widget.child,
-        if (!_isOnline)
-          Positioned.fill(
-            child: Material(
-              color: Colors.white,
-              child: SafeArea(
-                child: Padding(
-                  padding: const EdgeInsets.all(24),
-                  child: Center(
-                    child: Column(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        const Icon(
-                          Icons.wifi_off,
-                          size: 64,
-                          color: Colors.red,
-                        ),
-                        const SizedBox(height: 16),
-                        const Text(
-                          'Connexion internet requise',
-                          style: TextStyle(
-                            fontSize: 22,
-                            fontWeight: FontWeight.bold,
+    return Directionality(
+      textDirection: TextDirection.ltr,
+      child: Stack(
+        alignment: Alignment.topLeft,
+        children: [
+          widget.child,
+          if (!_isOnline)
+            Positioned.fill(
+              child: Material(
+                color: Colors.white,
+                child: SafeArea(
+                  child: Padding(
+                    padding: const EdgeInsets.all(24),
+                    child: Center(
+                      child: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          const Icon(
+                            Icons.wifi_off,
+                            size: 64,
+                            color: Colors.red,
                           ),
-                          textAlign: TextAlign.center,
-                        ),
-                        const SizedBox(height: 10),
-                        const Text(
-                          'AllSPOTS fonctionne uniquement en ligne.\n'
-                          'Reconnectez-vous pour continuer.',
-                          textAlign: TextAlign.center,
-                        ),
-                        const SizedBox(height: 20),
-                        ElevatedButton.icon(
-                          onPressed: _initConnectivity,
-                          icon: const Icon(Icons.refresh),
-                          label: const Text('Réessayer'),
-                        ),
-                      ],
+                          const SizedBox(height: 16),
+                          const Text(
+                            'Connexion internet requise',
+                            style: TextStyle(
+                              fontSize: 22,
+                              fontWeight: FontWeight.bold,
+                            ),
+                            textAlign: TextAlign.center,
+                          ),
+                          const SizedBox(height: 10),
+                          const Text(
+                            'AllSPOTS fonctionne uniquement en ligne.\n'
+                            'Reconnectez-vous pour continuer.',
+                            textAlign: TextAlign.center,
+                          ),
+                          const SizedBox(height: 20),
+                          ElevatedButton.icon(
+                            onPressed: _initConnectivity,
+                            icon: const Icon(Icons.refresh),
+                            label: const Text('Réessayer'),
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                 ),
               ),
             ),
-          ),
-      ],
+        ],
+      ),
     );
   }
 }
