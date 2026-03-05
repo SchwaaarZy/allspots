@@ -24,7 +24,15 @@ class FaqInfoTab extends StatelessWidget {
       ),
       _FaqItem(
         q: 'Comment ajouter un spot à mon road trip ?',
-        a: 'Depuis la fiche d’un spot, appuyez sur "Ajouter au road trip".',
+        a: 'Depuis la fiche d’un spot ou depuis la liste de selection Road Trip, ajoutez le spot en un tap.',
+      ),
+      _FaqItem(
+        q: 'Combien de road trips puis-je créer ?',
+        a: 'Gratuit: 2 road trips maximum. Premium: 5 road trips maximum.',
+      ),
+      _FaqItem(
+        q: 'Combien de spots puis-je mettre dans un road trip ?',
+        a: 'Chaque road trip accepte jusqu\'a 10 spots (gratuit et premium).',
       ),
       _FaqItem(
         q: 'Comment enregistrer mes spots préférés ?',
@@ -33,6 +41,22 @@ class FaqInfoTab extends StatelessWidget {
       _FaqItem(
         q: 'Comment laisser un avis AllSPOTS ?',
         a: 'Dans le détail du spot, utilisez la section "Avis AllSPOTS" pour noter et commenter.',
+      ),
+      _FaqItem(
+        q: 'Comment signaler une erreur sur un spot ?',
+        a: 'Dans la fiche spot, appuyez sur "Signaler ce spot" puis choisissez la raison (doublon, lieu inexistant, infos incorrectes).',
+      ),
+      _FaqItem(
+        q: 'Pourquoi je ne vois pas de spots autour de moi ?',
+        a: 'Vérifiez l’autorisation de localisation, augmentez le rayon de recherche et assurez-vous d’avoir une connexion internet.',
+      ),
+      _FaqItem(
+        q: 'À quoi sert le premium ?',
+        a: 'Le premium augmente notamment le nombre de road trips disponibles et débloque des avantages supplémentaires dans l’app.',
+      ),
+      _FaqItem(
+        q: 'Faut-il vérifier son compte ?',
+        a: 'Oui, la vérification du compte permet de sécuriser l’accès et de conserver vos données utilisateur.',
       ),
     ];
 
@@ -86,7 +110,8 @@ class _FaqCard extends StatelessWidget {
               alignment: Alignment.centerLeft,
               child: Text(
                 item.a,
-                style: TextStyle(color: Colors.grey[700], fontSize: 13, height: 1.25),
+                style: TextStyle(
+                    color: Colors.grey[700], fontSize: 13, height: 1.25),
               ),
             ),
           ],
@@ -107,7 +132,8 @@ class _TitleBlock extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(title, style: const TextStyle(fontSize: 22, fontWeight: FontWeight.w900)),
+        Text(title,
+            style: const TextStyle(fontSize: 22, fontWeight: FontWeight.w900)),
         const SizedBox(height: 4),
         Text(subtitle, style: TextStyle(color: Colors.grey[700], fontSize: 13)),
       ],

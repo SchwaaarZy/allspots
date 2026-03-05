@@ -192,10 +192,21 @@ class MapController extends StateNotifier<MapState> {
   DateTime? _lastPrefetchTime;
   static const Duration _minPrefetchInterval = Duration(seconds: 30);
   static const double _prefetchRadiusMeters = 10000;
+  static const Duration _filterRefreshDebounce =
+      Duration(milliseconds: 280);
+  Timer? _filterRefreshDebounceTimer;
+  bool _initInProgress = false;
   bool _isRefreshing = false;
   _RefreshRequest? _pendingRefresh;
 
   Future<void> init() async {
+    if (_initInProgress) return;
+    if (state.userPosition != null) {
+      await refreshNearby(softUpdate: true);
+      return;
+    }
+
+    _initInProgress = true;
     state = state.copyWith(isLoading: true, error: null);
     try {
       final pos = await _determinePosition();
@@ -226,6 +237,8 @@ class MapController extends StateNotifier<MapState> {
         error:
             'Localisation indisponible. Activez la localisation pour charger les spots.',
       );
+    } finally {
+      _initInProgress = false;
     }
   }
 
@@ -578,14 +591,27 @@ class MapController extends StateNotifier<MapState> {
     state = state.copyWith(
       filters: state.filters.copyWith(categories: categories),
     );
-    await refreshNearby();
+    _scheduleDebouncedFilterRefresh();
   }
 
   Future<void> setOpenNow(bool value) async {
     state = state.copyWith(
       filters: state.filters.copyWith(openNow: value),
     );
-    await refreshNearby();
+    _scheduleDebouncedFilterRefresh();
+  }
+
+  void _scheduleDebouncedFilterRefresh() {
+    _filterRefreshDebounceTimer?.cancel();
+    _filterRefreshDebounceTimer = Timer(_filterRefreshDebounce, () {
+      unawaited(refreshNearby(softUpdate: true));
+    });
+  }
+
+  @override
+  void dispose() {
+    _filterRefreshDebounceTimer?.cancel();
+    super.dispose();
   }
 
   void toggleMapType() {

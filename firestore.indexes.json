@@ -1,0 +1,33 @@
+{
+  "indexes": [
+    {
+      "collectionGroup": "spots",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "isPublic",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "lat",
+          "order": "ASCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "spots",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "departmentCode",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "isPublic",
+          "order": "ASCENDING"
+        }
+      ]
+    }
+  ],
+  "fieldOverrides": []
+}

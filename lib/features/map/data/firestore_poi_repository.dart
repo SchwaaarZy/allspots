@@ -145,6 +145,8 @@ class FirestorePoiRepository implements PoiRepository {
                 (data['websiteUrl'] as String?) ?? (data['website'] as String?),
             isFree: data['isFree'] as bool?,
             pmrAccessible: data['pmrAccessible'] as bool?,
+            vanAccessible: data['vanAccessible'] as bool?,
+            camperPowerAvailable: data['camperPowerAvailable'] as bool?,
             kidsFriendly: data['kidsFriendly'] as bool?,
             source: 'firestore',
             updatedAt: _extractUpdatedAt(data),
@@ -255,6 +257,7 @@ class FirestorePoiRepository implements PoiRepository {
     while (docs.length < _maxDocsPerZone) {
       Query<Map<String, dynamic>> query = _firestore
           .collection('spots')
+          .where('isPublic', isEqualTo: true)
           .where('lat', isGreaterThanOrEqualTo: zone.minLat)
           .where('lat', isLessThanOrEqualTo: zone.maxLat)
           .orderBy('lat')
@@ -309,6 +312,7 @@ class FirestorePoiRepository implements PoiRepository {
     while (docs.length < _maxPriorityLocalDocs) {
       Query<Map<String, dynamic>> query = _firestore
           .collection('spots')
+          .where('isPublic', isEqualTo: true)
           .where('lat', isGreaterThanOrEqualTo: minLat)
           .where('lat', isLessThanOrEqualTo: maxLat)
           .orderBy('lat')

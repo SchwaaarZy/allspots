@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:convert';
 
 import 'package:firebase_auth/firebase_auth.dart';
@@ -132,8 +133,9 @@ class _ProfilePageState extends ConsumerState<ProfilePage>
     final isCompactWidth = MediaQuery.sizeOf(context).width < 390;
 
     final createButton = ElevatedButton.icon(
-      onPressed: () =>
-          context.push(isSpotsTab ? '/spots/new' : '/nearby-results'),
+      onPressed: () => context.push(
+        isSpotsTab ? '/spots/new' : '/nearby-results?mode=roadtrip',
+      ),
       style: ElevatedButton.styleFrom(
         visualDensity: VisualDensity.compact,
         padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 8),
@@ -255,6 +257,10 @@ class _ProfilePageState extends ConsumerState<ProfilePage>
   Widget _buildProfileHeader(UserProfile profile) {
     final photoUrl = profile.photoUrl.trim();
     final uid = FirebaseAuth.instance.currentUser!.uid;
+    final favsCount = profile.favoritePoiIds.length;
+    final grade = profile.gradeProgress;
+    final screenWidth = MediaQuery.sizeOf(context).width;
+    final isCompact = screenWidth < 390;
 
     return StreamBuilder<QuerySnapshot>(
       stream: FirebaseFirestore.instance
@@ -264,514 +270,501 @@ class _ProfilePageState extends ConsumerState<ProfilePage>
       builder: (context, spotsSnapshot) {
         final spotsCount = spotsSnapshot.data?.docs.length ?? 0;
 
-        return StreamBuilder<QuerySnapshot>(
-          stream: FirebaseFirestore.instance
-              .collection('profiles')
-              .doc(uid)
-              .collection('favoritePois')
-              .snapshots(),
-          builder: (context, favsSnapshot) {
-            final favsCount = favsSnapshot.data?.docs.length ?? 0;
-            final grade = profile.gradeProgress;
-            final screenWidth = MediaQuery.sizeOf(context).width;
-            final isCompact = screenWidth < 390;
-
-            return SafeArea(
-              bottom: false,
-              child: Container(
-                width: double.infinity,
-                decoration: BoxDecoration(
-                  gradient: LinearGradient(
-                    colors: [
-                      Colors.blue.shade600,
-                      Colors.blue.shade400,
-                    ],
-                    begin: Alignment.topLeft,
-                    end: Alignment.bottomRight,
+        return SafeArea(
+          bottom: false,
+          child: Container(
+            width: double.infinity,
+            decoration: BoxDecoration(
+              gradient: LinearGradient(
+                colors: [
+                  Colors.blue.shade600,
+                  Colors.blue.shade400,
+                ],
+                begin: Alignment.topLeft,
+                end: Alignment.bottomRight,
+              ),
+            ),
+            child: Stack(
+              children: [
+                // Contenu principal
+                Padding(
+                  padding: EdgeInsets.fromLTRB(
+                    isCompact ? 10 : 14,
+                    isCompact ? 10 : 14,
+                    isCompact ? 10 : 14,
+                    isCompact ? 40 : 48,
                   ),
-                ),
-                child: Stack(
-                  children: [
-                    // Contenu principal
-                    Padding(
-                      padding: EdgeInsets.fromLTRB(
-                        isCompact ? 10 : 14,
-                        isCompact ? 10 : 14,
-                        isCompact ? 10 : 14,
-                        isCompact ? 40 : 48,
-                      ),
-                      child: Column(
+                  child: Column(
+                    children: [
+                      // Photo et badges
+                      Row(
                         children: [
-                          // Photo et badges
-                          Row(
-                            children: [
-                              // Photo de profil
-                              Container(
-                                decoration: BoxDecoration(
-                                  shape: BoxShape.circle,
-                                  border: Border.all(
-                                    color: Colors.white,
-                                    width: 3,
-                                  ),
-                                  boxShadow: [
-                                    BoxShadow(
-                                      color:
-                                          Colors.black.withValues(alpha: 0.2),
-                                      blurRadius: 10,
-                                      offset: const Offset(0, 4),
-                                    ),
-                                  ],
-                                ),
-                                child: CircleAvatar(
-                                  radius: isCompact ? 30 : 36,
-                                  backgroundImage: photoUrl.isEmpty
-                                      ? null
-                                      : NetworkImage(photoUrl),
-                                  child: photoUrl.isEmpty
-                                      ? Icon(
-                                          Icons.person,
-                                          size: isCompact ? 30 : 36,
-                                        )
-                                      : null,
-                                ),
-                              ),
-                              SizedBox(width: isCompact ? 10 : 12),
-                              // Nom et badges
-                              Expanded(
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    // Nom avec badge premium
-                                    Row(
-                                      children: [
-                                        Flexible(
-                                          child: Text(
-                                            profile.displayName,
-                                            style: TextStyle(
-                                              color: Colors.white,
-                                              fontSize: context.fontSize(16),
-                                              fontWeight: FontWeight.bold,
-                                            ),
-                                            maxLines: 1,
-                                            overflow: TextOverflow.ellipsis,
-                                          ),
-                                        ),
-                                        if (profile.hasPremiumPass) ...[
-                                          const SizedBox(width: 6),
-                                          Container(
-                                            padding: const EdgeInsets.symmetric(
-                                              horizontal: 4,
-                                              vertical: 4,
-                                            ),
-                                            decoration: BoxDecoration(
-                                              color: Colors.amber,
-                                              borderRadius:
-                                                  BorderRadius.circular(8),
-                                            ),
-                                            child: const Icon(
-                                              Icons.workspace_premium,
-                                              size: 14,
-                                              color: Colors.white,
-                                            ),
-                                          ),
-                                        ],
-                                      ],
-                                    ),
-                                    const SizedBox(height: 6),
-                                    Container(
-                                      padding: const EdgeInsets.symmetric(
-                                        horizontal: 10,
-                                        vertical: 4,
-                                      ),
-                                      decoration: BoxDecoration(
-                                        color: Colors.white.withValues(alpha: 0.18),
-                                        borderRadius: BorderRadius.circular(999),
-                                        border: Border.all(
-                                          color: Colors.white.withValues(alpha: 0.28),
-                                        ),
-                                      ),
-                                      child: Row(
-                                        mainAxisSize: MainAxisSize.min,
-                                        children: [
-                                          const Icon(
-                                            Icons.military_tech,
-                                            size: 14,
-                                            color: Colors.amber,
-                                          ),
-                                          const SizedBox(width: 6),
-                                          Text(
-                                            'Grade ${grade.grade} • Niv. ${grade.level}',
-                                            style: TextStyle(
-                                              color: Colors.white,
-                                              fontSize: context.fontSize(12),
-                                              fontWeight: FontWeight.w700,
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                    if (profile.categories.isNotEmpty ||
-                                        spotsCount > 0 ||
-                                        favsCount >= 5) ...[
-                                      const SizedBox(height: 8),
-                                      Wrap(
-                                        spacing: isCompact ? 4 : 6,
-                                        runSpacing: isCompact ? 4 : 6,
-                                        children: [
-                                          if (profile.categories.isNotEmpty)
-                                            _buildBadge(
-                                              icon: Icons.explore,
-                                              label: 'Explorateur',
-                                              color: Colors.green,
-                                              compact: true,
-                                            ),
-                                          if (spotsCount > 0)
-                                            _buildBadge(
-                                              icon: Icons.add_location,
-                                              label: 'Contributeur',
-                                              color: Colors.orange,
-                                              compact: true,
-                                            ),
-                                          if (favsCount >= 5)
-                                            _buildBadge(
-                                              icon: Icons.star,
-                                              label: 'Collectionneur',
-                                              color: Colors.purple,
-                                              compact: true,
-                                            ),
-                                        ],
-                                      ),
-                                    ],
-                                  ],
-                                ),
-                              ),
-                            ],
-                          ),
-                          SizedBox(height: isCompact ? 8 : 12),
-                          // Statistiques
+                          // Photo de profil
                           Container(
-                            padding: EdgeInsets.all(isCompact ? 7 : 8),
                             decoration: BoxDecoration(
-                              color: Colors.white.withValues(alpha: 0.15),
-                              borderRadius: BorderRadius.circular(12),
+                              shape: BoxShape.circle,
                               border: Border.all(
-                                color: Colors.white.withValues(alpha: 0.3),
+                                color: Colors.white,
+                                width: 3,
                               ),
-                            ),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceAround,
-                              children: [
-                                // Spots créés
-                                _buildStatItem(
-                                  icon: Icons.location_on,
-                                  label: 'Spots',
-                                  value: spotsCount.toString(),
-                                  compact: isCompact,
-                                ),
-                                // Séparateur
-                                Container(
-                                  width: 1,
-                                  height: 30,
-                                  color: Colors.white.withValues(alpha: 0.3),
-                                ),
-                                // Favoris
-                                _buildStatItem(
-                                  icon: Icons.favorite,
-                                  label: 'Favoris',
-                                  value: favsCount.toString(),
-                                  compact: isCompact,
-                                ),
-                                // Séparateur
-                                Container(
-                                  width: 1,
-                                  height: 30,
-                                  color: Colors.white.withValues(alpha: 0.3),
-                                ),
-                                // XP
-                                _buildStatItem(
-                                  icon: Icons.auto_awesome,
-                                  label: 'XP',
-                                  value: profile.xp.toString(),
-                                  compact: isCompact,
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Colors.black.withValues(alpha: 0.2),
+                                  blurRadius: 10,
+                                  offset: const Offset(0, 4),
                                 ),
                               ],
                             ),
-                          ),
-                          SizedBox(height: isCompact ? 5 : 6),
-                          Container(
-                            padding: EdgeInsets.all(isCompact ? 6 : 8),
-                            decoration: BoxDecoration(
-                              color: Colors.white.withValues(alpha: 0.12),
-                              borderRadius: BorderRadius.circular(12),
-                              border: Border.all(
-                                color: Colors.white.withValues(alpha: 0.25),
-                              ),
+                            child: CircleAvatar(
+                              radius: isCompact ? 30 : 36,
+                              backgroundImage: photoUrl.isEmpty
+                                  ? null
+                                  : NetworkImage(photoUrl),
+                              child: photoUrl.isEmpty
+                                  ? Icon(
+                                      Icons.person,
+                                      size: isCompact ? 30 : 36,
+                                    )
+                                  : null,
                             ),
+                          ),
+                          SizedBox(width: isCompact ? 10 : 12),
+                          // Nom et badges
+                          Expanded(
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
+                                // Nom avec badge premium
                                 Row(
                                   children: [
-                                    const Icon(
-                                      Icons.workspace_premium,
-                                      color: Colors.white,
-                                      size: 16,
-                                    ),
-                                    const SizedBox(width: 6),
-                                    Expanded(
+                                    Flexible(
                                       child: Text(
-                                        '${grade.grade} • Niveau ${grade.level}',
+                                        profile.displayName,
                                         style: TextStyle(
                                           color: Colors.white,
-                                          fontWeight: FontWeight.w700,
-                                          fontSize:
-                                              context.fontSize(isCompact ? 12 : 13),
+                                          fontSize: context.fontSize(16),
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                        maxLines: 1,
+                                        overflow: TextOverflow.ellipsis,
+                                      ),
+                                    ),
+                                    if (profile.hasPremiumPass) ...[
+                                      const SizedBox(width: 6),
+                                      Container(
+                                        padding: const EdgeInsets.symmetric(
+                                          horizontal: 4,
+                                          vertical: 4,
+                                        ),
+                                        decoration: BoxDecoration(
+                                          color: Colors.amber,
+                                          borderRadius:
+                                              BorderRadius.circular(8),
+                                        ),
+                                        child: const Icon(
+                                          Icons.workspace_premium,
+                                          size: 14,
+                                          color: Colors.white,
                                         ),
                                       ),
-                                    ),
-                                    Text(
-                                      '${profile.totalVisits} visites',
-                                      style: TextStyle(
-                                        color: Colors.white70,
-                                        fontSize: context.fontSize(isCompact ? 10 : 11),
-                                      ),
-                                    ),
+                                    ],
                                   ],
                                 ),
-                                SizedBox(height: isCompact ? 3 : 4),
-                                ClipRRect(
-                                  borderRadius: BorderRadius.circular(999),
-                                  child: LinearProgressIndicator(
-                                    value: grade.progress,
-                                    minHeight: 6,
-                                    backgroundColor:
-                                        Colors.white.withValues(alpha: 0.25),
-                                    valueColor:
-                                        const AlwaysStoppedAnimation<Color>(
-                                      Colors.amber,
+                                const SizedBox(height: 6),
+                                Container(
+                                  padding: const EdgeInsets.symmetric(
+                                    horizontal: 10,
+                                    vertical: 4,
+                                  ),
+                                  decoration: BoxDecoration(
+                                    color: Colors.white.withValues(alpha: 0.18),
+                                    borderRadius: BorderRadius.circular(999),
+                                    border: Border.all(
+                                      color:
+                                          Colors.white.withValues(alpha: 0.28),
                                     ),
                                   ),
-                                ),
-                                const SizedBox(height: 3),
-                                Text(
-                                  '${grade.currentLevelXp}/${grade.requiredXpForNextLevel} XP vers le niveau suivant',
-                                  style: TextStyle(
-                                    color: Colors.white70,
-                                    fontSize:
-                                        context.fontSize(isCompact ? 9 : 10),
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                          SizedBox(height: isCompact ? 4 : 6),
-                        ],
-                      ),
-                    ),
-                    // Boutons infos + paramètres
-                    Positioned(
-                      top: 8,
-                      right: 8,
-                      child: Row(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          IconButton(
-                            icon: Container(
-                              padding: const EdgeInsets.all(8),
-                              decoration: BoxDecoration(
-                                color: Colors.black.withValues(alpha: 0.2),
-                                shape: BoxShape.circle,
-                              ),
-                              child: const Icon(
-                                Icons.info_outline,
-                                color: Colors.white,
-                                size: 20,
-                              ),
-                            ),
-                            onPressed: () {
-                              Navigator.of(context).push(
-                                MaterialPageRoute(
-                                  builder: (_) => const InfoCenterPage(),
-                                ),
-                              );
-                            },
-                          ),
-                          const SizedBox(width: 6),
-                          IconButton(
-                            icon: Container(
-                              padding: const EdgeInsets.all(8),
-                              decoration: BoxDecoration(
-                                color: Colors.black.withValues(alpha: 0.2),
-                                shape: BoxShape.circle,
-                              ),
-                              child: const Icon(
-                                Icons.settings,
-                                color: Colors.white,
-                                size: 20,
-                              ),
-                            ),
-                            onPressed: () {
-                              showDialog(
-                                context: context,
-                                builder: (dialogContext) => AlertDialog(
-                                  title: const Text(
-                                    'Paramètres',
-                                    textAlign: TextAlign.center,
-                                  ),
-                                  content: Column(
+                                  child: Row(
                                     mainAxisSize: MainAxisSize.min,
                                     children: [
-                                      const Text(
-                                        'Que voulez-vous faire?',
-                                        textAlign: TextAlign.center,
+                                      const Icon(
+                                        Icons.military_tech,
+                                        size: 14,
+                                        color: Colors.amber,
                                       ),
-                                      const SizedBox(height: 12),
-                                      SizedBox(
-                                        width: double.infinity,
-                                        child: ElevatedButton.icon(
-                                          onPressed: () {
-                                            Navigator.pop(dialogContext);
-                                            context.push('/users/$uid');
-                                          },
-                                          icon: const Icon(Icons.public),
-                                          label:
-                                              const Text('Voir profil public'),
+                                      const SizedBox(width: 6),
+                                      Text(
+                                        'Grade ${grade.grade} • Niv. ${grade.level}',
+                                        style: TextStyle(
+                                          color: Colors.white,
+                                          fontSize: context.fontSize(12),
+                                          fontWeight: FontWeight.w700,
                                         ),
-                                      ),
-                                      const SizedBox(height: 8),
-                                      SizedBox(
-                                        width: double.infinity,
-                                        child: ElevatedButton.icon(
-                                          onPressed: () {
-                                            Navigator.pop(dialogContext);
-                                            Navigator.push(
-                                              context,
-                                              MaterialPageRoute(
-                                                builder: (context) =>
-                                                    const ProfileSetupPage(),
-                                              ),
-                                            );
-                                          },
-                                          icon: const Icon(Icons.edit),
-                                          label: const Text('Modifier profil'),
-                                        ),
-                                      ),
-                                      const SizedBox(height: 8),
-                                      if (profile.isAdmin) ...[
-                                        const SizedBox(height: 8),
-                                        SizedBox(
-                                          width: double.infinity,
-                                          child: StreamBuilder<QuerySnapshot>(
-                                            stream: FirebaseFirestore.instance
-                                                .collection('spot_reports')
-                                                .where('status', isEqualTo: 'open')
-                                                .snapshots(),
-                                            builder: (context, reportSnapshot) {
-                                              final openReportsCount =
-                                                  reportSnapshot.data?.docs.length ?? 0;
-
-                                              return ElevatedButton.icon(
-                                                onPressed: () {
-                                                  Navigator.pop(dialogContext);
-                                                  Navigator.push(
-                                                    context,
-                                                    MaterialPageRoute(
-                                                      builder: (_) =>
-                                                          const CommunitySpotsManagementPage(),
-                                                    ),
-                                                  );
-                                                },
-                                                icon: const Icon(
-                                                    Icons.admin_panel_settings),
-                                                label: Row(
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment.center,
-                                                  mainAxisSize: MainAxisSize.min,
-                                                  children: [
-                                                    const Text('Admin spots'),
-                                                    if (openReportsCount > 0) ...[
-                                                      const SizedBox(width: 8),
-                                                      Container(
-                                                        padding:
-                                                            const EdgeInsets.symmetric(
-                                                          horizontal: 8,
-                                                          vertical: 2,
-                                                        ),
-                                                        decoration: BoxDecoration(
-                                                          color: Colors.red,
-                                                          borderRadius:
-                                                              BorderRadius.circular(999),
-                                                        ),
-                                                        child: Text(
-                                                          '$openReportsCount',
-                                                          style: const TextStyle(
-                                                            color: Colors.white,
-                                                            fontWeight: FontWeight.bold,
-                                                            fontSize: 12,
-                                                          ),
-                                                        ),
-                                                      ),
-                                                    ],
-                                                  ],
-                                                ),
-                                              );
-                                            },
-                                          ),
-                                        ),
-                                      ],
-                                      const SizedBox(height: 8),
-                                      SizedBox(
-                                        width: double.infinity,
-                                        child: ElevatedButton.icon(
-                                          onPressed: () {
-                                            Navigator.pop(dialogContext);
-                                            _showDeleteAccountDialog(context);
-                                          },
-                                          icon: const Icon(Icons.delete),
-                                          label: const Text('Supprimer compte'),
-                                          style: ElevatedButton.styleFrom(
-                                            backgroundColor: Colors.red,
-                                          ),
-                                        ),
-                                      ),
-                                      const SizedBox(height: 8),
-                                      SizedBox(
-                                        width: double.infinity,
-                                        child: ElevatedButton.icon(
-                                          onPressed: () async {
-                                            final ctx = context;
-                                            Navigator.pop(dialogContext);
-                                            await FirebaseAuth.instance
-                                                .signOut();
-                                            if (ctx.mounted) ctx.go('/auth');
-                                          },
-                                          icon: const Icon(Icons.logout),
-                                          label: const Text('Se déconnecter'),
-                                          style: ElevatedButton.styleFrom(
-                                            backgroundColor: Colors.orange,
-                                          ),
-                                        ),
-                                      ),
-                                      const SizedBox(height: 8),
-                                      TextButton(
-                                        onPressed: () =>
-                                            Navigator.pop(dialogContext),
-                                        child: const Text('Annuler'),
                                       ),
                                     ],
                                   ),
                                 ),
-                              );
-                            },
+                                if (profile.categories.isNotEmpty ||
+                                    spotsCount > 0 ||
+                                    favsCount >= 5) ...[
+                                  const SizedBox(height: 8),
+                                  Wrap(
+                                    spacing: isCompact ? 4 : 6,
+                                    runSpacing: isCompact ? 4 : 6,
+                                    children: [
+                                      if (profile.categories.isNotEmpty)
+                                        _buildBadge(
+                                          icon: Icons.explore,
+                                          label: 'Explorateur',
+                                          color: Colors.green,
+                                          compact: true,
+                                        ),
+                                      if (spotsCount > 0)
+                                        _buildBadge(
+                                          icon: Icons.add_location,
+                                          label: 'Contributeur',
+                                          color: Colors.orange,
+                                          compact: true,
+                                        ),
+                                      if (favsCount >= 5)
+                                        _buildBadge(
+                                          icon: Icons.star,
+                                          label: 'Collectionneur',
+                                          color: Colors.purple,
+                                          compact: true,
+                                        ),
+                                    ],
+                                  ),
+                                ],
+                              ],
+                            ),
                           ),
                         ],
                       ),
-                    ),
-                  ],
+                      SizedBox(height: isCompact ? 8 : 12),
+                      // Statistiques
+                      Container(
+                        padding: EdgeInsets.all(isCompact ? 7 : 8),
+                        decoration: BoxDecoration(
+                          color: Colors.white.withValues(alpha: 0.15),
+                          borderRadius: BorderRadius.circular(12),
+                          border: Border.all(
+                            color: Colors.white.withValues(alpha: 0.3),
+                          ),
+                        ),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          children: [
+                            // Spots créés
+                            _buildStatItem(
+                              icon: Icons.location_on,
+                              label: 'Spots',
+                              value: spotsCount.toString(),
+                              compact: isCompact,
+                            ),
+                            // Séparateur
+                            Container(
+                              width: 1,
+                              height: 30,
+                              color: Colors.white.withValues(alpha: 0.3),
+                            ),
+                            // Favoris
+                            _buildStatItem(
+                              icon: Icons.favorite,
+                              label: 'Favoris',
+                              value: favsCount.toString(),
+                              compact: isCompact,
+                            ),
+                            // Séparateur
+                            Container(
+                              width: 1,
+                              height: 30,
+                              color: Colors.white.withValues(alpha: 0.3),
+                            ),
+                            // XP
+                            _buildStatItem(
+                              icon: Icons.auto_awesome,
+                              label: 'XP',
+                              value: profile.xp.toString(),
+                              compact: isCompact,
+                            ),
+                          ],
+                        ),
+                      ),
+                      SizedBox(height: isCompact ? 5 : 6),
+                      Container(
+                        padding: EdgeInsets.all(isCompact ? 6 : 8),
+                        decoration: BoxDecoration(
+                          color: Colors.white.withValues(alpha: 0.12),
+                          borderRadius: BorderRadius.circular(12),
+                          border: Border.all(
+                            color: Colors.white.withValues(alpha: 0.25),
+                          ),
+                        ),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Row(
+                              children: [
+                                const Icon(
+                                  Icons.workspace_premium,
+                                  color: Colors.white,
+                                  size: 16,
+                                ),
+                                const SizedBox(width: 6),
+                                Expanded(
+                                  child: Text(
+                                    '${grade.grade} • Niveau ${grade.level}',
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.w700,
+                                      fontSize:
+                                          context.fontSize(isCompact ? 12 : 13),
+                                    ),
+                                  ),
+                                ),
+                                Text(
+                                  '${profile.totalVisits} visites',
+                                  style: TextStyle(
+                                    color: Colors.white70,
+                                    fontSize:
+                                        context.fontSize(isCompact ? 10 : 11),
+                                  ),
+                                ),
+                              ],
+                            ),
+                            SizedBox(height: isCompact ? 3 : 4),
+                            ClipRRect(
+                              borderRadius: BorderRadius.circular(999),
+                              child: LinearProgressIndicator(
+                                value: grade.progress,
+                                minHeight: 6,
+                                backgroundColor:
+                                    Colors.white.withValues(alpha: 0.25),
+                                valueColor: const AlwaysStoppedAnimation<Color>(
+                                  Colors.amber,
+                                ),
+                              ),
+                            ),
+                            const SizedBox(height: 3),
+                            Text(
+                              '${grade.currentLevelXp}/${grade.requiredXpForNextLevel} XP vers le niveau suivant',
+                              style: TextStyle(
+                                color: Colors.white70,
+                                fontSize: context.fontSize(isCompact ? 9 : 10),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      SizedBox(height: isCompact ? 4 : 6),
+                    ],
+                  ),
                 ),
-              ),
-            );
-          },
+                // Boutons infos + paramètres
+                Positioned(
+                  top: 8,
+                  right: 8,
+                  child: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      IconButton(
+                        icon: Container(
+                          padding: const EdgeInsets.all(8),
+                          decoration: BoxDecoration(
+                            color: Colors.black.withValues(alpha: 0.2),
+                            shape: BoxShape.circle,
+                          ),
+                          child: const Icon(
+                            Icons.info_outline,
+                            color: Colors.white,
+                            size: 20,
+                          ),
+                        ),
+                        onPressed: () {
+                          Navigator.of(context).push(
+                            MaterialPageRoute(
+                              builder: (_) => const InfoCenterPage(),
+                            ),
+                          );
+                        },
+                      ),
+                      const SizedBox(width: 6),
+                      IconButton(
+                        icon: Container(
+                          padding: const EdgeInsets.all(8),
+                          decoration: BoxDecoration(
+                            color: Colors.black.withValues(alpha: 0.2),
+                            shape: BoxShape.circle,
+                          ),
+                          child: const Icon(
+                            Icons.settings,
+                            color: Colors.white,
+                            size: 20,
+                          ),
+                        ),
+                        onPressed: () {
+                          showDialog(
+                            context: context,
+                            builder: (dialogContext) => AlertDialog(
+                              title: const Text(
+                                'Paramètres',
+                                textAlign: TextAlign.center,
+                              ),
+                              content: Column(
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  const Text(
+                                    'Que voulez-vous faire?',
+                                    textAlign: TextAlign.center,
+                                  ),
+                                  const SizedBox(height: 12),
+                                  SizedBox(
+                                    width: double.infinity,
+                                    child: ElevatedButton.icon(
+                                      onPressed: () {
+                                        Navigator.pop(dialogContext);
+                                        context.push('/users/$uid');
+                                      },
+                                      icon: const Icon(Icons.public),
+                                      label: const Text('Voir profil public'),
+                                    ),
+                                  ),
+                                  const SizedBox(height: 8),
+                                  SizedBox(
+                                    width: double.infinity,
+                                    child: ElevatedButton.icon(
+                                      onPressed: () {
+                                        Navigator.pop(dialogContext);
+                                        Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                            builder: (context) =>
+                                                const ProfileSetupPage(),
+                                          ),
+                                        );
+                                      },
+                                      icon: const Icon(Icons.edit),
+                                      label: const Text('Modifier profil'),
+                                    ),
+                                  ),
+                                  const SizedBox(height: 8),
+                                  if (profile.isAdmin) ...[
+                                    const SizedBox(height: 8),
+                                    SizedBox(
+                                      width: double.infinity,
+                                      child: StreamBuilder<QuerySnapshot>(
+                                        stream: FirebaseFirestore.instance
+                                            .collection('spot_reports')
+                                            .where('status', isEqualTo: 'open')
+                                            .snapshots(),
+                                        builder: (context, reportSnapshot) {
+                                          final openReportsCount =
+                                              reportSnapshot
+                                                      .data?.docs.length ??
+                                                  0;
+
+                                          return ElevatedButton.icon(
+                                            onPressed: () {
+                                              Navigator.pop(dialogContext);
+                                              Navigator.push(
+                                                context,
+                                                MaterialPageRoute(
+                                                  builder: (_) =>
+                                                      const CommunitySpotsManagementPage(),
+                                                ),
+                                              );
+                                            },
+                                            icon: const Icon(
+                                                Icons.admin_panel_settings),
+                                            label: Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.center,
+                                              mainAxisSize: MainAxisSize.min,
+                                              children: [
+                                                const Text('Admin spots'),
+                                                if (openReportsCount > 0) ...[
+                                                  const SizedBox(width: 8),
+                                                  Container(
+                                                    padding: const EdgeInsets
+                                                        .symmetric(
+                                                      horizontal: 8,
+                                                      vertical: 2,
+                                                    ),
+                                                    decoration: BoxDecoration(
+                                                      color: Colors.red,
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              999),
+                                                    ),
+                                                    child: Text(
+                                                      '$openReportsCount',
+                                                      style: const TextStyle(
+                                                        color: Colors.white,
+                                                        fontWeight:
+                                                            FontWeight.bold,
+                                                        fontSize: 12,
+                                                      ),
+                                                    ),
+                                                  ),
+                                                ],
+                                              ],
+                                            ),
+                                          );
+                                        },
+                                      ),
+                                    ),
+                                  ],
+                                  const SizedBox(height: 8),
+                                  SizedBox(
+                                    width: double.infinity,
+                                    child: ElevatedButton.icon(
+                                      onPressed: () {
+                                        Navigator.pop(dialogContext);
+                                        _showDeleteAccountDialog(context);
+                                      },
+                                      icon: const Icon(Icons.delete),
+                                      label: const Text('Supprimer compte'),
+                                      style: ElevatedButton.styleFrom(
+                                        backgroundColor: Colors.red,
+                                      ),
+                                    ),
+                                  ),
+                                  const SizedBox(height: 8),
+                                  SizedBox(
+                                    width: double.infinity,
+                                    child: ElevatedButton.icon(
+                                      onPressed: () async {
+                                        final ctx = context;
+                                        Navigator.pop(dialogContext);
+                                        await FirebaseAuth.instance.signOut();
+                                        if (ctx.mounted) ctx.go('/auth');
+                                      },
+                                      icon: const Icon(Icons.logout),
+                                      label: const Text('Se déconnecter'),
+                                      style: ElevatedButton.styleFrom(
+                                        backgroundColor: Colors.orange,
+                                      ),
+                                    ),
+                                  ),
+                                  const SizedBox(height: 8),
+                                  TextButton(
+                                    onPressed: () =>
+                                        Navigator.pop(dialogContext),
+                                    child: const Text('Annuler'),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          );
+                        },
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          ),
         );
       },
     );
@@ -1568,6 +1561,16 @@ class _FavoriteDetailPage extends StatelessWidget {
                           label: Text('Accessible',
                               style: TextStyle(color: Colors.white)),
                           backgroundColor: Colors.blue),
+                    if (spotData['vanAccessible'] == true)
+                      const Chip(
+                          label: Text('Acces van',
+                              style: TextStyle(color: Colors.white)),
+                          backgroundColor: Colors.teal),
+                    if (spotData['camperPowerAvailable'] == true)
+                      const Chip(
+                          label: Text('Prise camping-car',
+                              style: TextStyle(color: Colors.white)),
+                          backgroundColor: Colors.indigo),
                     if (spotData['kidsFriendly'] == true)
                       const Chip(
                           label: Text('Famille',
@@ -1597,6 +1600,14 @@ class _RoadTripTabState extends ConsumerState<_RoadTripTab> {
   double? _distanceMeters;
   double? _durationSeconds;
   String _lastRouteKey = '';
+  String? _selectedTripId;
+  Timer? _routeDebounce;
+
+  @override
+  void dispose() {
+    _routeDebounce?.cancel();
+    super.dispose();
+  }
 
   Future<void> _fetchRoute(List<RoadTripItem> items) async {
     if (items.length < 2) {
@@ -1654,7 +1665,9 @@ class _RoadTripTabState extends ConsumerState<_RoadTripTab> {
     final key = items.map((i) => '${i.source}:${i.id}').join('|');
     if (key == _lastRouteKey) return;
     _lastRouteKey = key;
-    WidgetsBinding.instance.addPostFrameCallback((_) {
+    _routeDebounce?.cancel();
+    _routeDebounce = Timer(const Duration(milliseconds: 280), () {
+      if (!mounted) return;
       _fetchRoute(items);
     });
   }
@@ -1687,20 +1700,56 @@ class _RoadTripTabState extends ConsumerState<_RoadTripTab> {
     final profile = ref.watch(profileStreamProvider).value;
     final hasPremiumPass = profile?.hasPremiumPass ?? false;
     final maxItems = RoadTripService.maxItemsFor(hasPremiumPass);
+    final maxTrips = RoadTripService.maxTripsFor(hasPremiumPass);
 
-    return StreamBuilder<DocumentSnapshot<Map<String, dynamic>>>(
-      stream: RoadTripService.stream(user.uid),
+    Future<void> createRoadTrip() async {
+      final createdTripId = await RoadTripService.createPlan(
+        user.uid,
+        maxTrips: maxTrips,
+      );
+      if (!mounted) return;
+      if (createdTripId == null) {
+        ScaffoldMessenger.of(this.context).showSnackBar(
+          SnackBar(content: Text('Limite de $maxTrips road trips atteinte')),
+        );
+        return;
+      }
+      setState(() => _selectedTripId = createdTripId);
+      ScaffoldMessenger.of(this.context).showSnackBar(
+        const SnackBar(content: Text('Road trip cree')),
+      );
+    }
+
+    return StreamBuilder<List<RoadTripPlan>>(
+      stream: RoadTripService.plansStream(user.uid),
       builder: (context, snapshot) {
-        final data = snapshot.data?.data();
-        final rawItems = (data?['items'] as List?) ?? [];
-        final items = rawItems
-            .whereType<Map>()
-            .map((e) => RoadTripItem.fromMap(Map<String, dynamic>.from(e)))
-            .toList();
+        final plans = snapshot.data ?? const <RoadTripPlan>[];
+
+        RoadTripPlan? activePlan;
+        if (plans.isNotEmpty) {
+          final wantedTripId = _selectedTripId;
+          if (wantedTripId != null) {
+            for (final plan in plans) {
+              if (plan.id == wantedTripId) {
+                activePlan = plan;
+                break;
+              }
+            }
+          }
+          activePlan ??= plans.first;
+          if (_selectedTripId != activePlan.id) {
+            WidgetsBinding.instance.addPostFrameCallback((_) {
+              if (!mounted) return;
+              setState(() => _selectedTripId = activePlan!.id);
+            });
+          }
+        }
+
+        final items = activePlan?.items ?? const <RoadTripItem>[];
 
         _scheduleRouteUpdate(items);
 
-        if (items.isEmpty) {
+        if (plans.isEmpty) {
           final bottomInset = MediaQuery.paddingOf(context).bottom;
           return SafeArea(
             top: false,
@@ -1714,8 +1763,14 @@ class _RoadTripTabState extends ConsumerState<_RoadTripTab> {
                     const Icon(Icons.route, size: 48, color: Colors.blue),
                     const SizedBox(height: 12),
                     Text(
-                      'Creez votre road trip avec jusqu\'a $maxItems spots.',
+                      'Creez jusqu\'a $maxTrips road trips de $maxItems spots.',
                       textAlign: TextAlign.center,
+                    ),
+                    const SizedBox(height: 12),
+                    ElevatedButton.icon(
+                      onPressed: createRoadTrip,
+                      icon: const Icon(Icons.add),
+                      label: const Text('Creer mon premier road trip'),
                     ),
                   ],
                 ),
@@ -1740,13 +1795,78 @@ class _RoadTripTabState extends ConsumerState<_RoadTripTab> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
+                          'Road trips: ${plans.length}/$maxTrips',
+                          style: const TextStyle(fontWeight: FontWeight.w700),
+                        ),
+                        Row(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            if (plans.length < maxTrips)
+                              IconButton(
+                                tooltip: 'Nouveau road trip',
+                                onPressed: createRoadTrip,
+                                icon: const Icon(Icons.add_circle_outline),
+                              ),
+                            if (activePlan != null)
+                              IconButton(
+                                tooltip: 'Supprimer ce road trip',
+                                onPressed: () async {
+                                  final activePlanId = activePlan!.id;
+                                  await RoadTripService.deletePlan(
+                                    user.uid,
+                                    activePlanId,
+                                  );
+                                  if (!mounted) return;
+                                  ScaffoldMessenger.of(this.context)
+                                      .showSnackBar(
+                                    const SnackBar(
+                                      content: Text('Road trip supprime'),
+                                    ),
+                                  );
+                                },
+                                icon: const Icon(Icons.delete_outline),
+                              ),
+                          ],
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: 6),
+                    SizedBox(
+                      height: 36,
+                      child: ListView.separated(
+                        scrollDirection: Axis.horizontal,
+                        itemCount: plans.length,
+                        separatorBuilder: (_, __) => const SizedBox(width: 8),
+                        itemBuilder: (context, index) {
+                          final plan = plans[index];
+                          final isSelected = plan.id == activePlan?.id;
+                          return ChoiceChip(
+                            label: Text(
+                                'Trip ${index + 1} (${plan.items.length})'),
+                            selected: isSelected,
+                            onSelected: (_) {
+                              setState(() => _selectedTripId = plan.id);
+                            },
+                          );
+                        },
+                      ),
+                    ),
+                    const SizedBox(height: 8),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
                           'Spots: ${items.length}/$maxItems',
                           style: const TextStyle(fontWeight: FontWeight.w700),
                         ),
-                        TextButton(
-                          onPressed: () => RoadTripService.clear(user.uid),
-                          child: const Text('Vider'),
-                        ),
+                        if (activePlan != null)
+                          TextButton(
+                            onPressed: () => RoadTripService.clear(
+                              user.uid,
+                              tripId: activePlan!.id,
+                            ),
+                            child: const Text('Vider'),
+                          ),
                       ],
                     ),
                     if (_loadingRoute)
@@ -1785,7 +1905,12 @@ class _RoadTripTabState extends ConsumerState<_RoadTripTab> {
                     final updated = [...items];
                     final moved = updated.removeAt(oldIndex);
                     updated.insert(newIndex, moved);
-                    RoadTripService.saveItems(user.uid, updated);
+                    if (activePlan == null) return;
+                    RoadTripService.saveItems(
+                      user.uid,
+                      updated,
+                      tripId: activePlan.id,
+                    );
                     _scheduleRouteUpdate(updated);
                   },
                   itemBuilder: (context, index) {
@@ -1810,10 +1935,13 @@ class _RoadTripTabState extends ConsumerState<_RoadTripTab> {
                         children: [
                           IconButton(
                             icon: const Icon(Icons.delete_outline),
-                            onPressed: () => RoadTripService.removeAt(
-                              user.uid,
-                              index,
-                            ),
+                            onPressed: activePlan == null
+                                ? null
+                                : () => RoadTripService.removeAt(
+                                      user.uid,
+                                      index,
+                                      tripId: activePlan!.id,
+                                    ),
                           ),
                           ReorderableDragStartListener(
                             index: index,
@@ -2272,7 +2400,8 @@ class _AccountVerificationTabState
 
   void _showSnack(String message) {
     if (!mounted) return;
-    ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(message)));
+    ScaffoldMessenger.of(context)
+        .showSnackBar(SnackBar(content: Text(message)));
   }
 
   @override
@@ -2307,8 +2436,8 @@ class _AccountVerificationTabState
                       isAdmin
                           ? 'Compte admin: vérification SMS non requise ✅'
                           : isVerified
-                          ? 'Compte vérifié ✅'
-                          : 'Votre compte doit être vérifié sous 24h.',
+                              ? 'Compte vérifié ✅'
+                              : 'Votre compte doit être vérifié sous 24h.',
                       style: TextStyle(
                         color: isVerified ? Colors.green : Colors.red,
                         fontWeight: FontWeight.w600,
@@ -2370,7 +2499,9 @@ class _AccountVerificationTabState
             SizedBox(
               width: double.infinity,
               child: ElevatedButton.icon(
-                onPressed: (!isVerified && (_codeSent || _verificationId != null) && !_isVerifyingCode)
+                onPressed: (!isVerified &&
+                        (_codeSent || _verificationId != null) &&
+                        !_isVerifyingCode)
                     ? _verifyCode
                     : null,
                 icon: _isVerifyingCode

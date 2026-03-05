@@ -265,6 +265,16 @@ python3 scripts/clean_poi_placeholder_names.py \
   --apply \
   --backup scripts/out/poi_name_cleanup_backup.json
 
+# Audit global (doublons + POI sans nom) en dry-run
+python3 scripts/audit_cleanup_spots.py \
+  --report scripts/out/spots_audit_report.json
+
+# Nettoyage global effectif (avec backup des suppressions)
+python3 scripts/audit_cleanup_spots.py \
+  --apply \
+  --backup scripts/out/spots_cleanup_backup.json \
+  --report scripts/out/spots_cleanup_report.json
+
 # Test sur un échantillon
 python3 scripts/clean_poi_placeholder_names.py --limit 500
 ```

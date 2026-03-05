@@ -105,8 +105,8 @@ class _MapViewState extends ConsumerState<MapView> {
   }
 
   String _preferencesSignature(List<String> preferences) {
-    final normalized = preferences.map((value) => value.trim().toLowerCase()).toList()
-      ..sort();
+    final normalized =
+        preferences.map((value) => value.trim().toLowerCase()).toList()..sort();
     return normalized.join('|');
   }
 
@@ -174,10 +174,12 @@ class _MapViewState extends ConsumerState<MapView> {
     final hasPremiumPass =
         ref.read(profileStreamProvider).value?.hasPremiumPass ?? false;
     final maxItems = RoadTripService.maxItemsFor(hasPremiumPass);
+    final maxTrips = RoadTripService.maxTripsFor(hasPremiumPass);
     final result = await RoadTripService.addPoi(
       user.uid,
       poi,
       maxItems: maxItems,
+      maxTrips: maxTrips,
     );
     if (!mounted) return;
 
@@ -195,6 +197,11 @@ class _MapViewState extends ConsumerState<MapView> {
       case RoadTripAddResult.maxReached:
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(content: Text('Limite de $maxItems spots atteinte')),
+        );
+        break;
+      case RoadTripAddResult.maxTripsReached:
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text('Limite de $maxTrips road trips atteinte')),
         );
         break;
     }

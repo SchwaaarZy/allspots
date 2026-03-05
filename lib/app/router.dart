@@ -64,8 +64,12 @@ final appRouterProvider = Provider<GoRouter>((ref) {
       ),
       GoRoute(
         path: '/nearby-results',
-        pageBuilder: (context, state) => const CupertinoPage(
-          child: NearbyResultsPage(),
+        pageBuilder: (context, state) => CupertinoPage(
+          child: NearbyResultsPage(
+            selectionMode: state.uri.queryParameters['mode'] == 'roadtrip'
+                ? NearbySelectionMode.roadTrip
+                : NearbySelectionMode.browse,
+          ),
         ),
       ),
     ],

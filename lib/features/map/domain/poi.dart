@@ -14,6 +14,8 @@ class Poi {
   final bool? isFree;
   final int? visitDurationMin;
   final bool? pmrAccessible;
+  final bool? vanAccessible;
+  final bool? camperPowerAvailable;
   final bool? kidsFriendly;
   
   final double? googleRating; // Note Google (0-5)
@@ -40,6 +42,8 @@ class Poi {
     this.isFree,
     this.visitDurationMin,
     this.pmrAccessible,
+    this.vanAccessible,
+    this.camperPowerAvailable,
     this.kidsFriendly,
     this.googleRating,
     this.googleRatingCount,
@@ -133,6 +137,8 @@ class Poi {
       'isFree': isFree,
       'visitDurationMin': visitDurationMin,
       'pmrAccessible': pmrAccessible,
+      'vanAccessible': vanAccessible,
+      'camperPowerAvailable': camperPowerAvailable,
       'kidsFriendly': kidsFriendly,
       'googleRating': googleRating,
       'googleRatingCount': googleRatingCount,
@@ -166,6 +172,8 @@ class Poi {
       isFree: map['isFree'] as bool?,
       visitDurationMin: map['visitDurationMin'] as int?,
       pmrAccessible: map['pmrAccessible'] as bool?,
+      vanAccessible: map['vanAccessible'] as bool?,
+      camperPowerAvailable: map['camperPowerAvailable'] as bool?,
       kidsFriendly: map['kidsFriendly'] as bool?,
       googleRating: (map['googleRating'] as num?)?.toDouble(),
       googleRatingCount: map['googleRatingCount'] as int?,

@@ -30,6 +30,8 @@ class _CreateSpotPageState extends ConsumerState<CreateSpotPage> {
   String _item = poiCategoryGroups.first.items.first;
   bool _isFree = false;
   bool _pmr = false;
+  bool _vanAccess = false;
+  bool _camperPowerAvailable = false;
   bool _kids = false;
   bool _openNow = false;
   bool _isSaving = false;
@@ -208,6 +210,8 @@ class _CreateSpotPageState extends ConsumerState<CreateSpotPage> {
             : _websiteController.text.trim(),
         'isFree': _isFree,
         'pmrAccessible': _pmr,
+        'vanAccessible': _vanAccess,
+        'camperPowerAvailable': _camperPowerAvailable,
         'kidsFriendly': _kids,
         'openNow': _openNow,
         'imageUrls': imageUrl == null ? [] : [imageUrl],
@@ -410,6 +414,18 @@ class _CreateSpotPageState extends ConsumerState<CreateSpotPage> {
                       title: const Text('Accessible PMR'),
                       value: _pmr,
                       onChanged: (value) => setState(() => _pmr = value),
+                    ),
+                    SwitchListTile.adaptive(
+                      title: const Text('Accès van'),
+                      subtitle: const Text('Stationnement adapté van/camping-car'),
+                      value: _vanAccess,
+                      onChanged: (value) => setState(() => _vanAccess = value),
+                    ),
+                    SwitchListTile.adaptive(
+                      title: const Text('Prise disponible (camping-car)'),
+                      value: _camperPowerAvailable,
+                      onChanged: (value) =>
+                          setState(() => _camperPowerAvailable = value),
                     ),
                     SwitchListTile.adaptive(
                       title: const Text('Adapté aux enfants'),

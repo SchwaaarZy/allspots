@@ -49,6 +49,7 @@ class _SearchPageState extends ConsumerState<SearchPage> {
     'une',
   };
 
+  String? _selectedCountryCode;
   String? _selectedRegionCode;
   String? _selectedDepartmentCode;
   String _keywordQuery = '';
@@ -59,25 +60,25 @@ class _SearchPageState extends ConsumerState<SearchPage> {
   bool _searchPerformed = false;
   late PageController _pageController;
   late ValueNotifier<int> _pageNotifier;
-  late final List<RegionModel> _regions;
-  late final Map<String, List<DepartmentModel>> _departmentsByRegion;
   List<String> _dynamicKeywordSuggestions = const <String>[];
   String? _cachedResultsKey;
   List<Poi> _cachedResults = const <Poi>[];
+  int? _cachedAllPoisIdentity;
+  int? _cachedAllPoisLength;
+  List<Poi> _cachedAllPois = const <Poi>[];
+  String? _cachedDistanceAnchorKey;
+  final Map<String, double> _cachedDistanceMetersByPoiKey = {};
+  final Map<String, String> _cachedDistanceLabelByPoiKey = {};
+  Set<String>? _cachedNormalizedSelectedCategories;
+  String? _cachedNormalizedSelectedCategoriesKey;
+  String? _cachedDepartmentStreamCode;
+  Stream<QuerySnapshot<Map<String, dynamic>>>? _cachedDepartmentStream;
 
   @override
   void initState() {
     super.initState();
     _pageController = PageController();
     _pageNotifier = ValueNotifier<int>(0);
-    final france = allCountries.firstWhere(
-      (country) => country.code.toLowerCase() == 'fr',
-      orElse: () => allCountries.first,
-    );
-    _regions = france.regions;
-    _departmentsByRegion = {
-      for (final region in _regions) region.code: region.departments,
-    };
 
     // Initialize map controller only once
     WidgetsBinding.instance.addPostFrameCallback((_) {
@@ -97,24 +98,24 @@ class _SearchPageState extends ConsumerState<SearchPage> {
 
   @override
   Widget build(BuildContext context) {
-    final primaryBlue = Theme.of(context).colorScheme.primary;
     final profile = ref.watch(profileStreamProvider);
-    final profileCategories = (profile.value?.categories ?? const <String>[]).toSet();
+    final profileCategories =
+        (profile.value?.categories ?? const <String>[]).toSet();
+    final normalizedProfileCategories =
+        _normalizedSelectedCategories(profileCategories);
     final expandedHeight = 360.0;
 
-    final mapState = ref.watch(mapControllerProvider);
-    final userPos = mapState.userPosition;
-    final localizedCountryLabel = _localizedCountryLabel(mapState.localizedCountryCode);
+    final userPos =
+        ref.watch(mapControllerProvider.select((state) => state.userPosition));
+    _ensureDistanceCacheAnchor(userPos);
+
+    final selectedCountryLabel = _selectedCountryLabel();
     final selectedRegionLabel = _selectedRegionLabel();
     final selectedDepartmentLabel = _selectedDepartmentLabel();
 
-    _scheduleLocalizedGeoDefaults(
-      localizedRegionCode: mapState.localizedRegionCode,
-      localizedDepartmentCode: mapState.localizedDepartmentCode,
-    );
-
-    final hasRequiredGeoSelection =
-      _selectedRegionCode != null && _selectedDepartmentCode != null;
+    final hasRequiredGeoSelection = _selectedCountryCode != null &&
+        _selectedRegionCode != null &&
+        _selectedDepartmentCode != null;
 
     return Scaffold(
       body: NestedScrollView(
@@ -132,7 +133,8 @@ class _SearchPageState extends ConsumerState<SearchPage> {
                   return SingleChildScrollView(
                     padding: EdgeInsets.zero,
                     child: ConstrainedBox(
-                      constraints: BoxConstraints(minHeight: constraints.maxHeight),
+                      constraints:
+                          BoxConstraints(minHeight: constraints.maxHeight),
                       child: Container(
                         color: Colors.white,
                         padding: const EdgeInsets.fromLTRB(12, 10, 12, 4),
@@ -140,121 +142,112 @@ class _SearchPageState extends ConsumerState<SearchPage> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
-                    const SizedBox(height: 8),
-                    Container(
-                      width: double.infinity,
-                      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(24),
-                        border: Border.all(color: primaryBlue.withValues(alpha: 0.55)),
-                        color: primaryBlue.withValues(alpha: 0.04),
-                      ),
-                      child: Row(
-                        children: [
-                          Icon(Icons.public, size: 18, color: primaryBlue),
-                          const SizedBox(width: 8),
-                          Expanded(
-                            child: Text(
-                              'Pays géolocalisé: $localizedCountryLabel',
-                              style: TextStyle(
-                                color: primaryBlue,
-                                fontWeight: FontWeight.w600,
+                            const SizedBox(height: 8),
+                            SizedBox(
+                              width: double.infinity,
+                              child: OutlinedButton.icon(
+                                onPressed: _openGeoPicker,
+                                icon: const Icon(Icons.public, size: 16),
+                                label: Text('Pays: $selectedCountryLabel'),
                               ),
                             ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    const SizedBox(height: 8),
-                    SizedBox(
-                      width: double.infinity,
-                      child: OutlinedButton.icon(
-                        onPressed: _openRegionDepartmentPicker,
-                        icon: const Icon(Icons.map_outlined, size: 16),
-                        label: Text(
-                          selectedDepartmentLabel == null
-                              ? 'Région: $selectedRegionLabel'
-                              : 'Région: $selectedRegionLabel • Dép.: $selectedDepartmentLabel',
-                          maxLines: 1,
-                          overflow: TextOverflow.ellipsis,
-                        ),
-                      ),
-                    ),
-                    const SizedBox(height: 8),
-                    SizedBox(
-                      width: double.infinity,
-                      child: OutlinedButton.icon(
-                        onPressed: () => _openKeywordPicker(profileCategories),
-                        icon: const Icon(Icons.tune, size: 16),
-                        label: Text(
-                          _selectedKeywords.isEmpty
-                              ? 'Mot-clé'
-                              : 'Mot-clé (${_selectedKeywords.length})',
-                        ),
-                      ),
-                    ),
-                    // Boutons d'action
-                    Column(
-                      children: [
-                        SizedBox(
-                          width: double.infinity,
-                          child: OutlinedButton.icon(
-                            onPressed: () {
-                              setState(() {
-                                _selectedRegionCode = null;
-                                _selectedDepartmentCode = null;
-                                _keywordQuery = '';
-                                _selectedKeywords = const <String>[];
-                                _nearbyOnly = false;
-                                _searchPerformed = false;
-                                _cachedResultsKey = null;
-                                _cachedResults = const <Poi>[];
-                              });
-                              _resetPage();
-                            },
-                            icon: const Icon(Icons.refresh, size: 16),
-                            label: const Text('Réinitialiser'),
-                          ),
-                        ),
-                        const SizedBox(height: 8),
-                        SizedBox(
-                          width: double.infinity,
-                          child: OutlinedButton.icon(
-                            onPressed: () {
-                              setState(() {
-                                _nearbyOnly = !_nearbyOnly;
-                                _cachedResultsKey = null;
-                              });
-                            },
-                            icon: Icon(
-                              _nearbyOnly ? Icons.near_me : Icons.near_me_outlined,
-                              size: 16,
+                            const SizedBox(height: 8),
+                            SizedBox(
+                              width: double.infinity,
+                              child: OutlinedButton.icon(
+                                onPressed: _openGeoPicker,
+                                icon: const Icon(Icons.map_outlined, size: 16),
+                                label: Text(
+                                  selectedDepartmentLabel == null
+                                      ? 'Région: $selectedRegionLabel'
+                                      : 'Région: $selectedRegionLabel • Dép.: $selectedDepartmentLabel',
+                                  maxLines: 1,
+                                  overflow: TextOverflow.ellipsis,
+                                ),
+                              ),
                             ),
-                            style: OutlinedButton.styleFrom(
-                              backgroundColor:
-                                  _nearbyOnly ? Colors.blue.shade50 : null,
+                            const SizedBox(height: 8),
+                            SizedBox(
+                              width: double.infinity,
+                              child: OutlinedButton.icon(
+                                onPressed: () =>
+                                    _openKeywordPicker(profileCategories),
+                                icon: const Icon(Icons.tune, size: 16),
+                                label: Text(
+                                  _selectedKeywords.isEmpty
+                                      ? 'Mot-clé'
+                                      : 'Mot-clé (${_selectedKeywords.length})',
+                                ),
+                              ),
                             ),
-                            label: const Text('À proximité (0 - 20 km)'),
-                          ),
-                        ),
-                        const SizedBox(height: 8),
-                        SizedBox(
-                          width: double.infinity,
-                          child: ElevatedButton.icon(
-                            onPressed: hasRequiredGeoSelection
-                                ? () {
-                              setState(() => _searchPerformed = true);
-                              _resetPage();
-                              _pageController.jumpToPage(0);
-                            }
-                                : null,
-                            icon: const Icon(Icons.search, size: 16),
-                            label: const Text('Rechercher'),
-                          ),
-                        ),
-                      ],
-                    ),
-                    const SizedBox(height: 8),
+                            // Boutons d'action
+                            Column(
+                              children: [
+                                SizedBox(
+                                  width: double.infinity,
+                                  child: OutlinedButton.icon(
+                                    onPressed: () {
+                                      setState(() {
+                                        _selectedCountryCode = null;
+                                        _selectedRegionCode = null;
+                                        _selectedDepartmentCode = null;
+                                        _keywordQuery = '';
+                                        _selectedKeywords = const <String>[];
+                                        _nearbyOnly = false;
+                                        _searchPerformed = false;
+                                        _cachedResultsKey = null;
+                                        _cachedResults = const <Poi>[];
+                                      });
+                                      _resetPage();
+                                    },
+                                    icon: const Icon(Icons.refresh, size: 16),
+                                    label: const Text('Réinitialiser'),
+                                  ),
+                                ),
+                                const SizedBox(height: 8),
+                                SizedBox(
+                                  width: double.infinity,
+                                  child: OutlinedButton.icon(
+                                    onPressed: () {
+                                      setState(() {
+                                        _nearbyOnly = !_nearbyOnly;
+                                        _cachedResultsKey = null;
+                                      });
+                                    },
+                                    icon: Icon(
+                                      _nearbyOnly
+                                          ? Icons.near_me
+                                          : Icons.near_me_outlined,
+                                      size: 16,
+                                    ),
+                                    style: OutlinedButton.styleFrom(
+                                      backgroundColor: _nearbyOnly
+                                          ? Colors.blue.shade50
+                                          : null,
+                                    ),
+                                    label:
+                                        const Text('À proximité (0 - 20 km)'),
+                                  ),
+                                ),
+                                const SizedBox(height: 8),
+                                SizedBox(
+                                  width: double.infinity,
+                                  child: ElevatedButton.icon(
+                                    onPressed: hasRequiredGeoSelection
+                                        ? () {
+                                            setState(
+                                                () => _searchPerformed = true);
+                                            _resetPage();
+                                            _pageController.jumpToPage(0);
+                                          }
+                                        : null,
+                                    icon: const Icon(Icons.search, size: 16),
+                                    label: const Text('Rechercher'),
+                                  ),
+                                ),
+                              ],
+                            ),
+                            const SizedBox(height: 8),
                           ],
                         ),
                       ),
@@ -268,7 +261,7 @@ class _SearchPageState extends ConsumerState<SearchPage> {
         body: !_searchPerformed || !hasRequiredGeoSelection
             ? _buildInitialSearchState(context)
             : StreamBuilder<QuerySnapshot<Map<String, dynamic>>>(
-            stream: _spotsStreamForCurrentSelection(),
+                stream: _spotsStreamForCurrentSelection(),
                 builder: (context, snapshot) {
                   if (snapshot.hasError) {
                     return Center(
@@ -287,117 +280,132 @@ class _SearchPageState extends ConsumerState<SearchPage> {
                     return const Center(child: CircularProgressIndicator());
                   }
 
-            final allPois = snapshot.data!.docs
-                .map(_poiFromDoc)
-                .where((poi) => (poi.lat != 0 || poi.lng != 0) && !_isGenericSpot(poi))
-                .toList(growable: false);
+                  final docs = snapshot.data!.docs;
+                  final docsIdentity = identityHashCode(snapshot.data);
+                  final docsLength = docs.length;
 
-            final dynamicSuggestions = _extractDynamicKeywordsFromPois(
-              allPois: allPois,
-              profileCategories: profileCategories,
-              userPos: userPos,
-            );
+                  if (_cachedAllPoisIdentity != docsIdentity ||
+                      _cachedAllPoisLength != docsLength) {
+                    _cachedAllPois = docs
+                        .map(_poiFromDoc)
+                        .where(
+                          (poi) =>
+                              (poi.lat != 0 || poi.lng != 0) &&
+                              !_isGenericSpot(poi),
+                        )
+                        .toList(growable: false);
+                    _cachedAllPoisIdentity = docsIdentity;
+                    _cachedAllPoisLength = docsLength;
+                  }
 
-            final previousDynamicKey = _dynamicKeywordSuggestions.join('|');
-            final nextDynamicKey = dynamicSuggestions.join('|');
-            if (previousDynamicKey != nextDynamicKey && mounted) {
-              WidgetsBinding.instance.addPostFrameCallback((_) {
-                if (!mounted) return;
-                setState(() {
-                  _dynamicKeywordSuggestions = dynamicSuggestions;
-                });
-              });
-            }
+                  final allPois = _cachedAllPois;
 
-            final cacheKey = _buildResultsCacheKey(
-              docsIdentity: identityHashCode(snapshot.data),
-              docsLength: snapshot.data!.docs.length,
-              profileCategories: profileCategories,
-              userPos: userPos,
-            );
+                  final dynamicSuggestions = _extractDynamicKeywordsFromPois(
+                    allPois: allPois,
+                    normalizedSelectedCategories: normalizedProfileCategories,
+                    userPos: userPos,
+                  );
 
-            if (_cachedResultsKey != cacheKey) {
-              _cachedResults = _computeFilteredResults(
-                allPois: allPois,
-                userPos: userPos,
-                profileCategories: profileCategories,
-              );
-              _cachedResultsKey = cacheKey;
-            }
+                  final previousDynamicKey =
+                      _dynamicKeywordSuggestions.join('|');
+                  final nextDynamicKey = dynamicSuggestions.join('|');
+                  if (previousDynamicKey != nextDynamicKey) {
+                    _dynamicKeywordSuggestions = dynamicSuggestions;
+                  }
 
-            final results = _cachedResults;
-            final totalItems = results.length;
-            final totalPages = (totalItems / _itemsPerPage).ceil();
-            final currentPage = totalPages == 0
-                ? 0
-                : _pageNotifier.value.clamp(0, totalPages - 1);
+                  final cacheKey = _buildResultsCacheKey(
+                    docsIdentity: docsIdentity,
+                    docsLength: docsLength,
+                    profileCategories: profileCategories,
+                    userPos: userPos,
+                  );
 
-            if (_pageNotifier.value != currentPage) {
-              _pageNotifier.value = currentPage;
-            }
+                  if (_cachedResultsKey != cacheKey) {
+                    _cachedResults = _computeFilteredResults(
+                      allPois: allPois,
+                      userPos: userPos,
+                      normalizedSelectedCategories: normalizedProfileCategories,
+                    );
+                    _cachedResultsKey = cacheKey;
+                  }
+
+                  final results = _cachedResults;
+                  final totalItems = results.length;
+                  final totalPages = (totalItems / _itemsPerPage).ceil();
+                  final currentPage = totalPages == 0
+                      ? 0
+                      : _pageNotifier.value.clamp(0, totalPages - 1);
+
+                  if (_pageNotifier.value != currentPage) {
+                    _pageNotifier.value = currentPage;
+                  }
 
                   return Column(
                     children: [
                       Expanded(
                         child: PageView.builder(
-                    controller: _pageController,
-                    onPageChanged: (page) {
-                      if (_pageNotifier.value != page) {
-                        _pageNotifier.value = page;
-                      }
-                    },
-                    itemCount: totalPages == 0 ? 1 : totalPages,
-                        itemBuilder: (context, pageIndex) {
-                      final startIdx = pageIndex * _itemsPerPage;
-                      final endIdx = (startIdx + _itemsPerPage).clamp(0, totalItems);
-                      final pageResults = results.sublist(startIdx, endIdx);
+                          controller: _pageController,
+                          onPageChanged: (page) {
+                            if (_pageNotifier.value != page) {
+                              _pageNotifier.value = page;
+                            }
+                          },
+                          itemCount: totalPages == 0 ? 1 : totalPages,
+                          itemBuilder: (context, pageIndex) {
+                            final startIdx = pageIndex * _itemsPerPage;
+                            final endIdx =
+                                (startIdx + _itemsPerPage).clamp(0, totalItems);
+                            final pageResults =
+                                results.sublist(startIdx, endIdx);
 
-                      if (_nearbyOnly && userPos == null && pageIndex == 0) {
-                        return const Center(
-                          child: Text(
-                            '📍 Activez la localisation pour le filtre à proximité (0-20 km).',
-                            style: TextStyle(color: Colors.grey),
-                            textAlign: TextAlign.center,
-                          ),
-                        );
-                      }
+                            if (_nearbyOnly &&
+                                userPos == null &&
+                                pageIndex == 0) {
+                              return const Center(
+                                child: Text(
+                                  '📍 Activez la localisation pour le filtre à proximité (0-20 km).',
+                                  style: TextStyle(color: Colors.grey),
+                                  textAlign: TextAlign.center,
+                                ),
+                              );
+                            }
 
-                      if (results.isEmpty && pageIndex == 0) {
-                        return const Center(
-                          child: Text(
-                            '🔍 Aucun spot trouvé pour ces filtres géographiques.',
-                            style: TextStyle(color: Colors.grey),
-                          ),
-                        );
-                      }
+                            if (results.isEmpty && pageIndex == 0) {
+                              return const Center(
+                                child: Text(
+                                  '🔍 Aucun spot trouvé pour ces filtres géographiques.',
+                                  style: TextStyle(color: Colors.grey),
+                                ),
+                              );
+                            }
 
-                      final items = <_SearchListItem>[];
+                            final items = <_SearchListItem>[];
 
-                      if (pageResults.isNotEmpty) {
-                        items.add(
-                          _SearchListItem.header(
-                            '🗺️ Spots (${pageResults.length})',
-                          ),
-                        );
-                        for (final poi in pageResults) {
-                          items.add(_SearchListItem.poi(poi));
-                        }
-                      }
+                            if (pageResults.isNotEmpty) {
+                              items.add(
+                                _SearchListItem.header(
+                                  '🗺️ Spots (${pageResults.length})',
+                                ),
+                              );
+                              for (final poi in pageResults) {
+                                items.add(_SearchListItem.poi(poi));
+                              }
+                            }
 
-                      if (pageIndex == totalPages - 1) {
-                        items.add(const _SearchListItem.spacer(12));
-                        items.add(const _SearchListItem.addSpot());
-                      }
+                            if (pageIndex == totalPages - 1) {
+                              items.add(const _SearchListItem.spacer(12));
+                              items.add(const _SearchListItem.addSpot());
+                            }
 
-                      items.add(const _SearchListItem.spacer(12));
+                            items.add(const _SearchListItem.spacer(12));
 
-                      return _buildPageListWithAllSpotsRatings(
-                        context: context,
-                        pageIndex: pageIndex,
-                        pageResults: pageResults,
-                        items: items,
-                        userPos: userPos,
-                      );
+                            return _buildPageListWithAllSpotsRatings(
+                              context: context,
+                              pageIndex: pageIndex,
+                              pageResults: pageResults,
+                              items: items,
+                              userPos: userPos,
+                            );
                           },
                         ),
                       ),
@@ -405,21 +413,24 @@ class _SearchPageState extends ConsumerState<SearchPage> {
                         ValueListenableBuilder<int>(
                           valueListenable: _pageNotifier,
                           builder: (context, pageValue, _) {
-                            final clampedPage = pageValue.clamp(0, totalPages - 1);
+                            final clampedPage =
+                                pageValue.clamp(0, totalPages - 1);
                             final startIndex = clampedPage * _itemsPerPage;
-                            final endIndex =
-                                (startIndex + _itemsPerPage).clamp(0, totalItems);
+                            final endIndex = (startIndex + _itemsPerPage)
+                                .clamp(0, totalItems);
 
                             return Padding(
                               padding: const EdgeInsets.all(12),
                               child: Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
                                 children: [
                                   ElevatedButton.icon(
                                     onPressed: clampedPage > 0
                                         ? () {
                                             _pageController.previousPage(
-                                              duration: const Duration(milliseconds: 300),
+                                              duration: const Duration(
+                                                  milliseconds: 300),
                                               curve: Curves.easeInOut,
                                             );
                                           }
@@ -429,13 +440,15 @@ class _SearchPageState extends ConsumerState<SearchPage> {
                                   ),
                                   Text(
                                     '${startIndex + 1} - $endIndex sur $totalItems',
-                                    style: const TextStyle(fontWeight: FontWeight.w600),
+                                    style: const TextStyle(
+                                        fontWeight: FontWeight.w600),
                                   ),
                                   ElevatedButton.icon(
                                     onPressed: clampedPage < totalPages - 1
                                         ? () {
                                             _pageController.nextPage(
-                                              duration: const Duration(milliseconds: 300),
+                                              duration: const Duration(
+                                                  milliseconds: 300),
                                               curve: Curves.easeInOut,
                                             );
                                           }
@@ -457,6 +470,7 @@ class _SearchPageState extends ConsumerState<SearchPage> {
   }
 
   Widget _buildInitialSearchState(BuildContext context) {
+    final hasCountry = _selectedCountryCode != null;
     final hasRegion = _selectedRegionCode != null;
     final hasDepartment = _selectedDepartmentCode != null;
 
@@ -480,23 +494,12 @@ class _SearchPageState extends ConsumerState<SearchPage> {
               ),
             ),
             const SizedBox(height: 8),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 24),
-              child: Text(
-                '1. Sélectionnez une région\n2. Sélectionnez un département de cette région\n3. Les catégories de votre profil sont appliquées automatiquement\n4. Ajoutez un mot-clé si besoin (optionnel)\n5. Activez "À proximité (0-20 km)" si besoin\n6. Cliquez sur "Rechercher"',
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  fontSize: context.fontSize(13),
-                  color: Colors.grey.shade600,
-                ),
-              ),
-            ),
             const SizedBox(height: 12),
-            if (!hasRegion || !hasDepartment)
+            if (!hasCountry || !hasRegion || !hasDepartment)
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 24),
                 child: Text(
-                  '⚠️ Région et département sont obligatoires pour afficher les spots.',
+                  '⚠️ Pays, région et département sont obligatoires pour afficher les spots.',
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     fontSize: context.fontSize(12),
@@ -511,17 +514,29 @@ class _SearchPageState extends ConsumerState<SearchPage> {
     );
   }
 
-  Stream<QuerySnapshot<Map<String, dynamic>>> _spotsStreamForCurrentSelection() {
+  Stream<QuerySnapshot<Map<String, dynamic>>>
+      _spotsStreamForCurrentSelection() {
     final selectedDepartment = _selectedDepartmentCode;
     if (selectedDepartment == null || selectedDepartment.isEmpty) {
+      _cachedDepartmentStreamCode = null;
+      _cachedDepartmentStream = null;
       return const Stream.empty();
     }
 
-    return FirebaseFirestore.instance
+    if (_cachedDepartmentStreamCode == selectedDepartment &&
+        _cachedDepartmentStream != null) {
+      return _cachedDepartmentStream!;
+    }
+
+    final stream = FirebaseFirestore.instance
         .collection('spots')
-      .where('isPublic', isEqualTo: true)
+        .where('isPublic', isEqualTo: true)
         .where('departmentCode', isEqualTo: selectedDepartment)
         .snapshots();
+
+    _cachedDepartmentStreamCode = selectedDepartment;
+    _cachedDepartmentStream = stream;
+    return stream;
   }
 
   List<Poi> _sortedByDistance(
@@ -531,22 +546,40 @@ class _SearchPageState extends ConsumerState<SearchPage> {
     final list = [...pois];
     if (pos != null) {
       list.sort((a, b) {
-        final da = GeoUtils.distanceMeters(
-          lat1: pos.latitude,
-          lon1: pos.longitude,
-          lat2: a.lat,
-          lon2: a.lng,
-        );
-        final db = GeoUtils.distanceMeters(
-          lat1: pos.latitude,
-          lon1: pos.longitude,
-          lat2: b.lat,
-          lon2: b.lng,
-        );
+        final da = _distanceMeters(pos, a);
+        final db = _distanceMeters(pos, b);
         return da.compareTo(db);
       });
     }
     return list;
+  }
+
+  String _poiDistanceKey(Poi poi) => '${poi.source}:${poi.id}';
+
+  void _ensureDistanceCacheAnchor(Position? pos) {
+    final anchor = pos == null
+        ? 'null'
+        : '${pos.latitude.toStringAsFixed(4)},${pos.longitude.toStringAsFixed(4)}';
+    if (_cachedDistanceAnchorKey == anchor) return;
+
+    _cachedDistanceAnchorKey = anchor;
+    _cachedDistanceMetersByPoiKey.clear();
+    _cachedDistanceLabelByPoiKey.clear();
+  }
+
+  double _distanceMeters(Position pos, Poi poi) {
+    final key = _poiDistanceKey(poi);
+    final cached = _cachedDistanceMetersByPoiKey[key];
+    if (cached != null) return cached;
+
+    final meters = GeoUtils.distanceMeters(
+      lat1: pos.latitude,
+      lon1: pos.longitude,
+      lat2: poi.lat,
+      lon2: poi.lng,
+    );
+    _cachedDistanceMetersByPoiKey[key] = meters;
+    return meters;
   }
 
   String _normalizeFilterToken(String value) {
@@ -712,7 +745,9 @@ class _SearchPageState extends ConsumerState<SearchPage> {
     final contextTokens = <String>{
       ...tokens,
       ...orderedDynamic,
-      ..._selectedKeywords.map(_normalizeFilterToken).where((v) => v.isNotEmpty),
+      ..._selectedKeywords
+          .map(_normalizeFilterToken)
+          .where((v) => v.isNotEmpty),
     };
     addAll(_relatedKeywordSuggestions(contextTokens));
 
@@ -767,7 +802,9 @@ class _SearchPageState extends ConsumerState<SearchPage> {
     for (final token in contextTokens) {
       for (final entry in relations.entries) {
         final key = entry.key;
-        if (_tokenEquals(token, key) || token.contains(key) || key.contains(token)) {
+        if (_tokenEquals(token, key) ||
+            token.contains(key) ||
+            key.contains(token)) {
           for (final value in entry.value) {
             final normalized = _normalizeFilterToken(value);
             if (_isUsefulKeyword(normalized)) {
@@ -782,39 +819,54 @@ class _SearchPageState extends ConsumerState<SearchPage> {
     return ordered;
   }
 
-  String _localizedCountryLabel(String? countryCode) {
-    final normalizedCode = countryCode?.toLowerCase();
-    if (normalizedCode == null || normalizedCode.isEmpty) {
-      return allCountries.first.name;
-    }
+  CountryModel? _countryByCode(String? countryCode) {
+    if (countryCode == null || countryCode.isEmpty) return null;
+    final normalized = countryCode.toLowerCase();
+    final matches = allCountries.where((country) => country.code == normalized);
+    return matches.isEmpty ? null : matches.first;
+  }
 
-    final matched = allCountries.where((country) => country.code == normalizedCode);
-    if (matched.isNotEmpty) {
-      return matched.first.name;
-    }
+  List<RegionModel> _regionsForCountry(String? countryCode) {
+    return _countryByCode(countryCode)?.regions ?? const <RegionModel>[];
+  }
 
-    return normalizedCode.toUpperCase();
+  Map<String, List<DepartmentModel>> _departmentsByRegionForCountry(
+      String? countryCode) {
+    final regions = _regionsForCountry(countryCode);
+    return {
+      for (final region in regions) region.code: region.departments,
+    };
+  }
+
+  String _selectedCountryLabel() {
+    final country = _countryByCode(_selectedCountryCode);
+    return country?.name ?? 'Choisir';
   }
 
   String _selectedRegionLabel() {
+    final regions = _regionsForCountry(_selectedCountryCode);
     final regionCode = _selectedRegionCode;
     if (regionCode == null) {
       return 'Choisir';
     }
-    final matches = _regions.where((region) => region.code == regionCode);
+    final matches = regions.where((region) => region.code == regionCode);
     if (matches.isEmpty) return 'Choisir';
     return matches.first.name;
   }
 
   String? _selectedDepartmentLabel() {
+    final departmentsByRegion =
+        _departmentsByRegionForCountry(_selectedCountryCode);
     final regionCode = _selectedRegionCode;
     final departmentCode = _selectedDepartmentCode;
     if (regionCode == null || departmentCode == null) {
       return null;
     }
 
-    final departments = _departmentsByRegion[regionCode] ?? const <DepartmentModel>[];
-    final matches = departments.where((department) => department.code == departmentCode);
+    final departments =
+        departmentsByRegion[regionCode] ?? const <DepartmentModel>[];
+    final matches =
+        departments.where((department) => department.code == departmentCode);
     if (matches.isEmpty) {
       return null;
     }
@@ -823,38 +875,8 @@ class _SearchPageState extends ConsumerState<SearchPage> {
     return '${selected.code} • ${selected.name}';
   }
 
-  void _scheduleLocalizedGeoDefaults({
-    required String? localizedRegionCode,
-    required String? localizedDepartmentCode,
-  }) {
-    if (_selectedRegionCode != null) {
-      return;
-    }
-
-    final regionCode = localizedRegionCode;
-    if (regionCode == null || !_departmentsByRegion.containsKey(regionCode)) {
-      return;
-    }
-
-    final departments = _departmentsByRegion[regionCode] ?? const <DepartmentModel>[];
-    String? departmentCode;
-    if (localizedDepartmentCode != null &&
-        departments.any((department) => department.code == localizedDepartmentCode)) {
-      departmentCode = localizedDepartmentCode;
-    }
-
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      if (!mounted || _selectedRegionCode != null) return;
-      setState(() {
-        _selectedRegionCode = regionCode;
-        _selectedDepartmentCode = departmentCode;
-        _searchPerformed = false;
-        _cachedResultsKey = null;
-      });
-    });
-  }
-
-  Future<void> _openRegionDepartmentPicker() async {
+  Future<void> _openGeoPicker() async {
+    String? temporaryCountryCode = _selectedCountryCode;
     String? temporaryRegionCode = _selectedRegionCode;
     String? temporaryDepartmentCode = _selectedDepartmentCode;
 
@@ -868,12 +890,18 @@ class _SearchPageState extends ConsumerState<SearchPage> {
         return StatefulBuilder(
           builder: (context, setSheetState) {
             final colorScheme = Theme.of(context).colorScheme;
+            final countries = allCountries;
+            final regions = _regionsForCountry(temporaryCountryCode);
+            final departmentsByRegion =
+                _departmentsByRegionForCountry(temporaryCountryCode);
             final departments = temporaryRegionCode == null
                 ? const <DepartmentModel>[]
-                : (_departmentsByRegion[temporaryRegionCode!] ?? const <DepartmentModel>[]);
+                : (departmentsByRegion[temporaryRegionCode!] ??
+                    const <DepartmentModel>[]);
+            final selectedCountry = _countryByCode(temporaryCountryCode);
             final selectedRegion = temporaryRegionCode == null
                 ? null
-                : _regions
+                : regions
                     .where((region) => region.code == temporaryRegionCode)
                     .firstOrNull;
 
@@ -895,10 +923,30 @@ class _SearchPageState extends ConsumerState<SearchPage> {
                       padding: const EdgeInsets.fromLTRB(16, 12, 16, 8),
                       child: Row(
                         children: [
-                          if (temporaryRegionCode != null)
+                          if (temporaryDepartmentCode != null)
                             IconButton(
                               onPressed: () {
                                 setSheetState(() {
+                                  temporaryDepartmentCode = null;
+                                });
+                              },
+                              icon: const Icon(Icons.arrow_back),
+                            )
+                          else if (temporaryRegionCode != null)
+                            IconButton(
+                              onPressed: () {
+                                setSheetState(() {
+                                  temporaryRegionCode = null;
+                                  temporaryDepartmentCode = null;
+                                });
+                              },
+                              icon: const Icon(Icons.arrow_back),
+                            )
+                          else if (temporaryCountryCode != null)
+                            IconButton(
+                              onPressed: () {
+                                setSheetState(() {
+                                  temporaryCountryCode = null;
                                   temporaryRegionCode = null;
                                   temporaryDepartmentCode = null;
                                 });
@@ -909,9 +957,11 @@ class _SearchPageState extends ConsumerState<SearchPage> {
                             const SizedBox(width: 48),
                           Expanded(
                             child: Text(
-                              temporaryRegionCode == null
-                                  ? 'Choisir une région'
-                                  : 'Choisir un département',
+                              temporaryCountryCode == null
+                                  ? 'Choisir un pays'
+                                  : temporaryRegionCode == null
+                                      ? 'Choisir une région'
+                                      : 'Choisir un département',
                               textAlign: TextAlign.center,
                               style: TextStyle(
                                 color: colorScheme.primary,
@@ -927,6 +977,20 @@ class _SearchPageState extends ConsumerState<SearchPage> {
                         ],
                       ),
                     ),
+                    if (selectedCountry != null)
+                      Padding(
+                        padding: const EdgeInsets.fromLTRB(16, 0, 16, 4),
+                        child: Align(
+                          alignment: Alignment.centerLeft,
+                          child: Text(
+                            selectedCountry.name,
+                            style: TextStyle(
+                              color: colorScheme.primary,
+                              fontWeight: FontWeight.w600,
+                            ),
+                          ),
+                        ),
+                      ),
                     if (selectedRegion != null)
                       Padding(
                         padding: const EdgeInsets.fromLTRB(16, 0, 16, 8),
@@ -944,12 +1008,37 @@ class _SearchPageState extends ConsumerState<SearchPage> {
                     Expanded(
                       child: ListView.builder(
                         padding: const EdgeInsets.fromLTRB(8, 0, 8, 16),
-                        itemCount:
-                            temporaryRegionCode == null ? _regions.length : departments.length,
+                        itemCount: temporaryCountryCode == null
+                            ? countries.length
+                            : temporaryRegionCode == null
+                                ? regions.length
+                                : departments.length,
                         itemBuilder: (context, index) {
+                          if (temporaryCountryCode == null) {
+                            final country = countries[index];
+                            return ListTile(
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(16),
+                              ),
+                              title: Text(country.name),
+                              trailing: Icon(
+                                Icons.chevron_right,
+                                color: colorScheme.primary,
+                              ),
+                              onTap: () {
+                                setSheetState(() {
+                                  temporaryCountryCode = country.code;
+                                  temporaryRegionCode = null;
+                                  temporaryDepartmentCode = null;
+                                });
+                              },
+                            );
+                          }
+
                           if (temporaryRegionCode == null) {
-                            final region = _regions[index];
-                            final isSelected = region.code == temporaryRegionCode;
+                            final region = regions[index];
+                            final isSelected =
+                                region.code == temporaryRegionCode;
                             return ListTile(
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(16),
@@ -970,19 +1059,23 @@ class _SearchPageState extends ConsumerState<SearchPage> {
                           }
 
                           final department = departments[index];
-                          final isSelected = department.code == temporaryDepartmentCode;
+                          final isSelected =
+                              department.code == temporaryDepartmentCode;
                           return ListTile(
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(16),
                             ),
-                            title: Text('${department.code} • ${department.name}'),
+                            title:
+                                Text('${department.code} • ${department.name}'),
                             trailing: isSelected
-                                ? Icon(Icons.check_circle, color: colorScheme.primary)
+                                ? Icon(Icons.check_circle,
+                                    color: colorScheme.primary)
                                 : null,
                             selected: isSelected,
                             onTap: () {
                               Navigator.of(sheetContext).pop(
                                 _RegionDepartmentSelection(
+                                  countryCode: temporaryCountryCode!,
                                   regionCode: temporaryRegionCode!,
                                   departmentCode: department.code,
                                 ),
@@ -1004,6 +1097,7 @@ class _SearchPageState extends ConsumerState<SearchPage> {
     if (selection == null) return;
 
     setState(() {
+      _selectedCountryCode = selection.countryCode;
       _selectedRegionCode = selection.regionCode;
       _selectedDepartmentCode = selection.departmentCode;
       _searchPerformed = false;
@@ -1081,7 +1175,8 @@ class _SearchPageState extends ConsumerState<SearchPage> {
                                       MaterialTapTargetSize.shrinkWrap,
                                   selected: selected.contains(keyword),
                                   showCheckmark: false,
-                                  selectedColor: primary.withValues(alpha: 0.16),
+                                  selectedColor:
+                                      primary.withValues(alpha: 0.16),
                                   backgroundColor:
                                       colorScheme.surfaceContainerHighest,
                                   side: BorderSide(
@@ -1126,14 +1221,17 @@ class _SearchPageState extends ConsumerState<SearchPage> {
                       child: Row(
                         children: [
                           TextButton(
-                            style: TextButton.styleFrom(foregroundColor: primary),
+                            style:
+                                TextButton.styleFrom(foregroundColor: primary),
                             onPressed: () => Navigator.of(sheetContext).pop(),
                             child: const Text('Annuler'),
                           ),
                           const SizedBox(width: 8),
                           TextButton(
-                            style: TextButton.styleFrom(foregroundColor: primary),
-                            onPressed: () => setSheetState(() => selected.clear()),
+                            style:
+                                TextButton.styleFrom(foregroundColor: primary),
+                            onPressed: () =>
+                                setSheetState(() => selected.clear()),
                             child: const Text('Vider'),
                           ),
                           const Spacer(),
@@ -1183,23 +1281,22 @@ class _SearchPageState extends ConsumerState<SearchPage> {
 
   List<String> _extractDynamicKeywordsFromPois({
     required List<Poi> allPois,
-    required Set<String> profileCategories,
+    required Set<String> normalizedSelectedCategories,
     required Position? userPos,
   }) {
     final frequency = <String, double>{};
 
     for (final poi in allPois) {
-      if (!_matchesGeoFilter(poi)) continue;
-      if (!_matchesCategoryFilter(poi, profileCategories)) continue;
+      if (!_matchesCategoryFilterWithNormalized(
+        poi,
+        normalizedSelectedCategories,
+      )) {
+        continue;
+      }
 
       if (_nearbyOnly) {
         if (userPos == null) continue;
-        final distance = GeoUtils.distanceMeters(
-          lat1: userPos.latitude,
-          lon1: userPos.longitude,
-          lat2: poi.lat,
-          lon2: poi.lng,
-        );
+        final distance = _distanceMeters(userPos, poi);
         if (distance > _nearbyMaxDistanceMeters) continue;
       }
 
@@ -1214,21 +1311,18 @@ class _SearchPageState extends ConsumerState<SearchPage> {
       for (final keyword in candidateKeywords) {
         if (!_isUsefulKeyword(keyword)) continue;
         var weight = 1.0;
-        if (_selectedKeywords.any((selected) => _tokenEquals(selected, keyword))) {
+        if (_selectedKeywords
+            .any((selected) => _tokenEquals(selected, keyword))) {
           weight += 1.1;
         }
         if (_nearbyOnly && userPos != null) {
-          final distance = GeoUtils.distanceMeters(
-            lat1: userPos.latitude,
-            lon1: userPos.longitude,
-            lat2: poi.lat,
-            lon2: poi.lng,
-          );
+          final distance = _distanceMeters(userPos, poi);
           if (distance <= 5000) {
             weight += 0.4;
           }
         }
-        frequency.update(keyword, (value) => value + weight, ifAbsent: () => weight);
+        frequency.update(keyword, (value) => value + weight,
+            ifAbsent: () => weight);
       }
     }
 
@@ -1239,10 +1333,7 @@ class _SearchPageState extends ConsumerState<SearchPage> {
         return a.key.compareTo(b.key);
       });
 
-    return entries
-        .take(12)
-        .map((entry) => entry.key)
-        .toList(growable: false);
+    return entries.take(12).map((entry) => entry.key).toList(growable: false);
   }
 
   bool _isGenericSpot(Poi poi) {
@@ -1250,7 +1341,8 @@ class _SearchPageState extends ConsumerState<SearchPage> {
     final normalizedDisplayName = _normalizeFilterToken(poi.displayName);
     final normalizedSubCategory =
         _normalizeFilterToken(formatPoiSubCategory(poi.subCategory));
-    final normalizedRawSubCategory = _normalizeFilterToken(poi.subCategory ?? '');
+    final normalizedRawSubCategory =
+        _normalizeFilterToken(poi.subCategory ?? '');
 
     const genericNames = {
       'autre',
@@ -1296,14 +1388,31 @@ class _SearchPageState extends ConsumerState<SearchPage> {
     return false;
   }
 
-  bool _matchesCategoryFilter(Poi poi, Set<String> selectedCategories) {
-    if (selectedCategories.isEmpty) return true;
+  Set<String> _normalizedSelectedCategories(Set<String> selectedCategories) {
+    if (selectedCategories.isEmpty) {
+      _cachedNormalizedSelectedCategories = const <String>{};
+      _cachedNormalizedSelectedCategoriesKey = '';
+      return _cachedNormalizedSelectedCategories!;
+    }
 
-    final wanted = selectedCategories
+    final sorted = selectedCategories.toList(growable: false)..sort();
+    final key = sorted.join('|');
+    if (_cachedNormalizedSelectedCategoriesKey == key &&
+        _cachedNormalizedSelectedCategories != null) {
+      return _cachedNormalizedSelectedCategories!;
+    }
+
+    final normalized = selectedCategories
         .map(_normalizeFilterToken)
         .where((value) => value.isNotEmpty)
         .toSet();
 
+    _cachedNormalizedSelectedCategories = normalized;
+    _cachedNormalizedSelectedCategoriesKey = key;
+    return normalized;
+  }
+
+  bool _matchesCategoryFilterWithNormalized(Poi poi, Set<String> wanted) {
     if (wanted.isEmpty) return true;
 
     final candidates = <String>{
@@ -1347,7 +1456,8 @@ class _SearchPageState extends ConsumerState<SearchPage> {
 
   bool _isWholeGroupSelected(PoiCategory category, Set<String> wanted) {
     final groupTitle = _groupTitleForCategory(category);
-    final group = poiCategoryGroups.where((g) => g.title == groupTitle).firstOrNull;
+    final group =
+        poiCategoryGroups.where((g) => g.title == groupTitle).firstOrNull;
     if (group == null) return false;
 
     final normalizedItems = group.items
@@ -1479,26 +1589,6 @@ class _SearchPageState extends ConsumerState<SearchPage> {
     final normalizedText = _canonicalToken(text);
     final normalizedQuery = _canonicalToken(query);
     return normalizedText.contains(normalizedQuery);
-  }
-
-  bool _matchesGeoFilter(Poi poi) {
-    if (_selectedRegionCode == null || _selectedDepartmentCode == null) {
-      return false;
-    }
-
-    final departmentCode = poi.departmentCode?.trim().toUpperCase();
-
-    if (departmentCode == null) return false;
-
-    final regionDepartments =
-        _departmentsByRegion[_selectedRegionCode!] ?? const [];
-    if (regionDepartments.isEmpty) return false;
-
-    final isDepartmentInSelectedRegion =
-        regionDepartments.any((dep) => dep.code == _selectedDepartmentCode);
-    if (!isDepartmentInSelectedRegion) return false;
-
-    return departmentCode == _selectedDepartmentCode;
   }
 
   Poi _poiFromDoc(QueryDocumentSnapshot<Map<String, dynamic>> doc) {
@@ -1648,12 +1738,7 @@ class _SearchPageState extends ConsumerState<SearchPage> {
     }
 
     if (userPos != null) {
-      final distance = GeoUtils.distanceMeters(
-        lat1: userPos.latitude,
-        lon1: userPos.longitude,
-        lat2: poi.lat,
-        lon2: poi.lng,
-      );
+      final distance = _distanceMeters(userPos, poi);
       if (distance <= 2000) {
         score += 12;
       } else if (distance <= 7000) {
@@ -1718,22 +1803,10 @@ class _SearchPageState extends ConsumerState<SearchPage> {
         return updatedCompare;
       }
 
-      final da = userPos == null
-          ? double.infinity
-          : GeoUtils.distanceMeters(
-              lat1: userPos.latitude,
-              lon1: userPos.longitude,
-              lat2: a.lat,
-              lon2: a.lng,
-            );
-      final db = userPos == null
-          ? double.infinity
-          : GeoUtils.distanceMeters(
-              lat1: userPos.latitude,
-              lon1: userPos.longitude,
-              lat2: b.lat,
-              lon2: b.lng,
-            );
+      final da =
+          userPos == null ? double.infinity : _distanceMeters(userPos, a);
+      final db =
+          userPos == null ? double.infinity : _distanceMeters(userPos, b);
       return da.compareTo(db);
     });
 
@@ -1743,30 +1816,26 @@ class _SearchPageState extends ConsumerState<SearchPage> {
   List<Poi> _computeFilteredResults({
     required List<Poi> allPois,
     required Position? userPos,
-    required Set<String> profileCategories,
+    required Set<String> normalizedSelectedCategories,
   }) {
     final geoFiltered = allPois.where((poi) {
-      if (!_matchesGeoFilter(poi)) return false;
       if (_nearbyOnly) {
         if (userPos == null) return false;
-        final distance = GeoUtils.distanceMeters(
-          lat1: userPos.latitude,
-          lon1: userPos.longitude,
-          lat2: poi.lat,
-          lon2: poi.lng,
-        );
+        final distance = _distanceMeters(userPos, poi);
         return distance <= _nearbyMaxDistanceMeters;
       }
       return true;
     }).toList(growable: false);
 
     final categoryFiltered = geoFiltered
-        .where((poi) => _matchesCategoryFilter(poi, profileCategories))
+        .where(
+          (poi) => _matchesCategoryFilterWithNormalized(
+              poi, normalizedSelectedCategories),
+        )
         .toList(growable: false);
 
-    final keywordFiltered = categoryFiltered
-      .where(_matchesKeywordFilter)
-      .toList(growable: false);
+    final keywordFiltered =
+        categoryFiltered.where(_matchesKeywordFilter).toList(growable: false);
 
     return _sortByRelevance(keywordFiltered, userPos);
   }
@@ -1778,7 +1847,8 @@ class _SearchPageState extends ConsumerState<SearchPage> {
     required List<_SearchListItem> items,
     required Position? userPos,
   }) {
-    final poiIds = pageResults.map((poi) => poi.id).toSet().toList(growable: false);
+    final poiIds =
+        pageResults.map((poi) => poi.id).toSet().toList(growable: false);
 
     if (poiIds.isEmpty) {
       return _buildSearchItemsList(
@@ -1896,16 +1966,17 @@ class _SearchPageState extends ConsumerState<SearchPage> {
     return averages;
   }
 
-  String _distanceLabel(Position? pos, double lat, double lng) {
+  String _distanceLabel(Position? pos, Poi poi) {
     if (pos == null) return '-';
-    final meters = GeoUtils.distanceMeters(
-      lat1: pos.latitude,
-      lon1: pos.longitude,
-      lat2: lat,
-      lon2: lng,
-    );
+    final key = _poiDistanceKey(poi);
+    final cached = _cachedDistanceLabelByPoiKey[key];
+    if (cached != null) return cached;
+
+    final meters = _distanceMeters(pos, poi);
     final km = meters / 1000;
-    return '${km.toStringAsFixed(1)} km';
+    final label = '${km.toStringAsFixed(1)} km';
+    _cachedDistanceLabelByPoiKey[key] = label;
+    return label;
   }
 
   Widget _buildPoiCard(
@@ -1914,7 +1985,7 @@ class _SearchPageState extends ConsumerState<SearchPage> {
     Position? userPos, {
     required double allSpotsRating,
   }) {
-    final distanceLabel = _distanceLabel(userPos, poi.lat, poi.lng);
+    final distanceLabel = _distanceLabel(userPos, poi);
     final isFirestore = poi.source == 'firestore';
     final rating = poi.googleRating;
     final photoCount = poi.imageUrls.length;
@@ -2013,7 +2084,8 @@ class _SearchPageState extends ConsumerState<SearchPage> {
                       if (rating != null)
                         Row(
                           children: [
-                            const Icon(Icons.star, size: 12, color: Colors.amber),
+                            const Icon(Icons.star,
+                                size: 12, color: Colors.amber),
                             const SizedBox(width: 2),
                             Text(
                               rating.toStringAsFixed(1),
@@ -2089,10 +2161,12 @@ class _SearchPageState extends ConsumerState<SearchPage> {
 }
 
 class _RegionDepartmentSelection {
+  final String countryCode;
   final String regionCode;
   final String departmentCode;
 
   const _RegionDepartmentSelection({
+    required this.countryCode,
     required this.regionCode,
     required this.departmentCode,
   });

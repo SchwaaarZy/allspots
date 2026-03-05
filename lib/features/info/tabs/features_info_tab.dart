@@ -9,47 +9,68 @@ class FeaturesInfoTab extends StatelessWidget {
       _FeatureItem(
         icon: Icons.place,
         title: 'Découvrir des spots',
-        body: 'Explorez des spots proches de vous avec la carte interactive et la géolocalisation.',
+        body:
+            'Explorez des spots proches de vous avec la carte interactive et la géolocalisation.',
       ),
       _FeatureItem(
         icon: Icons.search,
         title: 'Rechercher et filtrer',
-        body: 'Filtrez les spots par catégorie, distance et type pour trouver rapidement ce qui vous intéresse.',
+        body:
+            'Utilisez les filtres (categorie, distance, mots-cles) pour trouver rapidement les spots qui vous correspondent.',
       ),
       _FeatureItem(
         icon: Icons.map,
         title: 'Navigation vers un spot',
-        body: 'Lancez un itinéraire vers un spot avec AllSPOTS Navigation ou une app externe (Waze, Google Maps…).',
+        body:
+            'Lancez un itinéraire vers un spot avec AllSPOTS Navigation ou une app externe (Waze, Google Maps…).',
       ),
       _FeatureItem(
         icon: Icons.route,
         title: 'Road trip personnalisé',
-        body: 'Ajoutez vos spots favoris dans votre road trip pour préparer vos sorties.',
+        body:
+            'Planifiez vos sorties avec 10 spots max par road trip. Gratuit: jusqu\'a 2 road trips. Premium: jusqu\'a 5.',
+      ),
+      _FeatureItem(
+        icon: Icons.playlist_add_check_circle_outlined,
+        title: 'Selection directe des spots',
+        body:
+            'Depuis le mode Road Trip, vous pouvez selectionner ou retirer un spot directement dans la liste.',
       ),
       _FeatureItem(
         icon: Icons.rate_review,
         title: 'Avis et notes',
-        body: 'Consultez les notes Google et laissez vos avis AllSPOTS sur les spots visités.',
+        body:
+            'Consultez les notes Google et laissez vos avis AllSPOTS sur les spots visités.',
       ),
       _FeatureItem(
         icon: Icons.favorite_border,
         title: 'Favoris',
-        body: 'Enregistrez les spots que vous aimez pour les retrouver rapidement dans votre profil.',
+        body:
+            'Enregistrez les spots que vous aimez pour les retrouver rapidement dans votre profil.',
       ),
       _FeatureItem(
         icon: Icons.groups,
         title: 'Spots communautaires',
-        body: 'Participez à la communauté en consultant et publiant des spots utiles.',
+        body:
+            'Participez à la communauté en consultant et publiant des spots utiles.',
+      ),
+      _FeatureItem(
+        icon: Icons.flag_outlined,
+        title: 'Signalement des erreurs',
+        body:
+            'Depuis la fiche spot, signalez un lieu inexistant, un doublon ou une information incorrecte.',
       ),
       _FeatureItem(
         icon: Icons.workspace_premium,
         title: 'Pass Premium',
-        body: 'Profitez d’avantages supplémentaires selon votre niveau d’accès.',
+        body:
+            'Profitez d’avantages supplémentaires selon votre niveau d’accès.',
       ),
       _FeatureItem(
         icon: Icons.notifications_active_outlined,
         title: 'Notifications utiles',
-        body: 'Restez informé des nouveautés et activités importantes liées à vos spots.',
+        body:
+            'Restez informé des nouveautés et activités importantes liées à vos spots.',
       ),
       _FeatureItem(
         icon: Icons.star_outline,
@@ -79,7 +100,8 @@ class _FeatureItem {
   final String title;
   final String body;
 
-  const _FeatureItem({required this.icon, required this.title, required this.body});
+  const _FeatureItem(
+      {required this.icon, required this.title, required this.body});
 }
 
 class _FeatureCard extends StatelessWidget {
@@ -105,10 +127,14 @@ class _FeatureCard extends StatelessWidget {
               width: 38,
               height: 38,
               decoration: BoxDecoration(
-                color: Theme.of(context).colorScheme.primary.withValues(alpha: 0.10),
+                color: Theme.of(context)
+                    .colorScheme
+                    .primary
+                    .withValues(alpha: 0.10),
                 borderRadius: BorderRadius.circular(12),
               ),
-              child: Icon(item.icon, color: Theme.of(context).colorScheme.primary, size: 20),
+              child: Icon(item.icon,
+                  color: Theme.of(context).colorScheme.primary, size: 20),
             ),
             const SizedBox(width: 12),
             Expanded(
@@ -117,12 +143,14 @@ class _FeatureCard extends StatelessWidget {
                 children: [
                   Text(
                     item.title,
-                    style: const TextStyle(fontWeight: FontWeight.w800, fontSize: 14),
+                    style: const TextStyle(
+                        fontWeight: FontWeight.w800, fontSize: 14),
                   ),
                   const SizedBox(height: 6),
                   Text(
                     item.body,
-                    style: TextStyle(color: Colors.grey[700], fontSize: 13, height: 1.25),
+                    style: TextStyle(
+                        color: Colors.grey[700], fontSize: 13, height: 1.25),
                   ),
                 ],
               ),
@@ -145,7 +173,8 @@ class _TitleBlock extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(title, style: const TextStyle(fontSize: 22, fontWeight: FontWeight.w900)),
+        Text(title,
+            style: const TextStyle(fontSize: 22, fontWeight: FontWeight.w900)),
         const SizedBox(height: 4),
         Text(subtitle, style: TextStyle(color: Colors.grey[700], fontSize: 13)),
       ],

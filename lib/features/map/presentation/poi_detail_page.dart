@@ -149,7 +149,7 @@ class _PoiDetailPageState extends ConsumerState<PoiDetailPage> {
 
   Future<void> _openMapsNavigation() async {
     if (widget.userLocation == null) return;
-    
+
     // Utiliser directement l'app picker de navigation
     // sans passer par NavigationPage (OSM migration)
     final dest = LatLng(widget.poi.lat, widget.poi.lng);
@@ -186,10 +186,12 @@ class _PoiDetailPageState extends ConsumerState<PoiDetailPage> {
     final hasPremiumPass =
         ref.read(profileStreamProvider).value?.hasPremiumPass ?? false;
     final maxItems = RoadTripService.maxItemsFor(hasPremiumPass);
+    final maxTrips = RoadTripService.maxTripsFor(hasPremiumPass);
     final result = await RoadTripService.addPoi(
       user.uid,
       widget.poi,
       maxItems: maxItems,
+      maxTrips: maxTrips,
     );
     if (!mounted) return;
 
@@ -208,6 +210,13 @@ class _PoiDetailPageState extends ConsumerState<PoiDetailPage> {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             content: Text('Limite de $maxItems spots atteinte'),
+          ),
+        );
+        break;
+      case RoadTripAddResult.maxTripsReached:
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text('Limite de $maxTrips road trips atteinte'),
           ),
         );
         break;
@@ -419,8 +428,9 @@ class _PoiDetailPageState extends ConsumerState<PoiDetailPage> {
     final googleRating = widget.poi.googleRating ?? 0;
     final hasGoogleReviews = widget.poi.source == 'places';
     final subCategoryLabel = formatPoiSubCategory(widget.poi.subCategory);
-    final headerTitle =
-      subCategoryLabel.isNotEmpty ? subCategoryLabel : widget.poi.category.label;
+    final headerTitle = subCategoryLabel.isNotEmpty
+        ? subCategoryLabel
+        : widget.poi.category.label;
 
     return Scaffold(
       appBar: GlassAppBar(
