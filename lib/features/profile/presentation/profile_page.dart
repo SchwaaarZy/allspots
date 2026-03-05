@@ -1960,6 +1960,59 @@ class _PremiumTab extends ConsumerWidget {
               ),
             ),
             const SizedBox(height: 32),
+            if (profile.isAdmin) ...[
+              Card(
+                color: Colors.orange.shade50,
+                child: SwitchListTile(
+                  value: profile.disableAdminPremium,
+                  title: const Text('Mode test pubs (admin)'),
+                  subtitle: const Text(
+                    'Desactive le pass premium pour afficher les publicites.',
+                  ),
+                  secondary: const Icon(Icons.ads_click),
+                  onChanged: (enabled) async {
+                    final messenger = ScaffoldMessenger.of(context);
+                    try {
+                      await FirebaseFirestore.instance
+                          .collection('profiles')
+                          .doc(user.uid)
+                          .set(
+                        {
+                          'disableAdminPremium': enabled,
+                          'hasPremiumPass': !enabled,
+                          'premiumExpiryDate': enabled
+                              ? null
+                              : Timestamp.fromDate(DateTime(2999, 1, 1)),
+                          'updatedAt': FieldValue.serverTimestamp(),
+                        },
+                        SetOptions(merge: true),
+                      );
+
+                      if (!context.mounted) return;
+                      messenger.showSnackBar(
+                        SnackBar(
+                          content: Text(
+                            enabled
+                                ? 'Mode test pubs active: premium admin desactive.'
+                                : 'Mode test pubs desactive: premium admin restaure.',
+                          ),
+                        ),
+                      );
+                    } catch (e) {
+                      if (!context.mounted) return;
+                      messenger.showSnackBar(
+                        SnackBar(
+                          content: Text(
+                            'Impossible de mettre a jour le mode test pubs: $e',
+                          ),
+                        ),
+                      );
+                    }
+                  },
+                ),
+              ),
+              const SizedBox(height: 24),
+            ],
             if (profile.hasPremiumPass)
               Card(
                 color: Colors.amber.shade50,

@@ -55,7 +55,9 @@ class _HomeShellState extends ConsumerState<HomeShell> {
     final profile = ref.read(profileStreamProvider).value;
     final premiumActive = profile?.hasPremiumPass == true &&
         (profile?.premiumExpiryDate?.isAfter(DateTime.now()) ?? false);
-    if (profile?.isAdmin == true || premiumActive) {
+    final isAdminWithoutAds =
+        profile?.isAdmin == true && profile?.disableAdminPremium != true;
+    if (isAdminWithoutAds || premiumActive) {
       _cancelAdSchedule();
       return;
     }
@@ -108,7 +110,9 @@ class _HomeShellState extends ConsumerState<HomeShell> {
       final profile = ref.read(profileStreamProvider).value;
       final premiumActive = profile?.hasPremiumPass == true &&
           (profile?.premiumExpiryDate?.isAfter(DateTime.now()) ?? false);
-      if (profile?.isAdmin == true || premiumActive) {
+      final isAdminWithoutAds =
+          profile?.isAdmin == true && profile?.disableAdminPremium != true;
+      if (isAdminWithoutAds || premiumActive) {
         return false;
       }
 
@@ -124,12 +128,17 @@ class _HomeShellState extends ConsumerState<HomeShell> {
 
       final usersRole = (usersData?['role'] as String?)?.toLowerCase();
       final profileRole = (profileData?['role'] as String?)?.toLowerCase();
+      final adminPremiumDisabled = usersData?['disableAdminPremium'] == true ||
+          profileData?['disableAdminPremium'] == true;
       final isAdmin = usersData?['isAdmin'] == true ||
           usersRole == 'admin' ||
           profileData?['isAdmin'] == true ||
           profileRole == 'admin';
-      if (isAdmin) {
+      if (isAdmin && !adminPremiumDisabled) {
         return false;
+      }
+      if (isAdmin && adminPremiumDisabled) {
+        return true;
       }
 
       final isPremium = usersData?['isPremium'] == true ||
@@ -206,6 +215,7 @@ class _HomeShellState extends ConsumerState<HomeShell> {
   @override
   Widget build(BuildContext context) {
     _syncAdSchedule();
+    final profile = ref.watch(profileStreamProvider).value;
     final colorScheme = Theme.of(context).colorScheme;
     final screenWidth = context.screenWidth;
     final compactNav = screenWidth < 375;
@@ -255,7 +265,11 @@ class _HomeShellState extends ConsumerState<HomeShell> {
       bottomNavigationBar: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          const AdBanner(),
+          AdBanner(
+            key: ValueKey(
+              'ad-banner-${profile?.isAdmin}-${profile?.disableAdminPremium}-${profile?.hasPremiumPass}-${profile?.premiumExpiryDate?.millisecondsSinceEpoch}',
+            ),
+          ),
           ClipRRect(
             borderRadius: const BorderRadius.vertical(
               top: Radius.circular(navCornerRadius),

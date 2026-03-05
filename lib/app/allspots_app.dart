@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -105,21 +106,127 @@ class _PresenceTrackerState extends State<_PresenceTracker>
   Future<void> _setOnline(bool isOnline) async {
     final user = FirebaseAuth.instance.currentUser;
     if (user == null) return;
-    await FirebaseFirestore.instance.collection('profiles').doc(user.uid).set(
-      {
-        'isOnline': isOnline,
-        'lastSeen': FieldValue.serverTimestamp(),
-      },
-      SetOptions(merge: true),
-    );
+    try {
+      await FirebaseFirestore.instance.collection('profiles').doc(user.uid).set(
+        {
+          'isOnline': isOnline,
+          'lastSeen': FieldValue.serverTimestamp(),
+        },
+        SetOptions(merge: true),
+      );
+    } catch (_) {
+      // App en mode strictement en ligne: si réseau indisponible,
+      // l'overlay global bloquera l'usage et cette mise à jour sera retentée plus tard.
+    }
   }
 
   Future<void> _syncVerificationMetadata() async {
     final user = FirebaseAuth.instance.currentUser;
     if (user == null) return;
-    await AccountVerificationService.ensureVerificationMetadata(user);
+    try {
+      await AccountVerificationService.ensureVerificationMetadata(user);
+    } catch (_) {
+      // Evite de remonter des erreurs réseau au démarrage quand l'app est hors ligne.
+    }
   }
 
   @override
-  Widget build(BuildContext context) => widget.child;
+  Widget build(BuildContext context) => _OnlineRequiredGate(child: widget.child);
+}
+
+class _OnlineRequiredGate extends StatefulWidget {
+  const _OnlineRequiredGate({required this.child});
+
+  final Widget child;
+
+  @override
+  State<_OnlineRequiredGate> createState() => _OnlineRequiredGateState();
+}
+
+class _OnlineRequiredGateState extends State<_OnlineRequiredGate> {
+  final Connectivity _connectivity = Connectivity();
+  StreamSubscription<List<ConnectivityResult>>? _connectivitySub;
+  bool _isOnline = true;
+
+  @override
+  void initState() {
+    super.initState();
+    _initConnectivity();
+    _connectivitySub = _connectivity.onConnectivityChanged.listen((results) {
+      _updateOnlineStatus(results);
+    });
+  }
+
+  @override
+  void dispose() {
+    _connectivitySub?.cancel();
+    super.dispose();
+  }
+
+  Future<void> _initConnectivity() async {
+    final results = await _connectivity.checkConnectivity();
+    if (!mounted) return;
+    _updateOnlineStatus(results);
+  }
+
+  void _updateOnlineStatus(List<ConnectivityResult> results) {
+    final online = results.any((result) => result != ConnectivityResult.none);
+    if (_isOnline == online) return;
+    setState(() {
+      _isOnline = online;
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Stack(
+      children: [
+        widget.child,
+        if (!_isOnline)
+          Positioned.fill(
+            child: Material(
+              color: Colors.white,
+              child: SafeArea(
+                child: Padding(
+                  padding: const EdgeInsets.all(24),
+                  child: Center(
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        const Icon(
+                          Icons.wifi_off,
+                          size: 64,
+                          color: Colors.red,
+                        ),
+                        const SizedBox(height: 16),
+                        const Text(
+                          'Connexion internet requise',
+                          style: TextStyle(
+                            fontSize: 22,
+                            fontWeight: FontWeight.bold,
+                          ),
+                          textAlign: TextAlign.center,
+                        ),
+                        const SizedBox(height: 10),
+                        const Text(
+                          'AllSPOTS fonctionne uniquement en ligne.\n'
+                          'Reconnectez-vous pour continuer.',
+                          textAlign: TextAlign.center,
+                        ),
+                        const SizedBox(height: 20),
+                        ElevatedButton.icon(
+                          onPressed: _initConnectivity,
+                          icon: const Icon(Icons.refresh),
+                          label: const Text('Réessayer'),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          ),
+      ],
+    );
+  }
 }

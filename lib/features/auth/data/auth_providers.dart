@@ -16,6 +16,7 @@ class UserProfile {
     required this.locationLat,
     required this.locationLng,
     this.hasPremiumPass = false,
+    this.disableAdminPremium = false,
     this.premiumExpiryDate,
     this.favoritePoiIds = const [],
     this.xp = 0,
@@ -36,6 +37,7 @@ class UserProfile {
   final double? locationLat;
   final double? locationLng;
   final bool hasPremiumPass;
+  final bool disableAdminPremium;
   final DateTime? premiumExpiryDate;
   final List<String> favoritePoiIds;
   final int xp;
@@ -76,6 +78,8 @@ class UserProfile {
 
     final role = (data['role'] as String?)?.toLowerCase();
     final isAdmin = (data['isAdmin'] as bool?) ?? role == 'admin';
+    final disableAdminPremium =
+      (data['disableAdminPremium'] as bool?) ?? false;
     final rawPhone = data['phoneNumber'];
     final phoneNumber = rawPhone is String ? rawPhone : null;
     final isPhoneVerified =
@@ -84,8 +88,8 @@ class UserProfile {
         (data['isPremium'] as bool?) ??
         false;
 
-    final hasPremiumPass = isAdmin ? true : rawHasPremium;
-    if (isAdmin && premiumExpiryDate == null) {
+    final hasPremiumPass = isAdmin ? !disableAdminPremium : rawHasPremium;
+    if (isAdmin && !disableAdminPremium && premiumExpiryDate == null) {
       premiumExpiryDate = DateTime(2999, 1, 1);
     }
 
@@ -114,6 +118,7 @@ class UserProfile {
       locationLat: lat is num ? lat.toDouble() : null,
       locationLng: lng is num ? lng.toDouble() : null,
       hasPremiumPass: hasPremiumPass,
+      disableAdminPremium: disableAdminPremium,
       premiumExpiryDate: premiumExpiryDate,
       favoritePoiIds: favorites,
       xp: xp,

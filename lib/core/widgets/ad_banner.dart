@@ -61,13 +61,20 @@ class _AdBannerState extends State<AdBanner> {
 
       final usersRole = (usersData?['role'] as String?)?.toLowerCase();
       final profileRole = (profileData?['role'] as String?)?.toLowerCase();
+      final adminPremiumDisabled = usersData?['disableAdminPremium'] == true ||
+          profileData?['disableAdminPremium'] == true;
       final isAdmin = usersData?['isAdmin'] == true ||
           usersRole == 'admin' ||
           profileData?['isAdmin'] == true ||
           profileRole == 'admin';
 
-      if (isAdmin) {
+      if (isAdmin && !adminPremiumDisabled) {
         setState(() => _shouldShowAd = false);
+        return;
+      }
+
+      if (isAdmin && adminPremiumDisabled) {
+        _loadAd();
         return;
       }
 
