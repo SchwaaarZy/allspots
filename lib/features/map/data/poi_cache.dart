@@ -15,8 +15,14 @@ class PoiCache {
     required double userLng,
     required double radiusMeters,
     required Set<String> categoryIds,
+    bool onlyFree = false,
+    bool pmrOnly = false,
+    bool kidsOnly = false,
+    bool openNow = false,
+    int maxVisitDurationMin = -1,
   }) {
-    return '${userLat.toStringAsFixed(4)}_${userLng.toStringAsFixed(4)}_${radiusMeters.toInt()}_${categoryIds.join(",")}';
+    final sortedCategoryIds = categoryIds.toList()..sort();
+    return '${userLat.toStringAsFixed(4)}_${userLng.toStringAsFixed(4)}_${radiusMeters.toInt()}_${sortedCategoryIds.join(",")}_${onlyFree}_${pmrOnly}_${kidsOnly}_${openNow}_$maxVisitDurationMin';
   }
 
   /// Génère une clé de cache unique pour une requête
@@ -25,12 +31,22 @@ class PoiCache {
     required double userLng,
     required double radiusMeters,
     required Set<String> categoryIds,
+    bool onlyFree = false,
+    bool pmrOnly = false,
+    bool kidsOnly = false,
+    bool openNow = false,
+    int maxVisitDurationMin = -1,
   }) {
     return buildKey(
       userLat: userLat,
       userLng: userLng,
       radiusMeters: radiusMeters,
       categoryIds: categoryIds,
+      onlyFree: onlyFree,
+      pmrOnly: pmrOnly,
+      kidsOnly: kidsOnly,
+      openNow: openNow,
+      maxVisitDurationMin: maxVisitDurationMin,
     );
   }
 
@@ -40,12 +56,22 @@ class PoiCache {
     required double userLng,
     required double radiusMeters,
     required Set<String> categoryIds,
+    bool onlyFree = false,
+    bool pmrOnly = false,
+    bool kidsOnly = false,
+    bool openNow = false,
+    int maxVisitDurationMin = -1,
   }) {
     final key = _generateKey(
       userLat: userLat,
       userLng: userLng,
       radiusMeters: radiusMeters,
       categoryIds: categoryIds,
+      onlyFree: onlyFree,
+      pmrOnly: pmrOnly,
+      kidsOnly: kidsOnly,
+      openNow: openNow,
+      maxVisitDurationMin: maxVisitDurationMin,
     );
 
     final entry = _cache[key];
@@ -67,12 +93,22 @@ class PoiCache {
     required double radiusMeters,
     required Set<String> categoryIds,
     required List<Poi> pois,
+    bool onlyFree = false,
+    bool pmrOnly = false,
+    bool kidsOnly = false,
+    bool openNow = false,
+    int maxVisitDurationMin = -1,
   }) {
     final key = _generateKey(
       userLat: userLat,
       userLng: userLng,
       radiusMeters: radiusMeters,
       categoryIds: categoryIds,
+      onlyFree: onlyFree,
+      pmrOnly: pmrOnly,
+      kidsOnly: kidsOnly,
+      openNow: openNow,
+      maxVisitDurationMin: maxVisitDurationMin,
     );
 
     _cache[key] = _CacheEntry(

@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -18,6 +19,7 @@ import '../../profile/data/road_trip_service.dart';
 import '../../profile/data/xp_service.dart';
 import '../domain/poi.dart';
 import '../domain/poi_category.dart';
+import '../domain/map_style.dart';
 import 'map_controller.dart';
 import 'poi_detail_page.dart';
 
@@ -67,6 +69,8 @@ class _MapViewState extends ConsumerState<MapView> {
   DateTime? _lastAutoXpRunAt;
   final Map<String, DateTime> _lastAutoAttemptBySpot = {};
   Timer? _spotsSyncTimer;
+  String? _lastAppliedPreferencesSignature;
+  bool _autoXpCheckQueued = false;
 
   static const double _autoXpRadiusMeters = 10;
   static const double _autoXpMinMovementMeters = 20;
@@ -88,15 +92,31 @@ class _MapViewState extends ConsumerState<MapView> {
 
   void _startSpotsSyncTimer() {
     _spotsSyncTimer?.cancel();
-    _spotsSyncTimer = Timer.periodic(const Duration(seconds: 20), (_) {
+    _spotsSyncTimer = Timer.periodic(const Duration(seconds: 45), (_) {
       if (!mounted) return;
       final state = ref.read(mapControllerProvider);
-      if (state.userPosition == null) return;
+      if (state.userPosition == null || state.isLoading) return;
       ref.read(mapControllerProvider.notifier).refreshNearby(
-            forceRefresh: true,
+            forceRefresh: false,
             includeExistingPois: true,
             softUpdate: true,
           );
+    });
+  }
+
+  String _preferencesSignature(List<String> preferences) {
+    final normalized = preferences.map((value) => value.trim().toLowerCase()).toList()
+      ..sort();
+    return normalized.join('|');
+  }
+
+  void _scheduleAutoXpCheck(MapState state) {
+    if (_autoXpCheckQueued) return;
+    _autoXpCheckQueued = true;
+    Future.microtask(() async {
+      _autoXpCheckQueued = false;
+      if (!mounted) return;
+      await _maybeAutoClaimXp(state);
     });
   }
 
@@ -262,15 +282,28 @@ class _MapViewState extends ConsumerState<MapView> {
   @override
   Widget build(BuildContext context) {
     // Apply category preferences from profile when it changes
-    final profile = ref.watch(profileStreamProvider);
-    if (profile.hasValue && profile.value != null) {
-      final preferences = profile.value!.categories;
-      Future.microtask(
-        () => ref
-            .read(mapControllerProvider.notifier)
-            .applyCategoryPreferences(preferences),
-      );
+    final profileCategories = ref.watch(
+      profileStreamProvider.select((value) => value.valueOrNull?.categories),
+    );
+    if (profileCategories != null) {
+      final signature = _preferencesSignature(profileCategories);
+      final shouldApply = signature != _lastAppliedPreferencesSignature;
+      if (shouldApply) {
+        _lastAppliedPreferencesSignature = signature;
+        Future.microtask(
+          () => ref
+              .read(mapControllerProvider.notifier)
+              .applyCategoryPreferences(profileCategories),
+        );
+      }
     }
+
+    final mapStyle = ref.watch(
+      mapControllerProvider.select((state) => state.mapStyle),
+    );
+    final radiusMeters = ref.watch(
+      mapControllerProvider.select((state) => state.radiusMeters),
+    );
 
     // OPTIMISÉ: Utiliser .select() pour ne reconstruire QUE si displayedPois ou userPosition changent
     // Évite les rebuilds inutiles sur les changements de filters, isSatellite, etc.
@@ -290,7 +323,9 @@ class _MapViewState extends ConsumerState<MapView> {
 
     // Centrer automatiquement au premier chargement de la position
     if (!_centeredOnFirstLocation && userPosition != null) {
-      Future.microtask(_ensureCenteredOnLocation);
+      Future.microtask(
+        _ensureCenteredOnLocation,
+      );
     }
 
     final userPos = userPosition;
@@ -299,15 +334,15 @@ class _MapViewState extends ConsumerState<MapView> {
     final visiblePois = displayedPois;
 
     // Debug: afficher le statut du chargement
-    debugPrint(
-      '[MapView] displayed=${displayedPois.length}, visible=${visiblePois.length}, '
-      'isLoading=$isLoading, error=$error, '
-      'userPos=${userPos != null ? "OK" : "NULL"}',
-    );
+    if (kDebugMode) {
+      debugPrint(
+        '[MapView] displayed=${displayedPois.length}, visible=${visiblePois.length}, '
+        'isLoading=$isLoading, error=$error, '
+        'userPos=${userPos != null ? "OK" : "NULL"}',
+      );
+    }
 
-    Future.microtask(
-      () => _maybeAutoClaimXp(fullState.copyWith(nearbyPois: visiblePois)),
-    );
+    _scheduleAutoXpCheck(fullState.copyWith(nearbyPois: visiblePois));
 
     return Stack(
       children: [
@@ -334,14 +369,10 @@ class _MapViewState extends ConsumerState<MapView> {
             ),
             children: [
               flutter_map.TileLayer(
-                urlTemplate: ref.watch(mapControllerProvider).mapStyle.urlTemplate,
+                urlTemplate: mapStyle.urlTemplate,
                 userAgentPackageName: 'com.allspots',
-                subdomains: ref.watch(mapControllerProvider).mapStyle.subdomains,
-                maxZoom: ref
-                    .watch(mapControllerProvider)
-                    .mapStyle
-                    .maxZoom
-                    .toDouble(),
+                subdomains: mapStyle.subdomains,
+                maxZoom: mapStyle.maxZoom.toDouble(),
               ),
               flutter_map.MarkerLayer(
                 markers: visiblePois.map((p) {
@@ -422,7 +453,10 @@ class _MapViewState extends ConsumerState<MapView> {
                 child: SlideTransition(position: slide, child: child),
               );
             },
-            child: _buildOverlayPanel(),
+            child: _buildOverlayPanel(
+              radiusMeters: radiusMeters,
+              mapStyle: mapStyle,
+            ),
           ),
         ),
         // Contrôles secondaires (haut droit)
@@ -561,14 +595,17 @@ class _MapViewState extends ConsumerState<MapView> {
     });
   }
 
-  Widget _buildOverlayPanel() {
+  Widget _buildOverlayPanel({
+    required double radiusMeters,
+    required MapStyle mapStyle,
+  }) {
     switch (_activePanel) {
       case _MapOverlayPanel.none:
         return const SizedBox.shrink(key: ValueKey('panel-none'));
       case _MapOverlayPanel.radius:
         return RadiusSelector(
           key: const ValueKey('panel-radius'),
-          currentRadius: ref.watch(mapControllerProvider).radiusMeters,
+          currentRadius: radiusMeters,
           radiusOptions: const [5000, 10000, 15000, 20000],
           onRadiusChanged: (radius) {
             ref.read(mapControllerProvider.notifier).updateRadius(radius);
@@ -620,7 +657,7 @@ class _MapViewState extends ConsumerState<MapView> {
       case _MapOverlayPanel.style:
         return MapStyleSelector(
           key: const ValueKey('panel-style'),
-          currentStyle: ref.watch(mapControllerProvider).mapStyle,
+          currentStyle: mapStyle,
           closeOnSelect: false,
           onStyleChanged: (style) {
             ref.read(mapControllerProvider.notifier).setMapStyle(style);

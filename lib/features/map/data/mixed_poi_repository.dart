@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'poi_repository.dart';
 import '../domain/poi.dart';
 import '../domain/poi_filters.dart';
@@ -45,6 +47,11 @@ class MixedPoiRepository implements PoiRepository {
       userLng: userLng,
       radiusMeters: radiusMeters,
       categoryIds: categoryIds,
+      onlyFree: filters.onlyFree,
+      pmrOnly: filters.pmrOnly,
+      kidsOnly: filters.kidsOnly,
+      openNow: filters.openNow,
+      maxVisitDurationMin: filters.maxVisitDurationMin ?? -1,
     );
 
     if (cached != null) {
@@ -56,6 +63,11 @@ class MixedPoiRepository implements PoiRepository {
       userLng: userLng,
       radiusMeters: radiusMeters,
       categoryIds: categoryIds,
+      onlyFree: filters.onlyFree,
+      pmrOnly: filters.pmrOnly,
+      kidsOnly: filters.kidsOnly,
+      openNow: filters.openNow,
+      maxVisitDurationMin: filters.maxVisitDurationMin ?? -1,
     );
 
     final persistentCached = await _persistentCache.get(cacheKey: cacheKey);
@@ -66,6 +78,11 @@ class MixedPoiRepository implements PoiRepository {
         radiusMeters: radiusMeters,
         categoryIds: categoryIds,
         pois: persistentCached,
+        onlyFree: filters.onlyFree,
+        pmrOnly: filters.pmrOnly,
+        kidsOnly: filters.kidsOnly,
+        openNow: filters.openNow,
+        maxVisitDurationMin: filters.maxVisitDurationMin ?? -1,
       );
 
       _refreshAndCache(
@@ -129,31 +146,46 @@ class MixedPoiRepository implements PoiRepository {
       filters: filters,
     );
 
-    // Google Places en parallèle (fallback pour zones mal couvertes)
-    final placesTask = placesRepo.getNearbyPois(
+    if (firestorePois.isNotEmpty) {
+      _cache.put(
+        userLat: userLat,
+        userLng: userLng,
+        radiusMeters: radiusMeters,
+        categoryIds: categoryIds,
+        pois: firestorePois,
+        onlyFree: filters.onlyFree,
+        pmrOnly: filters.pmrOnly,
+        kidsOnly: filters.kidsOnly,
+        openNow: filters.openNow,
+        maxVisitDurationMin: filters.maxVisitDurationMin ?? -1,
+      );
+      await _persistentCache.put(
+        cacheKey: cacheKey,
+        pois: firestorePois,
+      );
+
+      unawaited(
+        _enrichCacheWithSecondarySources(
+          firestorePois: firestorePois,
+          userLat: userLat,
+          userLng: userLng,
+          radiusMeters: radiusMeters,
+          filters: filters,
+          categoryIds: categoryIds,
+          cacheKey: cacheKey,
+        ),
+      );
+      return firestorePois;
+    }
+
+    final secondaryPois = await _fetchSecondaryPois(
       userLat: userLat,
       userLng: userLng,
       radiusMeters: radiusMeters,
       filters: filters,
     );
 
-    // Fusionne avec Google Places quand disponibles (non-blocking)
-    final merged = <String, Poi>{};
-    for (final poi in firestorePois) {
-      merged[poi.id] = poi;
-    }
-
-    placesTask.then((placesPois) {
-      for (final poi in placesPois) {
-        if (!merged.containsKey(poi.id)) {
-          merged[poi.id] = poi;
-        }
-      }
-    }).catchError((_) {
-      // Ignore erreurs Google Places (Firestore suffisant)
-    });
-
-    final result = merged.values.toList();
+    final result = secondaryPois;
 
     // Cache le résultat
     _cache.put(
@@ -162,6 +194,11 @@ class MixedPoiRepository implements PoiRepository {
       radiusMeters: radiusMeters,
       categoryIds: categoryIds,
       pois: result,
+      onlyFree: filters.onlyFree,
+      pmrOnly: filters.pmrOnly,
+      kidsOnly: filters.kidsOnly,
+      openNow: filters.openNow,
+      maxVisitDurationMin: filters.maxVisitDurationMin ?? -1,
     );
 
     if (result.isNotEmpty) {
@@ -172,5 +209,84 @@ class MixedPoiRepository implements PoiRepository {
     }
 
     return result;
+  }
+
+  Future<void> _enrichCacheWithSecondarySources({
+    required List<Poi> firestorePois,
+    required double userLat,
+    required double userLng,
+    required double radiusMeters,
+    required PoiFilters filters,
+    required Set<String> categoryIds,
+    required String cacheKey,
+  }) async {
+    final secondaryPois = await _fetchSecondaryPois(
+      userLat: userLat,
+      userLng: userLng,
+      radiusMeters: radiusMeters,
+      filters: filters,
+    );
+
+    if (secondaryPois.isEmpty) return;
+
+    final merged = <String, Poi>{
+      for (final poi in firestorePois) poi.id: poi,
+    };
+    for (final poi in secondaryPois) {
+      merged.putIfAbsent(poi.id, () => poi);
+    }
+
+    final enriched = merged.values.toList();
+
+    _cache.put(
+      userLat: userLat,
+      userLng: userLng,
+      radiusMeters: radiusMeters,
+      categoryIds: categoryIds,
+      pois: enriched,
+      onlyFree: filters.onlyFree,
+      pmrOnly: filters.pmrOnly,
+      kidsOnly: filters.kidsOnly,
+      openNow: filters.openNow,
+      maxVisitDurationMin: filters.maxVisitDurationMin ?? -1,
+    );
+
+    await _persistentCache.put(
+      cacheKey: cacheKey,
+      pois: enriched,
+    );
+  }
+
+  Future<List<Poi>> _fetchSecondaryPois({
+    required double userLat,
+    required double userLng,
+    required double radiusMeters,
+    required PoiFilters filters,
+  }) async {
+    final repos = <PoiRepository>[placesRepo, ...extraRepos];
+    if (repos.isEmpty) return const [];
+
+    final tasks = repos
+        .map(
+          (repo) => repo
+              .getNearbyPois(
+                userLat: userLat,
+                userLng: userLng,
+                radiusMeters: radiusMeters,
+                filters: filters,
+              )
+              .timeout(const Duration(milliseconds: 1800), onTimeout: () => const <Poi>[])
+              .catchError((_) => const <Poi>[]),
+        )
+        .toList();
+
+    final lists = await Future.wait(tasks);
+    final merged = <String, Poi>{};
+    for (final list in lists) {
+      for (final poi in list) {
+        merged.putIfAbsent(poi.id, () => poi);
+      }
+    }
+    return merged.values.toList();
   }
 }
