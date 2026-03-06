@@ -73,6 +73,7 @@ class _SearchPageState extends ConsumerState<SearchPage> {
   String? _cachedNormalizedSelectedCategoriesKey;
   String? _cachedDepartmentStreamCode;
   Stream<QuerySnapshot<Map<String, dynamic>>>? _cachedDepartmentStream;
+  final Set<String> _favoriteToggleInFlight = {};
 
   @override
   void initState() {
@@ -1888,6 +1889,11 @@ class _SearchPageState extends ConsumerState<SearchPage> {
     required Position? userPos,
     required Map<String, double> allSpotsRatingsByPoiId,
   }) {
+    final favoritePoiIds =
+        ref.watch(profileStreamProvider).value?.favoritePoiIds ??
+            const <String>[];
+    final favoritePoiIdSet = favoritePoiIds.toSet();
+
     return ListView.builder(
       key: PageStorageKey('search_page_$pageIndex'),
       padding: const EdgeInsets.all(12),
@@ -1914,6 +1920,8 @@ class _SearchPageState extends ConsumerState<SearchPage> {
               poi,
               userPos,
               allSpotsRating: allSpotsRating,
+              isFavorite: favoritePoiIdSet.contains(poi.id),
+              isFavoriteLoading: _favoriteToggleInFlight.contains(poi.id),
             );
           case _SearchListItemType.addSpot:
             return SizedBox(
@@ -1984,6 +1992,8 @@ class _SearchPageState extends ConsumerState<SearchPage> {
     Poi poi,
     Position? userPos, {
     required double allSpotsRating,
+    required bool isFavorite,
+    required bool isFavoriteLoading,
   }) {
     final distanceLabel = _distanceLabel(userPos, poi);
     final isFirestore = poi.source == 'firestore';
@@ -2074,6 +2084,31 @@ class _SearchPageState extends ConsumerState<SearchPage> {
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.end,
                     children: [
+                      IconButton(
+                        tooltip:
+                            isFavorite ? 'Retirer des favoris' : 'Ajouter aux favoris',
+                        onPressed: isFavoriteLoading
+                            ? null
+                            : () => _toggleFavoriteFromSearchCard(
+                                  context,
+                                  poi,
+                                  isFavorite,
+                                ),
+                        icon: isFavoriteLoading
+                            ? const SizedBox(
+                                width: 18,
+                                height: 18,
+                                child: CircularProgressIndicator(strokeWidth: 2),
+                              )
+                            : Icon(
+                                isFavorite
+                                    ? Icons.favorite
+                                    : Icons.favorite_border,
+                                color: isFavorite ? Colors.red : Colors.grey,
+                                size: 20,
+                              ),
+                        visualDensity: VisualDensity.compact,
+                      ),
                       Text(
                         distanceLabel,
                         style: const TextStyle(
@@ -2157,6 +2192,70 @@ class _SearchPageState extends ConsumerState<SearchPage> {
         ),
       ),
     );
+  }
+
+  Future<void> _toggleFavoriteFromSearchCard(
+    BuildContext context,
+    Poi poi,
+    bool isFavorite,
+  ) async {
+    if (_favoriteToggleInFlight.contains(poi.id)) return;
+
+    final user = ref.read(authStateProvider).value;
+    if (user == null) {
+      if (!mounted) return;
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('Connectez-vous pour gérer vos favoris.')),
+      );
+      return;
+    }
+
+    setState(() {
+      _favoriteToggleInFlight.add(poi.id);
+    });
+
+    try {
+      final profileRef =
+          FirebaseFirestore.instance.collection('profiles').doc(user.uid);
+
+      if (isFavorite) {
+        await profileRef.update({
+          'favoritePoiIds': FieldValue.arrayRemove([poi.id]),
+        });
+        await profileRef.collection('favoritePois').doc(poi.id).delete();
+      } else {
+        await profileRef.update({
+          'favoritePoiIds': FieldValue.arrayUnion([poi.id]),
+        });
+        await profileRef.collection('favoritePois').doc(poi.id).set({
+          'name': poi.displayName,
+          'imageUrls': poi.imageUrls,
+          'googleRating': poi.googleRating,
+          'googleRatingCount': poi.googleRatingCount,
+          'description': poi.shortDescription,
+          'lat': poi.lat,
+          'lng': poi.lng,
+          'category': poi.category.name,
+          'subCategory': poi.subCategory,
+          'source': poi.source,
+          'updatedAt': Timestamp.now(),
+        });
+      }
+    } catch (e) {
+      if (context.mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+              content: Text('Impossible de mettre a jour les favoris.')),
+        );
+      }
+      debugPrint('Erreur toggle favori depuis recherche: $e');
+    } finally {
+      if (mounted) {
+        setState(() {
+          _favoriteToggleInFlight.remove(poi.id);
+        });
+      }
+    }
   }
 }
 

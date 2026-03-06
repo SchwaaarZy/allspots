@@ -1156,9 +1156,318 @@ class _FavoritesTabState extends ConsumerState<_FavoritesTab> {
   int _currentPage = 0;
   static const int _itemsPerPage = 5;
 
+  String? _missingFavoritesKey;
+  String? _restoredFavoritesKey;
+  String? _cleanedOrphanFavoritesKey;
+  Future<Map<String, Map<String, dynamic>>>? _missingFavoritesFuture;
+
+  Future<void> _persistMissingFavorites(
+    List<String> missingIds,
+    Map<String, Map<String, dynamic>> fallbackById,
+  ) async {
+    try {
+      const maxOpsPerBatch = 450;
+      var firestore = FirebaseFirestore.instance;
+      var batch = firestore.batch();
+      var ops = 0;
+
+      for (final spotId in missingIds) {
+        final data = fallbackById[spotId];
+        if (data == null) continue;
+
+        final ref = firestore
+            .collection('profiles')
+            .doc(widget.userId)
+            .collection('favoritePois')
+            .doc(spotId);
+
+        batch.set(ref, data, SetOptions(merge: true));
+        ops++;
+
+        if (ops >= maxOpsPerBatch) {
+          await batch.commit();
+          batch = firestore.batch();
+          ops = 0;
+        }
+      }
+
+      if (ops > 0) {
+        await batch.commit();
+      }
+    } catch (e) {
+      debugPrint('Erreur resynchronisation favoris: $e');
+    }
+  }
+
+  void _scheduleMissingFavoritesResync(
+    List<String> missingIds,
+    Map<String, Map<String, dynamic>> fallbackById,
+  ) {
+    final restorableIds = missingIds
+        .where((id) => fallbackById.containsKey(id))
+        .toList(growable: false)
+      ..sort();
+
+    if (restorableIds.isEmpty) return;
+
+    final key = restorableIds.join('|');
+    if (_restoredFavoritesKey == key) return;
+    _restoredFavoritesKey = key;
+
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (!mounted) return;
+      unawaited(_persistMissingFavorites(restorableIds, fallbackById));
+    });
+  }
+
+  Future<void> _removeOrphanFavoriteIds(List<String> orphanIds) async {
+    if (orphanIds.isEmpty) return;
+
+    try {
+      await FirebaseFirestore.instance
+          .collection('profiles')
+          .doc(widget.userId)
+          .update({'favoritePoiIds': FieldValue.arrayRemove(orphanIds)});
+    } catch (e) {
+      debugPrint('Erreur nettoyage favoris orphelins: $e');
+    }
+  }
+
+  void _scheduleOrphanFavoritesCleanup(
+    List<String> missingIds,
+    Map<String, Map<String, dynamic>> fallbackById,
+  ) {
+    final orphanIds = missingIds
+        .where((id) => !fallbackById.containsKey(id))
+        .toList(growable: false)
+      ..sort();
+
+    if (orphanIds.isEmpty) return;
+
+    final key = orphanIds.join('|');
+    if (_cleanedOrphanFavoritesKey == key) return;
+    _cleanedOrphanFavoritesKey = key;
+
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (!mounted) return;
+      unawaited(_removeOrphanFavoriteIds(orphanIds));
+    });
+  }
+
+  Future<Map<String, Map<String, dynamic>>> _loadMissingFavorites(
+      List<String> favoriteIds) async {
+    if (favoriteIds.isEmpty) {
+      return const <String, Map<String, dynamic>>{};
+    }
+
+    const chunkSize = 10;
+    final results = <String, Map<String, dynamic>>{};
+
+    for (var i = 0; i < favoriteIds.length; i += chunkSize) {
+      final end = (i + chunkSize).clamp(0, favoriteIds.length);
+      final chunk = favoriteIds.sublist(i, end);
+
+      final snap = await FirebaseFirestore.instance
+          .collection('spots')
+          .where(FieldPath.documentId, whereIn: chunk)
+          .get();
+
+      for (final doc in snap.docs) {
+        results[doc.id] = _favoriteDataFromSpotDoc(doc);
+      }
+    }
+
+    return results;
+  }
+
+  Future<Map<String, Map<String, dynamic>>> _missingFavoritesLoader(
+      List<String> missingIds) {
+    final sorted = [...missingIds]..sort();
+    final key = sorted.join('|');
+
+    if (_missingFavoritesFuture != null && _missingFavoritesKey == key) {
+      return _missingFavoritesFuture!;
+    }
+
+    _missingFavoritesKey = key;
+    _missingFavoritesFuture = _loadMissingFavorites(sorted);
+    return _missingFavoritesFuture!;
+  }
+
+  Map<String, dynamic> _favoriteDataFromSpotDoc(
+      QueryDocumentSnapshot<Map<String, dynamic>> doc) {
+    final data = doc.data();
+    final imageUrls = (data['imageUrls'] as List?)
+            ?.whereType<String>()
+            .toList(growable: false) ??
+        const <String>[];
+
+    return <String, dynamic>{
+      'name': (data['name'] as String?)?.trim() ?? 'Spot',
+      'imageUrls': imageUrls,
+      'googleRating': (data['googleRating'] as num?)?.toDouble(),
+      'googleRatingCount': (data['googleRatingCount'] as num?)?.toInt() ?? 0,
+      'description': (data['description'] as String?)?.trim() ?? '',
+      'lat': (data['lat'] as num?)?.toDouble(),
+      'lng': (data['lng'] as num?)?.toDouble(),
+      'category':
+          (data['category'] ?? data['categoryGroup'] ?? '').toString(),
+      'subCategory': (data['subCategory'] ?? data['categoryItem'])?.toString(),
+      'source': (data['source'] as String?)?.trim().isNotEmpty == true
+          ? (data['source'] as String)
+          : 'firestore',
+      'updatedAt': data['updatedAt'] ?? Timestamp.now(),
+    };
+  }
+
+  Widget _buildEmptyState(BuildContext context) {
+    final bottomInset = MediaQuery.paddingOf(context).bottom;
+    return SafeArea(
+      top: false,
+      minimum: EdgeInsets.only(bottom: bottomInset > 0 ? 4 : 8),
+      child: Center(
+        child: Padding(
+          padding: const EdgeInsets.all(16),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              const Icon(Icons.favorite, size: 48, color: Colors.red),
+              const SizedBox(height: 12),
+              const Text('Aucun favori pour le moment',
+                  textAlign: TextAlign.center),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildFavoritesContent(
+    BuildContext context, {
+    required List<String> favoriteIds,
+    required Map<String, Map<String, dynamic>> syncedById,
+    required Map<String, Map<String, dynamic>> fallbackById,
+  }) {
+    final allById = <String, Map<String, dynamic>>{...fallbackById}
+      ..addAll(syncedById);
+
+    final orderedIds = favoriteIds
+        .where((id) => allById.containsKey(id))
+        .toList(growable: false);
+
+    if (orderedIds.isEmpty) {
+      return _buildEmptyState(context);
+    }
+
+    final totalPages = (orderedIds.length / _itemsPerPage).ceil();
+    final currentPage = totalPages == 0 ? 0 : _currentPage.clamp(0, totalPages - 1);
+    if (currentPage != _currentPage) {
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        if (!mounted) return;
+        setState(() => _currentPage = currentPage);
+      });
+    }
+
+    final startIndex = currentPage * _itemsPerPage;
+    final endIndex = (startIndex + _itemsPerPage).clamp(0, orderedIds.length);
+    final visibleIds = orderedIds.sublist(startIndex, endIndex);
+
+    final bottomInset = MediaQuery.paddingOf(context).bottom;
+
+    return SafeArea(
+      top: false,
+      minimum: EdgeInsets.only(bottom: bottomInset > 0 ? 4 : 8),
+      child: Column(
+        children: [
+          Padding(
+            padding: const EdgeInsets.all(12),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      'Favoris: ${orderedIds.length}',
+                      style: const TextStyle(fontWeight: FontWeight.w700),
+                    ),
+                    if (totalPages > 1)
+                      Text(
+                        'Page ${currentPage + 1} / $totalPages',
+                        style: TextStyle(
+                          fontWeight: FontWeight.w600,
+                          fontSize: context.fontSize(12),
+                        ),
+                      ),
+                  ],
+                ),
+              ],
+            ),
+          ),
+          const Divider(height: 1),
+          Expanded(
+            child: ListView(
+              padding: EdgeInsets.fromLTRB(12, 12, 12, 12 + bottomInset),
+              children: [
+                for (final spotId in visibleIds)
+                  _FavoriteTile(
+                    spotId: spotId,
+                    spotData: allById[spotId]!,
+                    userId: widget.userId,
+                  ),
+              ],
+            ),
+          ),
+          if (totalPages > 1)
+            Container(
+              padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 12),
+              decoration: BoxDecoration(
+                color: Theme.of(context).scaffoldBackgroundColor,
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black.withValues(alpha: 0.05),
+                    blurRadius: 4,
+                    offset: const Offset(0, -2),
+                  ),
+                ],
+              ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  IconButton(
+                    icon: const Icon(Icons.arrow_back),
+                    onPressed: currentPage > 0
+                        ? () => setState(() => _currentPage--)
+                        : null,
+                  ),
+                  Text(
+                    '${currentPage + 1} / $totalPages',
+                    style: const TextStyle(fontWeight: FontWeight.bold),
+                  ),
+                  IconButton(
+                    icon: const Icon(Icons.arrow_forward),
+                    onPressed: currentPage < totalPages - 1
+                        ? () => setState(() => _currentPage++)
+                        : null,
+                  ),
+                ],
+              ),
+            ),
+        ],
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
-    return StreamBuilder<QuerySnapshot>(
+    final profile = ref.watch(profileStreamProvider);
+    final favoriteIds = profile.value?.favoritePoiIds ?? const <String>[];
+
+    if (favoriteIds.isEmpty) {
+      return _buildEmptyState(context);
+    }
+
+    return StreamBuilder<QuerySnapshot<Map<String, dynamic>>>(
       stream: FirebaseFirestore.instance
           .collection('profiles')
           .doc(widget.userId)
@@ -1170,118 +1479,44 @@ class _FavoritesTabState extends ConsumerState<_FavoritesTab> {
           return const Center(child: CircularProgressIndicator());
         }
 
-        final allSpots = snapshot.data!.docs;
-        if (allSpots.isEmpty) {
-          final bottomInset = MediaQuery.paddingOf(context).bottom;
-          return SafeArea(
-            top: false,
-            minimum: EdgeInsets.only(bottom: bottomInset > 0 ? 4 : 8),
-            child: Center(
-              child: Padding(
-                padding: const EdgeInsets.all(16),
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    const Icon(Icons.favorite, size: 48, color: Colors.red),
-                    const SizedBox(height: 12),
-                    const Text('Aucun favori pour le moment',
-                        textAlign: TextAlign.center),
-                  ],
-                ),
-              ),
-            ),
+        final syncedById = <String, Map<String, dynamic>>{
+          for (final doc in snapshot.data!.docs) doc.id: doc.data(),
+        };
+        final missingIds = favoriteIds
+            .where((id) => !syncedById.containsKey(id))
+            .toList(growable: false);
+
+        if (missingIds.isEmpty) {
+          return _buildFavoritesContent(
+            context,
+            favoriteIds: favoriteIds,
+            syncedById: syncedById,
+            fallbackById: const <String, Map<String, dynamic>>{},
           );
         }
 
-        final totalPages = (allSpots.length / _itemsPerPage).ceil();
-        final startIndex = _currentPage * _itemsPerPage;
-        final endIndex = (startIndex + _itemsPerPage).clamp(0, allSpots.length);
-        final visibleSpots = allSpots.sublist(startIndex, endIndex);
+        return FutureBuilder<Map<String, Map<String, dynamic>>>(
+          future: _missingFavoritesLoader(missingIds),
+          builder: (context, missingSnapshot) {
+            final fallbackById =
+                missingSnapshot.data ?? const <String, Map<String, dynamic>>{};
 
-        final bottomInset = MediaQuery.paddingOf(context).bottom;
+            if (missingSnapshot.hasData) {
+              _scheduleMissingFavoritesResync(missingIds, fallbackById);
+              _scheduleOrphanFavoritesCleanup(missingIds, fallbackById);
+            }
 
-        return SafeArea(
-          top: false,
-          minimum: EdgeInsets.only(bottom: bottomInset > 0 ? 4 : 8),
-          child: Column(
-            children: [
-              Padding(
-                padding: const EdgeInsets.all(12),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text(
-                          'Favoris: ${allSpots.length}',
-                          style: const TextStyle(fontWeight: FontWeight.w700),
-                        ),
-                        if (totalPages > 1)
-                          Text(
-                            'Page ${_currentPage + 1} / $totalPages',
-                            style: TextStyle(
-                              fontWeight: FontWeight.w600,
-                              fontSize: context.fontSize(12),
-                            ),
-                          ),
-                      ],
-                    ),
-                  ],
-                ),
-              ),
-              const Divider(height: 1),
-              Expanded(
-                child: ListView(
-                  padding: EdgeInsets.fromLTRB(12, 12, 12, 12 + bottomInset),
-                  children: [
-                    for (final doc in visibleSpots)
-                      _FavoriteTile(
-                        spotId: doc.id,
-                        spotData: doc.data() as Map<String, dynamic>,
-                        userId: widget.userId,
-                      ),
-                  ],
-                ),
-              ),
-              if (totalPages > 1)
-                Container(
-                  padding:
-                      const EdgeInsets.symmetric(vertical: 8, horizontal: 12),
-                  decoration: BoxDecoration(
-                    color: Theme.of(context).scaffoldBackgroundColor,
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.black.withValues(alpha: 0.05),
-                        blurRadius: 4,
-                        offset: const Offset(0, -2),
-                      ),
-                    ],
-                  ),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      IconButton(
-                        icon: const Icon(Icons.arrow_back),
-                        onPressed: _currentPage > 0
-                            ? () => setState(() => _currentPage--)
-                            : null,
-                      ),
-                      Text(
-                        '${_currentPage + 1} / $totalPages',
-                        style: const TextStyle(fontWeight: FontWeight.bold),
-                      ),
-                      IconButton(
-                        icon: const Icon(Icons.arrow_forward),
-                        onPressed: _currentPage < totalPages - 1
-                            ? () => setState(() => _currentPage++)
-                            : null,
-                      ),
-                    ],
-                  ),
-                ),
-            ],
-          ),
+            if (!missingSnapshot.hasData && syncedById.isEmpty) {
+              return const Center(child: CircularProgressIndicator());
+            }
+
+            return _buildFavoritesContent(
+              context,
+              favoriteIds: favoriteIds,
+              syncedById: syncedById,
+              fallbackById: fallbackById,
+            );
+          },
         );
       },
     );
