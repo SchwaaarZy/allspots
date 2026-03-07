@@ -22,6 +22,15 @@ class OptimizedNetworkImage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final safeMemCacheHeight =
+      (height != null && height!.isFinite && height! > 0)
+        ? (height! * 2).round()
+        : null;
+    final safeMemCacheWidth =
+      (width != null && width!.isFinite && width! > 0)
+        ? (width! * 2).round()
+        : null;
+
     return CachedNetworkImage(
       imageUrl: imageUrl,
       width: width,
@@ -54,8 +63,8 @@ class OptimizedNetworkImage extends StatelessWidget {
           ),
       fadeOutDuration: const Duration(milliseconds: 200),
       fadeInDuration: const Duration(milliseconds: 300),
-      memCacheHeight: height != null ? (height! * 2).toInt() : null,
-      memCacheWidth: width != null ? (width! * 2).toInt() : null,
+      memCacheHeight: safeMemCacheHeight,
+      memCacheWidth: safeMemCacheWidth,
     );
   }
 }

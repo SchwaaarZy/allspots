@@ -355,8 +355,7 @@ class _PoiDetailPageState extends ConsumerState<PoiDetailPage> {
     detailsController.dispose();
   }
 
-  void _toggleFavorite(
-      BuildContext context, WidgetRef ref, bool isFavorite) async {
+  Future<void> _toggleFavorite(bool isFavorite) async {
     if (_isTogglingFavorite) return;
 
     final user = ref.read(authStateProvider).value;
@@ -432,8 +431,10 @@ class _PoiDetailPageState extends ConsumerState<PoiDetailPage> {
         ? subCategoryLabel
         : widget.poi.category.label;
 
-    return Scaffold(
-      appBar: GlassAppBar(
+    return PopScope(
+      canPop: !_isTogglingFavorite,
+      child: Scaffold(
+        appBar: GlassAppBar(
         titleWidget: FittedBox(
           fit: BoxFit.scaleDown,
           child: Text(
@@ -443,28 +444,6 @@ class _PoiDetailPageState extends ConsumerState<PoiDetailPage> {
           ),
         ),
         showBackButton: true,
-        actions: [
-          IconButton(
-            icon: _isTogglingFavorite
-                ? const SizedBox(
-                    width: 20,
-                    height: 20,
-                    child: CircularProgressIndicator(
-                      strokeWidth: 2,
-                      color: Colors.grey,
-                    ),
-                  )
-                : Icon(
-                    isFavorite ? Icons.favorite : Icons.favorite_border,
-                    color: isFavorite ? Colors.red : Colors.grey,
-                  ),
-            onPressed: _isTogglingFavorite
-                ? null
-                : () {
-                    _toggleFavorite(context, ref, isFavorite);
-                  },
-          ),
-        ],
       ),
       body: ListView(
         children: [
@@ -516,6 +495,30 @@ class _PoiDetailPageState extends ConsumerState<PoiDetailPage> {
                         fontWeight: FontWeight.bold,
                         color: Colors.blue.shade700,
                       ),
+                    ),
+                    const SizedBox(width: 6),
+                    IconButton(
+                      tooltip: isFavorite
+                          ? 'Retirer des favoris'
+                          : 'Ajouter aux favoris',
+                      visualDensity: VisualDensity.compact,
+                      onPressed: _isTogglingFavorite
+                          ? null
+                          : () {
+                              _toggleFavorite(isFavorite);
+                            },
+                      icon: _isTogglingFavorite
+                          ? const SizedBox(
+                              width: 18,
+                              height: 18,
+                              child: CircularProgressIndicator(strokeWidth: 2),
+                            )
+                          : Icon(
+                              isFavorite
+                                  ? Icons.favorite
+                                  : Icons.favorite_border,
+                              color: isFavorite ? Colors.red : Colors.grey,
+                            ),
                     ),
                   ],
                 ),
@@ -876,6 +879,7 @@ class _PoiDetailPageState extends ConsumerState<PoiDetailPage> {
             ),
           ),
         ],
+      ),
       ),
     );
   }

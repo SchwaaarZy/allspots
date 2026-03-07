@@ -1565,109 +1565,104 @@ class _FavoriteTile extends ConsumerWidget {
         formatPoiSubCategory(spotData['subCategory'] as String?);
     final categoryLabel =
         subCategoryLabel.isNotEmpty ? subCategoryLabel : category.label;
-    return InkWell(
-      onTap: () => Navigator.push(
-        context,
-        MaterialPageRoute(
-          builder: (_) => _FavoriteDetailPage(
-            spotId: spotId,
-            spotData: spotData,
-          ),
-        ),
-      ),
-      child: Card(
-        margin: const EdgeInsets.symmetric(vertical: 6),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            // Photo d'aperçu
-            if (spotData['imageUrls'] != null &&
-                (spotData['imageUrls'] as List?)?.isNotEmpty == true)
-              SizedBox(
-                height: previewImageHeight,
-                width: double.infinity,
-                child: ClipRRect(
-                  borderRadius:
-                      const BorderRadius.vertical(top: Radius.circular(4)),
-                  child: OptimizedNetworkImage(
-                    imageUrl: (spotData['imageUrls'] as List).first,
-                    height: previewImageHeight,
-                    width: double.infinity,
-                    fit: BoxFit.cover,
-                  ),
+    return Card(
+      margin: const EdgeInsets.symmetric(vertical: 6),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          // Photo d'aperçu
+          if (spotData['imageUrls'] != null &&
+              (spotData['imageUrls'] as List?)?.isNotEmpty == true)
+            SizedBox(
+              height: previewImageHeight,
+              width: double.infinity,
+              child: ClipRRect(
+                borderRadius: const BorderRadius.vertical(top: Radius.circular(4)),
+                child: OptimizedNetworkImage(
+                  imageUrl: (spotData['imageUrls'] as List).first,
+                  height: previewImageHeight,
+                  width: double.infinity,
+                  fit: BoxFit.cover,
                 ),
               ),
-            Padding(
-              padding: const EdgeInsets.all(12),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Row(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Expanded(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              spotData['name'] ?? 'Spot',
-                              style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                fontSize: context.fontSize(14),
-                              ),
-                              maxLines: 2,
-                              overflow: TextOverflow.ellipsis,
-                            ),
-                            const SizedBox(height: 4),
-                            Row(
-                              children: [
-                                Icon(
-                                  category.icon,
-                                  size: 14,
-                                  color: category.color,
-                                ),
-                                const SizedBox(width: 6),
-                                Text(
-                                  categoryLabel,
-                                  style: TextStyle(
-                                    fontSize: context.fontSize(12),
-                                    color: Colors.grey.shade600,
-                                  ),
-                                ),
-                              ],
-                            ),
-                            if (spotData['googleRating'] != null) ...[
-                              const SizedBox(height: 4),
-                              Row(
-                                children: [
-                                  const Icon(Icons.star,
-                                      color: Colors.amber, size: 16),
-                                  const SizedBox(width: 4),
-                                  Text(
-                                      '${(spotData['googleRating'] as num).toStringAsFixed(1)}/5',
-                                      style: TextStyle(
-                                        fontSize: context.fontSize(12),
-                                        fontWeight: FontWeight.w600,
-                                      )),
-                                ],
-                              )
-                            ],
-                          ],
+            ),
+          Padding(
+            padding: const EdgeInsets.all(12),
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Expanded(
+                  child: InkWell(
+                    onTap: () => Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (_) => _FavoriteDetailPage(
+                          spotId: spotId,
+                          spotData: spotData,
                         ),
                       ),
-                      IconButton(
-                        icon: const Icon(Icons.favorite, color: Colors.red),
-                        padding: EdgeInsets.zero,
-                        constraints: const BoxConstraints(),
-                        onPressed: () => _removeFavorite(context, ref),
-                      ),
-                    ],
+                    ),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          spotData['name'] ?? 'Spot',
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: context.fontSize(14),
+                          ),
+                          maxLines: 2,
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                        const SizedBox(height: 4),
+                        Row(
+                          children: [
+                            Icon(
+                              category.icon,
+                              size: 14,
+                              color: category.color,
+                            ),
+                            const SizedBox(width: 6),
+                            Text(
+                              categoryLabel,
+                              style: TextStyle(
+                                fontSize: context.fontSize(12),
+                                color: Colors.grey.shade600,
+                              ),
+                            ),
+                          ],
+                        ),
+                        if (spotData['googleRating'] != null) ...[
+                          const SizedBox(height: 4),
+                          Row(
+                            children: [
+                              const Icon(Icons.star,
+                                  color: Colors.amber, size: 16),
+                              const SizedBox(width: 4),
+                              Text(
+                                '${(spotData['googleRating'] as num).toStringAsFixed(1)}/5',
+                                style: TextStyle(
+                                  fontSize: context.fontSize(12),
+                                  fontWeight: FontWeight.w600,
+                                ),
+                              ),
+                            ],
+                          )
+                        ],
+                      ],
+                    ),
                   ),
-                ],
-              ),
+                ),
+                IconButton(
+                  icon: const Icon(Icons.favorite, color: Colors.red),
+                  padding: EdgeInsets.zero,
+                  constraints: const BoxConstraints(),
+                  onPressed: () => _removeFavorite(context, ref),
+                ),
+              ],
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

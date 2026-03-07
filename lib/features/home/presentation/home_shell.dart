@@ -10,11 +10,14 @@ import 'package:google_mobile_ads/google_mobile_ads.dart';
 import '../../../core/utils/responsive_utils.dart';
 import '../../auth/data/auth_providers.dart';
 import '../../map/presentation/map_page.dart';
+import '../../map/presentation/map_controller.dart';
 import '../../map/presentation/nearby_results_page.dart';
 import '../../search/presentation/search_page.dart';
 import '../../profile/presentation/profile_page.dart';
 import '../../../core/widgets/ad_banner.dart';
 import '../../../core/widgets/glass_app_bar.dart';
+
+final homeShellTabIndexProvider = StateProvider<int>((ref) => 0);
 
 class HomeShell extends ConsumerStatefulWidget {
   const HomeShell({super.key});
@@ -24,7 +27,6 @@ class HomeShell extends ConsumerStatefulWidget {
 }
 
 class _HomeShellState extends ConsumerState<HomeShell> {
-  int _index = 0;
   static const Duration _firstAdDelay = Duration(minutes: 2);
   static const Duration _recurringAdDelay = Duration(minutes: 10);
 
@@ -215,8 +217,12 @@ class _HomeShellState extends ConsumerState<HomeShell> {
   @override
   Widget build(BuildContext context) {
     _syncAdSchedule();
+    final index = ref.watch(homeShellTabIndexProvider);
     final profile = ref.watch(profileStreamProvider).value;
-    final colorScheme = Theme.of(context).colorScheme;
+    final mapError = ref.watch(
+      mapControllerProvider.select((state) => state.error),
+    );
+    const navBlue = Color(0xFF2C5FC7);
     final screenWidth = context.screenWidth;
     final compactNav = screenWidth < 375;
     const navCornerRadius = 18.0;
@@ -226,45 +232,60 @@ class _HomeShellState extends ConsumerState<HomeShell> {
           fontSize: compactNav ? context.fontSize(9.5) : context.fontSize(11),
         );
 
-    final navSelectedIndex = switch (_index) {
+    final navSelectedIndex = switch (index) {
+      2 => 1,
       3 => 2,
-      2 => 3,
-      _ => _index,
+      _ => 0,
     };
 
     final tabs = [
       const MapView(),
       const SearchPage(),
-      const ProfilePage(),
       const NearbyResultsPage(),
+      const ProfilePage(),
     ];
 
     final titleLogos = [
       'assets/images/accueil.png',
       'assets/images/recherche.png',
-      'assets/images/monprofil.png',
       'assets/images/autourdemoi.png',
+      'assets/images/monprofil.png',
     ];
     final PreferredSizeWidget shellAppBar = GlassAppBar(
       titleWidget: Image.asset(
-        _index == 0
+        index == 0
             ? 'assets/images/allspots_simple_logo.png'
-            : titleLogos[_index],
-        height: _index == 0 ? (compactNav ? 44 : 55) : (compactNav ? 18 : 22),
+            : titleLogos[index],
+        height: index == 0 ? (compactNav ? 44 : 55) : (compactNav ? 18 : 22),
         fit: BoxFit.contain,
       ),
       centerTitle: true,
     );
 
     return Scaffold(
-      appBar: shellAppBar,
+      appBar: index == 0 ? null : shellAppBar,
       body: _LazyIndexedStack(
-        index: _index,
+        index: index,
         children: tabs,
       ),
       bottomNavigationBar: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
+          if (index == 0 && mapError != null)
+            Container(
+              width: double.infinity,
+              color: Colors.orange.shade600,
+              padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
+              child: Text(
+                mapError,
+                style: const TextStyle(
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 12,
+                ),
+                textAlign: TextAlign.center,
+              ),
+            ),
           AdBanner(
             key: ValueKey(
               'ad-banner-${profile?.isAdmin}-${profile?.disableAdminPremium}-${profile?.hasPremiumPass}-${profile?.premiumExpiryDate?.millisecondsSinceEpoch}',
@@ -290,8 +311,17 @@ class _HomeShellState extends ConsumerState<HomeShell> {
                         fontWeight:
                             selected ? FontWeight.w700 : FontWeight.w600,
                         color: selected
-                            ? colorScheme.primary
-                            : colorScheme.onSurfaceVariant,
+                            ? navBlue
+                            : navBlue.withValues(alpha: 0.72),
+                      );
+                    }),
+                    iconTheme: WidgetStateProperty.resolveWith((states) {
+                      final selected = states.contains(WidgetState.selected);
+                      return IconThemeData(
+                        color: selected
+                            ? navBlue
+                            : navBlue.withValues(alpha: 0.72),
+                        size: selected ? 30 : 28,
                       );
                     }),
                   ),
@@ -301,22 +331,18 @@ class _HomeShellState extends ConsumerState<HomeShell> {
                     selectedIndex: navSelectedIndex,
                     onDestinationSelected: (destination) {
                       final mappedIndex = switch (destination) {
+                        1 => 2,
                         2 => 3,
-                        3 => 2,
                         _ => destination,
                       };
-                      setState(() => _index = mappedIndex);
+                      ref.read(homeShellTabIndexProvider.notifier).state =
+                          mappedIndex;
                     },
                     destinations: const [
                       NavigationDestination(
                         icon: Icon(Icons.public),
                         selectedIcon: Icon(Icons.public),
                         label: 'Accueil',
-                      ),
-                      NavigationDestination(
-                        icon: Icon(Icons.search),
-                        selectedIcon: Icon(Icons.search),
-                        label: 'Recherche',
                       ),
                       NavigationDestination(
                         icon: Icon(Icons.near_me),

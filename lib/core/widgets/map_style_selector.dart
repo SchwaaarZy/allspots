@@ -6,12 +6,14 @@ class MapStyleSelector extends StatelessWidget {
   final MapStyle currentStyle;
   final ValueChanged<MapStyle> onStyleChanged;
   final bool closeOnSelect;
+  final bool hasSatelliteAccess;
 
   const MapStyleSelector({
     super.key,
     required this.currentStyle,
     required this.onStyleChanged,
     this.closeOnSelect = true,
+    this.hasSatelliteAccess = true,
   });
 
   @override
@@ -68,26 +70,72 @@ class MapStyleSelector extends StatelessWidget {
             itemBuilder: (context, index) {
               final style = MapStyle.values[index];
               final isSelected = style == currentStyle;
+              final isSatellite = style == MapStyle.esriWorldImagery;
+              final isDisabled = isSatellite && !hasSatelliteAccess;
               
               return ListTile(
                 dense: true,
                 leading: Text(
                   style.icon,
-                  style: const TextStyle(fontSize: 24),
+                  style: TextStyle(
+                    fontSize: 24,
+                    color: isDisabled ? Colors.grey.shade400 : null,
+                  ),
                 ),
                 title: Text(
                   style.name,
                   style: TextStyle(
                     fontWeight: isSelected ? FontWeight.w600 : FontWeight.w400,
-                    color: isSelected ? Colors.blue.shade700 : Colors.black87,
+                    color: isDisabled
+                        ? Colors.grey.shade500
+                        : isSelected
+                            ? Colors.blue.shade700
+                            : Colors.black87,
                   ),
                 ),
-                trailing: isSelected
-                    ? Icon(Icons.check_circle, color: Colors.blue.shade700, size: 20)
+                subtitle: isDisabled
+                    ? const Text(
+                        'AllSPOTS+ requis',
+                        style: TextStyle(fontSize: 11),
+                      )
                     : null,
+                trailing: isDisabled
+                    ? Container(
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 8, vertical: 4),
+                        decoration: BoxDecoration(
+                          color: const Color(0xFFFFF6D8),
+                          borderRadius: BorderRadius.circular(8),
+                          border: Border.all(color: const Color(0xFFE3B317)),
+                        ),
+                        child: const Text(
+                          'AllSPOTS+',
+                          style: TextStyle(
+                            fontSize: 11,
+                            fontWeight: FontWeight.w800,
+                            color: Color(0xFF856A00),
+                          ),
+                        ),
+                      )
+                    : isSelected
+                        ? Icon(Icons.check_circle,
+                            color: Colors.blue.shade700, size: 20)
+                        : null,
                 selected: isSelected,
                 selectedTileColor: Colors.blue.shade50,
                 onTap: () {
+                  if (isDisabled) {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(
+                        content: Text(
+                          'Le mode satellite est reserve aux comptes premium.',
+                        ),
+                        duration: Duration(seconds: 2),
+                      ),
+                    );
+                    return;
+                  }
+
                   onStyleChanged(style);
                   if (closeOnSelect) {
                     Navigator.of(context).maybePop();

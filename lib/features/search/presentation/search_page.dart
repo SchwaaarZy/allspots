@@ -74,6 +74,7 @@ class _SearchPageState extends ConsumerState<SearchPage> {
   String? _cachedDepartmentStreamCode;
   Stream<QuerySnapshot<Map<String, dynamic>>>? _cachedDepartmentStream;
   final Set<String> _favoriteToggleInFlight = {};
+  final Map<String, DateTime> _favoriteTapLockUntilByPoiId = {};
 
   @override
   void initState() {
@@ -168,19 +169,6 @@ class _SearchPageState extends ConsumerState<SearchPage> {
                               ),
                             ),
                             const SizedBox(height: 8),
-                            SizedBox(
-                              width: double.infinity,
-                              child: OutlinedButton.icon(
-                                onPressed: () =>
-                                    _openKeywordPicker(profileCategories),
-                                icon: const Icon(Icons.tune, size: 16),
-                                label: Text(
-                                  _selectedKeywords.isEmpty
-                                      ? 'Mot-clé'
-                                      : 'Mot-clé (${_selectedKeywords.length})',
-                                ),
-                              ),
-                            ),
                             // Boutons d'action
                             Column(
                               children: [
@@ -192,8 +180,6 @@ class _SearchPageState extends ConsumerState<SearchPage> {
                                         _selectedCountryCode = null;
                                         _selectedRegionCode = null;
                                         _selectedDepartmentCode = null;
-                                        _keywordQuery = '';
-                                        _selectedKeywords = const <String>[];
                                         _nearbyOnly = false;
                                         _searchPerformed = false;
                                         _cachedResultsKey = null;
@@ -640,6 +626,10 @@ class _SearchPageState extends ConsumerState<SearchPage> {
         token.contains('monument') ||
         token.contains('unesco') ||
         token.contains('abbaye') ||
+        token.contains('religieux') ||
+        token.contains('eglise') ||
+        token.contains('cathedrale') ||
+        token.contains('village') ||
         token.contains('archeologique'));
     final hasNature = tokens.any((token) =>
         token.contains('nature') ||
@@ -655,9 +645,7 @@ class _SearchPageState extends ConsumerState<SearchPage> {
         token.contains('musee') ||
         token.contains('galerie') ||
         token.contains('theatre') ||
-        token.contains('cinema') ||
-        token.contains('festival') ||
-        token.contains('street art'));
+      token.contains('festival'));
     final hasFood = tokens.any((token) =>
         token.contains('gustative') ||
         token.contains('restaurant') ||
@@ -673,16 +661,17 @@ class _SearchPageState extends ConsumerState<SearchPage> {
         token.contains('velo') ||
         token.contains('ski') ||
         token.contains('nautique') ||
-        token.contains('golf') ||
         token.contains('camping'));
 
     if (hasHistory) {
       addAll([
+        'village de caractere',
         'chateau',
         'monument',
         'ruines',
         'abbaye',
-        'site historique',
+        'site religieux',
+        'site historique et archeologique',
         'unesco',
       ]);
     }
@@ -691,6 +680,9 @@ class _SearchPageState extends ConsumerState<SearchPage> {
         'cascade',
         'point de vue',
         'lac',
+        'riviere',
+        'acces riviere',
+        'parking',
         'foret',
         'grotte',
         'reserve naturelle',
@@ -701,9 +693,7 @@ class _SearchPageState extends ConsumerState<SearchPage> {
         'musee',
         'theatre',
         'galerie',
-        'cinema',
         'festival',
-        'street art',
       ]);
     }
     if (hasFood) {
@@ -723,7 +713,6 @@ class _SearchPageState extends ConsumerState<SearchPage> {
         'velo',
         'sports nautiques',
         'camping',
-        'golf',
       ]);
     }
 
@@ -776,14 +765,24 @@ class _SearchPageState extends ConsumerState<SearchPage> {
       'musee': ['exposition', 'art contemporain', 'centre culturel'],
       'galerie': ['art contemporain', 'vernissage', 'exposition'],
       'theatre': ['spectacle', 'opera', 'scene nationale'],
-      'cinema': ['film', 'festival cinema', 'cine plein air'],
       'festival': ['evenement culturel', 'concert', 'programmation'],
+      'village de caractere': [
+        'village historique',
+        'plus beau village de france',
+        'patrimoine',
+      ],
+      'site religieux': ['eglise', 'abbaye', 'cathedrale', 'basilique'],
       'chateau': ['forteresse', 'citadelle', 'donjon'],
-      'monument': ['patrimoine', 'memorial', 'site historique'],
+      'monument': [
+        'patrimoine',
+        'memorial',
+        'site historique et archeologique',
+      ],
       'abbaye': ['eglise', 'cathedrale', 'cloitre'],
-      'ruine': ['vestiges', 'site archeologique', 'fort'],
+      'ruine': ['vestiges', 'site historique et archeologique', 'fort'],
       'cascade': ['randonnee', 'point de vue', 'gorge'],
       'lac': ['base nautique', 'plage', 'balade'],
+      'riviere': ['acces riviere', 'parking', 'baignade'],
       'grotte': ['site naturel', 'visite guidee', 'speleologie'],
       'foret': ['sentier', 'randonnee', 'reserve naturelle'],
       'point de vue': ['belvedere', 'panorama', 'coucher de soleil'],
@@ -1108,6 +1107,7 @@ class _SearchPageState extends ConsumerState<SearchPage> {
     _resetPage();
   }
 
+  // ignore: unused_element
   Future<void> _openKeywordPicker(Set<String> profileCategories) async {
     final options = _keywordSuggestions(profileCategories);
     final selected = _selectedKeywords.toSet();
@@ -1491,9 +1491,16 @@ class _SearchPageState extends ConsumerState<SearchPage> {
         return {
           'patrimoine',
           'histoire',
+          'village de caractere',
+          'village historique',
+          'plus beau village de france',
+          'plus beaux villages de france',
           'monument',
           'chateau',
           'ruine',
+          'site religieux',
+          'religieux',
+          'site historique et archeologique',
           'site historique',
           'site archeologique',
           'eglise',
@@ -1528,10 +1535,8 @@ class _SearchPageState extends ConsumerState<SearchPage> {
           'exposition',
           'festival',
           'theatre',
-          'cinema',
           'bibliotheque',
           'galerie',
-          'street art',
           'marche',
         };
       case PoiCategory.experienceGustative:
@@ -1560,7 +1565,6 @@ class _SearchPageState extends ConsumerState<SearchPage> {
           'ski',
           'nautique',
           'camping',
-          'golf',
           'loisirs',
         };
     }
@@ -1674,7 +1678,6 @@ class _SearchPageState extends ConsumerState<SearchPage> {
       _selectedRegionCode ?? 'null',
       _selectedDepartmentCode ?? 'null',
       _nearbyOnly,
-      _normalizeFilterToken(_keywordQuery),
       userKey,
       sortedCategories.join('|'),
     ].join('::');
@@ -1756,6 +1759,7 @@ class _SearchPageState extends ConsumerState<SearchPage> {
     return score;
   }
 
+  // ignore: unused_element
   bool _matchesKeywordFilter(Poi poi) {
     final normalizedQuery = _normalizeFilterToken(_keywordQuery);
     if (normalizedQuery.isEmpty) {
@@ -1777,6 +1781,7 @@ class _SearchPageState extends ConsumerState<SearchPage> {
     return overlap >= (queryTokens.length >= 3 ? 2 : 1);
   }
 
+  // ignore: unused_element
   List<Poi> _sortByRelevance(List<Poi> pois, Position? userPos) {
     final normalizedQuery = _normalizeFilterToken(_keywordQuery);
     if (normalizedQuery.isEmpty) {
@@ -1835,10 +1840,7 @@ class _SearchPageState extends ConsumerState<SearchPage> {
         )
         .toList(growable: false);
 
-    final keywordFiltered =
-        categoryFiltered.where(_matchesKeywordFilter).toList(growable: false);
-
-    return _sortByRelevance(keywordFiltered, userPos);
+    return _sortedByDistance(categoryFiltered, userPos);
   }
 
   Widget _buildPageListWithAllSpotsRatings({
@@ -2002,194 +2004,225 @@ class _SearchPageState extends ConsumerState<SearchPage> {
     final subCategoryLabel = formatPoiSubCategory(poi.subCategory);
     final categoryLabel =
         subCategoryLabel.isNotEmpty ? subCategoryLabel : poi.category.label;
+    final lockUntil = _favoriteTapLockUntilByPoiId[poi.id];
+    final isTapLocked =
+        lockUntil != null && DateTime.now().isBefore(lockUntil);
 
     return Card(
       margin: const EdgeInsets.only(bottom: 8),
-      child: InkWell(
-        onTap: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (_) => PoiDetailPage(
-                poi: poi,
-                userLocation: userPos,
-              ),
-            ),
-          );
-        },
-        child: Padding(
-          padding: const EdgeInsets.all(12),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      child: LayoutBuilder(
+        builder: (context, constraints) {
+          const rightActionZoneWidth = 96.0;
+          return GestureDetector(
+            behavior: HitTestBehavior.opaque,
+            onTapUp: (details) {
+              if (isTapLocked || isFavoriteLoading) {
+                return;
+              }
+              // Ignore taps on the right-side actions area (favorite + distance).
+              if (details.localPosition.dx >=
+                  constraints.maxWidth - rightActionZoneWidth) {
+                return;
+              }
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (_) => PoiDetailPage(
+                    poi: poi,
+                    userLocation: userPos,
+                  ),
+                ),
+              );
+            },
+            child: Padding(
+              padding: const EdgeInsets.all(12),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Expanded(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Row(
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            if (isFirestore)
-                              const Padding(
-                                padding: EdgeInsets.only(right: 6),
-                                child: Tooltip(
-                                  message: 'Spot communautaire',
-                                  child: Icon(
-                                    Icons.home,
-                                    size: 16,
-                                    color: Colors.green,
+                            Row(
+                              children: [
+                                if (isFirestore)
+                                  const Padding(
+                                    padding: EdgeInsets.only(right: 6),
+                                    child: Tooltip(
+                                      message: 'Spot communautaire',
+                                      child: Icon(
+                                        Icons.home,
+                                        size: 16,
+                                        color: Colors.green,
+                                      ),
+                                    ),
+                                  ),
+                                Expanded(
+                                  child: Text(
+                                    poi.displayName,
+                                    style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: context.fontSize(14),
+                                    ),
+                                    maxLines: 2,
+                                    overflow: TextOverflow.ellipsis,
                                   ),
                                 ),
-                              ),
-                            Expanded(
-                              child: Text(
-                                poi.displayName,
-                                style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: context.fontSize(14),
+                              ],
+                            ),
+                            const SizedBox(height: 4),
+                            Row(
+                              children: [
+                                Icon(
+                                  iconForSubCategory(
+                                    poi.subCategory,
+                                    poi.category,
+                                  ),
+                                  size: 14,
+                                  color: poi.category.color,
                                 ),
-                                maxLines: 2,
-                                overflow: TextOverflow.ellipsis,
-                              ),
+                                const SizedBox(width: 6),
+                                Text(
+                                  categoryLabel,
+                                  style: TextStyle(
+                                    fontSize: context.fontSize(12),
+                                    color: Colors.grey.shade600,
+                                  ),
+                                ),
+                              ],
                             ),
                           ],
                         ),
-                        const SizedBox(height: 4),
-                        Row(
-                          children: [
-                            Icon(
-                              iconForSubCategory(
-                                poi.subCategory,
-                                poi.category,
+                      ),
+                      const SizedBox(width: 8),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.end,
+                        children: [
+                          GestureDetector(
+                            behavior: HitTestBehavior.opaque,
+                            onTapDown: (_) => _armFavoriteTapLock(poi.id),
+                            onTap: isFavoriteLoading
+                                ? null
+                                : () => _toggleFavoriteFromSearchCard(
+                                      context,
+                                      poi,
+                                      isFavorite,
+                                    ),
+                            child: Tooltip(
+                              message: isFavorite
+                                  ? 'Retirer des favoris'
+                                  : 'Ajouter aux favoris',
+                              child: SizedBox(
+                                width: 36,
+                                height: 36,
+                                child: Center(
+                                  child: isFavoriteLoading
+                                      ? const SizedBox(
+                                          width: 18,
+                                          height: 18,
+                                          child: CircularProgressIndicator(
+                                              strokeWidth: 2),
+                                        )
+                                      : Icon(
+                                          isFavorite
+                                              ? Icons.favorite
+                                              : Icons.favorite_border,
+                                          color: isFavorite
+                                              ? Colors.red
+                                              : Colors.grey,
+                                          size: 20,
+                                        ),
+                                ),
                               ),
-                              size: 14,
-                              color: poi.category.color,
                             ),
-                            const SizedBox(width: 6),
-                            Text(
-                              categoryLabel,
-                              style: TextStyle(
-                                fontSize: context.fontSize(12),
-                                color: Colors.grey.shade600,
-                              ),
+                          ),
+                          Text(
+                            distanceLabel,
+                            style: const TextStyle(
+                              fontWeight: FontWeight.bold,
+                              color: Colors.blue,
                             ),
-                          ],
+                          ),
+                          if (rating != null)
+                            Row(
+                              children: [
+                                const Icon(Icons.star,
+                                    size: 12, color: Colors.amber),
+                                const SizedBox(width: 2),
+                                Text(
+                                  rating.toStringAsFixed(1),
+                                  style:
+                                      TextStyle(fontSize: context.fontSize(11)),
+                                ),
+                              ],
+                            ),
+                        ],
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 10),
+                  Row(
+                    children: [
+                      const Icon(
+                        Icons.star,
+                        size: 14,
+                        color: Colors.amber,
+                      ),
+                      const SizedBox(width: 6),
+                      Text(
+                        'Note AllSPOTS: ${allSpotsRating.toStringAsFixed(1)}/5',
+                        style: TextStyle(
+                          fontSize: context.fontSize(12),
+                          color: Colors.grey.shade700,
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 8),
+                  Row(
+                    children: [
+                      if (photoCount > 0) ...[
+                        Icon(
+                          Icons.image,
+                          size: 14,
+                          color: Colors.grey.shade600,
+                        ),
+                        const SizedBox(width: 4),
+                        Text(
+                          '$photoCount',
+                          style: TextStyle(
+                            fontSize: context.fontSize(12),
+                            color: Colors.grey.shade600,
+                          ),
+                        ),
+                        const SizedBox(width: 12),
+                      ],
+                      if (rating != null) ...[
+                        const Icon(
+                          Icons.star,
+                          size: 14,
+                          color: Colors.amber,
+                        ),
+                        const SizedBox(width: 4),
+                        Text(
+                          rating.toStringAsFixed(1),
+                          style: TextStyle(
+                            fontSize: context.fontSize(12),
+                            color: Colors.amber,
+                          ),
                         ),
                       ],
-                    ),
-                  ),
-                  const SizedBox(width: 8),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.end,
-                    children: [
-                      IconButton(
-                        tooltip:
-                            isFavorite ? 'Retirer des favoris' : 'Ajouter aux favoris',
-                        onPressed: isFavoriteLoading
-                            ? null
-                            : () => _toggleFavoriteFromSearchCard(
-                                  context,
-                                  poi,
-                                  isFavorite,
-                                ),
-                        icon: isFavoriteLoading
-                            ? const SizedBox(
-                                width: 18,
-                                height: 18,
-                                child: CircularProgressIndicator(strokeWidth: 2),
-                              )
-                            : Icon(
-                                isFavorite
-                                    ? Icons.favorite
-                                    : Icons.favorite_border,
-                                color: isFavorite ? Colors.red : Colors.grey,
-                                size: 20,
-                              ),
-                        visualDensity: VisualDensity.compact,
-                      ),
-                      Text(
-                        distanceLabel,
-                        style: const TextStyle(
-                          fontWeight: FontWeight.bold,
-                          color: Colors.blue,
-                        ),
-                      ),
-                      if (rating != null)
-                        Row(
-                          children: [
-                            const Icon(Icons.star,
-                                size: 12, color: Colors.amber),
-                            const SizedBox(width: 2),
-                            Text(
-                              rating.toStringAsFixed(1),
-                              style: TextStyle(fontSize: context.fontSize(11)),
-                            ),
-                          ],
-                        ),
                     ],
                   ),
                 ],
               ),
-              const SizedBox(height: 10),
-              Row(
-                children: [
-                  const Icon(
-                    Icons.star,
-                    size: 14,
-                    color: Colors.amber,
-                  ),
-                  const SizedBox(width: 6),
-                  Text(
-                    'Note AllSPOTS: ${allSpotsRating.toStringAsFixed(1)}/5',
-                    style: TextStyle(
-                      fontSize: context.fontSize(12),
-                      color: Colors.grey.shade700,
-                      fontWeight: FontWeight.w600,
-                    ),
-                  ),
-                ],
-              ),
-              const SizedBox(height: 8),
-              Row(
-                children: [
-                  if (photoCount > 0) ...[
-                    Icon(
-                      Icons.image,
-                      size: 14,
-                      color: Colors.grey.shade600,
-                    ),
-                    const SizedBox(width: 4),
-                    Text(
-                      '$photoCount',
-                      style: TextStyle(
-                        fontSize: context.fontSize(12),
-                        color: Colors.grey.shade600,
-                      ),
-                    ),
-                    const SizedBox(width: 12),
-                  ],
-                  if (rating != null) ...[
-                    const Icon(
-                      Icons.star,
-                      size: 14,
-                      color: Colors.amber,
-                    ),
-                    const SizedBox(width: 4),
-                    Text(
-                      rating.toStringAsFixed(1),
-                      style: TextStyle(
-                        fontSize: context.fontSize(12),
-                        color: Colors.amber,
-                      ),
-                    ),
-                  ],
-                ],
-              ),
-            ],
-          ),
-        ),
+            ),
+          );
+        },
       ),
     );
   }
@@ -2209,6 +2242,9 @@ class _SearchPageState extends ConsumerState<SearchPage> {
       );
       return;
     }
+
+    // Keep lock active while async update starts/completes.
+    _armFavoriteTapLock(poi.id);
 
     setState(() {
       _favoriteToggleInFlight.add(poi.id);
@@ -2256,6 +2292,11 @@ class _SearchPageState extends ConsumerState<SearchPage> {
         });
       }
     }
+  }
+
+  void _armFavoriteTapLock(String poiId) {
+    _favoriteTapLockUntilByPoiId[poiId] =
+        DateTime.now().add(const Duration(milliseconds: 1200));
   }
 }
 

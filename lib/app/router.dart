@@ -13,11 +13,20 @@ import '../features/search/presentation/search_page.dart';
 import '../features/profile/presentation/public_profile_page.dart';
 
 final appRouterProvider = Provider<GoRouter>((ref) {
-  ref.watch(authStateProvider);
-  ref.watch(profileStreamProvider);
+  final refreshListenable = ValueNotifier<int>(0);
+
+  ref.listen(authStateProvider, (_, __) {
+    refreshListenable.value++;
+  });
+  ref.listen(profileStreamProvider, (_, __) {
+    refreshListenable.value++;
+  });
+
+  ref.onDispose(refreshListenable.dispose);
 
   return GoRouter(
     initialLocation: '/splash',
+    refreshListenable: refreshListenable,
     routes: [
       GoRoute(
         path: '/',
@@ -37,7 +46,7 @@ final appRouterProvider = Provider<GoRouter>((ref) {
       ),
       GoRoute(
         path: '/profile/edit',
-        builder: (context, state) => const ProfileSetupPage(),
+        builder: (context, state) => const ProfileSetupPage(isEditMode: true),
       ),
       GoRoute(
         path: '/home',

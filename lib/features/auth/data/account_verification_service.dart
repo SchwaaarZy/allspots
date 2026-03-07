@@ -19,40 +19,39 @@ class AccountVerificationService {
   static Future<void> ensureVerificationMetadata(User user) async {
     final profileRef = FirebaseFirestore.instance.collection('profiles').doc(user.uid);
 
-    await FirebaseFirestore.instance.runTransaction((transaction) async {
-      final snap = await transaction.get(profileRef);
-      final data = snap.data() ?? <String, dynamic>{};
+    final snap = await profileRef.get();
+    final data = snap.data() ?? <String, dynamic>{};
 
-      final createdAt = accountCreationDate(user);
-      final deadline = verificationDeadline(user);
-      final role = (data['role'] as String?)?.toLowerCase();
-      final isAdmin = (data['isAdmin'] as bool?) == true || role == 'admin';
-      final hasPhone = user.phoneNumber != null && user.phoneNumber!.trim().isNotEmpty;
-      final isVerified = isAdmin || hasPhone;
+    final createdAt = accountCreationDate(user);
+    final deadline = verificationDeadline(user);
+    final role = (data['role'] as String?)?.toLowerCase();
+    final isAdmin = (data['isAdmin'] as bool?) == true || role == 'admin';
+    final hasPhone = user.phoneNumber != null && user.phoneNumber!.trim().isNotEmpty;
+    final isVerified = isAdmin || hasPhone;
 
-      final updates = <String, dynamic>{
-        'isPhoneVerified': data['isPhoneVerified'] ?? isVerified,
-        'phoneVerificationStatus': data['phoneVerificationStatus'] ?? (isVerified ? 'verified' : 'pending'),
-        'phoneVerificationDeadlineAt':
-            data['phoneVerificationDeadlineAt'] ??
-            (deadline != null ? Timestamp.fromDate(deadline) : FieldValue.serverTimestamp()),
-        'accountCreatedAt':
-            data['accountCreatedAt'] ??
-            (createdAt != null ? Timestamp.fromDate(createdAt) : FieldValue.serverTimestamp()),
-      };
+    final updates = <String, dynamic>{
+      'isPhoneVerified': data['isPhoneVerified'] ?? isVerified,
+      'phoneVerificationStatus':
+          data['phoneVerificationStatus'] ?? (isVerified ? 'verified' : 'pending'),
+      'phoneVerificationDeadlineAt':
+          data['phoneVerificationDeadlineAt'] ??
+          (deadline != null ? Timestamp.fromDate(deadline) : FieldValue.serverTimestamp()),
+      'accountCreatedAt':
+          data['accountCreatedAt'] ??
+          (createdAt != null ? Timestamp.fromDate(createdAt) : FieldValue.serverTimestamp()),
+    };
 
-      final existingPhoneRaw = data['phoneNumber'];
-      final existingPhone = existingPhoneRaw is String ? existingPhoneRaw : '';
-      if (existingPhone.isEmpty && user.phoneNumber != null) {
-        updates['phoneNumber'] = user.phoneNumber;
-      }
+    final existingPhoneRaw = data['phoneNumber'];
+    final existingPhone = existingPhoneRaw is String ? existingPhoneRaw : '';
+    if (existingPhone.isEmpty && user.phoneNumber != null) {
+      updates['phoneNumber'] = user.phoneNumber;
+    }
 
-      if (isVerified) {
-        updates['phoneVerifiedAt'] = data['phoneVerifiedAt'] ?? FieldValue.serverTimestamp();
-      }
+    if (isVerified) {
+      updates['phoneVerifiedAt'] = data['phoneVerifiedAt'] ?? FieldValue.serverTimestamp();
+    }
 
-      transaction.set(profileRef, updates, SetOptions(merge: true));
-    });
+    await profileRef.set(updates, SetOptions(merge: true));
   }
 
   static Future<void> markCodeSent({
